@@ -685,3 +685,42 @@ export const DoctorSettings = () => {
     </PageLayout>
   );
 };
+
+const SettingSection = ({ title, children }) => (
+  <div className="bg-white rounded-2xl border border-[#e2e2e2] overflow-hidden shadow-sm">
+    <div className="px-6 py-4 bg-[#f5f0e8]/30 border-b border-[#e2e2e2]">
+      <h3 className="text-xs font-bold text-[#0f2f35] uppercase tracking-widest">{title}</h3>
+    </div>
+    <div className="divide-y divide-[#f5f0e8]">
+      {children}
+    </div>
+  </div>
+);
+
+const SettingItem = ({ icon: Icon, label, active, onClick }) => (
+  <div 
+    className={cn(
+      "px-6 py-4 flex items-center justify-between transition-all",
+      onClick ? "cursor-pointer hover:bg-[#f5f0e8]/30" : ""
+    )}
+    onClick={onClick}
+  >
+    <div className="flex items-center gap-4">
+      <div className="w-8 h-8 rounded-lg bg-[#e8f4f5] flex items-center justify-center text-[#145e69]">
+        <Icon size={16} />
+      </div>
+      <span className="text-sm font-medium text-[#0f2f35]">{label}</span>
+    </div>
+    {onClick && (
+      <div className={cn(
+        "w-10 h-5 rounded-full transition-all relative",
+        active ? "bg-[#145e69]" : "bg-[#dbdbdb]"
+      )}>
+        <div className={cn(
+          "absolute top-1 w-3 h-3 rounded-full bg-white transition-all",
+          active ? "right-1" : "left-1"
+        )} />
+      </div>
+    )}
+  </div>
+);
