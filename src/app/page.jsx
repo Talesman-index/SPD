@@ -4,7 +4,7 @@ import Footer from '../components/layout/Footer'
 import CartDrawer from '../components/ui/CartDrawer'
 import Hero from '../components/sections/Hero'
 import MissionProblem from '../components/sections/MissionProblem'
-import Services from '../components/sections/Services'
+import Solution from '../components/sections/Solution'
 import HowItWorks from '../components/sections/HowItWorks'
 import TrustProof from '../components/sections/TrustProof'
 import GetStarted from '../components/sections/GetStarted'
@@ -30,14 +30,14 @@ const Page = () => {
           <Hero onOpenTrial={() => setIsTrialOpen(true)} />
         </ErrorBoundary>
 
-        {/* 2. MISSION & THE PROBLEM */}
+        {/* 2. MISSION & THE REALITY */}
         <ErrorBoundary name="MissionProblem">
           <MissionProblem />
         </ErrorBoundary>
 
-        {/* 3. THREE CRITICAL TESTS */}
-        <ErrorBoundary name="Services">
-          <Services />
+        {/* 3. THE SOLUTION (App + Device + Tests) */}
+        <ErrorBoundary name="Solution">
+          <Solution />
         </ErrorBoundary>
 
         {/* 4. HOW IT WORKS (Full User Flow) */}
