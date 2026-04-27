@@ -1,4 +1,4 @@
-# Smart Petri Dish — Core Diagnostic Journey (v2.0)
+# Smart Petri Dish — Core Diagnostic Journey (v2.1)
 
 This guide outlines the 5-step integrated workflow for the Smart Petri Dish platform, aligning the web application's frontend with the clinical backend and portable device.
 
@@ -12,18 +12,18 @@ This guide outlines the 5-step integrated workflow for the Smart Petri Dish plat
 ### 2. Health Profile
 *   **Action**: Contextual intake assessment.
 *   **Questions**: Environmental exposure (water source, urban/rural), current symptoms (severity, duration).
-*   **Medical History**: Optional baseline data (Diabetes, Hypertension, etc.) to improve AI pattern detection.
+*   **Logic**: Data is fed into a **medical rules engine**.
 
-### 3. Your Test
-*   **Action**: Smart screening protocol.
-*   **AI Recommendation**: System selects the appropriate panel (Water, Respiratory, or Bio) based on Step 2.
-*   **Device Interaction**: Guided instructions for sample collection and Petri dish scan.
+### 3. Guided Testing (Doctor Validated Recommendation)
+*   **Logic**: Rules engine recommends a panel (Water, Sputum, or Bio).
+*   **Validation**: **A doctor validates this recommendation** before the patient can proceed.
+*   **Action**: Patient receives instructions and tests their sample at home using the 3-compartment portable device.
 *   **Submission**: Asynchronous data upload to the SPD cloud.
 
 ### 4. Analysis
 *   **Action**: Dual-layer verification.
 *   **AI Layer**: Preliminary pattern recognition and biomarker detection.
-*   **Professional Layer**: Background validation by a licensed healthcare provider (Async review).
+*   **Professional Layer**: **Second validation** by a licensed physician reviewing the raw Petri dish data and AI report.
 
 ### 5. Results & Next Steps
 *   **Action**: Actionable clinical guidance.
@@ -34,5 +34,5 @@ This guide outlines the 5-step integrated workflow for the Smart Petri Dish plat
 
 ## Technical Pillars
 *   **Palette**: Indigo & Petri (Indigo-900/950, Petri-500 Cyan).
-*   **Validation**: Every screening requires a licensed provider's signature before final release.
+*   **Validation**: Two-stage physician validation (Recommendation + Results).
 *   **Security**: End-to-end encryption for all biological data and microscopy images.

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Droplets, Wind, ShieldAlert, ArrowUpRight, Cpu, Microscope, ShieldCheck, MicroscopeIcon, TestTube2 } from 'lucide-react'
+import { Droplets, Wind, ShieldAlert, ArrowUpRight, Cpu, Microscope, ShieldCheck, MicroscopeIcon, TestTube2, ClipboardCheck } from 'lucide-react'
 import ScrollReveal from '../ui/ScrollReveal'
 
 const tests = [
@@ -105,23 +105,23 @@ const Solution = () => {
                </div>
                <h2 className="text-4xl lg:text-6xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-12">
                  Powered by <br />
-                 <span className="italic text-petri-500 font-medium">AI & Expertise.</span>
+                 <span className="italic text-petri-500 font-medium">Expert Logic.</span>
                </h2>
-               <div className="space-y-10">
+               <div className="space-y-12">
                   <div>
                     <h5 className="text-xs font-black text-indigo-950 uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
-                      <Cpu size={16} className="text-petri-500" /> What is the app?
+                      <ClipboardCheck size={16} className="text-petri-500" /> What is it?
                     </h5>
-                    <p className="text-lg text-text-secondary font-medium leading-relaxed">
-                      Smart Petri Dish is a web application that uses bacterial images captured by our portable Petri device. These images are analyzed by an AI agent to generate a preliminary health report for the user. The goal is to provide fast, data-driven insights before professional medical validation.
+                    <p className="text-lg text-text-secondary font-bold leading-relaxed">
+                      Smart Petri Dish is a guided health screening system. The user describes their symptoms in an app. A medical rules engine recommends which test to perform using a portable device with three compartments (water, sputum, biological panel).
                     </p>
                   </div>
                   <div>
                     <h5 className="text-xs font-black text-indigo-950 uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
                       <Microscope size={16} className="text-petri-500" /> How does it work?
                     </h5>
-                    <p className="text-lg text-text-secondary font-medium leading-relaxed">
-                      The portable Petri device captures microscopic images of a sample and sends them to the web app. The AI analyzes the images, identifies potential bacteria, and generates a health report for review.
+                    <p className="text-lg text-text-secondary font-bold leading-relaxed">
+                      A doctor validates the recommendation and sends instructions to the patient, who tests their sample at home. Results are analyzed by AI, validated by the doctor, and delivered in the app along with next steps.
                     </p>
                   </div>
                </div>
@@ -145,7 +145,7 @@ const Solution = () => {
                         <Cpu size={20} />
                      </div>
                      <p className="text-[10px] font-black text-indigo-950 uppercase tracking-widest mb-1">AI Agent Active</p>
-                     <p className="text-[9px] text-indigo-900/40 font-bold leading-relaxed">Analyzing bacterial patterns for preliminary report.</p>
+                     <p className="text-[9px] text-indigo-900/40 font-bold leading-relaxed">Analyzing biological signals for preliminary read.</p>
                   </motion.div>
 
                   {/* Floating Doctor Card */}
@@ -158,7 +158,7 @@ const Solution = () => {
                         <ShieldCheck size={20} />
                      </div>
                      <p className="text-[10px] font-black text-white uppercase tracking-widest mb-1">Human Validation</p>
-                     <p className="text-[9px] text-white/40 font-bold leading-relaxed">Healthcare provider reviews and validates all results.</p>
+                     <p className="text-[9px] text-white/40 font-bold leading-relaxed">Physician validates both the recommendation and the final result.</p>
                   </motion.div>
                </div>
             </div>

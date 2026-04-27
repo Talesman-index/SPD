@@ -22,10 +22,10 @@ const steps = [
   },
   {
     id: 3,
-    title: "Your Test",
-    shortDesc: "Smart screening protocol",
-    body: "Our AI recommends the specific panel needed for your symptoms. Follow guided instructions to capture microscopic images and sensor data with the SPD device.",
-    insight: "AI recommends panel(s) · Kit instructions · Scan / sample submission",
+    title: "Guided Testing",
+    shortDesc: "Validated screening protocol",
+    body: "A medical rules engine recommends the test panel. After a doctor validates this recommendation, you'll receive instructions to test your sample at home using the SPD device.",
+    insight: "Physician validates recommendation · Kit instructions · Sample submission",
     icon: <Microscope className="text-petri-500" size={18} />
   },
   {
