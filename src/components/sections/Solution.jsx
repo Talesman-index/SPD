@@ -123,7 +123,7 @@ const Solution = () => {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
           {tests.map((test, i) => (
             <ScrollReveal key={test.id} delay={i * 0.1}>
               <div className="group h-full bg-indigo-50/30 rounded-[48px] p-10 border border-indigo-100/30 hover:bg-white hover:shadow-2xl hover:shadow-indigo-900/5 transition-all duration-500 flex flex-col">
@@ -154,6 +154,17 @@ const Solution = () => {
             </ScrollReveal>
           ))}
         </div>
+
+        {/* Styled Disclaimer Box */}
+        <ScrollReveal delay={0.4}>
+          <div className="max-w-5xl mx-auto">
+            <div className="px-8 py-10 md:px-16 md:py-12 border-2 border-dashed border-indigo-100 rounded-[40px] md:rounded-[60px] flex items-center justify-center text-center">
+              <p className="text-[11px] md:text-xs font-black text-indigo-900/40 uppercase tracking-[0.2em] leading-relaxed">
+                <span className="text-indigo-950">Important:</span> Our system supports early screening and risk detection. All results are reviewed and validated by healthcare professionals. Basic guidance and training will be provided.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )
