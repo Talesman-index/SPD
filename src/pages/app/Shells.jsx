@@ -32,7 +32,7 @@ const PageLayout = ({ title, type, children, status = 'none' }) => {
   return (
     <div className="flex min-h-screen bg-slate-50 font-manrope">
       <Sidebar type={type} />
-      <main className="flex-1 ml-[260px]">
+      <main className="w-full pl-[260px]">
         <Topbar title={title} status={status} />
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

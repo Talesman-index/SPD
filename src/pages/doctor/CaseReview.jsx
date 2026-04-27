@@ -22,7 +22,7 @@ const DoctorCaseReview = () => {
     <div className="flex min-h-screen bg-slate-50 font-manrope">
       <Sidebar type="doctor" />
       
-      <main className="flex-1 ml-[260px]">
+      <main className="w-full pl-[260px]">
         <Topbar title={`Clinical Analysis — Case #${id}`} status="expert" />
         
         <div className="p-6 lg:p-10 flex flex-col xl:flex-row gap-6 lg:gap-10 h-[calc(100vh-72px)] overflow-hidden">

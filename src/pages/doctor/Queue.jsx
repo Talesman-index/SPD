@@ -34,7 +34,7 @@ const DoctorQueue = () => {
     <div className="flex min-h-screen bg-slate-50 font-manrope">
       <Sidebar type="doctor" />
       
-      <main className="flex-1 ml-[260px]">
+      <main className="w-full pl-[260px]">
         <Topbar title="Clinical Validation Queue" status="expert" />
         
         {/* STATS BENTO GRID */}
