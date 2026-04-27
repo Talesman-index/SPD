@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   Bell, ChevronRight, Activity, 
   ClipboardList, TestTube, FileText, 
-  Calendar, CheckCircle2, Circle, Clock, ShieldCheck
+  Calendar, CheckCircle2, Circle, Clock, ShieldCheck, ShieldAlert
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MobileLayout from '../../components/layout/MobileLayout';
@@ -38,7 +38,7 @@ const PatientDashboard = () => {
             <div className="flex items-center gap-2 mb-4">
                <div className="w-2 h-2 rounded-full bg-petri-500 animate-pulse" />
                <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">
-                 Step 9/11: Provider Review
+                 Step 4/5: Analysis
                </span>
             </div>
             
@@ -46,23 +46,22 @@ const PatientDashboard = () => {
               Awaiting Clinical <br /> Validation<span className="text-petri-500">.</span>
             </h2>
             <p className="text-[13px] font-bold text-white/50 mb-8 leading-relaxed">
-              A licensed provider is reviewing your symptoms and Petri dish data.
+              AI analysis complete. A licensed provider is validating your results.
             </p>
 
-            {/* Progress Pills (6 key stages for Mobile UX) */}
-            <div className="flex justify-between items-center gap-1 mb-8">
-              <ProgressPill label="ASSESS" status="done" />
-              <ProgressPill label="RECO" status="done" />
+            {/* Progress Pills (5 simplified stages) */}
+            <div className="flex justify-between items-center gap-1.5 mb-8">
+              <ProgressPill label="SETUP" status="done" />
+              <ProgressPill label="PROFILE" status="done" />
               <ProgressPill label="TEST" status="done" />
-              <ProgressPill label="SCAN" status="done" />
-              <ProgressPill label="REVIEW" status="active" />
-              <ProgressPill label="FINAL" status="upcoming" />
+              <ProgressPill label="ANALYSIS" status="active" />
+              <ProgressPill label="RESULTS" status="upcoming" />
             </div>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Clock size={12} className="text-petri-500" />
-                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Est. time: ~15 mins</span>
+                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Est. wait: ~15 mins</span>
               </div>
               <ShieldCheck size={16} className="text-white/20" />
             </div>
@@ -75,7 +74,7 @@ const PatientDashboard = () => {
         <StatCard label="Assessments" value="04" icon={ClipboardList} />
         <StatCard label="Screenings" value="02" icon={TestTube} />
         <StatCard label="Validated Reports" value="01" icon={FileText} />
-        <StatCard label="Next Step" value="Monitor" icon={Activity} isText />
+        <StatCard label="Status" value="Active" icon={Activity} isText />
       </section>
 
       {/* 3. RECENT ACTIVITY */}
@@ -98,7 +97,7 @@ const PatientDashboard = () => {
           />
           <ActivityRow 
             icon={FileText} 
-            title="AI Preliminary Report" 
+            title="AI Preliminary Read" 
             time="1 hour ago" 
             status="Complete"
             color="text-indigo-900"
@@ -106,7 +105,7 @@ const PatientDashboard = () => {
           />
           <ActivityRow 
             icon={ClipboardList} 
-            title="Symptom Assessment" 
+            title="Health Profile Update" 
             time="Today" 
             status="Active"
             color="text-indigo-400"
@@ -115,7 +114,7 @@ const PatientDashboard = () => {
         </div>
       </section>
 
-      {/* 4. EMERGENCY BANNER (Strictly conditional) */}
+      {/* 4. EMERGENCY BANNER */}
       <section className="px-5 mt-8">
         <div className="bg-red-500/5 border border-red-500/10 p-5 rounded-[24px] flex gap-4 items-start">
            <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
@@ -124,7 +123,7 @@ const PatientDashboard = () => {
            <div>
               <p className="text-[11px] font-black text-red-500 uppercase tracking-widest mb-1">Emergency Protocol</p>
               <p className="text-[12px] text-red-950/60 font-bold leading-relaxed">
-                If you experience severe respiratory distress, call emergency services immediately. 
+                If you experience severe distress, call emergency services immediately. 
               </p>
            </div>
         </div>
@@ -139,7 +138,7 @@ const PatientDashboard = () => {
           <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-petri-500 transition-colors">
             <Activity size={20} />
           </div>
-          Start New Assessment
+          Start New Screening
         </Link>
       </section>
     </MobileLayout>
@@ -194,12 +193,6 @@ const ActivityRow = ({ icon: Icon, title, time, status, color, bg }) => (
     </div>
     <ChevronRight size={16} className="text-indigo-900/20" />
   </div>
-);
-
-const ShieldAlert = ({ size, className }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-  </svg>
 );
 
 export default PatientDashboard;
