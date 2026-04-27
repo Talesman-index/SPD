@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Droplets, Wind, ShieldAlert, ArrowUpRight, Cpu, Microscope, ShieldCheck } from 'lucide-react'
+import { Droplets, Wind, ShieldAlert, ArrowUpRight, Cpu, Microscope, ShieldCheck, MicroscopeIcon, TestTube2 } from 'lucide-react'
 import ScrollReveal from '../ui/ScrollReveal'
 
 const tests = [
@@ -13,19 +13,19 @@ const tests = [
     color: "bg-blue-500/10 text-blue-500"
   },
   {
-    id: 'respiratory',
-    icon: <Wind size={32} />,
-    title: "Respiratory Sample Screening",
-    tags: ["Mucus Analysis", "Pattern Detection", "Risk Indicators"],
-    description: "Analyzes sputum samples to identify abnormal patterns, color changes, and biological activity associated with potential respiratory issues. Results are AI-assisted and reviewed by healthcare providers.",
-    color: "bg-red-500/10 text-red-500"
+    id: 'swab',
+    icon: <TestTube2 size={32} />,
+    title: "Swab Analysis",
+    tags: ["Swab Analysis", "Pattern Detection", "Risk Indicators"],
+    description: "Our system uses simple swab samples (skin, oral, or surface) to capture biological data. AI-assisted analysis identifies abnormal patterns and potential health risk indicators. Results are reviewed by healthcare providers before being shared with patients in clear language.",
+    color: "bg-amber-500/10 text-amber-500"
   },
   {
     id: 'biological',
     icon: <ShieldAlert size={32} />,
     title: "Biological Risk Screening Panel",
     tags: ["Microbial Activity", "Biomarkers", "Early Warning Signals"],
-    description: "Screens biological samples for unusual microbial growth and biomarker signals using multi-modal sensing (visual, electrochemical, and colorimetric). Designed for early risk detection, not diagnosis.",
+    description: "Screens biological samples, including swab and urine, to detect abnormal microbial activity and biomarker signals. Designed for early risk detection—not medical diagnosis. All results are reviewed by licensed providers.",
     color: "bg-petri-500/10 text-petri-500"
   }
 ]
@@ -35,7 +35,7 @@ const Solution = () => {
     <section id="solution" className="py-24 lg:py-48 bg-white overflow-hidden">
       <div className="container-custom">
         
-        {/* PART 1: THE THREE TESTS (NOW FIRST) */}
+        {/* PART 1: THE THREE TESTS */}
         <ScrollReveal>
           <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
             <div className="max-w-2xl">
@@ -79,7 +79,7 @@ const Solution = () => {
                   ))}
                 </div>
 
-                <p className="text-text-secondary leading-relaxed font-medium mb-10 flex-grow">
+                <p className="text-text-secondary leading-relaxed font-bold mb-10 flex-grow text-sm">
                   {test.description}
                 </p>
 
@@ -93,7 +93,7 @@ const Solution = () => {
           ))}
         </div>
 
-        {/* PART 2: PRODUCT INTRODUCTION (NOW AT THE END) */}
+        {/* PART 2: PRODUCT INTRODUCTION */}
         <ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center p-12 lg:p-24 bg-indigo-50 rounded-[60px] relative overflow-hidden">
             <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none"></div>
