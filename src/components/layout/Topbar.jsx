@@ -25,12 +25,12 @@ const Topbar = ({ title, status = 'none' }) => {
   const currentStatus = statusConfig[status] || statusConfig.none;
 
   return (
-    <header className="h-[72px] bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-30 px-10 flex items-center justify-between">
+    <header className="h-[72px] bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-30 px-4 lg:px-10 flex items-center justify-between">
       <div className="flex items-center gap-4">
-        <h1 className="text-lg font-black text-indigo-950 tracking-tighter uppercase italic">{title}</h1>
+        <h1 className="text-sm lg:text-lg font-black text-indigo-950 tracking-tighter uppercase italic">{title}</h1>
       </div>
 
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-4 lg:gap-10">
         {/* Search */}
         <div className="hidden md:flex items-center gap-4 bg-slate-50 px-5 py-2.5 rounded-full border border-transparent focus-within:bg-white focus-within:border-indigo-900/10 focus-within:ring-4 focus-within:ring-indigo-900/[0.02] transition-all w-[280px] group">
           <Search size={16} className="text-slate-300 group-focus-within:text-indigo-900 transition-colors" />

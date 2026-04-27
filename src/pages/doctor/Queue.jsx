@@ -80,7 +80,7 @@ const DoctorQueue = () => {
           </div>
 
           {/* TABLE DESIGN */}
-          <div className="bg-white rounded-[40px] border border-slate-200 shadow-2xl shadow-slate-200/40 overflow-hidden relative">
+          <div className="bg-white rounded-[40px] border border-slate-200 shadow-2xl shadow-slate-200/40 overflow-x-auto relative">
             <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
             
             <table className="w-full text-left border-collapse relative z-10">

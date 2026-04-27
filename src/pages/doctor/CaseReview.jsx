@@ -25,10 +25,9 @@ const DoctorCaseReview = () => {
       <main className="flex-1 ml-[260px]">
         <Topbar title={`Clinical Analysis — Case #${id}`} status="expert" />
         
-        <div className="p-10 flex gap-10 h-[calc(100vh-72px)] overflow-hidden">
-          
-          {/* LEFT: PATIENT CONTEXT (High-Tech Sidebar) */}
-          <div className="w-[320px] space-y-6 overflow-y-auto hide-scrollbar pb-8">
+        <div className="p-6 lg:p-10 flex flex-col xl:flex-row gap-6 lg:gap-10 h-[calc(100vh-72px)] overflow-hidden">
+          {/* Left Sidebar: Patient Summary */}
+          <div className="w-full xl:w-[320px] shrink-0 flex flex-col gap-6 lg:gap-8 overflow-y-auto pr-2 scrollbar-hide">
             <div className="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm text-center relative overflow-hidden group">
                <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-br from-indigo-900 to-indigo-950" />
                <div className="relative z-10">
@@ -74,8 +73,8 @@ const DoctorCaseReview = () => {
             </div>
           </div>
 
-          {/* CENTER: PRIMARY ANALYSIS */}
-          <div className="flex-1 space-y-8 overflow-y-auto hide-scrollbar pb-8 px-2">
+          {/* Center: Main Analysis Area */}
+          <div className="flex-1 min-w-0 overflow-y-auto pr-2 scrollbar-hide space-y-6 lg:space-y-10">
             <section className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8">
                  <div className="px-5 py-2.5 bg-red-50 border border-red-200 rounded-2xl text-red-500 flex items-center gap-2 font-black text-[10px] uppercase tracking-widest shadow-lg shadow-red-500/5 animate-pulse">
@@ -88,7 +87,7 @@ const DoctorCaseReview = () => {
                  <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">Report ID: SPD-492-X1</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                  <div className="space-y-8">
                     <div>
                        <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4">Patient Input</label>
@@ -168,8 +167,8 @@ const DoctorCaseReview = () => {
             </section>
           </div>
 
-          {/* RIGHT: MEDICAL DECISION PANEL */}
-          <div className="w-[360px] overflow-y-auto hide-scrollbar pb-8">
+          {/* Right Sidebar: Expert Actions */}
+          <div className="w-full xl:w-[360px] shrink-0 flex flex-col gap-6 lg:gap-10 overflow-y-auto pr-2 scrollbar-hide">
             <div className="bg-white rounded-[40px] border border-slate-200 shadow-2xl p-10 sticky top-0 space-y-12">
                <section>
                   <div className="flex items-center justify-between mb-8">
