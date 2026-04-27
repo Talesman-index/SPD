@@ -42,14 +42,14 @@ const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
               <ChevronLeft size={24} />
             </button>
           ) : (
-            <div className="flex items-center gap-3">
+            <NavLink to="/patient/settings" className="flex items-center gap-3 active:scale-95 transition-transform">
               <div className="relative">
                  <div className="w-9 h-9 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-[10px] font-black border border-white shadow-xl italic">
                    JD
                  </div>
                  <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-petri-500 border-2 border-white" />
               </div>
-            </div>
+            </NavLink>
           )}
         </div>
 
@@ -59,10 +59,10 @@ const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
 
         <div className="w-1/4 flex items-center justify-end">
           {rightAction ? rightAction : (
-            <button className="relative w-10 h-10 flex items-center justify-end text-[#5a5a8a] active:scale-95 transition-transform hover:text-indigo-950 transition-colors">
+            <NavLink to="/patient/notifications" className="relative w-10 h-10 flex items-center justify-end text-[#5a5a8a] active:scale-95 transition-transform hover:text-indigo-950 transition-colors">
               <Bell size={20} />
               <span className="absolute top-2.5 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white shadow-lg shadow-red-500/20" />
-            </button>
+            </NavLink>
           )}
         </div>
       </header>

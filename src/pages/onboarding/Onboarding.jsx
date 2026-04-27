@@ -4,7 +4,8 @@ import {
   ChevronRight, ChevronLeft, Save, CheckCircle, 
   User, Phone, Ruler, History, ShieldCheck, 
   ArrowRight, MapPin, Sparkles, Activity, Lock,
-  Thermometer, Wind
+  Thermometer, Wind, Globe, Shield, Calendar, Scale,
+  AlertCircle, Pill
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '../../lib/utils';
@@ -17,26 +18,26 @@ const Onboarding = () => {
   const prevStep = () => step > 1 && setStep(step - 1);
 
   const steps = [
-    { id: 1, title: 'Consent', subtitle: 'Phase 01: Legal', icon: ShieldCheck, img: null },
-    { id: 2, title: 'Identity', subtitle: 'Phase 02: Profile', icon: User, img: '/onboarding_identity.png' },
-    { id: 3, title: 'Snapshot', subtitle: 'Phase 03: Clinical', icon: Activity, img: '/onboarding_clinical.png' },
+    { id: 1, title: 'Consent & Privacy', subtitle: 'Step 02: Legal', icon: ShieldCheck },
+    { id: 2, title: 'Basic Information', subtitle: 'Step 03: Profile', icon: User },
+    { id: 3, title: 'Health Snapshot', subtitle: 'Step 04: Clinical', icon: Activity },
   ];
 
   return (
     <div className="min-h-screen h-screen bg-slate-50 font-manrope selection:bg-petri-500/10 flex flex-col overflow-hidden">
-      {/* Navbar Minimal (Ultra Compact) */}
+      {/* Navbar Minimal */}
       <nav className="bg-white/80 backdrop-blur-xl shrink-0 px-6 py-4 border-b border-slate-100 flex items-center justify-between z-50">
         <a href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-xl bg-indigo-950 text-white flex items-center justify-center text-sm font-black italic shadow-lg transition-transform group-hover:scale-110">S</div>
+          <div className="w-8 h-8 rounded-xl bg-indigo-950 text-white flex items-center justify-center text-sm font-black italic shadow-lg">S</div>
           <div className="text-xl font-black text-indigo-950 tracking-tighter italic">SPD<span className="text-petri-500">.</span></div>
         </a>
         <div className="flex items-center gap-6">
           <div className="flex flex-col items-end">
-             <span className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Module</span>
+             <span className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Progress</span>
              <span className="text-[10px] font-black text-petri-500 uppercase tracking-widest italic">0{step} / 03</span>
           </div>
-          <button className="h-8 px-4 rounded-lg border border-slate-100 text-[9px] font-black text-indigo-950 uppercase tracking-widest flex items-center gap-2">
-            <Lock size={10} className="text-slate-300" /> Exit
+          <button onClick={() => navigate('/patient/dashboard')} className="h-8 px-4 rounded-lg border border-slate-100 text-[9px] font-black text-indigo-950 uppercase tracking-widest">
+             Exit
           </button>
         </div>
         <div className="absolute bottom-0 left-0 w-full h-[2px] bg-slate-100">
@@ -48,90 +49,112 @@ const Onboarding = () => {
       </nav>
 
       <main className="flex-1 flex items-center justify-center p-4 relative overflow-hidden">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-100 rounded-full blur-[100px] pointer-events-none opacity-30" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-petri-50 rounded-full blur-[80px] pointer-events-none opacity-30" />
-
-        <div className="w-full max-w-[750px] relative z-10">
+        <div className="w-full max-w-[800px] relative z-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              initial={{ opacity: 0, scale: 0.98, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: -10 }}
-              className="bg-white rounded-[40px] p-6 md:p-10 shadow-2xl shadow-indigo-900/5 border border-slate-100 relative group overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-indigo-900/5 border border-slate-100 overflow-hidden"
             >
-              <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
+              <div className="flex flex-col lg:flex-row gap-12">
                  {/* Left Content */}
                  <div className="flex-1 min-w-0">
-                    <div className="mb-8 flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-950 border border-indigo-100 group-hover:rotate-3 transition-transform">
-                        {React.createElement(steps[step-1].icon, { size: 20 })}
+                    <div className="mb-10 flex items-center gap-5">
+                      <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-950 border border-indigo-100">
+                        {React.createElement(steps[step-1].icon, { size: 24 })}
                       </div>
                       <div>
-                         <div className="flex items-center gap-2 mb-1">
-                            <div className="w-1.5 h-1.5 rounded-full bg-petri-500 animate-pulse" />
-                            <span className="text-[8px] font-black text-[#767690] uppercase tracking-[0.4em]">Biotech Protocol</span>
-                         </div>
-                         <h2 className="text-xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none">{steps[step-1].title}</h2>
+                         <span className="text-[9px] font-black text-petri-500 uppercase tracking-[0.4em] block mb-1">{steps[step-1].subtitle}</span>
+                         <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none">{steps[step-1].title}</h2>
                       </div>
                     </div>
 
-                    <div className="min-h-[260px]">
+                    <div className="min-h-[340px]">
                       {step === 1 && <StepConsent />}
                       {step === 2 && <StepBasicInfo />}
                       {step === 3 && <StepSnapshot />}
                     </div>
+
+                    <div className="mt-12 pt-8 border-t border-slate-50 flex items-center justify-between">
+                      <button
+                        onClick={prevStep}
+                        disabled={step === 1}
+                        className={cn(
+                          "h-12 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center gap-3 transition-all",
+                          step === 1 ? "opacity-0 pointer-events-none" : "text-[#5a5a8a] hover:text-indigo-950"
+                        )}
+                      >
+                        <ChevronLeft size={18} /> Previous
+                      </button>
+
+                      {step < 3 ? (
+                        <button
+                          onClick={nextStep}
+                          className="h-12 px-10 rounded-2xl bg-indigo-950 text-white font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-petri-500 transition-all shadow-xl active:scale-95"
+                        >
+                          Continue <ChevronRight size={18} />
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => navigate('/patient/dashboard')}
+                          className="h-12 px-12 rounded-2xl bg-petri-500 text-white font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-indigo-950 transition-all shadow-xl active:scale-95"
+                        >
+                          Complete Profile <ArrowRight size={18} />
+                        </button>
+                      )}
+                    </div>
                  </div>
 
-                 {/* Right Illustration - Premium Visuals */}
-                 {steps[step-1].img && (
-                    <motion.div 
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="hidden md:flex w-[200px] lg:w-[240px] shrink-0 items-center justify-center relative"
-                    >
-                       <div className="absolute inset-0 bg-indigo-50/50 rounded-3xl blur-2xl" />
-                       <img 
-                        src={steps[step-1].img} 
-                        alt="Illustration" 
-                        className="relative z-10 w-full h-auto object-contain drop-shadow-2xl"
-                       />
-                       <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-white rounded-2xl border border-indigo-100 shadow-xl flex items-center justify-center animate-bounce">
-                          <Sparkles size={20} className="text-petri-500" />
+                 {/* Right Context - Illustrative Sidebar */}
+                 <div className="hidden lg:block w-[300px] shrink-0 border-l border-slate-50 pl-12 pt-4">
+                    {/* Icon Illustration Card */}
+                    <div className="bg-white rounded-[40px] border border-slate-100 p-8 shadow-2xl shadow-indigo-900/5 mb-10 relative overflow-hidden group">
+                       <div className="absolute inset-0 bg-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                       <div className="relative z-10 flex flex-col items-center text-center">
+                          <motion.div 
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                            className="w-24 h-24 rounded-full border-2 border-dashed border-petri-200 flex items-center justify-center mb-6"
+                          >
+                             <div className="w-16 h-16 bg-indigo-950 rounded-2xl flex items-center justify-center text-petri-500 shadow-xl">
+                                {React.createElement(steps[step-1].icon, { size: 32 })}
+                             </div>
+                          </motion.div>
+                          <h4 className="text-[14px] font-black text-indigo-950 uppercase italic tracking-tighter mb-2">Protocol Active</h4>
+                          <p className="text-[11px] font-bold text-[#5a5a8a] uppercase tracking-tight leading-relaxed">
+                            Securing biological <br />data streams.
+                          </p>
                        </div>
-                    </motion.div>
-                 )}
-              </div>
+                    </div>
 
-              {/* Navigation - Compact Footer */}
-              <div className="mt-8 pt-6 border-t border-slate-50 flex items-center justify-between">
-                <button
-                  onClick={prevStep}
-                  disabled={step === 1}
-                  className={cn(
-                    "h-10 px-6 rounded-xl font-black text-[9px] uppercase tracking-widest flex items-center gap-3 transition-all",
-                    step === 1 ? "opacity-0 pointer-events-none" : "text-[#5a5a8a] hover:text-indigo-950"
-                  )}
-                >
-                  <ChevronLeft size={16} /> Previous
-                </button>
+                    <div className="space-y-8">
+                       <InfoBox 
+                         title="Data Integrity" 
+                         desc="End-to-end encryption for all clinical identifiers."
+                         icon={Lock}
+                       />
+                       <InfoBox 
+                         title="Expert Review" 
+                         desc="Human-in-the-loop validation for every AI screening."
+                         icon={ShieldCheck}
+                       />
+                    </div>
 
-                {step < 3 ? (
-                  <button
-                    onClick={nextStep}
-                    className="h-10 px-8 rounded-2xl bg-indigo-950 text-white font-black text-[9px] uppercase tracking-widest flex items-center gap-3 hover:bg-petri-500 transition-all shadow-xl group"
-                  >
-                    Next Phase <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => navigate('/patient/dashboard')}
-                    className="h-10 px-10 rounded-2xl bg-petri-500 text-white font-black text-[9px] uppercase tracking-widest flex items-center gap-3 hover:bg-indigo-950 transition-all shadow-xl group"
-                  >
-                    Finish Setup <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </button>
-                )}
+                    <div className="mt-12 p-6 bg-indigo-950 rounded-[32px] relative overflow-hidden">
+                       <div className="absolute top-0 right-0 w-24 h-24 bg-petri-500/10 rounded-full blur-2xl" />
+                       <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest mb-4 italic leading-relaxed relative z-10">
+                         "Ensuring medical accuracy and safety for every patient."
+                       </p>
+                       <div className="flex items-center gap-2 relative z-10">
+                          <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center">
+                             <Sparkles size={12} className="text-petri-500" />
+                          </div>
+                          <span className="text-[8px] font-black text-white uppercase tracking-[0.2em]">SPD Validated</span>
+                       </div>
+                    </div>
+                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -141,117 +164,112 @@ const Onboarding = () => {
   );
 };
 
-const StepConsent = () => {
-  const [agreed, setAgreed] = useState([false, false, false]);
-  const toggle = (i) => {
-    const newAgreed = [...agreed];
-    newAgreed[i] = !newAgreed[i];
-    setAgreed(newAgreed);
-  };
-  return (
-    <div className="space-y-2">
-      <div className="p-4 bg-petri-50/50 border border-petri-100 rounded-xl mb-3 flex items-start gap-3">
-        <ShieldCheck className="text-petri-500 shrink-0" size={16} />
-        <p className="text-[9px] text-[#5a5a8a] font-bold uppercase tracking-tight leading-normal">
-          SPD utilizes AI scanning and expert validation. Data is encrypted end-to-end.
-        </p>
-      </div>
-      {[
-        "Authorize biological data processing",
-        "Consent to expert clinical review",
-        "Acknowledge HIPAA & Data rights"
-      ].map((item, i) => (
-        <label key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all cursor-pointer group border border-transparent hover:border-slate-100">
-          <div 
-            onClick={() => toggle(i)}
-            className={cn(
-              "w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all shrink-0",
-              agreed[i] ? "bg-indigo-950 border-indigo-950" : "border-slate-200 bg-white group-hover:border-indigo-950"
-            )}
-          >
-            {agreed[i] && <CheckCircle size={12} className="text-petri-500" strokeWidth={3} />}
-          </div>
-          <span className="text-[10px] text-indigo-950 font-black uppercase tracking-tight italic">{item}</span>
-        </label>
-      ))}
+const InfoBox = ({ title, desc, icon: Icon }) => (
+  <div className="space-y-2">
+    <div className="flex items-center gap-3 text-indigo-950">
+      <Icon size={16} className="text-petri-500" />
+      <h4 className="text-[11px] font-black uppercase tracking-widest italic">{title}</h4>
     </div>
+    <p className="text-[11px] font-medium text-[#5a5a8a] leading-relaxed">{desc}</p>
+  </div>
+);
+
+const StepConsent = () => (
+  <div className="space-y-4">
+    <ConsentItem label="Privacy Policy Acceptance" desc="I agree to the secure storage and encryption of my personal health data." />
+    <ConsentItem label="Screening Understanding" desc="I understand this system provides health screening and is not a medical diagnosis." />
+    <ConsentItem label="Expert Data Sharing" desc="I consent to share my assessment data with licensed providers for review." />
+  </div>
+);
+
+const ConsentItem = ({ label, desc }) => {
+  const [checked, setChecked] = useState(false);
+  return (
+    <button onClick={() => setChecked(!checked)} className={cn("w-full p-6 rounded-[28px] border-2 text-left transition-all", checked ? "bg-indigo-50 border-indigo-950" : "bg-white border-slate-100")}>
+      <div className="flex justify-between items-center mb-1">
+        <h5 className={cn("text-[13px] font-black uppercase italic tracking-tight", checked ? "text-indigo-950" : "text-[#5a5a8a]")}>{label}</h5>
+        <div className={cn("w-5 h-5 rounded-full border-2 flex items-center justify-center", checked ? "bg-petri-500 border-petri-500 text-white" : "border-slate-200")}>
+          {checked && <CheckCircle size={12} strokeWidth={4} />}
+        </div>
+      </div>
+      <p className="text-[11px] font-bold text-[#767690] leading-relaxed">{desc}</p>
+    </button>
   );
 };
 
-const StepBasicInfo = () => {
+const StepBasicInfo = () => (
+  <div className="space-y-6">
+    <div className="grid grid-cols-2 gap-4">
+       <InputField label="Date of Birth" type="date" icon={Calendar} />
+       <div className="space-y-1.5">
+          <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">Gender (Optional)</label>
+          <select className="w-full h-12 px-4 bg-slate-50 border border-slate-100 rounded-xl outline-none font-black text-[11px] text-indigo-950 uppercase italic tracking-tight focus:bg-white focus:border-indigo-900 appearance-none">
+             <option>Male</option>
+             <option>Female</option>
+             <option>Other / Prefer not to say</option>
+          </select>
+       </div>
+    </div>
+    <div className="grid grid-cols-2 gap-4">
+       <InputField label="Phone Number" placeholder="+1 (000) 000-0000" icon={Phone} />
+       <InputField label="Preferred Language" placeholder="English" icon={Globe} />
+    </div>
+    <div className="grid grid-cols-3 gap-4">
+       <div className="col-span-1"><InputField label="City" placeholder="City" /></div>
+       <div className="col-span-1"><InputField label="State" placeholder="ST" /></div>
+       <div className="col-span-1"><InputField label="ZIP Code" placeholder="00000" icon={MapPin} /></div>
+    </div>
+    <InputField label="Insurance Provider (Optional)" placeholder="Carrier Name" icon={Shield} />
+  </div>
+);
+
+const StepSnapshot = () => (
+  <div className="space-y-6">
+    <div className="grid grid-cols-2 gap-4">
+       <InputField label="Height (cm)" placeholder="180" icon={Ruler} />
+       <InputField label="Weight (kg)" placeholder="75" icon={Scale} />
+    </div>
+    <div className="space-y-4">
+       <CheckOption label="Known medical conditions" />
+       <CheckOption label="Current medications" />
+       <CheckOption label="Known Allergies" />
+    </div>
+  </div>
+);
+
+const CheckOption = ({ label }) => {
+  const [active, setActive] = useState(false);
   return (
-    <div className="space-y-5">
-      <InputField label="Full Legal Name" placeholder="e.g. John Doe" icon={User} />
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-           <label className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">Sex at Birth</label>
-           <select className="w-full h-10 px-4 bg-slate-50 border border-transparent rounded-lg outline-none font-black text-[10px] text-indigo-950 uppercase italic tracking-tight focus:bg-white focus:border-indigo-900 appearance-none">
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
-           </select>
+    <div className="space-y-2">
+      <button onClick={() => setActive(!active)} className={cn("w-full h-14 px-6 rounded-2xl flex items-center justify-between border-2 transition-all", active ? "bg-indigo-950 border-indigo-950 text-white" : "bg-white border-slate-100 text-[#5a5a8a]")}>
+        <span className="text-[12px] font-black uppercase italic tracking-tight">{label}</span>
+        <div className={cn("w-5 h-5 rounded-full border-2 flex items-center justify-center", active ? "bg-petri-500 border-petri-500" : "border-slate-200")}>
+          {active && <CheckCircle size={12} className="text-white" strokeWidth={4} />}
         </div>
-        <InputField label="Birth Date" type="date" />
-      </div>
-      <div className="grid grid-cols-2 gap-4">
-        <InputField label="Height (cm)" placeholder="180" icon={Ruler} />
-        <InputField label="Weight (kg)" placeholder="75" icon={Activity} />
-      </div>
+      </button>
+      {active && (
+        <motion.textarea 
+          initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 80 }}
+          placeholder="Provide details..."
+          className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-indigo-950 text-[11px] font-bold text-indigo-950 resize-none shadow-inner"
+        />
+      )}
     </div>
   );
 };
 
 const InputField = ({ label, placeholder, type = "text", icon: Icon }) => (
   <div className="space-y-1.5">
-    <label className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">{label}</label>
+    <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">{label}</label>
     <div className="relative">
        <input 
          type={type} 
          placeholder={placeholder} 
-         className="w-full h-10 px-5 bg-slate-50 border border-transparent rounded-lg focus:bg-white focus:border-indigo-900 outline-none transition-all font-black text-[10px] text-indigo-950 uppercase italic tracking-tight" 
+         className="w-full h-12 px-5 bg-slate-50 border border-slate-100 rounded-xl focus:bg-white focus:border-indigo-900 outline-none transition-all font-black text-[11px] text-indigo-950 uppercase italic tracking-tight" 
        />
-       {Icon && <Icon size={12} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#767690]" />}
+       {Icon && <Icon size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#767690]" />}
     </div>
   </div>
 );
-
-const StepSnapshot = () => {
-  const [conditions, setConditions] = useState([]);
-  const options = ['Diabetes II', 'Hypertension', 'Asthma', 'Allergy: Penicillin', 'None'];
-  return (
-    <div className="space-y-5">
-      <div className="space-y-2">
-        <label className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">Clinical Context</label>
-        <div className="flex flex-wrap gap-2">
-          {conditions.map(c => (
-            <span key={c} className="h-7 px-3 bg-indigo-950 text-white rounded-lg text-[7px] font-black flex items-center gap-2 uppercase tracking-widest">
-              {c} <button onClick={() => setConditions(conditions.filter(x => x !== c))} className="text-petri-500">×</button>
-            </span>
-          ))}
-          <select 
-            onChange={(e) => e.target.value && !conditions.includes(e.target.value) && setConditions([...conditions, e.target.value])}
-            className="h-7 px-3 bg-white border border-dashed border-[#767690] text-[#767690] rounded-lg text-[7px] font-black outline-none uppercase tracking-widest cursor-pointer"
-          >
-            <option value="">+ Add Condition</option>
-            {options.map(o => <option key={o} value={o}>{o}</option>)}
-          </select>
-        </div>
-      </div>
-      <div className="space-y-1.5">
-        <label className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">Prescriptions</label>
-        <textarea placeholder="List medications..." className="w-full h-20 px-4 py-3 bg-slate-50 border border-transparent rounded-xl focus:bg-white focus:border-indigo-900 outline-none transition-all resize-none font-bold text-[11px] text-indigo-950 shadow-inner" />
-      </div>
-      <div className="p-4 bg-indigo-950 rounded-xl flex items-center justify-between">
-        <div className="flex items-center gap-3">
-           <Activity className="text-petri-500" size={14} />
-           <p className="text-[8px] text-white/70 font-black uppercase tracking-widest">Ensures clinical accuracy.</p>
-        </div>
-        <div className="flex gap-1">
-           {[1,2,3].map(i => <div key={i} className="w-1 h-1 rounded-full bg-white/20 animate-pulse" style={{ animationDelay: `${i*0.2}s` }} />)}
-        </div>
-      </div>
-    </div>
-  );
-};
 
 export default Onboarding;

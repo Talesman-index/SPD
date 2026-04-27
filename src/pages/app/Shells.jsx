@@ -49,8 +49,10 @@ const PageLayout = ({ title, type, children, status = 'none' }) => {
 
 // --- PATIENT PAGES ---
 
-export const PatientTests = () => (
-  <MobileLayout title="Instructions" showBack>
+export const PatientTests = () => {
+  const navigate = useNavigate();
+  return (
+    <MobileLayout title="Instructions" showBack>
     <div className="px-5 pt-4 space-y-8 pb-20">
       {/* Notification Card */}
       <div className="bg-petri-50 border-l-4 border-petri-500 p-5 rounded-r-[24px] shadow-sm flex items-center gap-5">
@@ -66,22 +68,22 @@ export const PatientTests = () => (
       </div>
 
       {/* Test Type Hero */}
-      <div className="bg-indigo-950 rounded-[40px] p-8 shadow-2xl shadow-indigo-950/20 relative overflow-hidden group">
+      <div className="bg-indigo-950 rounded-[40px] p-8 shadow-2xl shadow-indigo-950/30 relative overflow-hidden group">
         <div className="absolute inset-0 opacity-10 pointer-events-none bg-noise" />
-        <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-petri-500/10 rounded-full blur-[80px] group-hover:scale-150 transition-transform duration-1000" />
+        <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-petri-500/20 rounded-full blur-[80px] group-hover:scale-150 transition-transform duration-1000" />
         
         <div className="relative z-10 flex items-center gap-6 mb-8">
-          <div className="w-16 h-16 bg-white/10 rounded-[24px] flex items-center justify-center text-petri-500 border border-white/10">
+          <div className="w-16 h-16 bg-white/10 rounded-[24px] flex items-center justify-center text-petri-500 border border-white/10 group-hover:bg-petri-500 group-hover:text-white transition-all">
             <TestTube size={36} />
           </div>
           <div>
-            <span className="text-[10px] font-black text-white/70 uppercase tracking-[0.3em] block mb-1">Active Panel</span>
-            <h2 className="text-[24px] font-black text-white tracking-tighter italic uppercase">Sputum Analysis</h2>
+            <span className="text-[10px] font-black text-white/70 uppercase tracking-[0.3em] block mb-1">Active Protocol</span>
+            <h2 className="text-[24px] font-black text-white tracking-tighter italic uppercase">Biomarker Scan</h2>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 relative z-10">
-          <span className="px-4 py-1.5 bg-red-500/20 text-red-400 text-[10px] font-black rounded-full uppercase tracking-widest border border-red-500/20">Urgent Process</span>
-          <span className="px-4 py-1.5 bg-white/5 text-white/70 text-[10px] font-black rounded-full uppercase tracking-widest border border-white/5">Compartment B</span>
+          <span className="px-4 py-1.5 bg-petri-500/20 text-petri-400 text-[10px] font-black rounded-full uppercase tracking-widest border border-petri-500/20">Microbial Analysis</span>
+          <span className="px-4 py-1.5 bg-white/5 text-white/70 text-[10px] font-black rounded-full uppercase tracking-widest border border-white/5">Primary Compartment</span>
         </div>
       </div>
 
@@ -130,13 +132,17 @@ export const PatientTests = () => (
 
       {/* Bottom Button */}
       <div className="pt-4 pb-12">
-        <button className="w-full h-[68px] bg-indigo-950 text-white rounded-[28px] font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-indigo-950/20 active:scale-95 transition-all flex items-center justify-center gap-4">
+        <button 
+          onClick={() => navigate('/patient/assessments')}
+          className="w-full h-[68px] bg-indigo-950 text-white rounded-[28px] font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-indigo-950/20 active:scale-95 transition-all flex items-center justify-center gap-4"
+        >
           Initialize Screening <ArrowRight size={20} />
         </button>
       </div>
     </div>
   </MobileLayout>
-);
+  );
+};
 
 const InstructionStep = ({ num, title, desc, active }) => (
   <div className={cn(
@@ -192,7 +198,7 @@ export const PatientReports = () => (
         <div className="space-y-6">
           <div className="p-6 bg-petri-50 text-petri-600 rounded-[28px] border border-petri-100">
             <p className="text-[15px] font-black italic leading-relaxed tracking-tight">
-              "No Mycobacterium tuberculosis detected. Biological markers within baseline parameters."
+              "No pathogenic microbial activity detected. Biomarker drift within normal baseline parameters."
             </p>
           </div>
           <p className="text-[14px] text-[#5a5a8a] font-bold leading-relaxed px-2">
@@ -352,8 +358,8 @@ export const PatientSettings = () => {
     <MobileLayout title="Portal">
       {/* Avatar Section */}
       <section className="px-5 pt-10 pb-12 text-center">
-        <div className="relative inline-block mb-6">
-           <div className="w-24 h-24 rounded-[36px] bg-indigo-950 text-white flex items-center justify-center text-[32px] font-black border-4 border-white shadow-2xl italic">
+        <div className="relative inline-block mb-6 group cursor-pointer">
+           <div className="w-24 h-24 rounded-[36px] bg-indigo-950 text-white flex items-center justify-center text-[32px] font-black border-4 border-white shadow-2xl italic group-hover:scale-105 transition-transform">
              JD
            </div>
            <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-petri-500 border-4 border-white shadow-lg" />
@@ -395,6 +401,86 @@ export const PatientSettings = () => {
     </MobileLayout>
   );
 };
+
+export const PatientNotifications = () => {
+  const navigate = useNavigate();
+  return (
+    <MobileLayout title="Alerts" showBack>
+      <div className="px-5 pt-6 space-y-6 pb-20">
+        <div className="flex items-center justify-between px-2">
+           <h3 className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Recent Activity</h3>
+           <button className="text-[10px] font-black text-petri-500 uppercase tracking-widest">Clear All</button>
+        </div>
+
+        <div className="space-y-3">
+          <NotificationItem 
+            icon={ShieldCheck} 
+            title="Result Validated" 
+            desc="Your Sputum Analysis has been signed off by Dr. Sarah Chen." 
+            time="2m ago" 
+            unread 
+            onClick={() => navigate('/patient/reports')}
+          />
+          <NotificationItem 
+            icon={Activity} 
+            title="Review Started" 
+            desc="An expert has begun analyzing your clinical intake data." 
+            time="45m ago" 
+            onClick={() => navigate('/patient/dashboard')}
+          />
+          <NotificationItem 
+            icon={Calendar} 
+            title="Appointment Reminder" 
+            desc="Virtual Consultation with Dr. Ross starts in 1 hour." 
+            time="1h ago" 
+            onClick={() => navigate('/patient/followups')}
+          />
+          <NotificationItem 
+            icon={Pill} 
+            title="Medication Log" 
+            desc="Time for your scheduled Metformin dose (500mg)." 
+            time="4h ago" 
+          />
+        </div>
+
+        <div className="pt-8">
+           <h3 className="px-2 text-[11px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] mb-4">Discovery</h3>
+           <div className="bg-indigo-950 p-8 rounded-[36px] relative overflow-hidden group shadow-2xl shadow-indigo-900/20">
+              <div className="absolute top-0 right-0 p-4 opacity-20"><Sparkles size={48} /></div>
+              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-2 relative z-10">New Health Guide</h4>
+              <p className="text-[12px] text-white/60 font-bold mb-6 relative z-10">Optimizing microbial stability during seasonal changes.</p>
+              <button className="h-10 px-6 bg-white rounded-xl text-[10px] font-black uppercase tracking-widest text-indigo-950 relative z-10 active:scale-95 transition-all">Read Protocol</button>
+           </div>
+        </div>
+      </div>
+    </MobileLayout>
+  );
+};
+
+const NotificationItem = ({ icon: Icon, title, desc, time, unread, onClick }) => (
+  <div 
+    onClick={onClick}
+    className={cn(
+      "p-5 rounded-[32px] border flex gap-4 active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden",
+      unread ? "bg-white border-indigo-100 shadow-xl shadow-indigo-900/5" : "bg-slate-50/50 border-transparent"
+    )}
+  >
+    {unread && <div className="absolute top-0 left-0 w-1.5 h-full bg-petri-500" />}
+    <div className={cn(
+      "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border",
+      unread ? "bg-indigo-950 text-white border-indigo-900 shadow-lg shadow-indigo-900/20" : "bg-white text-[#9898b8] border-slate-100"
+    )}>
+      <Icon size={20} />
+    </div>
+    <div className="flex-1 min-w-0">
+      <div className="flex justify-between items-start mb-1">
+        <h4 className={cn("text-[14px] font-black uppercase italic tracking-tight", unread ? "text-indigo-950" : "text-[#767690]")}>{title}</h4>
+        <span className="text-[9px] font-black text-[#9898b8] uppercase whitespace-nowrap ml-2">{time}</span>
+      </div>
+      <p className="text-[12px] text-[#5a5a8a] font-bold leading-relaxed">{desc}</p>
+    </div>
+  </div>
+);
 
 const SettingGroup = ({ title, children }) => (
   <section>

@@ -8,6 +8,7 @@ import PatientAssessments from './pages/patient/Assessments';
 import { 
   PatientTests, PatientReports, PatientInstructions, 
   PatientFollowups, PatientSettings, MedicalHistory,
+  PatientNotifications,
   DoctorActiveCases, DoctorCompleted, DoctorPatients,
   DoctorAnalytics, DoctorSettings
 } from './pages/app/Shells';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/patient/instructions" element={<PatientInstructions />} />
           <Route path="/patient/followups" element={<PatientFollowups />} />
           <Route path="/patient/settings" element={<PatientSettings />} />
+          <Route path="/patient/notifications" element={<PatientNotifications />} />
           
           {/* Doctor Portal */}
           <Route path="/doctor/dashboard" element={<DoctorQueue />} />
