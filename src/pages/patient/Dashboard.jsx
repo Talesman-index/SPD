@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   Bell, ChevronRight, Activity, 
   ClipboardList, TestTube, FileText, 
-  Calendar, CheckCircle2, Circle
+  Calendar, CheckCircle2, Circle, Clock, ShieldCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MobileLayout from '../../components/layout/MobileLayout';
@@ -11,54 +11,60 @@ import { cn } from '../../lib/utils';
 
 const PatientDashboard = () => {
   return (
-    <MobileLayout title="Dashboard">
-      {/* 1. HERO CARD (Current Assessment) */}
+    <MobileLayout title="Diagnostic Dashboard">
       {/* 1. HERO CARD (Current Status) */}
       <section className="px-5 pt-2 space-y-4">
         {/* Result Ready Notification */}
-        <Link to="/patient/reports" className="bg-[#e8f4f5] border-l-4 border-[#145e69] p-4 rounded-r-[16px] shadow-sm flex items-center justify-between group active:scale-[0.98] transition-all">
+        <Link to="/patient/reports" className="bg-indigo-50 border-l-4 border-petri-500 p-4 rounded-r-[16px] shadow-sm flex items-center justify-between group active:scale-[0.98] transition-all">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#145e69] shadow-sm">
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-petri-500 shadow-sm">
               <CheckCircle2 size={24} />
             </div>
             <div>
-              <p className="text-[15px] font-bold text-[#0f2f35] flex items-center gap-1.5">
-                Result Ready <CheckCircle2 size={14} className="text-[#145e69]" />
+              <p className="text-[14px] font-black text-indigo-950 flex items-center gap-1.5 uppercase tracking-tight">
+                Result Validated <CheckCircle2 size={14} className="text-petri-500" />
               </p>
-              <p className="text-[12px] text-[#6b7280]">Dr. Sarah Chen validated your report</p>
+              <p className="text-[11px] font-bold text-indigo-900/40 uppercase tracking-widest">Validated by Licensed Provider</p>
             </div>
           </div>
-          <ChevronRight size={18} className="text-[#145e69] group-hover:translate-x-1 transition-transform" />
+          <ChevronRight size={18} className="text-indigo-900/20 group-hover:translate-x-1 transition-transform" />
         </Link>
 
-        <div className="bg-gradient-to-br from-[#145e69] to-[#0f2f35] rounded-[20px] p-5 shadow-lg shadow-[#0f2f35]/10 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-[32px] p-6 shadow-xl shadow-indigo-900/20 relative overflow-hidden">
           {/* Subtle pattern overlay */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+          <div className="absolute inset-0 opacity-5 pointer-events-none bg-noise" />
           
           <div className="relative z-10">
-            <span className="text-[11px] font-bold text-white/60 uppercase tracking-[0.1em] block mb-1">
-              Active Screening
-            </span>
-            <h2 className="text-[18px] font-bold text-white mb-0.5">
-              Pending Provider Review
+            <div className="flex items-center gap-2 mb-4">
+               <div className="w-2 h-2 rounded-full bg-petri-500 animate-pulse" />
+               <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">
+                 Step 9/11: Provider Review
+               </span>
+            </div>
+            
+            <h2 className="text-[22px] font-black text-white mb-2 leading-tight tracking-tight uppercase italic">
+              Awaiting Clinical <br /> Validation<span className="text-petri-500">.</span>
             </h2>
-            <p className="text-[13px] text-white/75 mb-6">
-              A licensed provider is reviewing your assessment.
+            <p className="text-[13px] font-bold text-white/50 mb-8 leading-relaxed">
+              A licensed provider is reviewing your symptoms and Petri dish data.
             </p>
 
-            {/* Progress Pills (6 key stages) */}
-            <div className="flex justify-between items-center gap-1.5 mb-6">
-              <ProgressPill label="PROFILE" status="done" />
-              <ProgressPill label="ASSESSMENT" status="done" />
-              <ProgressPill label="PROVIDER" status="active" />
-              <ProgressPill label="TEST" status="upcoming" />
-              <ProgressPill label="SCAN" status="upcoming" />
-              <ProgressPill label="RESULTS" status="upcoming" />
+            {/* Progress Pills (6 key stages for Mobile UX) */}
+            <div className="flex justify-between items-center gap-1 mb-8">
+              <ProgressPill label="ASSESS" status="done" />
+              <ProgressPill label="RECO" status="done" />
+              <ProgressPill label="TEST" status="done" />
+              <ProgressPill label="SCAN" status="done" />
+              <ProgressPill label="REVIEW" status="active" />
+              <ProgressPill label="FINAL" status="upcoming" />
             </div>
 
-            <div className="flex items-center gap-2">
-              <Clock size={12} className="text-white/40" />
-              <span className="text-[11px] text-white/50 italic">Submitted 45m ago</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Clock size={12} className="text-petri-500" />
+                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Est. time: ~15 mins</span>
+              </div>
+              <ShieldCheck size={16} className="text-white/20" />
             </div>
           </div>
         </div>
@@ -67,63 +73,71 @@ const PatientDashboard = () => {
       {/* 2. STATS CARDS (2x2 Grid) */}
       <section className="px-5 mt-6 grid grid-cols-2 gap-[10px]">
         <StatCard label="Assessments" value="04" icon={ClipboardList} />
-        <StatCard label="Tests" value="02" icon={TestTube} />
-        <StatCard label="Reports" value="02" icon={FileText} />
-        <StatCard label="Follow-up" value="None" icon={Calendar} isText />
+        <StatCard label="Screenings" value="02" icon={TestTube} />
+        <StatCard label="Validated Reports" value="01" icon={FileText} />
+        <StatCard label="Next Step" value="Monitor" icon={Activity} isText />
       </section>
 
       {/* 3. RECENT ACTIVITY */}
-      <section className="px-5 mt-8">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-[17px] font-black text-[#0f2f35]">Recent</h3>
-          <Link to="/patient/assessments" className="text-[14px] font-bold text-[#145e69] flex items-center gap-0.5">
-            See all <ChevronRight size={16} />
+      <section className="px-5 mt-10">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-[12px] font-black text-indigo-950 uppercase tracking-[0.3em]">Diagnostic History</h3>
+          <Link to="/patient/assessments" className="text-[11px] font-black text-petri-500 flex items-center gap-1 uppercase tracking-widest">
+            View All <ChevronRight size={14} />
           </Link>
         </div>
 
-        <div className="bg-white rounded-[16px] border border-[#e8f4f5] shadow-sm divide-y divide-[#e8f4f5]">
+        <div className="bg-white rounded-[24px] border border-indigo-50 shadow-sm divide-y divide-indigo-50 overflow-hidden">
           <ActivityRow 
             icon={CheckCircle2} 
-            title="Water test completed" 
+            title="Respiratory Screening" 
             time="3 days ago" 
-            color="text-emerald-500"
-            bg="bg-emerald-50"
+            status="Done"
+            color="text-petri-500"
+            bg="bg-petri-500/10"
           />
           <ActivityRow 
             icon={FileText} 
-            title="Report validated by Dr. Chen" 
-            time="Yesterday" 
-            color="text-[#145e69]"
-            bg="bg-[#e8f4f5]"
+            title="AI Preliminary Report" 
+            time="1 hour ago" 
+            status="Complete"
+            color="text-indigo-900"
+            bg="bg-indigo-50"
           />
           <ActivityRow 
             icon={ClipboardList} 
-            title="New assessment started" 
+            title="Symptom Assessment" 
             time="Today" 
-            color="text-gold"
-            bg="bg-[#fdf3e0]"
+            status="Active"
+            color="text-indigo-400"
+            bg="bg-indigo-50"
           />
         </div>
       </section>
 
-      {/* 4. EMERGENCY CARD */}
-      <section className="px-5 mt-6">
-        <div className="bg-[#e24b4a]/5 border border-[#e24b4a]/10 p-4 rounded-[16px]">
-          <p className="text-[12px] text-[#e24b4a] leading-relaxed">
-            <span className="font-bold uppercase mr-1">Emergency?</span> 
-            If you have severe difficulty breathing, call 911 immediately.
-          </p>
+      {/* 4. EMERGENCY BANNER (Strictly conditional) */}
+      <section className="px-5 mt-8">
+        <div className="bg-red-500/5 border border-red-500/10 p-5 rounded-[24px] flex gap-4 items-start">
+           <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
+              <ShieldAlert size={18} />
+           </div>
+           <div>
+              <p className="text-[11px] font-black text-red-500 uppercase tracking-widest mb-1">Emergency Protocol</p>
+              <p className="text-[12px] text-red-950/60 font-bold leading-relaxed">
+                If you experience severe respiratory distress, call emergency services immediately. 
+              </p>
+           </div>
         </div>
       </section>
 
       {/* 5. QUICK ACTIONS */}
-      <section className="px-5 mt-8 pb-12">
+      <section className="px-5 mt-10 pb-20">
         <Link 
           to="/patient/assessments" 
-          className="w-full h-[56px] bg-[#145e69] text-white rounded-[16px] flex items-center justify-center gap-3 font-bold shadow-lg shadow-[#145e69]/20 active:scale-95 transition-all"
+          className="w-full h-[64px] bg-indigo-900 text-white rounded-2xl flex items-center justify-center gap-4 font-black text-xs uppercase tracking-widest shadow-xl shadow-indigo-900/10 active:scale-95 transition-all group"
         >
-          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-            <Activity size={18} />
+          <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-petri-500 transition-colors">
+            <Activity size={20} />
           </div>
           Start New Assessment
         </Link>
@@ -136,55 +150,55 @@ const PatientDashboard = () => {
 
 const ProgressPill = ({ label, status }) => (
   <div className={cn(
-    "flex-1 h-[24px] rounded-full flex items-center justify-center transition-all duration-500 min-w-0 px-1",
-    status === 'done' ? "bg-white/30 border-transparent" :
-    status === 'active' ? "bg-white border-transparent shadow-sm" :
-    "bg-transparent border border-white/20"
+    "flex-1 h-[28px] rounded-full flex items-center justify-center transition-all duration-500 min-w-0 px-2",
+    status === 'done' ? "bg-petri-500/20 border-transparent" :
+    status === 'active' ? "bg-petri-500 border-transparent shadow-lg shadow-petri-500/20" :
+    "bg-transparent border border-white/10"
   )}>
-    {label && (
-      <span className={cn(
-        "text-[7.5px] font-black tracking-tight whitespace-nowrap",
-        status === 'active' ? "text-[#145e69]" : "text-white"
-      )}>
-        {label}
-      </span>
-    )}
-    {!label && status === 'active' && <div className="w-1.5 h-1.5 rounded-full bg-[#145e69]" />}
-    {!label && status === 'upcoming' && <div className="w-1 h-1 rounded-full bg-white/20" />}
+    <span className={cn(
+      "text-[8px] font-black tracking-tight whitespace-nowrap",
+      status === 'active' ? "text-white" : status === 'done' ? "text-petri-500" : "text-white/20"
+    )}>
+      {label}
+    </span>
   </div>
 );
 
 const StatCard = ({ label, value, icon: Icon, isText = false }) => (
-  <div className="bg-white p-4 rounded-[16px] border border-[#e8f4f5] shadow-sm relative group active:scale-[0.97] transition-all">
-    <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#e8f4f5] flex items-center justify-center text-[#145e69]">
-      <Icon size={16} />
+  <div className="bg-white p-5 rounded-[24px] border border-indigo-50 shadow-sm relative group active:scale-[0.97] transition-all">
+    <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-900 mb-6 group-hover:bg-petri-500 group-hover:text-white transition-colors">
+      <Icon size={18} />
     </div>
-    <span className="text-[11px] font-bold text-[#afafaf] uppercase tracking-[0.08em] block mb-2">{label}</span>
+    <span className="text-[10px] font-black text-indigo-900/30 uppercase tracking-widest block mb-1">{label}</span>
     <h4 className={cn(
-      "font-black text-[#0f2f35] tracking-tight",
-      isText ? "text-[20px]" : "text-[28px]"
+      "font-black text-indigo-950 tracking-tight",
+      isText ? "text-[16px] uppercase" : "text-[28px]"
     )}>
       {value}
     </h4>
   </div>
 );
 
-const ActivityRow = ({ icon: Icon, title, time, color, bg }) => (
-  <div className="px-4 py-4 flex items-center gap-4 active:bg-[#f5f0e8]/50 transition-colors cursor-pointer">
-    <div className={cn("w-9 h-9 rounded-full flex items-center justify-center shrink-0", bg, color)}>
-      <Icon size={18} />
+const ActivityRow = ({ icon: Icon, title, time, status, color, bg }) => (
+  <div className="px-5 py-5 flex items-center gap-4 active:bg-indigo-50 transition-colors cursor-pointer">
+    <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", bg, color)}>
+      <Icon size={20} />
     </div>
     <div className="flex-1 min-w-0">
-      <p className="text-[14px] font-bold text-[#0f2f35] truncate">{title}</p>
-      <p className="text-[12px] text-[#afafaf]">{time}</p>
+      <p className="text-[14px] font-black text-indigo-950 truncate tracking-tight">{title}</p>
+      <div className="flex items-center gap-2">
+        <span className="text-[11px] text-indigo-900/30 font-bold">{time}</span>
+        <span className="w-1 h-1 rounded-full bg-indigo-100" />
+        <span className={cn("text-[10px] font-black uppercase tracking-widest", color)}>{status}</span>
+      </div>
     </div>
-    <ChevronRight size={16} className="text-[#afafaf]" />
+    <ChevronRight size={16} className="text-indigo-900/20" />
   </div>
 );
 
-const Clock = ({ size, className }) => (
+const ShieldAlert = ({ size, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
   </svg>
 );
 

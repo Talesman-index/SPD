@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronRight, ChevronLeft, Check, AlertCircle, Clock, ShieldCheck } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Check, AlertCircle, Clock, ShieldCheck, Database, TestTube, Droplets, Wind, ShieldAlert } from 'lucide-react'
 import { cn } from '../../lib/utils'
 
 const symptoms = [
@@ -39,18 +39,46 @@ const SymptomQuestionnaire = ({ onComplete }) => {
   const nextStep = () => setStep(prev => prev + 1)
   const prevStep = () => setStep(prev => prev - 1)
 
+  // Smart Recommendation Logic (Mocked Database Decision)
+  const getRecommendation = () => {
+    if (selectedSymptoms.includes('cough') || selectedSymptoms.includes('fever')) {
+      return {
+        type: 'Respiratory Sample Screening',
+        icon: <Wind size={24} />,
+        compartment: 'Compartment A',
+        desc: 'Focus on biological activity and pattern detection in mucus samples.'
+      }
+    }
+    if (selectedSymptoms.includes('nausea')) {
+      return {
+        type: 'Water Safety Screening',
+        icon: <Droplets size={24} />,
+        compartment: 'Compartment B',
+        desc: 'Testing for microbial presence and pH imbalance in local water sources.'
+      }
+    }
+    return {
+      type: 'Biological Risk Screening Panel',
+      icon: <ShieldAlert size={24} />,
+      compartment: 'Compartment C',
+      desc: 'General biomarker screening for early warning signals.'
+    }
+  }
+
+  const recommendation = getRecommendation()
+
   return (
     <div className="bg-white rounded-[48px] p-8 md:p-12 shadow-premium-lg max-w-[600px] w-full mx-auto overflow-hidden">
       {/* Progress Bar */}
       <div className="mb-12">
         <div className="flex justify-between items-end mb-4">
-          <span className="text-[10px] font-black text-indigo-900/40 uppercase tracking-[0.2em]">Step {step} of 3</span>
-          <span className="text-[10px] font-black text-indigo-900 uppercase tracking-[0.2em] italic">{Math.round((step / 3) * 100)}% Complete</span>
+          <span className="text-[10px] font-black text-indigo-900/40 uppercase tracking-[0.2em]">Step {step} of 4</span>
+          <span className="text-[10px] font-black text-indigo-900 uppercase tracking-[0.2em] italic">{Math.round((step / 4) * 100)}% Complete</span>
         </div>
         <div className="h-1.5 w-full bg-indigo-50 rounded-full overflow-hidden">
           <motion.div 
             initial={{ width: 0 }}
-            animate={{ width: `${(step / 3) * 100}%` }}
+            animate={{ width: `${(step / 4) * 100}%` }}
             className="h-full bg-indigo-900"
           />
         </div>
@@ -69,7 +97,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
               <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
                 What are your <br /> <span className="text-petri-500">primary symptoms?</span>
               </h3>
-              <p className="text-sm font-medium text-indigo-950/40 ">Select all that apply. Your doctor will review this list.</p>
+              <p className="text-[11px] font-black text-indigo-900/40 uppercase tracking-widest ">Select all that apply. Your doctor will review this list.</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -113,7 +141,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
               <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
                 Any underlying <br /> <span className="text-petri-500">conditions?</span>
               </h3>
-              <p className="text-sm font-medium text-indigo-950/40 ">This helps our providers tailor your testing instructions.</p>
+              <p className="text-[11px] font-black text-indigo-900/40 uppercase tracking-widest">This helps our providers tailor your testing instructions.</p>
             </div>
 
             <div className="space-y-3">
@@ -161,6 +189,60 @@ const SymptomQuestionnaire = ({ onComplete }) => {
         {step === 3 && (
           <motion.div
             key="step3"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-8"
+          >
+            <div className="text-center">
+               <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-900 mx-auto mb-6">
+                  <Database size={32} />
+               </div>
+               <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
+                 Smart Test <br /> <span className="text-petri-500">Recommendation.</span>
+               </h3>
+               <p className="text-[11px] font-black text-indigo-900/40 uppercase tracking-widest max-w-[300px] mx-auto">
+                 Based on our structured medical decision database, we recommend:
+               </p>
+            </div>
+
+            <div className="p-8 bg-indigo-900 text-white rounded-[32px] relative overflow-hidden group">
+               <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
+               <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                     <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-petri-500">
+                        {recommendation.icon}
+                     </div>
+                     <div>
+                        <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Recommended Panel</p>
+                        <h4 className="text-lg font-black tracking-tight">{recommendation.type}</h4>
+                     </div>
+                  </div>
+                  <div className="p-5 bg-white/5 rounded-2xl border border-white/10 mb-6">
+                     <p className="text-xs font-bold text-white/70 leading-relaxed italic">
+                       "{recommendation.desc}"
+                     </p>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest">
+                     <span className="text-white/40">Target Compartment:</span>
+                     <span className="text-petri-500">{recommendation.compartment}</span>
+                  </div>
+               </div>
+            </div>
+
+            <button 
+              onClick={nextStep}
+              className="w-full h-16 rounded-2xl bg-indigo-900 text-white font-black uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-petri-500 transition-all shadow-xl shadow-indigo-900/10"
+            >
+              Confirm & Start Test
+              <ChevronRight size={20} />
+            </button>
+          </motion.div>
+        )}
+
+        {step === 4 && (
+          <motion.div
+            key="step4"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="space-y-10 text-center"
@@ -175,7 +257,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                 <span className="text-petri-500">AI Analyzing...</span>
               </h3>
               <p className="text-lg text-indigo-950/60 font-medium leading-relaxed max-w-[400px] mx-auto">
-                Our system is reviewing your symptoms. A licensed provider will review this analysis and send your testing instructions within the hour.
+                Our system is reviewing your screening data. A licensed provider will review this analysis and validate your final results within the hour.
               </p>
             </div>
 
@@ -186,7 +268,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
               </div>
               <div className="flex items-center gap-4">
                 <AlertCircle size={20} className="text-petri-500" />
-                <span className="text-sm font-bold text-indigo-950/60">Your data is HIPAA-secured and encrypted.</span>
+                <span className="text-[11px] font-black uppercase tracking-widest text-indigo-950/60">Results support early risk detection, not diagnosis.</span>
               </div>
             </div>
 

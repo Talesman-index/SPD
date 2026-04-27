@@ -4,6 +4,7 @@ import Footer from '../components/layout/Footer'
 import CartDrawer from '../components/ui/CartDrawer'
 import Hero from '../components/sections/Hero'
 import MissionProblem from '../components/sections/MissionProblem'
+import Services from '../components/sections/Services'
 import HowItWorks from '../components/sections/HowItWorks'
 import TrustProof from '../components/sections/TrustProof'
 import GetStarted from '../components/sections/GetStarted'
@@ -18,7 +19,7 @@ const Page = () => {
   const [isTrialOpen, setIsTrialOpen] = React.useState(false)
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white font-manrope">
       <ErrorBoundary name="Navbar"><Navbar /></ErrorBoundary>
       <ErrorBoundary name="CartDrawer"><CartDrawer /></ErrorBoundary>
       <TrialModal isOpen={isTrialOpen} onClose={() => setIsTrialOpen(false)} />
@@ -34,7 +35,12 @@ const Page = () => {
           <MissionProblem />
         </ErrorBoundary>
 
-        {/* 3. HOW IT WORKS (Process & Science) */}
+        {/* 3. THREE CRITICAL TESTS */}
+        <ErrorBoundary name="Services">
+          <Services />
+        </ErrorBoundary>
+
+        {/* 4. HOW IT WORKS (Full User Flow) */}
         <ErrorBoundary name="HowItWorks">
           <HowItWorks />
         </ErrorBoundary>

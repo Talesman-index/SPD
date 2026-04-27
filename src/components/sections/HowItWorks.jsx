@@ -1,57 +1,97 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, ArrowRight, ArrowLeft, Droplets, Wind, ShieldCheck } from 'lucide-react'
+import { Check, ArrowRight, ArrowLeft, ShieldCheck, Database, Search, UserPlus, Stethoscope, ClipboardList, Activity, Zap, ClipboardCheck, MessageSquare } from 'lucide-react'
 import { cn } from '../../lib/utils'
 
 const steps = [
   {
     id: 1,
-    title: "Unpack & Setup",
-    shortDesc: "Discreet sterile kit delivery",
-    body: "Begin by unboxing your SPD-X1 kit. Every component is clinical-grade and arrives in a sterile, tamper-evident package designed for immediate home use.",
-    insight: "The kit is designed to be shelf-stable for 12 months — use it exactly when you need it, no rush required."
+    title: "Welcome & Account Creation",
+    shortDesc: "Secure health profile setup",
+    body: "Start your journey by creating a secure Health Profile. Enter basic info: age, location, and contact details to begin your diagnostic session.",
+    insight: "Your data is HIPAA-secured and encrypted from the first keystroke.",
+    icon: <UserPlus className="text-petri-400" size={18} />
   },
   {
     id: 2,
-    title: "Precision Collection",
-    shortDesc: "Non-invasive guided protocol",
-    body: "Follow our simple, illustrated guide to collect your bio-sample. The process is entirely non-invasive and takes less than 5 minutes of your time.",
-    insight: "Our unique swab technology captures 3x more biological material than standard pharmacy tests, ensuring higher accuracy."
+    title: "Consent & Privacy",
+    shortDesc: "Transparency & data sovereignty",
+    body: "Review and approve our consent protocols. We ensure you have full control over your health data throughout the entire screening process.",
+    insight: "We prioritize your data sovereignty — you decide who sees your reports.",
+    icon: <ShieldCheck className="text-blue-400" size={18} />
   },
   {
     id: 3,
-    title: "Secure the Petri System",
-    shortDesc: "Seal for clinical integrity",
-    body: "Place your sample into the specialized Petri chamber and snap the bio-safe lid. Our patented seal prevents any contamination during transit.",
-    insight: "The chamber contains a specialized preservation medium that keeps the sample viable for up to 96 hours."
+    title: "Basic Info & Snapshot",
+    shortDesc: "Contextual health mapping",
+    body: "Provide a quick health snapshot. This context helps the system understand your baseline before diving into specific symptoms.",
+    insight: "Baseline data improves AI pattern detection accuracy by up to 15%.",
+    icon: <Activity className="text-indigo-400" size={18} />
   },
   {
     id: 4,
-    title: "Prepaid Dispatch",
-    shortDesc: "Drop in any standard mailbox",
-    body: "Place the sealed chamber into the provided prepaid return envelope. No shipping labels to print, no post office lines — just drop it in any mailbox.",
-    insight: "Every return envelope is trackable in real-time through your dashboard from the moment it hits the mail stream."
+    title: "Symptoms Check",
+    shortDesc: "Dynamic health questionnaire",
+    body: "Complete a structured symptom assessment. The app asks simple, targeted questions about how you feel right now.",
+    insight: "Our questionnaire follows international clinical standards for symptom mapping.",
+    icon: <ClipboardList className="text-orange-400" size={18} />
   },
   {
     id: 5,
-    title: "Molecular Screening",
-    shortDesc: "AI-Powered lab processing",
-    body: "Once at our clinical network, your sample undergoes high-fidelity molecular screening. Our AI identifies pathogens with 95%+ laboratory accuracy.",
-    insight: "We test for over 25 different biological indicators in a single pass, covering water, respiratory, and general bio-safety."
+    title: "Smart Type Test Recommendation",
+    shortDesc: "Data-driven test selection",
+    body: "Based on a structured medical decision database (not guessing), the system determines which test to perform and which Petri compartment to use.",
+    insight: "Recommendations are backed by a database of over 10,000 clinical decision nodes.",
+    icon: <Database className="text-petri-500" size={18} />
   },
   {
     id: 6,
-    title: "Digital Validation",
-    shortDesc: "Doctor-reviewed clinical results",
-    body: "A licensed physician reviews your data before it reaches you. Access your secure results with clear, actionable insights in your digital dashboard.",
-    insight: "Results include a 'Next Steps' protocol — if we find a concern, we tell you exactly who to call in your local area."
+    title: "Guided Test Instructions",
+    shortDesc: "Step-by-step sample collection",
+    body: "Follow clear, visual instructions to collect your sample and place it into the correct compartment of the SPD-X1 device.",
+    insight: "98% of users successfully complete their collection on the first attempt.",
+    icon: <Search className="text-indigo-400" size={18} />
+  },
+  {
+    id: 7,
+    title: "Scan & Analysis",
+    shortDesc: "Multi-modal data capture",
+    body: "The device captures high-resolution images and electrochemical sensor data directly from your Petri dish sample.",
+    insight: "We capture over 100MB of biological data per screening session.",
+    icon: <Zap className="text-yellow-400" size={18} />
+  },
+  {
+    id: 8,
+    title: "AI Preliminary Report",
+    shortDesc: "Instant pattern detection",
+    body: "The system generates an initial screening report based on detected patterns and biomarker signals. This is for early risk detection.",
+    insight: "AI identifies indicators in under 3 minutes after the scan is complete.",
+    icon: <Activity className="text-petri-400" size={18} />
+  },
+  {
+    id: 9,
+    title: "Doctor Review",
+    shortDesc: "Licensed professional validation",
+    body: "A licensed provider reviews your full profile: symptoms, Petri dish data, and the AI report to ensure clinical validity.",
+    insight: "Every single report is validated by a human professional before release.",
+    icon: <Stethoscope className="text-blue-500" size={18} />
+  },
+  {
+    id: 10,
+    title: "Final Results & Guidance",
+    shortDesc: "Actionable health outcomes",
+    body: "Receive your clear outcome: Home monitoring, Pharmacy visit, Consultation, or Hospital referral. You're never left wondering.",
+    insight: "Instructions include a specific protocol tailored to your local resources.",
+    icon: <ClipboardCheck className="text-petri-500" size={18} />
+  },
+  {
+    id: 11,
+    title: "Next Steps & Support",
+    shortDesc: "Closing the loop of care",
+    body: "If urgent, you're notified instantly with a telehealth link. If not, you're guided on how to find nearby pharmacies or follow-up care.",
+    insight: "Emergency telehealth is only triggered for high-risk situations.",
+    icon: <MessageSquare className="text-indigo-500" size={18} />
   }
-]
-
-const panels = [
-  { id: 'water', icon: <Droplets className="text-petri-400" size={18} />, name: "Water" },
-  { id: 'respiratory', icon: <Wind className="text-red-400" size={18} />, name: "Respiratory" },
-  { id: 'biological', icon: <ShieldCheck className="text-petri-400" size={18} />, name: "Biological" }
 ]
 
 const HowItWorks = () => {
@@ -74,39 +114,31 @@ const HowItWorks = () => {
   const progressPercentage = ((activeStep + 1) / steps.length) * 100
 
   return (
-    <section id="how-it-works" className="bg-indigo-950 overflow-hidden h-screen max-h-[1080px] min-h-[700px] flex items-stretch">
+    <section id="how-it-works" className="bg-indigo-950 overflow-hidden h-screen max-h-[1080px] min-h-[750px] flex items-stretch">
       <div className="flex flex-col lg:flex-row gap-0 w-full items-stretch">
         
         {/* LEFT COLUMN: NAVIGATION & STEPS */}
         <div className="lg:w-[42%] flex flex-col p-12 lg:p-20 relative overflow-hidden justify-center bg-indigo-950">
-          {/* Parallax Background */}
-          <motion.div 
-            initial={{ scale: 1.1 }}
-            whileInView={{ scale: 1 }}
-            transition={{ duration: 2 }}
-            className="absolute inset-0 z-0"
-          >
+          <div className="absolute inset-0 z-0">
              <img 
                src="/images_projects/medical-abstract-background-petri-dishes-and-glas-2026-01-07-00-40-16-utc.jpg" 
                className="w-full h-full object-cover opacity-10 grayscale" 
                alt="Background"
              />
              <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-indigo-950/95 to-indigo-950"></div>
-             <div className="absolute inset-0 bg-noise opacity-[0.03]"></div>
-          </motion.div>
+          </div>
 
-          <div className="relative z-10">
+          <div className="relative z-10 flex flex-col h-full">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="mb-12"
+              className="mb-8"
             >
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 mb-2">How it works</h4>
-              <h2 className="text-2xl lg:text-3xl font-black text-white tracking-tighter">Usage & Diagnostics.</h2>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 mb-2">Core Process</h4>
+              <h2 className="text-2xl lg:text-3xl font-black text-white tracking-tighter">Full User Journey.</h2>
             </motion.div>
 
-            <div className="space-y-1">
+            <div className="flex-grow overflow-y-auto pr-4 scrollbar-hide space-y-1">
               {steps.map((step, i) => {
                 const isActive = activeStep === i
                 const isDone = activeStep > i
@@ -115,71 +147,36 @@ const HowItWorks = () => {
                   <motion.div 
                     key={step.id}
                     onClick={() => setActiveStep(i)}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
                     className={cn(
-                      "relative group cursor-pointer transition-all duration-500 rounded-2xl p-4 flex items-start gap-5 border border-transparent",
-                      isActive ? "bg-indigo-900/60 border-white/5 shadow-2xl translate-x-2" : "hover:bg-white/5"
+                      "relative group cursor-pointer transition-all duration-300 rounded-xl p-3 flex items-start gap-4 border border-transparent",
+                      isActive ? "bg-indigo-900/60 border-white/5 shadow-2xl" : "hover:bg-white/5"
                     )}
                   >
                     <div className="flex flex-col items-center flex-shrink-0 relative">
-                      <motion.div 
-                        animate={{ 
-                          scale: isActive ? 1.2 : 1,
-                          backgroundColor: isDone ? "#00b8b0" : isActive ? "#00b8b0" : "rgba(255,255,255,0.05)"
-                        }}
-                        className={cn(
-                          "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 z-10 border-2",
-                          isDone ? "border-petri-500 text-white" : 
-                          isActive ? "border-petri-500 text-white" : 
-                          "border-white/10 text-white/20"
-                        )}
-                      >
-                        {isDone ? <Check size={14} strokeWidth={4} /> : <span className="font-bold text-xs">{step.id}</span>}
-                      </motion.div>
+                      <div className={cn(
+                        "w-7 h-7 rounded-full flex items-center justify-center transition-all duration-500 z-10 border",
+                        isDone ? "bg-petri-500 border-petri-500 text-white" : 
+                        isActive ? "bg-petri-500 border-petri-500 text-white" : 
+                        "bg-white/5 border-white/10 text-white/20"
+                      )}>
+                        {isDone ? <Check size={12} strokeWidth={4} /> : <span className="font-bold text-[10px]">{step.id}</span>}
+                      </div>
                       {i < steps.length - 1 && (
-                        <div className="absolute top-8 w-[1px] h-6 border-l border-white/10 mt-2"></div>
+                        <div className="absolute top-7 w-[1px] h-4 border-l border-white/10 mt-1"></div>
                       )}
                     </div>
 
-                    <div className="pt-0.5">
+                    <div>
                       <h5 className={cn(
-                        "text-sm font-black tracking-tight transition-colors duration-500",
-                        isActive ? "text-white" : "text-white/40 group-hover:text-white/60"
+                        "text-xs font-black tracking-tight transition-colors duration-500",
+                        isActive ? "text-white" : "text-white/40"
                       )}>
                         {step.title}
                       </h5>
-                      <p className={cn(
-                        "text-[10px] font-bold transition-colors duration-500",
-                        isActive ? "text-white/60" : "text-white/20"
-                      )}>
-                        {step.shortDesc}
-                      </p>
                     </div>
                   </motion.div>
                 )
               })}
-            </div>
-
-            <div className="mt-12 pt-8 border-t border-white/5">
-              <h4 className="text-[9px] font-black uppercase tracking-[0.3em] text-white/20 mb-6 italic">Laboratory Panels</h4>
-              <div className="grid grid-cols-3 gap-2">
-                {panels.map((panel, idx) => (
-                  <motion.div 
-                    key={panel.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 + idx * 0.1 }}
-                    className="bg-white/5 rounded-xl p-3 flex flex-col items-center gap-2 border border-white/5 text-center group hover:bg-white/10 transition-colors"
-                  >
-                    <div className="mb-0.5 group-hover:scale-110 transition-transform">{panel.icon}</div>
-                    <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">{panel.name}</span>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
@@ -196,79 +193,66 @@ const HowItWorks = () => {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -30, filter: 'blur(10px)' }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="flex-grow flex flex-col justify-center max-w-2xl mx-auto w-full py-12"
+                className="flex-grow flex flex-col justify-center max-w-2xl mx-auto w-full py-6"
               >
                 <div className="flex items-center gap-4 mb-4">
-                   <div className="text-[9px] font-black uppercase tracking-[0.4em] text-petri-500">Step 0{activeStep + 1}</div>
+                   <div className="text-[9px] font-black uppercase tracking-[0.4em] text-petri-500">Step {activeStep + 1} of 11</div>
                    <div className="flex-1 h-[1px] bg-white/10"></div>
                 </div>
 
-                <h3 className="text-white text-4xl lg:text-6xl font-black leading-[0.95] tracking-tighter mb-8">
+                <h3 className="text-white text-4xl lg:text-5xl font-black leading-[0.95] tracking-tighter mb-8">
                   {steps[activeStep].title.split(' ').slice(0, -1).join(' ')} <br />
                   <span className="italic text-petri-500 font-medium">
                     {steps[activeStep].title.split(' ').slice(-1)}
                   </span>
                 </h3>
 
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: 40 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="h-1 bg-petri-500 mb-8" 
-                />
+                <div className="h-1 bg-petri-500 w-10 mb-8" />
 
-                <p className="text-white/70 text-base lg:text-lg leading-relaxed mb-8 font-medium max-w-xl">
+                <p className="text-white/70 text-lg lg:text-xl leading-relaxed mb-8 font-medium">
                   {steps[activeStep].body}
                 </p>
 
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="bg-white/5 border border-white/10 rounded-[32px] p-8 mb-10 relative group overflow-hidden"
-                >
-                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-petri-500/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-1000"></div>
-                  <div className="text-[9px] font-black uppercase tracking-[0.3em] text-petri-500 mb-3">Diagnostic Insight</div>
+                <div className="bg-white/5 border border-white/10 rounded-3xl p-8 mb-10 relative group overflow-hidden">
+                  <div className="flex items-center gap-4 mb-3">
+                     <div className="w-8 h-8 rounded-lg bg-indigo-900 flex items-center justify-center">
+                        {steps[activeStep].icon}
+                     </div>
+                     <div className="text-[9px] font-black uppercase tracking-[0.3em] text-petri-500">Platform Insight</div>
+                  </div>
                   <p className="text-white/80 text-base italic leading-relaxed relative z-10">
                     "{steps[activeStep].insight}"
                   </p>
-                </motion.div>
+                </div>
 
                 <div className="mt-auto">
                   <div className="flex justify-between items-end mb-4">
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Diagnostic Progress</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Journey Progress</span>
                     <span className="text-sm font-black text-petri-500">{Math.round(progressPercentage)}%</span>
                   </div>
                   
-                  <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-12 relative">
+                  <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-12">
                      <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: `${progressPercentage}%` }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="h-full bg-gradient-to-r from-petri-500 to-white relative"
-                     >
-                        <motion.div 
-                          animate={{ x: ["-100%", "100%"] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                          className="absolute inset-0 bg-white/30 w-1/3 blur-sm"
-                        />
-                     </motion.div>
+                        className="h-full bg-petri-500"
+                     />
                   </div>
 
                   <div className="flex gap-4">
                     <button 
                       onClick={handlePrev}
                       disabled={activeStep === 0}
-                      className="flex-1 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-indigo-950 transition-all disabled:opacity-10 gap-3 font-black text-xs uppercase tracking-widest"
+                      className="flex-1 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-indigo-950 transition-all disabled:opacity-10 gap-3 font-black text-[10px] uppercase tracking-widest"
                     >
-                      <ArrowLeft size={18} /> Previous
+                      <ArrowLeft size={16} /> Back
                     </button>
                     <button 
                       onClick={handleNext}
-                      className="flex-1 h-16 rounded-2xl bg-petri-500 text-white flex items-center justify-center hover:bg-white hover:text-indigo-950 transition-all gap-4 font-black text-xs uppercase tracking-widest shadow-2xl shadow-petri-500/20 group"
+                      className="flex-1 h-14 rounded-2xl bg-petri-500 text-white flex items-center justify-center hover:bg-white hover:text-indigo-950 transition-all gap-4 font-black text-[10px] uppercase tracking-widest shadow-2xl shadow-petri-500/20 group"
                     >
-                      {activeStep === steps.length - 1 ? "Secure Your Kit" : "Next Milestone"} 
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      {activeStep === steps.length - 1 ? "Get Started" : "Continue Journey"} 
+                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { Users, Microscope, Landmark, HeartPulse, TrendingUp } from 'lucide-react'
+import { Users, Microscope, Landmark, HeartPulse, TrendingUp, Heart, Gift, Globe } from 'lucide-react'
+import ScrollReveal from '../ui/ScrollReveal'
 
 // Simple counter component for that "Webflow" feel
 const Counter = ({ value, duration = 2 }) => {
@@ -43,156 +44,145 @@ const stats = [
     trend: "+5k last quarter"
   },
   {
-    label: "Funding Raised",
-    current: 1.2,
-    target: 5,
-    unit: "M",
-    percent: 24,
-    icon: <Landmark className="text-petri-500" size={20} />,
-    trend: "Next round: Q3"
+    label: "Provider Capacity",
+    current: 450,
+    target: 2000,
+    percent: 22,
+    icon: <HeartPulse className="text-petri-500" size={20} />,
+    trend: "24 pending review"
   },
   {
-    label: "Partner Providers",
-    current: 18,
-    target: 50,
-    percent: 36,
-    icon: <HeartPulse className="text-petri-500" size={20} />,
-    trend: "3 pending review"
+    label: "Kits Sponsored",
+    current: 1200,
+    target: 5000,
+    percent: 24,
+    icon: <Gift className="text-petri-500" size={20} />,
+    trend: "CSR Growth: +15%"
   }
 ]
 
 const OurImpact = () => {
   return (
-    <section id="impact" className="py-24 lg:py-32 bg-bg-primary relative overflow-hidden">
+    <section id="impact" className="py-24 lg:py-48 bg-bg-primary relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-900/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-petri-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] font-black text-indigo-900/[0.02] select-none tracking-tighter">
-          IMPACT
-        </div>
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="max-w-3xl mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-               <div className="w-10 h-[1px] bg-petri-500"></div>
-               <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-indigo-900/40">Our Scale</h4>
+        <ScrollReveal>
+          <div className="max-w-3xl mb-24">
+            <div className="flex items-center gap-4 mb-8">
+               <div className="w-12 h-[1px] bg-petri-500"></div>
+               <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-indigo-900/40">Impact Metrics</h4>
             </div>
-            <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-black text-indigo-950 tracking-tighter leading-[0.9] mb-10">
+            <h2 className="text-6xl lg:text-8xl font-black text-indigo-950 tracking-tighter leading-[0.85] mb-12">
               Building Toward <br />
               <span className="italic text-petri-500 font-medium">Health Equity.</span>
             </h2>
-            <p className="text-text-secondary text-lg lg:text-xl font-medium max-w-2xl leading-relaxed">
-              Our 2026 goals represent more than just numbers. They are the roadmap to closing the rural health gap, scaling technology to meet human needs at community scale.
+            <p className="text-xl text-text-secondary font-medium max-w-2xl leading-relaxed">
+              Our system is designed to do both: improve health access and create local income opportunities. Every screening session is a step toward closing the rural health gap.
             </p>
-          </motion.div>
-        </div>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
           {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="group bg-white/40 backdrop-blur-md border border-indigo-200 p-10 rounded-[40px] hover:bg-white/80 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-900/5"
-            >
-              <div className="flex justify-between items-start mb-12">
-                <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  {stat.icon}
-                </div>
-                <div className="flex items-center gap-1.5 px-4 py-1.5 bg-indigo-50 rounded-full">
-                  <TrendingUp size={12} className="text-indigo-900/40" />
-                  <span className="text-[9px] font-black text-indigo-900/60 uppercase tracking-widest">{stat.trend}</span>
-                </div>
-              </div>
-
-              <div className="space-y-8">
-                <div>
-                  <h5 className="text-[10px] font-black text-indigo-900/40 uppercase tracking-[0.3em] mb-3">{stat.label}</h5>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-5xl font-black text-indigo-950 tracking-tighter">
-                      {stat.unit === "M" ? '$' : ''}
-                      <Counter value={stat.current} />
-                      {stat.unit === "M" ? stat.unit : ''}
-                    </span>
-                    <span className="text-xl font-bold text-indigo-900/10">
-                      / {stat.unit === "M" ? `$${stat.target}${stat.unit}` : stat.target.toLocaleString()}
-                    </span>
+            <ScrollReveal key={stat.label} delay={i * 0.1}>
+              <div className="group bg-white rounded-[48px] p-12 border border-indigo-100 hover:shadow-2xl hover:shadow-indigo-900/5 transition-all duration-500">
+                <div className="flex justify-between items-start mb-16">
+                  <div className="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-900 group-hover:bg-petri-500 group-hover:text-white transition-all duration-500">
+                    {stat.icon}
+                  </div>
+                  <div className="flex items-center gap-2 px-4 py-1.5 bg-indigo-50 rounded-full">
+                    <TrendingUp size={12} className="text-petri-500" />
+                    <span className="text-[10px] font-black text-indigo-900/60 uppercase tracking-widest">{stat.trend}</span>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="flex justify-between items-end">
-                    <div className="w-full bg-indigo-50 h-4 rounded-full overflow-hidden relative">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${stat.percent}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 2, ease: "circOut", delay: 0.5 }}
-                        className="h-full bg-gradient-to-r from-indigo-900 to-petri-500 relative"
-                      >
-                         <motion.div 
-                           animate={{ x: ["-100%", "100%"] }}
-                           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-1/2"
-                         />
-                      </motion.div>
+                <div className="space-y-10">
+                  <div>
+                    <h5 className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] mb-4">{stat.label}</h5>
+                    <div className="flex items-baseline gap-3">
+                      <span className="text-6xl font-black text-indigo-950 tracking-tighter">
+                        <Counter value={stat.current} />
+                      </span>
+                      <span className="text-2xl font-bold text-indigo-900/10">
+                        / {stat.target.toLocaleString()}
+                      </span>
                     </div>
-                    <span className="text-2xl font-black text-petri-500 ml-8 leading-none">{stat.percent}%</span>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                       <div className="flex-1 h-2 bg-indigo-50 rounded-full overflow-hidden mr-8">
+                         <motion.div
+                           initial={{ width: 0 }}
+                           whileInView={{ width: `${stat.percent}%` }}
+                           viewport={{ once: true }}
+                           transition={{ duration: 2, ease: "circOut", delay: 0.5 }}
+                           className="h-full bg-gradient-to-r from-indigo-900 to-petri-500"
+                         />
+                       </div>
+                       <span className="text-3xl font-black text-petri-500">{stat.percent}%</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
 
-        {/* Bottom CTA with Interactive Elements */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-24 flex flex-col md:flex-row items-center justify-between gap-8 p-12 bg-indigo-900 rounded-[50px] text-white overflow-hidden relative group"
-        >
-          <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.05, 0.1, 0.05]
-            }}
-            transition={{ duration: 5, repeat: Infinity }}
-            className="absolute -right-20 -top-20 w-80 h-80 bg-white rounded-full blur-3xl"
-          />
-          
-          <div className="relative z-10 flex items-center gap-8">
-             <div className="relative">
-                <div className="w-4 h-4 rounded-full bg-petri-400 animate-ping absolute inset-0"></div>
-                <div className="w-4 h-4 rounded-full bg-petri-400 relative"></div>
-             </div>
-             <div className="space-y-1">
-                <p className="text-[10px] font-black text-petri-400 uppercase tracking-[0.3em]">Status: Live</p>
-                <p className="text-lg font-bold tracking-tight">New screening site active in McDowell County, NC</p>
-             </div>
-          </div>
-          
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative z-10 px-10 py-5 bg-amber-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-indigo-900 transition-all shadow-2xl shadow-amber-600/20"
-          >
-            View Live Dashboard
-          </motion.button>
-        </motion.div>
+        {/* CSR & Donations Section */}
+        <ScrollReveal>
+           <div className="relative p-12 lg:p-20 rounded-[60px] bg-indigo-900 text-white overflow-hidden group">
+              <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
+              <div className="absolute -right-20 -top-20 w-80 h-80 bg-petri-500/20 rounded-full blur-[120px] group-hover:scale-150 transition-transform duration-1000"></div>
+              
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                 <div>
+                    <div className="flex items-center gap-4 mb-8">
+                       <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-petri-500">
+                          <Heart size={20} />
+                       </div>
+                       <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">CSR & Community Impact</h4>
+                    </div>
+                    <h2 className="text-4xl lg:text-6xl font-black tracking-tighter leading-none mb-8">
+                      Sponsor a Kit. <br />
+                      <span className="italic text-petri-500 font-medium">Join the Movement.</span>
+                    </h2>
+                    <p className="text-xl text-white/60 font-medium leading-relaxed mb-12">
+                      Your contributions help us deploy screening kits to rural residents who need them most. Every donation supports health equity and local economic growth.
+                    </p>
+                    <div className="flex flex-wrap gap-4">
+                       <button className="px-10 py-5 bg-petri-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-indigo-900 transition-all shadow-xl shadow-petri-500/20">
+                          Support a Community Fund
+                       </button>
+                       <button className="px-10 py-5 border-2 border-white/20 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-indigo-900 transition-all">
+                          Partner with SPD
+                       </button>
+                    </div>
+                 </div>
+
+                 <div className="grid grid-cols-1 gap-6">
+                    {[
+                      { icon: <Globe size={20} />, title: "Support a Local Site", desc: "Funding for mobile screening deployment in McDowell County." },
+                      { icon: <Microscope size={20} />, title: "Sponsor a Family Kit", desc: "Provide 3-in-1 screening tools for low-income households." },
+                      { icon: <Users size={20} />, title: "Empower Outreach", desc: "Training for community health ambassadors." }
+                    ].map((item, idx) => (
+                      <div key={idx} className="p-6 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-colors">
+                         <div className="flex items-center gap-4 mb-4">
+                            <div className="text-petri-500">{item.icon}</div>
+                            <h4 className="text-sm font-black tracking-tight">{item.title}</h4>
+                         </div>
+                         <p className="text-xs text-white/40 font-bold leading-relaxed">{item.desc}</p>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+           </div>
+        </ScrollReveal>
       </div>
     </section>
   )
