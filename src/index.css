@@ -4,44 +4,38 @@
    Font: Manrope (Option B Scale)
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ── Google Fonts (already imported above) ── */
-
-/* ── CSS Variables (Option B Tokens) ── */
+/* ── CSS Variables (SPD v2.0 Tokens) ── */
 @layer base {
   :root {
-    --teal:        #145e69;
-    --teal-dark:   #0f2f35;
-    --teal-light:  #9ed8db;
-    --teal-xlight: #e8f6f7;
-    --gold:        #f4d092;
-    --black:       #000000;
-    --black-olive: #2c2500;
-    --cream:       #f5f0e8; /* Unified cream value */
-    --text-primary:   #000000;
-    --text-secondary: #565656;
-    --text-muted:     #afafaf;
-    --border:      #dbdbdb;
-    --gray-soft:   #ebebeb;
-    --gray-bg:     #f5f5f5;
-    --white:       #ffffff;
-    --text-cream-body: #4a4a4a; /* High contrast body for cream bg */
+    --teal:        #1B4D4A;
+    --teal-dark:   #153b39;
+    --teal-light:  #3a7a76;
+    --teal-xlight: #f0f7f6;
+    --gold:        #D4A843;
+    --black:       #1A1A1A;
+    --cream:       #F5F0E8;
+    --text-primary:   #1A1A1A;
+    --text-secondary: #4a4a4a;
+    --text-muted:     #8a8a8a;
+    --border:      #e2e8f0;
+    --white:       #FFFFFF;
 
-    /* Typographic Scale (Strong Contrast Option A) */
-    --text-h1:      clamp(48px, 8vw, 96px);
-    --text-h2:      clamp(32px, 4.5vw, 44px);
-    --text-h3:      clamp(20px, 3vw, 24px);
-    --text-h4:      16px;
-    --text-body-lg: clamp(16px, 1.5vw, 18px);
+    /* Typographic Scale */
+    --text-h1:      clamp(48px, 8vw, 90px);
+    --text-h2:      clamp(32px, 5vw, 56px);
+    --text-h3:      clamp(24px, 3vw, 32px);
+    --text-h4:      20px;
+    --text-body-lg: 20px;
     --text-body:    16px;
     --text-small:   14px;
     --text-btn:     16px;
-    --text-eyebrow: 12px;
+    --text-eyebrow: 13px;
 
     /* Section padding */
     --section-lg: 120px;
@@ -49,8 +43,8 @@
     --section-sm: 60px;
 
     /* Container */
-    --container-max: 1200px;
-    --container-px:  80px;
+    --container-max: 1280px;
+    --container-px:  60px;
   }
 }
 
@@ -67,66 +61,59 @@
   }
 
   body {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--text-body);
     font-weight: 400;
-    line-height: 1.65;
+    line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--white);
-    letter-spacing: 0;
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--text-primary);
     margin: 0;
   }
 
   h1 { 
     font-size: var(--text-h1); 
-    line-height: 0.9; 
-    font-weight: 800; 
-    letter-spacing: -0.025em; 
+    line-height: 0.95; 
+    font-weight: 900; 
+    letter-spacing: -0.04em; 
   }
   
   h2 { 
     font-size: var(--text-h2); 
-    line-height: 1.1; 
-    font-weight: 700; 
-    letter-spacing: -0.01em; 
+    line-height: 1.05; 
+    font-weight: 800; 
+    letter-spacing: -0.03em; 
   }
   
   h3 { 
     font-size: var(--text-h3); 
-    line-height: 1.2; 
-    font-weight: 600; 
-    letter-spacing: 0;
+    line-height: 1.15; 
+    font-weight: 700; 
+    letter-spacing: -0.02em;
   }
   
   h4 { 
     font-size: var(--text-h4); 
     line-height: 1.4; 
-    font-weight: 500; 
-    letter-spacing: 0;
+    font-weight: 600; 
+    letter-spacing: -0.01em;
   }
 
   p {
     font-size: var(--text-body);
-    line-height: 1.65;
+    line-height: 1.6;
     font-weight: 400;
     color: var(--text-secondary);
-    max-width: 640px;
+    max-width: 680px;
   }
 
   .body-large {
     font-size: var(--text-body-lg);
-    line-height: 1.75;
-    font-weight: 400;
-    max-width: 520px;
-  }
-
-  .text-small {
-    font-size: var(--text-small);
     line-height: 1.6;
     font-weight: 400;
   }
@@ -134,7 +121,7 @@
   /* Gold Accent Rule */
   em, i {
     font-style: italic;
-    color: #f4d092;
+    color: var(--gold);
     font-weight: inherit;
   }
 

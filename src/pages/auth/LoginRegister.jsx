@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, EyeOff, CheckCircle, AlertCircle, ArrowRight, User, Shield } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Eye, EyeOff, ArrowRight, User, Activity } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 
 const LoginRegister = () => {
   const [activeTab, setActiveTab] = useState('signup');
-  const [role, setRole] = useState('patient'); // 'patient' or 'doctor'
+  const [role, setRole] = useState('patient');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -15,249 +15,219 @@ const LoginRegister = () => {
     if (role === 'doctor') {
       navigate('/doctor/dashboard');
     } else {
-      navigate('/onboarding');
+      navigate('/patient/dashboard');
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#0f2f35] flex overflow-hidden font-manrope">
-      {/* Left Side (45%) */}
-      <div className="hidden lg:flex lg:w-[45%] flex-col justify-between p-16 relative overflow-hidden">
-        {/* Background Image with Warm Overlay */}
+    <div className="min-h-screen lg:h-screen bg-[#F5F0E8] flex overflow-hidden font-manrope">
+      
+      {/* LEFT SIDE: BRAND & MISSION */}
+      <div className="hidden lg:flex lg:w-1/2 bg-[#1B4D4A] flex-col justify-between p-12 xl:p-20 relative overflow-hidden">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/images_projects/your-health-is-a-serious-subject-around-here-2026-03-25-07-25-20-utc.jpg" 
-            alt="Healthcare background" 
-            className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
+            alt="Healthcare Context" 
+            className="w-full h-full object-cover opacity-40 mix-blend-overlay"
           />
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#0f2f35] via-[#0f2f35]/70 to-[#f4d092]/20" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1B4D4A]/60 via-[#1B4D4A]/80 to-[#1B4D4A]" />
+          <div className="absolute inset-0 bg-noise opacity-[0.03]"></div>
         </div>
 
+        {/* Abstract Radar Graphic */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <div className="relative flex items-center justify-center scale-75 xl:scale-100">
+            <div className="w-[400px] h-[400px] rounded-full border border-white/20" />
+            <div className="absolute w-[280px] h-[280px] rounded-full border border-white/20" />
+            <div className="absolute w-[160px] h-[160px] rounded-full border border-white/20" />
+            <div className="absolute w-2.5 h-2.5 rounded-full bg-[#D4A843]" />
+          </div>
+        </div>
+
+        {/* Logo */}
+        <div className="relative z-10 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center">
+            <div className="w-2 h-2 rounded-full bg-[#D4A843]" />
+          </div>
+          <span className="text-2xl font-black text-white tracking-tighter">SPD<span className="text-[#D4A843]">.</span></span>
+        </div>
+
+        {/* Footer Text */}
         <div className="relative z-10">
-          <Link to="/" className="text-3xl font-bold text-white tracking-tighter flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full border-2 border-[#9ed8db] flex items-center justify-center">
-              <div className="w-3 h-3 rounded-full bg-[#f4d092]" />
-            </div>
-            SPD.
-          </Link>
-          <p className="text-[#9ed8db] text-sm mt-2 tracking-widest uppercase font-bold">Health for Everyone</p>
-        </div>
-
-        {/* Abstract SVG Illustration */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none z-5">
-          <svg width="400" height="400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="40" stroke="#9ed8db" strokeWidth="0.5" />
-            <circle cx="50" cy="50" r="30" stroke="#9ed8db" strokeWidth="0.2" strokeDasharray="2 2" />
-            <path d="M50 10 V90 M10 50 H90" stroke="#9ed8db" strokeWidth="0.1" />
-            <motion.circle 
-              cx="50" cy="50" r="5" 
-              fill="#f4d092" 
-              animate={{ r: [5, 6, 5] }} 
-              transition={{ repeat: Infinity, duration: 3 }}
-            />
-          </svg>
-        </div>
-
-        <div className="relative z-10">
-          <blockquote className="text-white/60 text-sm italic leading-relaxed max-w-xs">
+          <blockquote className="text-white text-2xl xl:text-3xl font-medium leading-tight tracking-tight mb-6 italic">
             "The technology is the tool.<br />
             Health equity is the mission."
           </blockquote>
-          <cite className="text-white/40 text-xs mt-4 block not-italic">— SPD Founders</cite>
+          <cite className="text-white/40 text-[10px] block not-italic font-bold tracking-widest uppercase mb-1">— SPD FOUNDERS</cite>
+          <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase">Health for everyone</p>
         </div>
       </div>
 
-      {/* Right Side (55%) */}
-      <div className="w-full lg:w-[55%] bg-[#f5f0e8] flex items-center justify-center p-6 lg:p-8">
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="w-full max-w-[520px] bg-white rounded-[32px] p-8 lg:p-10 shadow-premium"
-        >
-          <div className="flex items-center justify-center gap-3 mb-6">
+      {/* RIGHT SIDE: AUTH FORM */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-10 relative">
+        
+        {/* Menu Dots Button */}
+        <div className="absolute top-6 right-6 z-20">
+           <button className="p-2 rounded-lg bg-white border border-[#1B4D4A]/10 text-[#1B4D4A] hover:bg-[#1B4D4A] hover:text-white transition-colors shadow-sm">
+             <div className="flex gap-1">
+                <div className="w-1 h-1 rounded-full bg-current opacity-40" />
+                <div className="w-1 h-1 rounded-full bg-current opacity-40" />
+                <div className="w-1 h-1 rounded-full bg-current opacity-40" />
+             </div>
+           </button>
+        </div>
+
+        <div className="w-full max-w-[400px] flex flex-col items-center">
+          
+          {/* Role Switcher */}
+          <div className="bg-[#EBE5DA] p-1.5 rounded-3xl flex w-full mb-8 shadow-inner">
             <button 
               onClick={() => setRole('patient')}
               className={cn(
-                "flex-1 p-3.5 rounded-2xl border-2 transition-all flex flex-col items-center gap-1.5",
-                role === 'patient' ? "bg-[#145e69] border-[#145e69] text-white shadow-lg" : "bg-white border-[#dbdbdb] text-[#4a5568] hover:border-[#145e69]/30"
+                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-black text-[10px] uppercase tracking-[0.2em]",
+                role === 'patient' ? "bg-[#1B4D4A] text-white shadow-xl" : "text-[#1B4D4A]/40 hover:text-[#1B4D4A]"
               )}
             >
-              <User size={18} />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Patient</span>
+              <User size={14} /> Patient
             </button>
             <button 
               onClick={() => setRole('doctor')}
               className={cn(
-                "flex-1 p-3.5 rounded-2xl border-2 transition-all flex flex-col items-center gap-1.5",
-                role === 'doctor' ? "bg-[#145e69] border-[#145e69] text-white shadow-lg" : "bg-white border-[#dbdbdb] text-[#4a5568] hover:border-[#145e69]/30"
+                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-black text-[10px] uppercase tracking-[0.2em]",
+                role === 'doctor' ? "bg-[#1B4D4A] text-white shadow-xl" : "text-[#1B4D4A]/40 hover:text-[#1B4D4A]"
               )}
             >
-              <Shield size={18} />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Doctor</span>
+              <Activity size={14} /> Doctor
             </button>
           </div>
 
-          {/* Tabs */}
-          <div className="flex bg-[#f5f0e8] p-1 rounded-xl mb-6">
-            <button
+          {/* Tab Switcher */}
+          <div className="flex w-full border-b border-[#1B4D4A]/10 mb-8">
+            <button 
               onClick={() => setActiveTab('signup')}
               className={cn(
-                "flex-1 py-2.5 px-6 text-[13px] font-bold transition-all duration-300 rounded-lg",
-                activeTab === 'signup' ? "bg-[#145e69] text-white shadow-md" : "text-[#4a5568] hover:text-[#145e69]"
+                "flex-1 pb-3 text-[12px] font-black transition-all border-b-2",
+                activeTab === 'signup' ? "border-[#1B4D4A] text-[#1B4D4A]" : "border-transparent text-[#1B4D4A]/30 hover:text-[#1B4D4A]"
               )}
             >
-              Sign Up
+              Create account
             </button>
-            <button
-              onClick={() => setActiveTab('login')}
+            <button 
+              onClick={() => setActiveTab('signin')}
               className={cn(
-                "flex-1 py-2.5 px-6 text-[13px] font-bold transition-all duration-300 rounded-lg",
-                activeTab === 'login' ? "bg-[#145e69] text-white shadow-md" : "text-[#4a5568] hover:text-[#145e69]"
+                "flex-1 pb-3 text-[12px] font-black transition-all border-b-2",
+                activeTab === 'signin' ? "border-[#1B4D4A] text-[#1B4D4A]" : "border-transparent text-[#1B4D4A]/30 hover:text-[#1B4D4A]"
               )}
             >
-              Log In
+              Sign in
             </button>
           </div>
 
-          <AnimatePresence mode="wait">
-            {activeTab === 'signup' ? (
-              <motion.form 
-                key="signup"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="space-y-3.5"
-                onSubmit={handleAuth}
-              >
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest pl-1">Full Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="John Doe"
-                    className="w-full px-5 py-3.5 bg-[#f5f0e8] border border-transparent rounded-xl focus:bg-white focus:border-[#145e69] outline-none transition-all text-sm"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest pl-1">Email Address</label>
-                  <div className="relative">
+          <form onSubmit={handleAuth} className="w-full space-y-4">
+            <AnimatePresence mode="wait">
+              {activeTab === 'signup' ? (
+                <motion.div
+                  key="signup-fields"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="space-y-4"
+                >
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Full Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="John Doe"
+                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Email Address</label>
                     <input 
                       type="email" 
                       placeholder="john@example.com"
-                      className="w-full px-5 py-3.5 bg-[#f5f0e8] border border-transparent rounded-xl focus:bg-white focus:border-[#145e69] outline-none transition-all text-sm"
+                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
                     />
                   </div>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest pl-1">Password</label>
-                  <div className="relative">
+                  <div className="space-y-1.5 relative">
+                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Password</label>
                     <input 
                       type={showPassword ? "text" : "password"} 
                       placeholder="••••••••"
-                      className="w-full px-5 py-3.5 bg-[#f5f0e8] border border-transparent rounded-xl focus:bg-white focus:border-[#145e69] outline-none transition-all text-sm"
+                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
                     />
-                    <button 
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-5 top-1/2 -translate-y-1/2 text-[#4a5568] hover:text-[#145e69]"
-                    >
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-[#1B4D4A]/20 hover:text-[#1B4D4A]">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest pl-1">Confirm Password</label>
-                  <input 
-                    type="password" 
-                    placeholder="••••••••"
-                    className="w-full px-5 py-3.5 bg-[#f5f0e8] border border-transparent rounded-xl focus:bg-white focus:border-[#145e69] outline-none transition-all text-sm"
-                  />
-                </div>
-
-                <button type="submit" className="w-full h-[50px] bg-[#145e69] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#0f2f35] transition-all shadow-lg mt-2">
-                  Create Account <ArrowRight size={18} />
-                </button>
-
-                <div className="flex items-center gap-4 py-2">
-                  <div className="h-px bg-[#dbdbdb] flex-1" />
-                  <span className="text-[9px] font-bold text-[#9eb3b5] uppercase tracking-widest">or</span>
-                  <div className="h-px bg-[#dbdbdb] flex-1" />
-                </div>
-
-                <button type="button" className="w-full h-[50px] bg-white border border-[#dbdbdb] text-[#0f2f35] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f5f0e8] transition-all text-sm">
-                  <svg width="18" height="18" viewBox="0 0 24 24">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                  </svg>
-                  Continue with Google
-                </button>
-
-                <p className="text-[10px] text-[#9eb3b5] leading-relaxed text-center px-4">
-                  By creating an account you agree to our <span className="text-[#145e69] font-bold cursor-pointer underline">Terms</span> and <span className="text-[#145e69] font-bold cursor-pointer underline">Privacy Policy</span>.
-                </p>
-              </motion.form>
-            ) : (
-              <motion.form 
-                key="login"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="space-y-4"
-                onSubmit={handleAuth}
-              >
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest pl-1">Email Address</label>
-                  <input 
-                    type="email" 
-                    placeholder="john@example.com"
-                    className="w-full px-5 py-3.5 bg-[#f5f0e8] border border-transparent rounded-xl focus:bg-white focus:border-[#145e69] outline-none transition-all text-sm"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center pr-1">
-                    <label className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest pl-1">Password</label>
-                    <Link to="#" className="text-[10px] font-bold text-[#145e69] hover:underline">Forgot password?</Link>
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Confirm Password</label>
+                    <input 
+                      type="password" 
+                      placeholder="••••••••"
+                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                    />
                   </div>
-                  <div className="relative">
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="signin-fields"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="space-y-4"
+                >
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Email Address</label>
+                    <input 
+                      type="email" 
+                      placeholder="john@example.com"
+                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                    />
+                  </div>
+                  <div className="space-y-1.5 relative">
+                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Password</label>
                     <input 
                       type={showPassword ? "text" : "password"} 
                       placeholder="••••••••"
-                      className="w-full px-5 py-3.5 bg-[#f5f0e8] border border-transparent rounded-xl focus:bg-white focus:border-[#145e69] outline-none transition-all text-sm"
+                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
                     />
-                    <button 
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-5 top-1/2 -translate-y-1/2 text-[#4a5568] hover:text-[#145e69]"
-                    >
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-[#1B4D4A]/20 hover:text-[#1B4D4A]">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
-                </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-                <button type="submit" className="w-full h-[50px] bg-[#145e69] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#0f2f35] transition-all shadow-lg mt-2">
-                  Log In <ArrowRight size={18} />
-                </button>
+            {/* Submit Button */}
+            <button type="submit" className="w-full h-14 rounded-xl bg-[#1B4D4A] text-white font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#D4A843] transition-all shadow-xl mt-2 group text-xs">
+              {activeTab === 'signup' ? 'Create account' : 'Sign in'} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </button>
 
-                <div className="flex items-center gap-4 py-3">
-                  <div className="h-px bg-[#dbdbdb] flex-1" />
-                  <span className="text-[10px] font-bold text-[#9eb3b5] uppercase tracking-widest">or</span>
-                  <div className="h-px bg-[#dbdbdb] flex-1" />
-                </div>
+            {/* Social Auth */}
+            <div className="flex items-center gap-3 py-1">
+              <div className="h-px bg-[#1B4D4A]/10 flex-1" />
+              <span className="text-[9px] font-black text-[#1B4D4A]/30 uppercase tracking-widest">or</span>
+              <div className="h-px bg-[#1B4D4A]/10 flex-1" />
+            </div>
 
-                <button type="button" className="w-full h-[50px] bg-white border border-[#dbdbdb] text-[#0f2f35] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f5f0e8] transition-all text-sm">
-                  <svg width="18" height="18" viewBox="0 0 24 24">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                  </svg>
-                  Google
-                </button>
-              </motion.form>
-            )}
-          </AnimatePresence>
-        </motion.div>
+            <button type="button" className="w-full h-14 rounded-xl bg-white border border-[#1B4D4A]/5 text-[#1B4D4A] font-black flex items-center justify-center gap-3 hover:bg-gray-50 transition-all shadow-sm text-xs">
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              <span>Continue with Google</span>
+            </button>
+
+            <p className="text-[9px] text-[#1B4D4A]/40 text-center leading-relaxed mt-4">
+              By continuing you agree to our <a href="#" className="text-[#1B4D4A] font-black underline">Terms</a> and <a href="#" className="text-[#1B4D4A] font-black underline">Privacy Policy</a>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

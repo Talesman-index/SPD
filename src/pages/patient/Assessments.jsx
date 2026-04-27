@@ -12,35 +12,36 @@ import { cn } from '../../lib/utils';
 
 const PatientAssessments = () => {
   const [step, setStep] = useState(1);
+  const [snapshot, setSnapshot] = useState({ temp: '', bpm: '', o2: '' });
   const [symptoms, setSymptoms] = useState([]);
-  const [severity, setSeverity] = useState(3);
+  const [severity, setSeverity] = useState(5);
   const [duration, setDuration] = useState('');
-  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const nextStep = () => step < 5 && setStep(step + 1);
+  const nextStep = () => step < 6 && setStep(step + 1);
   const prevStep = () => step > 1 && setStep(step - 1);
 
   const steps = [
-    "Symptômes",
-    "Durée",
-    "Contexte",
-    "Récapitulatif",
-    "Confirmation"
+    "Snapshot",
+    "Symptoms",
+    "Duration",
+    "Context",
+    "Review",
+    "Complete"
   ];
 
   return (
     <MobileLayout 
-      title="New Assessment" 
-      showBack={step > 1 && step < 5}
-      rightAction={step < 5 && (
+      title="Guided Assessment" 
+      showBack={step > 1 && step < 6}
+      rightAction={step < 6 && (
         <span className="text-[11px] font-bold text-[#6b7280] uppercase tracking-widest">
           {step} of 5
         </span>
       )}
     >
       {/* Progress Bar */}
-      {step < 5 && (
+      {step < 6 && (
         <div className="h-[3px] bg-[#e8f4f5] w-full sticky top-0 z-50 overflow-hidden">
           <motion.div 
             className="h-full bg-[#145e69]"
@@ -54,45 +55,52 @@ const PatientAssessments = () => {
       <div className="pb-32">
         <AnimatePresence mode="wait">
           {step === 1 && (
-            <StepSymptoms 
+            <StepSnapshot 
               key="step1"
+              data={snapshot}
+              onChange={(key, val) => setSnapshot(prev => ({ ...prev, [key]: val }))}
+            />
+          )}
+          {step === 2 && (
+            <StepSymptoms 
+              key="step2"
               selected={symptoms} 
               onToggle={(id) => setSymptoms(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])}
               severity={severity}
               onSeverityChange={setSeverity}
             />
           )}
-          {step === 2 && (
+          {step === 3 && (
             <StepDuration 
-              key="step2"
+              key="step3"
               selected={duration}
               onSelect={setDuration}
             />
           )}
-          {step === 3 && (
-            <StepAdditional key="step3" />
-          )}
           {step === 4 && (
-            <StepReview key="step4" symptoms={symptoms} severity={severity} duration={duration} />
+            <StepAdditional key="step4" />
           )}
           {step === 5 && (
-            <StepConfirm key="step5" />
+            <StepReview key="step5" snapshot={snapshot} symptoms={symptoms} severity={severity} duration={duration} />
+          )}
+          {step === 6 && (
+            <StepConfirm key="step6" />
           )}
         </AnimatePresence>
       </div>
 
       {/* Fixed Continue Button */}
-      {step < 5 && (
+      {step < 6 && (
         <div className="fixed bottom-[100px] left-0 right-0 px-5 pointer-events-none">
           <button 
             onClick={nextStep}
-            disabled={step === 1 && symptoms.length === 0}
+            disabled={step === 2 && symptoms.length === 0}
             className={cn(
               "w-full h-[52px] rounded-[14px] font-bold text-white flex items-center justify-center gap-2 shadow-lg transition-all pointer-events-auto",
-              (step === 1 && symptoms.length === 0) ? "bg-[#9ed8db] opacity-50 cursor-not-allowed" : "bg-[#145e69] active:scale-95"
+              (step === 2 && symptoms.length === 0) ? "bg-[#9ed8db] opacity-50 cursor-not-allowed" : "bg-[#145e69] active:scale-95"
             )}
           >
-            {step === 4 ? 'Submit Assessment' : 'Continue'} <ArrowRight size={18} />
+            {step === 5 ? 'Send for Review' : 'Continue'} <ArrowRight size={18} />
           </button>
         </div>
       )}
@@ -101,6 +109,25 @@ const PatientAssessments = () => {
 };
 
 // --- STEPS ---
+
+const StepSnapshot = ({ data, onChange }) => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="px-5">
+    <h2 className="text-[22px] font-bold text-[#0f2f35] mt-8 mb-8">Health Snapshot</h2>
+    <div className="space-y-4">
+      {[{ id: 'temp', label: 'Temperature (°F)', icon: Thermometer }, { id: 'bpm', label: 'Heart Rate (BPM)', icon: Activity }, { id: 'o2', label: 'Oxygen Level (%)', icon: Wind }].map(field => (
+        <div key={field.id}>
+          <label className="text-[11px] font-bold text-[#6b7280] uppercase tracking-[0.1em] block mb-2">{field.label}</label>
+          <input 
+            type="number" 
+            value={data[field.id]} 
+            onChange={(e) => onChange(field.id, e.target.value)}
+            className="w-full h-[52px] px-5 bg-white border border-[#e8f4f5] rounded-[12px] outline-none focus:border-[#145e69]"
+          />
+        </div>
+      ))}
+    </div>
+  </motion.div>
+);
 
 const StepSymptoms = ({ selected, onToggle, severity, onSeverityChange }) => {
   const categories = [
@@ -228,28 +255,25 @@ const StepAdditional = () => {
   );
 };
 
-const StepReview = ({ symptoms, severity, duration }) => (
+const StepReview = ({ snapshot, symptoms, severity, duration }) => (
   <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-    <h2 className="text-[22px] font-bold text-[#0f2f35] px-5 mt-8 mb-8">Review</h2>
+    <h2 className="text-[22px] font-bold text-[#0f2f35] px-5 mt-8 mb-8">Review Assessment</h2>
 
     <div className="px-5 space-y-3">
-      <ReviewCard label="Symptoms" value={symptoms.join(', ')} />
+      <ReviewCard label="Vitals" value={`Temp: ${snapshot.temp}°F · HR: ${snapshot.bpm} · O2: ${snapshot.o2}%`} />
+      <ReviewCard label="Symptoms" value={symptoms.length > 0 ? symptoms.join(', ') : 'None selected'} />
       <ReviewCard label="Severity" value={`${severity}/10`} />
-      <ReviewCard label="Duration" value={duration} />
-      <ReviewCard label="Location" value="Robeson County, NC" />
+      <ReviewCard label="Duration" value={duration || 'Not specified'} />
     </div>
   </motion.div>
 );
 
 const ReviewCard = ({ label, value }) => (
   <div className="bg-white p-5 rounded-[16px] border border-[#e8f4f5] shadow-sm flex justify-between items-center group active:scale-[0.98] transition-all">
-    <div>
+    <div className="flex-1">
       <span className="text-[11px] font-bold text-[#afafaf] uppercase tracking-[0.1em] block mb-1">{label}</span>
-      <span className="text-[15px] font-bold text-[#0f2f35]">{value}</span>
+      <span className="text-[14px] font-bold text-[#0f2f35] leading-snug">{value}</span>
     </div>
-    <button className="w-8 h-8 rounded-full bg-[#f5f0e8] flex items-center justify-center text-[#145e69]">
-      <HelpCircle size={14} />
-    </button>
   </div>
 );
 
@@ -258,16 +282,18 @@ const StepConfirm = () => {
   return (
     <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="px-5 text-center mt-12">
       <div className="w-[120px] h-[120px] bg-[#e8f4f5] rounded-full flex items-center justify-center mx-auto mb-8 text-[#145e69]">
-        <Globe size={60} className="animate-pulse" />
+        <Check size={60} />
       </div>
-      <h2 className="text-[22px] font-bold text-[#0f2f35] mb-3">Your assessment is being sent</h2>
-      <p className="text-[14px] text-[#6b7280] mb-12 px-8">Dr. Sarah Chen will review your submission within 2–4 hours.</p>
+      <h2 className="text-[22px] font-bold text-[#0f2f35] mb-3">Assessment Sent</h2>
+      <p className="text-[14px] text-[#6b7280] mb-12 px-8">
+        Your data has been sent for provider review. A licensed healthcare provider will review your case and recommend next steps within 2–4 hours.
+      </p>
       
       <button 
         onClick={() => navigate('/patient/dashboard')}
         className="w-full h-[52px] bg-[#145e69] rounded-[14px] font-bold text-white shadow-lg"
       >
-        View Dashboard
+        Return to Dashboard
       </button>
     </motion.div>
   );

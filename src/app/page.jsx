@@ -3,54 +3,66 @@ import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import CartDrawer from '../components/ui/CartDrawer'
 import Hero from '../components/sections/Hero'
-import WhyItMatters from '../components/sections/WhyItMatters'
-import Services from '../components/sections/Services'
+import MissionProblem from '../components/sections/MissionProblem'
 import HowItWorks from '../components/sections/HowItWorks'
-import PartnerProviders from '../components/sections/PartnerProviders'
+import TrustProof from '../components/sections/TrustProof'
+import GetStarted from '../components/sections/GetStarted'
 import OurImpact from '../components/sections/OurImpact'
-import OrderDevice from '../components/sections/OrderDevice'
-
+import CommunityFAQ from '../components/sections/CommunityFAQ'
 import Contact from '../components/sections/Contact'
 import StickyBar from '../components/sections/StickyBar'
 import ErrorBoundary from '../components/ui/ErrorBoundary'
-
 import TrialModal from '../components/ui/TrialModal'
 
 const Page = () => {
   const [isTrialOpen, setIsTrialOpen] = React.useState(false)
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white">
       <ErrorBoundary name="Navbar"><Navbar /></ErrorBoundary>
       <ErrorBoundary name="CartDrawer"><CartDrawer /></ErrorBoundary>
       <TrialModal isOpen={isTrialOpen} onClose={() => setIsTrialOpen(false)} />
 
       <main className="flex-grow">
-        {/* 1. Hero */}
-        <ErrorBoundary name="Hero"><Hero onOpenTrial={() => setIsTrialOpen(true)} /></ErrorBoundary>
+        {/* 1. HERO */}
+        <ErrorBoundary name="Hero">
+          <Hero onOpenTrial={() => setIsTrialOpen(true)} />
+        </ErrorBoundary>
 
-        {/* 2. The Problem (Why It Matters) */}
-        <ErrorBoundary name="WhyItMatters"><WhyItMatters /></ErrorBoundary>
+        {/* 2. MISSION & THE PROBLEM */}
+        <ErrorBoundary name="MissionProblem">
+          <MissionProblem />
+        </ErrorBoundary>
 
-        {/* 3. The Technology (Services) */}
-        <ErrorBoundary name="Services"><Services /></ErrorBoundary>
+        {/* 3. HOW IT WORKS (Process & Science) */}
+        <ErrorBoundary name="HowItWorks">
+          <HowItWorks />
+        </ErrorBoundary>
 
-        {/* 4. The Process (How It Works) */}
-        <ErrorBoundary name="HowItWorks"><HowItWorks /></ErrorBoundary>
+        {/* 4. TRUST & PROOF */}
+        <ErrorBoundary name="TrustProof">
+          <TrustProof />
+        </ErrorBoundary>
 
-        {/* 5. Our Providers (Partner Providers) */}
-        <ErrorBoundary name="PartnerProviders"><PartnerProviders /></ErrorBoundary>
+        {/* 5. GET STARTED (Order & Sign Up) */}
+        <ErrorBoundary name="GetStarted">
+          <GetStarted />
+        </ErrorBoundary>
 
-        {/* 6. The Science (Our Impact) */}
-        <ErrorBoundary name="OurImpact"><OurImpact /></ErrorBoundary>
+        {/* 6. OUR IMPACT */}
+        <ErrorBoundary name="OurImpact">
+          <OurImpact />
+        </ErrorBoundary>
 
-        {/* 7. Product (Order Device) */}
-        <ErrorBoundary name="OrderDevice"><OrderDevice /></ErrorBoundary>
+        {/* 7. COMMUNITY & FAQ */}
+        <ErrorBoundary name="CommunityFAQ">
+          <CommunityFAQ />
+        </ErrorBoundary>
 
-
-
-        {/* 9. Contact */}
-        <ErrorBoundary name="Contact"><Contact /></ErrorBoundary>
+        {/* 8. CONTACT */}
+        <ErrorBoundary name="Contact">
+          <Contact />
+        </ErrorBoundary>
       </main>
 
       <ErrorBoundary name="Footer"><Footer /></ErrorBoundary>

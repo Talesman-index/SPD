@@ -4,7 +4,7 @@ import ScrollReveal from '../ui/ScrollReveal'
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-[#0f2f35] py-32 md:py-48 overflow-hidden relative">
+    <section id="contact" className="bg-[#1B4D4A] py-32 md:py-48 overflow-hidden relative">
       <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
       
       <div className="container-custom relative z-10">
@@ -14,11 +14,11 @@ const Contact = () => {
           <div className="relative z-10">
             <ScrollReveal>
               <div className="flex items-center gap-4 mb-10">
-                <span className="w-12 h-[1px] bg-[#f4d092]/40"></span>
-                <span className="text-[10px] font-bold text-[#f4d092] uppercase tracking-[0.3em]">Direct Access</span>
+                <span className="w-12 h-[1px] bg-[#D4A843]/40"></span>
+                <span className="text-[10px] font-black text-[#D4A843] uppercase tracking-[0.3em]">Direct Access</span>
               </div>
               
-              <h2 className="text-5xl md:text-8xl font-bold text-white mb-12 leading-[0.85] tracking-tighter">
+              <h2 className="text-5xl md:text-8xl font-black text-white mb-12 leading-[0.85] tracking-tighter">
                 Start the <em className="!text-white italic">Dialogue.</em>
               </h2>
 
@@ -28,13 +28,13 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12 border-t border-white/10">
                 <div>
-                  <div className="text-[10px] font-bold text-[#f4d092] uppercase tracking-[0.2em] mb-4">Our Base</div>
-                  <p className="text-white text-lg font-medium leading-tight">Robeson County,<br />North Carolina, USA</p>
+                  <div className="text-[10px] font-bold text-[#D4A843] uppercase tracking-[0.2em] mb-4">Our Base</div>
+                  <p className="text-white text-lg font-black leading-tight tracking-tight">Robeson County,<br />North Carolina, USA</p>
                 </div>
                 <div>
-                  <div className="text-[10px] font-bold text-[#f4d092] uppercase tracking-[0.2em] mb-4">Digital Desk</div>
-                  <p className="text-white text-lg font-medium">hello@spd.health</p>
-                  <p className="text-white/40 text-sm mt-2 font-medium">Response: &lt; 4hrs</p>
+                  <div className="text-[10px] font-bold text-[#D4A843] uppercase tracking-[0.2em] mb-4">Digital Desk</div>
+                  <p className="text-white text-lg font-black tracking-tight">hello@spd.health</p>
+                  <p className="text-white/40 text-sm mt-2 font-bold uppercase tracking-widest">Response: &lt; 4hrs</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -44,21 +44,21 @@ const Contact = () => {
           <div className="relative z-10">
             <ScrollReveal>
               <div className="relative p-10 md:p-16 rounded-[60px] bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden group">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#145e69] opacity-20 rounded-full blur-[100px]"></div>
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#D4A843] opacity-10 rounded-full blur-[100px]"></div>
                 
-                <form className="relative z-10 space-y-10">
+                <form className="relative z-10 space-y-10" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="relative">
                       <input 
                         type="text" 
                         required
-                        className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#f4d092] transition-colors placeholder:text-transparent"
+                        className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#D4A843] transition-colors placeholder:text-transparent font-medium"
                         placeholder="Name"
                         id="form-name"
                       />
                       <label 
                         htmlFor="form-name"
-                        className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-[#f4d092] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
+                        className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-[#D4A843] peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
                       >
                         Full Name
                       </label>
@@ -67,13 +67,13 @@ const Contact = () => {
                       <input 
                         type="email" 
                         required
-                        className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#f4d092] transition-colors placeholder:text-transparent"
+                        className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#D4A843] transition-colors placeholder:text-transparent font-medium"
                         placeholder="Email"
                         id="form-email"
                       />
                       <label 
                         htmlFor="form-email"
-                        className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-[#f4d092] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
+                        className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-[#D4A843] peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
                       >
                         Email Address
                       </label>
@@ -82,17 +82,17 @@ const Contact = () => {
 
                   <div className="relative">
                     <select 
-                      className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#f4d092] transition-colors appearance-none cursor-pointer"
+                      className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#D4A843] transition-colors appearance-none cursor-pointer font-medium"
                       id="form-subject"
                     >
-                      <option className="bg-[#0f2f35]">General Inquiry</option>
-                      <option className="bg-[#0f2f35]">Medical Partnership</option>
-                      <option className="bg-[#0f2f35]">Community Deployment</option>
-                      <option className="bg-[#0f2f35]">Press/Media</option>
+                      <option className="bg-[#1B4D4A]">General Inquiry</option>
+                      <option className="bg-[#1B4D4A]">Medical Partnership</option>
+                      <option className="bg-[#1B4D4A]">Community Deployment</option>
+                      <option className="bg-[#1B4D4A]">Press/Media</option>
                     </select>
                     <label 
                       htmlFor="form-subject"
-                      className="absolute left-0 -top-6 text-[10px] text-[#f4d092] font-bold uppercase tracking-widest"
+                      className="absolute left-0 -top-6 text-[10px] text-[#D4A843] font-black uppercase tracking-widest"
                     >
                       Subject
                     </label>
@@ -102,21 +102,21 @@ const Contact = () => {
                     <textarea 
                       rows="3"
                       required
-                      className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#f4d092] transition-colors placeholder:text-transparent resize-none"
+                      className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-[#D4A843] transition-colors placeholder:text-transparent resize-none font-medium"
                       placeholder="Message"
                       id="form-message"
                     ></textarea>
                     <label 
                       htmlFor="form-message"
-                      className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-[#f4d092] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
+                      className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-[#D4A843] peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
                     >
                       How can we help?
                     </label>
                   </div>
 
-                  <button className="group flex items-center justify-between w-full p-7 rounded-3xl bg-[#f4d092] text-[#0f2f35] font-bold text-xl hover:bg-white transition-all duration-500">
+                  <button className="group flex items-center justify-between w-full p-7 rounded-3xl bg-[#D4A843] text-white font-black text-xl hover:bg-white hover:text-[#1B4D4A] transition-all duration-500 shadow-xl shadow-[#D4A843]/10">
                     <span>Send Message</span>
-                    <div className="w-10 h-10 rounded-full bg-[#0f2f35] text-white flex items-center justify-center transition-transform group-hover:rotate-45 group-hover:scale-110">
+                    <div className="w-10 h-10 rounded-full bg-white text-[#1B4D4A] flex items-center justify-center transition-transform group-hover:rotate-45 group-hover:scale-110">
                       <ArrowUpRight size={20} />
                     </div>
                   </button>

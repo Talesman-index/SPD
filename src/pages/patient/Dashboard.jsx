@@ -37,28 +37,28 @@ const PatientDashboard = () => {
           
           <div className="relative z-10">
             <span className="text-[11px] font-bold text-white/60 uppercase tracking-[0.1em] block mb-1">
-              Active Case
+              Active Screening
             </span>
             <h2 className="text-[18px] font-bold text-white mb-0.5">
-              Analysis Complete
+              Pending Provider Review
             </h2>
             <p className="text-[13px] text-white/75 mb-6">
-              Diagnostic report available for review
+              A licensed provider is reviewing your assessment.
             </p>
 
-            {/* Progress Pills (6 steps) */}
+            {/* Progress Pills (6 key stages) */}
             <div className="flex justify-between items-center gap-1.5 mb-6">
-              <ProgressPill label="SUBMITTED" status="done" />
-              <ProgressPill label="AI SCAN" status="done" />
-              <ProgressPill label="DOCTOR" status="done" />
-              <ProgressPill label="VALIDATED" status="active" />
-              <ProgressPill status="upcoming" />
-              <ProgressPill status="upcoming" />
+              <ProgressPill label="PROFILE" status="done" />
+              <ProgressPill label="ASSESSMENT" status="done" />
+              <ProgressPill label="PROVIDER" status="active" />
+              <ProgressPill label="TEST" status="upcoming" />
+              <ProgressPill label="SCAN" status="upcoming" />
+              <ProgressPill label="RESULTS" status="upcoming" />
             </div>
 
             <div className="flex items-center gap-2">
               <Clock size={12} className="text-white/40" />
-              <span className="text-[11px] text-white/50 italic">Validated in 2.4 hours</span>
+              <span className="text-[11px] text-white/50 italic">Submitted 45m ago</span>
             </div>
           </div>
         </div>

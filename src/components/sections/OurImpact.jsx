@@ -1,141 +1,198 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { ShieldCheck, Zap, Activity, Cpu } from 'lucide-react'
-import ScrollReveal from '../ui/ScrollReveal'
-import { cn } from '../../lib/utils'
+import React, { useState, useEffect } from 'react'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { Users, Microscope, Landmark, HeartPulse, TrendingUp } from 'lucide-react'
+
+// Simple counter component for that "Webflow" feel
+const Counter = ({ value, duration = 2 }) => {
+  const motionValue = useMotionValue(0)
+  const springValue = useSpring(motionValue, {
+    damping: 30,
+    stiffness: 100,
+  })
+  
+  const [displayValue, setDisplayValue] = useState(0)
+
+  useEffect(() => {
+    motionValue.set(value)
+  }, [value, motionValue])
+
+  useEffect(() => {
+    return springValue.on("change", (latest) => {
+      setDisplayValue(Math.floor(latest))
+    })
+  }, [springValue])
+
+  return <span>{displayValue.toLocaleString()}</span>
+}
+
+const stats = [
+  {
+    label: "Communities Reached",
+    current: 2400,
+    target: 10000,
+    percent: 24,
+    icon: <Users className="text-[#D4A843]" size={20} />,
+    trend: "+12% this month"
+  },
+  {
+    label: "Screenings Completed",
+    current: 8750,
+    target: 50000,
+    percent: 18,
+    icon: <Microscope className="text-[#D4A843]" size={20} />,
+    trend: "+5k last quarter"
+  },
+  {
+    label: "Funding Raised",
+    current: 1.2,
+    target: 5,
+    unit: "M",
+    percent: 24,
+    icon: <Landmark className="text-[#D4A843]" size={20} />,
+    trend: "Next round: Q3"
+  },
+  {
+    label: "Partner Providers",
+    current: 18,
+    target: 50,
+    percent: 36,
+    icon: <HeartPulse className="text-[#D4A843]" size={20} />,
+    trend: "3 pending review"
+  }
+]
 
 const OurImpact = () => {
-  const metrics = [
-    { 
-      number: '95.4%', 
-      title: 'Clinical Accuracy', 
-      body: 'Validated against hospital lab standards for respiratory and water-borne pathogens.',
-      icon: ShieldCheck
-    },
-    { 
-      number: '15m', 
-      title: 'Real-time Result', 
-      body: 'From sample processing to doctor-validated report in under 15 minutes.',
-      icon: Zap
-    },
-    { 
-      number: '100%', 
-      title: 'MD Validation', 
-      body: 'Zero self-diagnosis. Every result is reviewed by a licensed provider in our network.',
-      icon: Activity
-    },
-    { 
-      number: '500k', 
-      title: 'Projected Tests', 
-      body: 'Scaling to deliver half a million diagnostic sessions to health deserts by 2026.',
-      icon: Cpu
-    },
-  ]
-
   return (
-    <section id="the-science" className="bg-[#0f2f35] py-32 md:py-48 overflow-hidden relative">
-      <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
-      
+    <section id="impact" className="py-24 lg:py-32 bg-[#F5F0E8] relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#1B4D4A]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#D4A843]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] font-black text-[#1B4D4A]/[0.02] select-none tracking-tighter">
+          IMPACT
+        </div>
+      </div>
+
       <div className="container-custom relative z-10">
-        <div className="max-w-[800px] mb-20">
-          <ScrollReveal>
-            <div className="flex items-center gap-4 mb-8">
-              <span className="h-[1px] w-12 bg-[#f4d092]/40"></span>
-              <span className="text-xs font-bold text-[#f4d092] uppercase tracking-[0.3em]">The Science of Triage</span>
+        <div className="max-w-3xl mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="flex items-center gap-4 mb-6">
+               <div className="w-10 h-[1px] bg-[#D4A843]"></div>
+               <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#1B4D4A]/40">Our Scale</h4>
             </div>
-            <h2 className="text-4xl md:text-7xl font-bold text-white mb-8 max-w-[900px] leading-[1.1] tracking-tighter">
-              <span className="block">Clinical precision.</span> 
-              <em className="!text-white italic">Community scale.</em>
+            <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-black text-[#1B4D4A] tracking-tighter leading-[0.9] mb-10">
+              Building Toward <br />
+              <span className="italic text-[#D4A843]">Health Equity.</span>
             </h2>
-            <p className="text-body-lg text-white/60 max-w-[540px]">
-              We've miniaturized the laboratory workflow. 
-              The Smart Petri Dish combines advanced bio-sensors with a 
-              human-in-the-loop validation system to ensure safety at every step.
+            <p className="text-[#1B4D4A]/60 text-lg lg:text-xl font-medium max-w-2xl leading-relaxed">
+              Our 2026 goals represent more than just numbers. They are the roadmap to closing the rural health gap, scaling technology to meet human needs at community scale.
             </p>
-          </ScrollReveal>
+          </motion.div>
         </div>
 
-        {/* Main Context Card (Full Width, Centered) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative rounded-[60px] bg-gradient-to-br from-[#145e69] to-[#0f2f35] p-12 md:p-20 overflow-hidden border border-white/10 group mb-12"
-        >
-          <div className="absolute inset-0 bg-noise opacity-[0.1] pointer-events-none"></div>
-          <div className="relative z-10 max-w-[900px] mx-auto text-center">
-            <div className="text-[10px] font-bold text-[#f4d092] uppercase tracking-[0.3em] mb-8">System Architecture</div>
-            <h3 className="text-4xl md:text-6xl font-bold text-white mb-16 leading-tight tracking-tighter">
-              Human-in-the-loop AI Validation.
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
-              <div className="space-y-4">
-                <div className="w-10 h-10 rounded-full border border-[#f4d092]/30 flex items-center justify-center text-[#f4d092] text-sm font-bold">01</div>
-                <h5 className="text-white font-bold tracking-tight">BIO-SENSOR</h5>
-                <p className="text-white/50 text-sm leading-relaxed">The SPD-X1 analyzes chemical markers using patented optical sensors.</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-10 h-10 rounded-full border border-[#f4d092]/30 flex items-center justify-center text-[#f4d092] text-sm font-bold">02</div>
-                <h5 className="text-white font-bold tracking-tight">AI ENGINE</h5>
-                <p className="text-white/50 text-sm leading-relaxed">Our rule-based system matches patterns against 10k+ clinical studies.</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-10 h-10 rounded-full border border-[#f4d092]/30 flex items-center justify-center text-[#f4d092] text-sm font-bold">03</div>
-                <h5 className="text-white font-bold tracking-tight">MD REVIEW</h5>
-                <p className="text-white/50 text-sm leading-relaxed">A licensed provider validates the findings before results are released.</p>
-              </div>
-            </div>
-
-            {/* Progress Tracker Widget */}
-            <div className="mt-20 max-w-[600px] mx-auto bg-black/20 backdrop-blur-xl p-8 rounded-[32px] border border-white/5">
-              <div className="flex justify-between items-end mb-4">
-                <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Deployment Readiness</div>
-                <div className="text-2xl font-bold text-[#f4d092]">92% / PRO-X1</div>
-              </div>
-              <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '92%' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 2, ease: "circOut" }}
-                  className="h-full bg-gradient-to-r from-[#145e69] to-[#f4d092]"
-                />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Metric Cards (Symmetrical Grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {metrics.map((metric, i) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {stats.map((stat, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.8 }}
-              className="relative group p-10 rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden text-center flex flex-col items-center"
+              transition={{ delay: i * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="group bg-white/40 backdrop-blur-md border border-white/60 p-10 rounded-[40px] hover:bg-white/80 transition-all duration-500 hover:shadow-2xl hover:shadow-[#1B4D4A]/5"
             >
-              <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-[#f4d092] mb-10 group-hover:scale-110 transition-transform mx-auto">
-                  {metric.icon && <metric.icon size={28} />}
+              <div className="flex justify-between items-start mb-12">
+                <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  {stat.icon}
                 </div>
-                <div className="text-5xl font-extrabold text-white tracking-tighter mb-4">
-                  {metric.number}
+                <div className="flex items-center gap-1.5 px-4 py-1.5 bg-[#1B4D4A]/5 rounded-full">
+                  <TrendingUp size={12} className="text-[#1B4D4A]/40" />
+                  <span className="text-[9px] font-black text-[#1B4D4A]/60 uppercase tracking-widest">{stat.trend}</span>
                 </div>
-                <h4 className="text-xs font-bold text-[#f4d092] uppercase tracking-[0.2em] mb-4">
-                  {metric.title}
-                </h4>
-                <p className="text-white/40 text-xs leading-relaxed max-w-[200px] mx-auto">
-                  {metric.body}
-                </p>
               </div>
-              <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-[#145e69] opacity-20 rounded-full blur-[60px]"></div>
+
+              <div className="space-y-8">
+                <div>
+                  <h5 className="text-[10px] font-black text-[#1B4D4A]/40 uppercase tracking-[0.3em] mb-3">{stat.label}</h5>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-5xl font-black text-[#1B4D4A] tracking-tighter">
+                      {stat.unit === "M" ? '$' : ''}
+                      <Counter value={stat.current} />
+                      {stat.unit === "M" ? stat.unit : ''}
+                    </span>
+                    <span className="text-xl font-bold text-[#1B4D4A]/10">
+                      / {stat.unit === "M" ? `$${stat.target}${stat.unit}` : stat.target.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex justify-between items-end">
+                    <div className="w-full bg-[#1B4D4A]/5 h-4 rounded-full overflow-hidden relative">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${stat.percent}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2, ease: "circOut", delay: 0.5 }}
+                        className="h-full bg-gradient-to-r from-[#1B4D4A] to-[#D4A843] relative"
+                      >
+                         <motion.div 
+                           animate={{ x: ["-100%", "100%"] }}
+                           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-1/2"
+                         />
+                      </motion.div>
+                    </div>
+                    <span className="text-2xl font-black text-[#D4A843] ml-8 leading-none">{stat.percent}%</span>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom CTA with Interactive Elements */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-24 flex flex-col md:flex-row items-center justify-between gap-8 p-12 bg-[#1B4D4A] rounded-[50px] text-white overflow-hidden relative group"
+        >
+          <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.05, 0.1, 0.05]
+            }}
+            transition={{ duration: 5, repeat: Infinity }}
+            className="absolute -right-20 -top-20 w-80 h-80 bg-white rounded-full blur-3xl"
+          />
+          
+          <div className="relative z-10 flex items-center gap-8">
+             <div className="relative">
+                <div className="w-4 h-4 rounded-full bg-red-500 animate-ping absolute inset-0"></div>
+                <div className="w-4 h-4 rounded-full bg-red-500 relative"></div>
+             </div>
+             <div className="space-y-1">
+                <p className="text-[10px] font-black text-[#D4A843] uppercase tracking-[0.3em]">Status: Live</p>
+                <p className="text-lg font-bold tracking-tight">New screening site active in McDowell County, NC</p>
+             </div>
+          </div>
+          
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative z-10 px-10 py-5 bg-[#D4A843] text-[#1B4D4A] rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white transition-all shadow-2xl shadow-[#D4A843]/20"
+          >
+            View Live Dashboard
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   )
