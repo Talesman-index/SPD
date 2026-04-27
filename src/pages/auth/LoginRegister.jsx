@@ -20,10 +20,10 @@ const LoginRegister = () => {
   };
 
   return (
-    <div className="min-h-screen lg:h-screen bg-[#F5F0E8] flex overflow-hidden font-manrope">
+    <div className="min-h-screen lg:h-screen bg-bg-primary flex overflow-hidden font-manrope">
       
       {/* LEFT SIDE: BRAND & MISSION */}
-      <div className="hidden lg:flex lg:w-1/2 bg-[#1B4D4A] flex-col justify-between p-12 xl:p-20 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-indigo-900 flex-col justify-between p-12 xl:p-20 relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -31,7 +31,7 @@ const LoginRegister = () => {
             alt="Healthcare Context" 
             className="w-full h-full object-cover opacity-40 mix-blend-overlay"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1B4D4A]/60 via-[#1B4D4A]/80 to-[#1B4D4A]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/60 via-indigo-900/80 to-indigo-900" />
           <div className="absolute inset-0 bg-noise opacity-[0.03]"></div>
         </div>
 
@@ -41,16 +41,16 @@ const LoginRegister = () => {
             <div className="w-[400px] h-[400px] rounded-full border border-white/20" />
             <div className="absolute w-[280px] h-[280px] rounded-full border border-white/20" />
             <div className="absolute w-[160px] h-[160px] rounded-full border border-white/20" />
-            <div className="absolute w-2.5 h-2.5 rounded-full bg-[#D4A843]" />
+            <div className="absolute w-2.5 h-2.5 rounded-full bg-petri-400" />
           </div>
         </div>
 
         {/* Logo */}
         <div className="relative z-10 flex items-center gap-3">
           <div className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center">
-            <div className="w-2 h-2 rounded-full bg-[#D4A843]" />
+            <div className="w-2 h-2 rounded-full bg-petri-400" />
           </div>
-          <span className="text-2xl font-black text-white tracking-tighter">SPD<span className="text-[#D4A843]">.</span></span>
+          <span className="text-2xl font-black text-white tracking-tighter">SPD<span className="text-petri-500">.</span></span>
         </div>
 
         {/* Footer Text */}
@@ -69,7 +69,7 @@ const LoginRegister = () => {
         
         {/* Menu Dots Button */}
         <div className="absolute top-6 right-6 z-20">
-           <button className="p-2 rounded-lg bg-white border border-[#1B4D4A]/10 text-[#1B4D4A] hover:bg-[#1B4D4A] hover:text-white transition-colors shadow-sm">
+           <button className="p-2 rounded-lg bg-white border border-indigo-100 text-indigo-950 hover:bg-indigo-900 hover:text-white transition-colors shadow-sm">
              <div className="flex gap-1">
                 <div className="w-1 h-1 rounded-full bg-current opacity-40" />
                 <div className="w-1 h-1 rounded-full bg-current opacity-40" />
@@ -81,12 +81,12 @@ const LoginRegister = () => {
         <div className="w-full max-w-[400px] flex flex-col items-center">
           
           {/* Role Switcher */}
-          <div className="bg-[#EBE5DA] p-1.5 rounded-3xl flex w-full mb-8 shadow-inner">
+          <div className="bg-indigo-50 p-1.5 rounded-3xl flex w-full mb-8 shadow-inner">
             <button 
               onClick={() => setRole('patient')}
               className={cn(
                 "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-black text-[10px] uppercase tracking-[0.2em]",
-                role === 'patient' ? "bg-[#1B4D4A] text-white shadow-xl" : "text-[#1B4D4A]/40 hover:text-[#1B4D4A]"
+                role === 'patient' ? "bg-indigo-900 text-white shadow-xl" : "text-indigo-900/40 hover:text-indigo-900"
               )}
             >
               <User size={14} /> Patient
@@ -95,7 +95,7 @@ const LoginRegister = () => {
               onClick={() => setRole('doctor')}
               className={cn(
                 "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-black text-[10px] uppercase tracking-[0.2em]",
-                role === 'doctor' ? "bg-[#1B4D4A] text-white shadow-xl" : "text-[#1B4D4A]/40 hover:text-[#1B4D4A]"
+                role === 'doctor' ? "bg-indigo-900 text-white shadow-xl" : "text-indigo-900/40 hover:text-indigo-900"
               )}
             >
               <Activity size={14} /> Doctor
@@ -103,12 +103,12 @@ const LoginRegister = () => {
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex w-full border-b border-[#1B4D4A]/10 mb-8">
+          <div className="flex w-full border-b border-indigo-100 mb-8">
             <button 
               onClick={() => setActiveTab('signup')}
               className={cn(
                 "flex-1 pb-3 text-[12px] font-black transition-all border-b-2",
-                activeTab === 'signup' ? "border-[#1B4D4A] text-[#1B4D4A]" : "border-transparent text-[#1B4D4A]/30 hover:text-[#1B4D4A]"
+                activeTab === 'signup' ? "border-indigo-900 text-indigo-950" : "border-transparent text-indigo-900/30 hover:text-indigo-900"
               )}
             >
               Create account
@@ -117,7 +117,7 @@ const LoginRegister = () => {
               onClick={() => setActiveTab('signin')}
               className={cn(
                 "flex-1 pb-3 text-[12px] font-black transition-all border-b-2",
-                activeTab === 'signin' ? "border-[#1B4D4A] text-[#1B4D4A]" : "border-transparent text-[#1B4D4A]/30 hover:text-[#1B4D4A]"
+                activeTab === 'signin' ? "border-indigo-900 text-indigo-950" : "border-transparent text-indigo-900/30 hover:text-indigo-900"
               )}
             >
               Sign in
@@ -135,38 +135,38 @@ const LoginRegister = () => {
                   className="space-y-4"
                 >
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Full Name</label>
+                    <label className="text-[9px] font-bold text-indigo-900/40 uppercase tracking-[0.2em] pl-1">Full Name</label>
                     <input 
                       type="text" 
                       placeholder="John Doe"
-                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-indigo-900/20 text-sm text-indigo-950 font-medium shadow-sm"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Email Address</label>
+                    <label className="text-[9px] font-bold text-indigo-900/40 uppercase tracking-[0.2em] pl-1">Email Address</label>
                     <input 
                       type="email" 
                       placeholder="john@example.com"
-                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-indigo-900/20 text-sm text-indigo-950 font-medium shadow-sm"
                     />
                   </div>
                   <div className="space-y-1.5 relative">
-                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Password</label>
+                    <label className="text-[9px] font-bold text-indigo-900/40 uppercase tracking-[0.2em] pl-1">Password</label>
                     <input 
                       type={showPassword ? "text" : "password"} 
                       placeholder="••••••••"
-                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-indigo-900/20 text-sm text-indigo-950 font-medium shadow-sm"
                     />
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-[#1B4D4A]/20 hover:text-[#1B4D4A]">
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-indigo-900/20 hover:text-indigo-950">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Confirm Password</label>
+                    <label className="text-[9px] font-bold text-indigo-900/40 uppercase tracking-[0.2em] pl-1">Confirm Password</label>
                     <input 
                       type="password" 
                       placeholder="••••••••"
-                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-indigo-900/20 text-sm text-indigo-950 font-medium shadow-sm"
                     />
                   </div>
                 </motion.div>
@@ -179,21 +179,21 @@ const LoginRegister = () => {
                   className="space-y-4"
                 >
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Email Address</label>
+                    <label className="text-[9px] font-bold text-indigo-900/40 uppercase tracking-[0.2em] pl-1">Email Address</label>
                     <input 
                       type="email" 
                       placeholder="john@example.com"
-                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-indigo-900/20 text-sm text-indigo-950 font-medium shadow-sm"
                     />
                   </div>
                   <div className="space-y-1.5 relative">
-                    <label className="text-[9px] font-bold text-[#1B4D4A]/40 uppercase tracking-[0.2em] pl-1">Password</label>
+                    <label className="text-[9px] font-bold text-indigo-900/40 uppercase tracking-[0.2em] pl-1">Password</label>
                     <input 
                       type={showPassword ? "text" : "password"} 
                       placeholder="••••••••"
-                      className="w-full h-14 px-5 bg-white border border-[#1B4D4A]/5 rounded-xl focus:ring-2 focus:ring-[#D4A843] focus:border-transparent outline-none transition-all placeholder:text-[#1B4D4A]/20 text-sm text-[#1B4D4A] font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-indigo-900/20 text-sm text-indigo-950 font-medium shadow-sm"
                     />
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-[#1B4D4A]/20 hover:text-[#1B4D4A]">
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-indigo-900/20 hover:text-indigo-950">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
@@ -202,18 +202,18 @@ const LoginRegister = () => {
             </AnimatePresence>
 
             {/* Submit Button */}
-            <button type="submit" className="w-full h-14 rounded-xl bg-[#1B4D4A] text-white font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#D4A843] transition-all shadow-xl mt-2 group text-xs">
+            <button type="submit" className="w-full h-14 rounded-xl bg-indigo-900 text-white font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-petri-500 transition-all shadow-xl mt-2 group text-xs">
               {activeTab === 'signup' ? 'Create account' : 'Sign in'} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
             {/* Social Auth */}
             <div className="flex items-center gap-3 py-1">
-              <div className="h-px bg-[#1B4D4A]/10 flex-1" />
-              <span className="text-[9px] font-black text-[#1B4D4A]/30 uppercase tracking-widest">or</span>
-              <div className="h-px bg-[#1B4D4A]/10 flex-1" />
+              <div className="h-px bg-indigo-900/10 flex-1" />
+              <span className="text-[9px] font-black text-indigo-900/30 uppercase tracking-widest">or</span>
+              <div className="h-px bg-indigo-900/10 flex-1" />
             </div>
 
-            <button type="button" className="w-full h-14 rounded-xl bg-white border border-[#1B4D4A]/5 text-[#1B4D4A] font-black flex items-center justify-center gap-3 hover:bg-gray-50 transition-all shadow-sm text-xs">
+            <button type="button" className="w-full h-14 rounded-xl bg-white border border-indigo-100 text-indigo-950 font-black flex items-center justify-center gap-3 hover:bg-indigo-50 transition-all shadow-sm text-xs">
               <svg width="16" height="16" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -223,8 +223,8 @@ const LoginRegister = () => {
               <span>Continue with Google</span>
             </button>
 
-            <p className="text-[9px] text-[#1B4D4A]/40 text-center leading-relaxed mt-4">
-              By continuing you agree to our <a href="#" className="text-[#1B4D4A] font-black underline">Terms</a> and <a href="#" className="text-[#1B4D4A] font-black underline">Privacy Policy</a>
+            <p className="text-[9px] text-indigo-900/40 text-center leading-relaxed mt-4">
+              By continuing you agree to our <a href="#" className="text-indigo-950 font-black underline">Terms</a> and <a href="#" className="text-indigo-950 font-black underline">Privacy Policy</a>
             </p>
           </form>
         </div>

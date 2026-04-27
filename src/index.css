@@ -1,6 +1,6 @@
 /* ============================================
    SMART PETRI DISH — GLOBAL STYLES
-   Design System: Envoll
+   Design System: Indigo & Petri
    Font: Manrope (Option B Scale)
    ============================================ */
 
@@ -10,20 +10,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── CSS Variables (SPD v2.0 Tokens) ── */
+/* ── CSS Variables (Indigo & Petri Tokens) ── */
 @layer base {
   :root {
-    --teal:        #1B4D4A;
-    --teal-dark:   #153b39;
-    --teal-light:  #3a7a76;
-    --teal-xlight: #f0f7f6;
-    --gold:        #D4A843;
-    --black:       #1A1A1A;
-    --cream:       #F5F0E8;
-    --text-primary:   #1A1A1A;
-    --text-secondary: #4a4a4a;
-    --text-muted:     #8a8a8a;
-    --border:      #e2e8f0;
+    --indigo-950:  #10102e;
+    --indigo-900:  #1e1a4a;
+    --indigo-800:  #2d2872;
+    --petri-500:   #00b8b0;
+    --petri-400:   #40d0c8;
+    --petri-100:   #e0f8f6;
+    --amber:       #e8a020;
+    --bg-primary:  #f8f8fc;
+    --bg-secondary:#eeedf9;
+    --text-primary:   #10102e;
+    --text-secondary: #5a5a8a;
+    --text-muted:     #9898b8;
+    --border:      #d8d6f5;
     --white:       #FFFFFF;
 
     /* Typographic Scale */
@@ -66,7 +68,7 @@
     font-weight: 400;
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: var(--white);
+    background-color: var(--bg-primary);
     letter-spacing: -0.01em;
   }
 
@@ -118,10 +120,10 @@
     font-weight: 400;
   }
 
-  /* Gold Accent Rule */
+  /* Petri Cyan Accent Rule */
   em, i {
     font-style: italic;
-    color: var(--gold);
+    color: var(--petri-500);
     font-weight: inherit;
   }
 
@@ -129,8 +131,8 @@
   img { display: block; max-width: 100%; }
 
   ::selection {
-    background: var(--gold);
-    color: var(--teal-dark);
+    background: var(--petri-500);
+    color: var(--white);
   }
 }
 
@@ -153,35 +155,34 @@
   /* ── BUTTONS ── */
   .btn-primary {
     @apply inline-flex items-center gap-3 px-7 py-3.5 
-           bg-teal text-white font-semibold text-[16px]
+           bg-indigo-900 text-white font-semibold text-[16px]
            rounded-pill transition-all duration-300 ease-envoll
            whitespace-nowrap;
     letter-spacing: 0.015em;
     line-height: 1;
   }
   .btn-primary:hover {
-    @apply bg-[#0f4a54] shadow-card-hover translate-x-[2px];
+    @apply bg-indigo-800 shadow-card-hover translate-x-[2px];
   }
 
   .btn-secondary {
     @apply inline-flex items-center gap-3 px-7 py-3.5
-           bg-transparent text-teal font-semibold text-[16px]
-           border border-teal rounded-pill transition-all duration-300
-           hover:bg-teal-xlight whitespace-nowrap;
+           bg-transparent text-indigo-900 font-semibold text-[16px]
+           border border-indigo-900 rounded-pill transition-all duration-300
+           hover:bg-indigo-100 whitespace-nowrap;
     letter-spacing: 0.015em;
     line-height: 1;
   }
 
   .btn-premium {
     @apply inline-flex items-center gap-3 px-8 py-4
-           bg-gold text-black font-semibold text-[16px]
+           bg-amber-600 text-white font-semibold text-[16px]
            rounded-pill transition-all duration-300;
     letter-spacing: 0.015em;
     line-height: 1;
   }
   .btn-premium:hover {
-    background-color: #e6c28d;
-    box-shadow: 0 8px 32px rgba(20,94,105,0.15);
+    @apply bg-amber-400 shadow-brand;
   }
 
   .btn-circle-icon {
@@ -193,7 +194,7 @@
   .eyebrow {
     @apply inline-flex items-center gap-[10px] mb-4
            text-[12px] font-bold uppercase tracking-[0.12em]
-           text-teal;
+           text-indigo-900;
     line-height: 1;
     font-family: 'Manrope', sans-serif;
   }
@@ -202,7 +203,7 @@
     display: inline-block;
     width: 20px;
     height: 1.5px;
-    background: #145e69;
+    background: #1e1a4a;
     flex-shrink: 0;
   }
 
@@ -222,7 +223,7 @@
 
   /* ── CARDS ── */
   .card-premium {
-    @apply bg-white rounded-3xl border border-[#dbdbdb]
+    @apply bg-white rounded-3xl border border-indigo-200
            shadow-card transition-all duration-500
            hover:shadow-brand-lg hover:-translate-y-2;
   }
@@ -235,13 +236,13 @@
   }
 
   .tech-grid {
-    background-image: radial-gradient(rgba(20, 94, 105, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(30, 26, 74, 0.12) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
   /* ── SHADOWS ── */
-  .shadow-premium    { box-shadow: 0 10px 40px -10px rgba(20, 94, 105, 0.08); }
-  .shadow-premium-lg { box-shadow: 0 20px 80px -15px rgba(20, 94, 105, 0.12); }
+  .shadow-premium    { box-shadow: 0 10px 40px -10px rgba(30, 26, 74, 0.08); }
+  .shadow-premium-lg { box-shadow: 0 20px 80px -15px rgba(30, 26, 74, 0.12); }
 }
 
 /* ── Animations ── */

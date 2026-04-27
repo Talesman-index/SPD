@@ -4,19 +4,19 @@ import { cn } from '../../lib/utils'
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1B4D4A] text-white pt-32 pb-16 relative overflow-hidden">
+    <footer className="bg-indigo-950 text-white pt-32 pb-16 relative overflow-hidden">
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-noise" />
       
       {/* Background Decorative Circle */}
-      <div className="absolute -bottom-64 -right-64 w-[600px] h-[600px] bg-[#D4A843]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-64 -right-64 w-[600px] h-[600px] bg-petri-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container-custom relative z-10">
         
         {/* Top: Massive Logo & Socials */}
         <div className="flex flex-col lg:flex-row justify-between items-end mb-24 border-b border-white/5 pb-20">
           <div>
-            <h2 className="text-[100px] md:text-[180px] lg:text-[240px] text-[#D4A843] leading-[0.7] tracking-tighter font-black italic">
+            <h2 className="text-[100px] md:text-[180px] lg:text-[240px] text-indigo-900 leading-[0.7] tracking-tighter font-black italic">
               SPD.
             </h2>
             <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mt-8 pl-2">
@@ -39,7 +39,7 @@ const Footer = () => {
                 <a 
                   key={i} 
                   href={social.href} 
-                  className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#D4A843] hover:text-[#1B4D4A] hover:border-[#D4A843] transition-all duration-500 shadow-xl group"
+                  className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-petri-500 hover:text-white hover:border-petri-500 transition-all duration-500 shadow-xl group"
                 >
                   <social.icon size={20} className="group-hover:scale-110 transition-transform" />
                 </a>
@@ -56,15 +56,15 @@ const Footer = () => {
             <h3 className="text-4xl md:text-5xl text-white mb-12 leading-[1.1] font-black tracking-tighter">
               The technology is <br />
               the tool. <br />
-              <span className="text-[#D4A843] italic">Health equity is the mission.</span>
+              <span className="text-petri-400 italic font-medium">Health equity is the mission.</span>
             </h3>
             <div className="space-y-6">
-              <div className="flex items-center gap-4 text-sm text-white/60 font-black uppercase tracking-widest hover:text-[#D4A843] transition-colors cursor-default">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-[#D4A843]"><Globe size={14} /></div>
+              <div className="flex items-center gap-4 text-sm text-white/60 font-black uppercase tracking-widest hover:text-petri-400 transition-colors cursor-default">
+                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-petri-400"><Globe size={14} /></div>
                 Robeson County, North Carolina
               </div>
-              <div className="flex items-center gap-4 text-sm text-white/60 font-black uppercase tracking-widest hover:text-[#D4A843] transition-colors cursor-pointer">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-[#D4A843]"><Mail size={14} /></div>
+              <div className="flex items-center gap-4 text-sm text-white/60 font-black uppercase tracking-widest hover:text-petri-400 transition-colors cursor-pointer">
+                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-petri-400"><Mail size={14} /></div>
                 hello@spd.health
               </div>
             </div>
@@ -73,7 +73,7 @@ const Footer = () => {
           {/* Links (Middle) */}
           <div className="lg:col-span-4 grid grid-cols-2 gap-12">
             <div>
-              <h4 className="text-[10px] text-[#D4A843] font-black uppercase tracking-[0.2em] mb-10">Directory</h4>
+              <h4 className="text-[10px] text-petri-500 font-black uppercase tracking-[0.2em] mb-10">Directory</h4>
               <ul className="space-y-4 text-[13px] font-black text-white/40 uppercase tracking-tight">
                 <li><a href="#mission" className="hover:text-white transition-colors flex items-center gap-2 group">Mission <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all" /></a></li>
                 <li><a href="#how-it-works" className="hover:text-white transition-colors flex items-center gap-2 group">Process <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all" /></a></li>
@@ -84,7 +84,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] text-[#D4A843] font-black uppercase tracking-[0.2em] mb-10">Legal</h4>
+              <h4 className="text-[10px] text-petri-500 font-black uppercase tracking-[0.2em] mb-10">Legal</h4>
               <ul className="space-y-4 text-[13px] font-black text-white/40 uppercase tracking-tight">
                 <li><a href="#" className="hover:text-white transition-colors">HIPAA Privacy</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
@@ -105,9 +105,9 @@ const Footer = () => {
                 <input 
                   type="email" 
                   placeholder="Your email" 
-                  className="w-full h-14 bg-white/10 rounded-2xl px-5 text-white placeholder:text-white/20 outline-none border border-transparent focus:border-[#D4A843] transition-all"
+                  className="w-full h-14 bg-white/10 rounded-2xl px-5 text-white placeholder:text-white/20 outline-none border border-transparent focus:border-petri-500 transition-all font-medium"
                 />
-                <button className="absolute right-2 top-2 w-10 h-10 bg-[#D4A843] text-white rounded-xl flex items-center justify-center hover:bg-white hover:text-[#1B4D4A] transition-all shadow-lg">
+                <button className="absolute right-2 top-2 w-10 h-10 bg-petri-500 text-white rounded-xl flex items-center justify-center hover:bg-white hover:text-indigo-950 transition-all shadow-lg">
                   <ArrowUpRight size={20} />
                 </button>
               </div>
@@ -124,8 +124,8 @@ const Footer = () => {
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
               {[1, 2, 3].map(i => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-[#1B4D4A] bg-[#3a7a76] flex items-center justify-center text-[10px] font-bold">
-                  {i}
+                <div key={i} className="w-8 h-8 rounded-full border-2 border-indigo-950 bg-indigo-900 flex items-center justify-center text-[10px] font-bold">
+                  {/* Avatar Placeholder */}
                 </div>
               ))}
             </div>

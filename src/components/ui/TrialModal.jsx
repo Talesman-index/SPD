@@ -14,7 +14,7 @@ const TrialModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-[#0f2f35]/90 backdrop-blur-xl"
+            className="absolute inset-0 bg-indigo-950/90 backdrop-blur-xl"
           />
 
           {/* Close Button */}

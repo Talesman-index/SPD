@@ -17,7 +17,7 @@ const CartDrawer = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-[#0f2f35]/60 backdrop-blur-sm z-[300]"
+            className="fixed inset-0 bg-indigo-950/60 backdrop-blur-sm z-[300]"
             onClick={() => setIsOpen(false)}
           />
         )}
@@ -35,16 +35,16 @@ const CartDrawer = () => {
             className="fixed top-0 right-0 h-full w-full max-w-[480px] bg-white z-[400] flex flex-col shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-8 border-b border-gray-100">
+            <div className="flex items-center justify-between p-8 border-b border-indigo-50">
               <div>
-                <h2 className="text-2xl  text-[#1a5259] uppercase italic tracking-tighter">Your Cart</h2>
-                <p className="text-[11px]  text-[#1a5259]/30 uppercase tracking-[0.2em] mt-1">
+                <h2 className="text-2xl font-black text-indigo-950 uppercase italic tracking-tighter">Your Cart</h2>
+                <p className="text-[11px] font-black text-indigo-950/30 uppercase tracking-[0.2em] mt-1">
                   {items.length === 0 ? 'No items' : `${items.reduce((s, i) => s + i.qty, 0)} item${items.reduce((s, i) => s + i.qty, 0) > 1 ? 's' : ''}`}
                 </p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-12 h-12 rounded-full bg-[#f7f7f7] flex items-center justify-center text-[#1a5259] hover:bg-[#1a5259] hover:text-white transition-all duration-300"
+                className="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-950 hover:bg-indigo-900 hover:text-white transition-all duration-300"
               >
                 <X size={22} />
               </button>
@@ -59,12 +59,12 @@ const CartDrawer = () => {
                     animate={{ opacity: 1 }}
                     className="flex flex-col items-center justify-center h-64 gap-6"
                   >
-                    <div className="w-20 h-20 rounded-full bg-[#f7f7f7] flex items-center justify-center text-[#1a5259]/20">
+                    <div className="w-20 h-20 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-950/20">
                       <ShoppingCart size={36} />
                     </div>
                     <div className="text-center">
-                      <p className="text-lg  text-[#1a5259] mb-2">No items found.</p>
-                      <p className="text-sm text-[#1a5259]/40 ">Continue Shopping</p>
+                      <p className="text-lg font-black text-indigo-950 mb-2">No items found.</p>
+                      <p className="text-[10px] font-black text-indigo-950/40 uppercase tracking-widest">Continue Shopping</p>
                     </div>
                   </motion.div>
                 ) : (
@@ -76,10 +76,10 @@ const CartDrawer = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, x: 40 }}
                       transition={{ duration: 0.3 }}
-                      className="flex gap-6 p-6 bg-[#f7f7f7] rounded-[28px] group"
+                      className="flex gap-6 p-6 bg-indigo-50/50 rounded-[28px] group border border-indigo-100/50"
                     >
                       {/* Product image */}
-                      <div className="w-20 h-20 rounded-[20px] bg-[#1a5259] flex-shrink-0 overflow-hidden flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-[20px] bg-indigo-900 flex-shrink-0 overflow-hidden flex items-center justify-center">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -89,27 +89,27 @@ const CartDrawer = () => {
 
                       {/* Details */}
                       <div className="flex-grow min-w-0">
-                        <p className="text-sm  text-[#1a5259] leading-snug mb-1">{item.name}</p>
-                        <p className="text-[11px]  text-[#1a5259]/40 uppercase tracking-wide mb-4">{item.subtitle}</p>
+                        <p className="text-sm font-black text-indigo-950 leading-snug mb-1">{item.name}</p>
+                        <p className="text-[11px] font-black text-indigo-950/40 uppercase tracking-wide mb-4">{item.subtitle}</p>
                         <div className="flex items-center justify-between">
                           {/* Qty */}
                           <div className="flex items-center gap-3 bg-white rounded-full px-2 py-1 shadow-sm">
                             <button
                               onClick={() => updateQty(item.id, item.qty - 1)}
-                              className="w-7 h-7 rounded-full flex items-center justify-center text-[#1a5259] hover:bg-[#1a5259]/10 transition-colors"
+                              className="w-7 h-7 rounded-full flex items-center justify-center text-indigo-950 hover:bg-indigo-900/10 transition-colors"
                             >
                               <Minus size={14} />
                             </button>
-                            <span className="text-sm  text-[#1a5259] w-4 text-center">{item.qty}</span>
+                            <span className="text-sm font-black text-indigo-950 w-4 text-center">{item.qty}</span>
                             <button
                               onClick={() => updateQty(item.id, item.qty + 1)}
-                              className="w-7 h-7 rounded-full flex items-center justify-center text-[#1a5259] hover:bg-[#1a5259]/10 transition-colors"
+                              className="w-7 h-7 rounded-full flex items-center justify-center text-indigo-950 hover:bg-indigo-900/10 transition-colors"
                             >
                               <Plus size={14} />
                             </button>
                           </div>
                           {/* Price */}
-                          <span className="text-base  text-[#1a5259]">
+                          <span className="text-base font-black text-indigo-950">
                             ${(item.price * item.qty).toFixed(2)}
                           </span>
                         </div>
@@ -118,7 +118,7 @@ const CartDrawer = () => {
                       {/* Remove */}
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity text-[#1a5259]/30 hover:text-red-400 flex-shrink-0 self-start mt-1"
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-indigo-950/30 hover:text-red-500 flex-shrink-0 self-start mt-1"
                       >
                         <Trash2 size={16} />
                       </button>
@@ -130,22 +130,20 @@ const CartDrawer = () => {
 
             {/* Footer */}
             {items.length > 0 && (
-              <div className="p-8 border-t border-gray-100 space-y-4">
+              <div className="p-8 border-t border-indigo-50 space-y-4">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm  text-[#1a5259]/40 uppercase tracking-widest">Subtotal</span>
-                  <span className="text-2xl  text-[#1a5259] tracking-tighter">${cartTotal.toFixed(2)} USD</span>
+                  <span className="text-[10px] font-black text-indigo-950/40 uppercase tracking-widest">Subtotal</span>
+                  <span className="text-2xl font-black text-indigo-950 tracking-tighter">${cartTotal.toFixed(2)} USD</span>
                 </div>
 
-                <button className="btn-premium w-full justify-center py-5 shadow-premium-lg">
+                <button className="w-full h-16 rounded-2xl bg-indigo-900 text-white font-black uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-petri-500 transition-all shadow-xl shadow-indigo-900/10 group text-xs">
                   Continue to Checkout
-                  <div className="btn-circle-icon">
-                    <ArrowUpRight size={20} />
-                  </div>
+                  <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>
 
                 <button
                   onClick={clearCart}
-                  className="w-full text-center text-[11px]  text-[#1a5259]/20 uppercase tracking-[0.2em] hover:text-red-400 transition-colors py-2"
+                  className="w-full text-center text-[10px] font-black text-indigo-950/20 uppercase tracking-[0.2em] hover:text-red-500 transition-colors py-2"
                 >
                   Clear Cart
                 </button>

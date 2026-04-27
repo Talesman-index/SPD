@@ -8,14 +8,14 @@ const slides = [
   {
     id: 1,
     tag: "Guided Health Screening · Doctor-Validated",
-    title: <>Your Health. Your Terms.<br />Your Device.</>,
+    title: <>Your Health.<br />Your Terms.<br />Your Device.</>,
     description: "Affordable at-home screening kits for communities that need them most. Clinical-grade diagnostics delivered directly to your doorstep.",
     image: "/images_projects/your-health-is-a-serious-subject-around-here-2026-03-25-07-25-20-utc.jpg",
   },
   {
     id: 2,
     tag: "3-in-1 Bio-Sensor Platform",
-    title: <>Healthcare Shouldn't Be<br />a Privilege.</>,
+    title: <>Healthcare<br />Shouldn't Be<br /><span className="italic text-petri-500 font-medium">a Privilege.</span></>,
     description: "In communities where the nearest lab is hours away, we bridge the gap. Smart Petri Dish ensures that life-saving diagnostics reach those who need them most.",
     image: "/mission-human.png",
   }
@@ -88,7 +88,7 @@ const Hero = ({ onOpenTrial }) => {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen min-h-[750px] overflow-hidden flex items-center bg-[#1B4D4A]"
+      className="relative h-screen min-h-[750px] overflow-hidden flex items-center bg-indigo-900"
     >
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -110,7 +110,7 @@ const Hero = ({ onOpenTrial }) => {
             <div 
               className="absolute inset-0 z-[1]"
               style={{
-                background: 'radial-gradient(circle at 30% 50%, rgba(27, 77, 74, 0.9) 0%, rgba(27, 77, 74, 0.7) 40%, rgba(27, 77, 74, 0.3) 100%)'
+                background: 'radial-gradient(circle at 30% 50%, rgba(16, 16, 46, 0.9) 0%, rgba(16, 16, 46, 0.7) 40%, rgba(16, 16, 46, 0.3) 100%)'
               }}
             ></div>
           </motion.div>
@@ -154,8 +154,8 @@ const Hero = ({ onOpenTrial }) => {
               animate="visible"
               exit="hidden"
             >
-              <motion.div custom={0} variants={textRevealVariants} className="eyebrow mb-8 !text-[#D4A843] uppercase tracking-[0.4em] text-[12px] font-black flex items-center gap-4">
-                <span className="w-10 h-[1px] bg-[#D4A843]"></span>
+              <motion.div custom={0} variants={textRevealVariants} className="eyebrow mb-8 !text-petri-400 uppercase tracking-[0.4em] text-[12px] font-black flex items-center gap-4">
+                <span className="w-10 h-[1px] bg-petri-400"></span>
                 {slides[currentSlide].tag}
               </motion.div>
 
@@ -170,11 +170,11 @@ const Hero = ({ onOpenTrial }) => {
               <motion.div custom={3} variants={textRevealVariants} className="flex flex-wrap items-center gap-6">
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button 
-                    className="bg-[#D4A843] text-[#1B4D4A] hover:bg-white hover:text-[#1B4D4A] transition-all duration-500 shadow-2xl shadow-[#D4A843]/20 group border-none px-10 h-16 rounded-2xl" 
+                    className="bg-petri-500 text-white hover:bg-white hover:text-indigo-900 transition-all duration-500 shadow-2xl shadow-petri-500/20 group border-none px-10 h-16 rounded-2xl" 
                     onClick={onOpenTrial}
                   >
                     <span className="font-black uppercase tracking-widest text-xs">Order Now — $149</span>
-                    <div className="w-8 h-8 rounded-xl bg-[#1B4D4A] flex items-center justify-center ml-4 group-hover:rotate-45 transition-transform duration-500">
+                    <div className="w-8 h-8 rounded-xl bg-indigo-900 flex items-center justify-center ml-4 group-hover:rotate-45 transition-transform duration-500">
                       <ArrowUpRight size={16} className="text-white" />
                     </div>
                   </Button>
@@ -185,7 +185,7 @@ const Hero = ({ onOpenTrial }) => {
                   className="flex items-center gap-4 text-white group"
                   onClick={() => document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' })}
                 >
-                  <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-[#1B4D4A] transition-all duration-500">
+                  <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-indigo-950 transition-all duration-500">
                     <ArrowRight size={20} />
                   </div>
                   <span className="text-[11px] font-black uppercase tracking-[0.2em] border-b border-white/20 pb-1">Discover Technology</span>
@@ -210,17 +210,17 @@ const Hero = ({ onOpenTrial }) => {
               >
                 <div className={cn(
                   "h-[2px] transition-all duration-700 rounded-full",
-                  currentSlide === i ? "w-16 bg-[#D4A843]" : "w-8 bg-white/20 group-hover:bg-white/50"
+                  currentSlide === i ? "w-16 bg-petri-400" : "w-8 bg-white/20 group-hover:bg-white/50"
                 )} />
               </button>
             ))}
           </div>
 
           <div className="flex gap-3">
-            <button onClick={prevSlide} className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-[#1B4D4A] transition-all duration-500">
+            <button onClick={prevSlide} className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-indigo-950 transition-all duration-500">
               <ArrowLeft size={20} />
             </button>
-            <button onClick={nextSlide} className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-[#1B4D4A] transition-all duration-500">
+            <button onClick={nextSlide} className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-indigo-950 transition-all duration-500">
               <ArrowRight size={20} />
             </button>
           </div>

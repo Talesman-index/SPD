@@ -7,31 +7,56 @@ export default {
   theme: {
     extend: {
       colors: {
-        // === Envoll Primary Palette ===
-        teal: {
-          DEFAULT: '#145e69',
-          dark:    '#0f2f35',
-          light:   '#9ed8db',
-          xlight:  '#e8f6f7',
+        indigo: {
+          950: '#10102e',
+          900: '#1e1a4a',
+          800: '#2d2872',
+          700: '#3d37a0',
+          600: '#4a44c0',
+          400: '#7b77d8',
+          300: '#b0ace8',
+          200: '#d8d6f5',
+          100: '#eeedf9',
         },
-        gold:    '#f4d092',
-        black:   '#000000',
-        'black-olive': '#2c2500',
-
-        // === Text ===
-        'text-primary':   '#000000',
-        'text-secondary': '#565656',
-        'text-muted':     '#afafaf',
-
-        // === Borders & Backgrounds ===
-        border:   '#dbdbdb',
-        'gray-soft': '#ebebeb',
-        'gray-bg':   '#f5f5f5',
-
-        // === Semantic ===
-        safe:     '#2a9d5c',
-        positive: '#e05a2b',
-        warning:  '#f59e0b',
+        petri: {
+          900: '#003838',
+          800: '#005858',
+          700: '#007878',
+          600: '#009898',
+          500: '#00b8b0',
+          400: '#40d0c8',
+          300: '#80e0d8',
+          200: '#b8f0ec',
+          100: '#e0f8f6',
+        },
+        amber: {
+          600: '#e8a020',
+          400: '#f0be60',
+          100: '#fef4e0',
+        },
+        bg: {
+          primary:      '#f8f8fc',
+          secondary:    '#eeedf9',
+          cyan:         '#e0f8f6',
+          dark:         '#1e1a4a',
+          darkest:      '#10102e',
+        },
+        text: {
+          primary:   '#10102e',
+          secondary: '#5a5a8a',
+          muted:     '#9898b8',
+        },
+        // Legacy Semantic Aliases (mapped to new palette)
+        teal: {
+          DEFAULT: '#1e1a4a',
+          dark:    '#10102e',
+          light:   '#b0ace8',
+          xlight:  '#eeedf9',
+        },
+        gold: '#e8a020',
+        border: '#d8d6f5',
+        safe:     '#00b8b0',
+        positive: '#e8a020',
       },
 
       fontFamily: {
@@ -78,14 +103,13 @@ export default {
       boxShadow: {
         'sm':        '0 1px 8px rgba(0,0,0,0.06)',
         'DEFAULT':   '0 4px 20px rgba(0,0,0,0.08)',
-        'lg':        '0 12px 48px rgba(0,0,0,0.12)',
-        'card':      '0 2px 16px rgba(0,0,0,0.07)',
-        'card-hover':'0 8px 32px rgba(20,94,105,0.15)',
-        'brand':     '0 8px 32px rgba(20,94,105,0.15)',
-        'brand-lg':  '0 20px 80px rgba(20,94,105,0.12)',
-        // Legacy aliases
-        'premium':   '0 10px 40px -10px rgba(20,94,105,0.08)',
-        'premium-lg':'0 20px 80px -15px rgba(20,94,105,0.12)',
+        'lg':        '0 12px 48px rgba(30,26,74,0.12)',
+        'card':      '0 2px 16px rgba(30,26,74,0.07)',
+        'card-hover':'0 8px 32px rgba(30,26,74,0.15)',
+        'brand':     '0 8px 32px rgba(30,26,74,0.15)',
+        'brand-lg':  '0 20px 80px rgba(30,26,74,0.12)',
+        'premium':   '0 10px 40px -10px rgba(30,26,74,0.08)',
+        'premium-lg':'0 20px 80px -15px rgba(30,26,74,0.12)',
       },
 
       maxWidth: {
@@ -93,7 +117,6 @@ export default {
       },
 
       spacing: {
-        // Envoll section padding tokens
         'section-sm': '60px',
         'section-md': '80px',
         'section-lg': '120px',

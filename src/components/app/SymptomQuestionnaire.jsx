@@ -44,14 +44,14 @@ const SymptomQuestionnaire = ({ onComplete }) => {
       {/* Progress Bar */}
       <div className="mb-12">
         <div className="flex justify-between items-end mb-4">
-          <span className="text-[10px]  text-[#1a5259]/40 uppercase tracking-[0.2em]">Step {step} of 3</span>
-          <span className="text-[10px]  text-[#1a5259] uppercase tracking-[0.2em] italic">{Math.round((step / 3) * 100)}% Complete</span>
+          <span className="text-[10px] font-black text-indigo-900/40 uppercase tracking-[0.2em]">Step {step} of 3</span>
+          <span className="text-[10px] font-black text-indigo-900 uppercase tracking-[0.2em] italic">{Math.round((step / 3) * 100)}% Complete</span>
         </div>
-        <div className="h-1.5 w-full bg-[#f7f7f7] rounded-full overflow-hidden">
+        <div className="h-1.5 w-full bg-indigo-50 rounded-full overflow-hidden">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${(step / 3) * 100}%` }}
-            className="h-full bg-[#1a5259]"
+            className="h-full bg-indigo-900"
           />
         </div>
       </div>
@@ -66,10 +66,10 @@ const SymptomQuestionnaire = ({ onComplete }) => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-3xl  text-[#1a5259] tracking-tighter uppercase italic leading-tight mb-4">
-                What are your <br /> <span className="text-[#e6c28d]">primary symptoms?</span>
+              <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
+                What are your <br /> <span className="text-petri-500">primary symptoms?</span>
               </h3>
-              <p className="text-sm text-[#1a5259]/40 ">Select all that apply. Your doctor will review this list.</p>
+              <p className="text-sm font-medium text-indigo-950/40 ">Select all that apply. Your doctor will review this list.</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -80,12 +80,12 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                   className={cn(
                     "p-6 rounded-3xl border-2 transition-all duration-300 flex flex-col items-center gap-4 text-center group",
                     selectedSymptoms.includes(s.id)
-                      ? "border-[#1a5259] bg-[#1a5259]/5 text-[#1a5259]"
-                      : "border-gray-100 hover:border-[#1a5259]/20 text-[#1a5259]/40 hover:text-[#1a5259]"
+                      ? "border-indigo-900 bg-indigo-50 text-indigo-950"
+                      : "border-indigo-50 hover:border-indigo-900/20 text-indigo-950/40 hover:text-indigo-950"
                   )}
                 >
                   <span className="text-3xl group-hover:scale-110 transition-transform">{s.icon}</span>
-                  <span className="text-xs  uppercase tracking-widest">{s.label}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest">{s.label}</span>
                 </button>
               ))}
             </div>
@@ -93,10 +93,10 @@ const SymptomQuestionnaire = ({ onComplete }) => {
             <button 
               onClick={nextStep}
               disabled={selectedSymptoms.length === 0}
-              className="btn-premium w-full justify-center py-5 shadow-premium-lg disabled:opacity-50"
+              className="w-full h-16 rounded-2xl bg-indigo-900 text-white font-black uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-petri-500 transition-all shadow-xl shadow-indigo-900/10 disabled:opacity-50"
             >
               Continue
-              <div className="btn-circle-icon"><ChevronRight size={20} /></div>
+              <ChevronRight size={20} />
             </button>
           </motion.div>
         )}
@@ -110,10 +110,10 @@ const SymptomQuestionnaire = ({ onComplete }) => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-3xl  text-[#1a5259] tracking-tighter uppercase italic leading-tight mb-4">
-                Any underlying <br /> <span className="text-[#e6c28d]">conditions?</span>
+              <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
+                Any underlying <br /> <span className="text-petri-500">conditions?</span>
               </h3>
-              <p className="text-sm text-[#1a5259]/40 ">This helps our providers tailor your testing instructions.</p>
+              <p className="text-sm font-medium text-indigo-950/40 ">This helps our providers tailor your testing instructions.</p>
             </div>
 
             <div className="space-y-3">
@@ -124,17 +124,17 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                   className={cn(
                     "w-full p-5 rounded-2xl border-2 transition-all duration-300 flex items-center justify-between text-left",
                     selectedConditions.includes(c.id)
-                      ? "border-[#1a5259] bg-[#1a5259]/5 text-[#1a5259]"
-                      : "border-gray-100 hover:border-[#1a5259]/20 text-[#1a5259]/40 hover:text-[#1a5259]"
+                      ? "border-indigo-900 bg-indigo-50 text-indigo-950"
+                      : "border-indigo-50 hover:border-indigo-900/20 text-indigo-950/40 hover:text-indigo-950"
                   )}
                 >
-                  <span className="text-sm  uppercase tracking-widest">{c.label}</span>
-                  {selectedConditions.includes(c.id) && <Check size={18} />}
+                  <span className="text-[10px] font-black uppercase tracking-widest">{c.label}</span>
+                  {selectedConditions.includes(c.id) && <Check size={18} className="text-petri-500" />}
                 </button>
               ))}
               <button 
                 onClick={nextStep}
-                className="w-full p-5 rounded-2xl border-2 border-gray-100 text-[#1a5259]/40 hover:text-[#1a5259] hover:border-[#1a5259]/20 transition-all text-sm  uppercase tracking-widest text-center"
+                className="w-full p-5 rounded-2xl border-2 border-indigo-50 text-indigo-950/40 hover:text-indigo-950 hover:border-indigo-900/20 transition-all text-[10px] font-black uppercase tracking-widest text-center"
               >
                 None of the above
               </button>
@@ -143,16 +143,16 @@ const SymptomQuestionnaire = ({ onComplete }) => {
             <div className="flex gap-4">
               <button 
                 onClick={prevStep}
-                className="w-16 h-16 rounded-3xl border-2 border-gray-100 flex items-center justify-center text-[#1a5259]/40 hover:text-[#1a5259] transition-all"
+                className="w-16 h-16 rounded-2xl border-2 border-indigo-50 flex items-center justify-center text-indigo-950/40 hover:text-indigo-950 transition-all"
               >
                 <ChevronLeft size={24} />
               </button>
               <button 
                 onClick={nextStep}
-                className="btn-premium flex-grow justify-center py-5 shadow-premium-lg"
+                className="flex-grow h-16 rounded-2xl bg-indigo-900 text-white font-black uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-petri-500 transition-all shadow-xl shadow-indigo-900/10"
               >
                 Continue
-                <div className="btn-circle-icon"><ChevronRight size={20} /></div>
+                <ChevronRight size={20} />
               </button>
             </div>
           </motion.div>
@@ -165,37 +165,37 @@ const SymptomQuestionnaire = ({ onComplete }) => {
             animate={{ opacity: 1, scale: 1 }}
             className="space-y-10 text-center"
           >
-            <div className="w-24 h-24 bg-[#e6c28d] rounded-[32px] mx-auto flex items-center justify-center text-[#1a5259] shadow-premium-lg">
+            <div className="w-24 h-24 bg-petri-500 rounded-[32px] mx-auto flex items-center justify-center text-white shadow-xl shadow-petri-500/20">
               <ShieldCheck size={48} strokeWidth={1.5} />
             </div>
             
             <div>
-              <h3 className="text-4xl  text-[#1a5259] tracking-tighter uppercase italic leading-[1.1] mb-6">
+              <h3 className="text-4xl font-black text-indigo-950 tracking-tighter uppercase italic leading-[1.1] mb-6">
                 Intake Complete. <br />
-                <span className="text-[#e6c28d]">AI Analyzing...</span>
+                <span className="text-petri-500">AI Analyzing...</span>
               </h3>
-              <p className="text-lg text-[#1a5259]/60  leading-relaxed max-w-[400px] mx-auto">
+              <p className="text-lg text-indigo-950/60 font-medium leading-relaxed max-w-[400px] mx-auto">
                 Our system is reviewing your symptoms. A licensed provider will review this analysis and send your testing instructions within the hour.
               </p>
             </div>
 
-            <div className="p-8 bg-[#f7f7f7] rounded-[40px] space-y-6 text-left">
+            <div className="p-8 bg-indigo-50 rounded-[40px] space-y-6 text-left">
               <div className="flex items-center gap-4">
-                <Clock size={20} className="text-[#1a5259]/40" />
-                <span className="text-sm  text-[#1a5259]/60">Expected instruction time: ~15 mins</span>
+                <Clock size={20} className="text-indigo-950/40" />
+                <span className="text-sm font-bold text-indigo-950/60">Expected instruction time: ~15 mins</span>
               </div>
               <div className="flex items-center gap-4">
-                <AlertCircle size={20} className="text-[#e6c28d]" />
-                <span className="text-sm  text-[#1a5259]/60">Your data is HIPAA-secured and encrypted.</span>
+                <AlertCircle size={20} className="text-petri-500" />
+                <span className="text-sm font-bold text-indigo-950/60">Your data is HIPAA-secured and encrypted.</span>
               </div>
             </div>
 
             <button 
               onClick={() => onComplete?.()}
-              className="btn-premium w-full justify-center py-6 shadow-premium-lg bg-[#1a5259] text-white"
+              className="w-full h-16 rounded-2xl bg-indigo-900 text-white font-black uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-petri-500 transition-all shadow-xl shadow-indigo-900/10"
             >
               Go to Dashboard
-              <div className="btn-circle-icon"><ChevronRight size={20} /></div>
+              <ChevronRight size={20} />
             </button>
           </motion.div>
         )}

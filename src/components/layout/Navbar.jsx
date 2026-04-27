@@ -44,7 +44,7 @@ const Navbar = () => {
     <>
       <nav className={cn(
         "fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-in-out",
-        isScrolled ? "bg-[#1B4D4A] h-[80px] shadow-2xl border-b border-white/5" : "bg-transparent h-[100px]"
+        isScrolled ? "bg-bg-primary h-[80px] shadow-[0_1px_0_0_#d8d6f5]" : "bg-transparent h-[100px]"
       )}>
         <div className="container-custom h-full flex items-center justify-between">
           
@@ -52,12 +52,15 @@ const Navbar = () => {
           <a href="/" className="flex items-center gap-3 group">
             <div className={cn(
               "w-10 h-10 rounded-xl flex items-center justify-center font-black text-xl transition-all duration-500",
-              isScrolled ? "bg-white/10 text-white" : "bg-white text-[#1B4D4A]"
+              isScrolled ? "bg-indigo-900 text-white" : "bg-white text-indigo-900"
             )}>
               S
             </div>
-            <span className="text-2xl font-black tracking-tighter text-white">
-              SPD<span className="text-[#D4A843]">.</span>
+            <span className={cn(
+              "text-2xl font-black tracking-tighter transition-colors duration-500",
+              isScrolled ? "text-indigo-950" : "text-white"
+            )}>
+              SPD<span className="text-petri-500">.</span>
             </span>
           </a>
 
@@ -67,10 +70,16 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 text-white/80 hover:text-[#D4A843] relative group"
+                className={cn(
+                  "text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 relative group",
+                  isScrolled ? "text-text-primary/70 hover:text-indigo-900" : "text-white/80 hover:text-white"
+                )}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#D4A843] transition-all duration-300 group-hover:w-full"></span>
+                <span className={cn(
+                  "absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full",
+                  isScrolled ? "bg-indigo-900" : "bg-white"
+                )}></span>
               </a>
             ))}
           </div>
@@ -81,11 +90,14 @@ const Navbar = () => {
             {/* Cart Icon */}
             <button 
               onClick={() => setIsOpen(true)}
-              className="relative p-2.5 rounded-full text-white hover:bg-white/10 transition-all duration-300"
+              className={cn(
+                "relative p-2.5 rounded-full transition-all duration-300",
+                isScrolled ? "text-indigo-950 hover:bg-indigo-50" : "text-white hover:bg-white/10"
+              )}
             >
               <ShoppingCart size={18} />
               {cartCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 bg-[#D4A843] text-[#1B4D4A] text-[9px] rounded-full flex items-center justify-center border border-[#1B4D4A] font-black">
+                <span className="absolute top-1 right-1 w-4 h-4 bg-amber-600 text-white text-[9px] rounded-full flex items-center justify-center font-black">
                   {cartCount}
                 </span>
               )}
@@ -96,7 +108,12 @@ const Navbar = () => {
               {!isLoggedIn ? (
                 <a 
                   href="/login"
-                  className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-full font-black text-[11px] uppercase tracking-widest text-white hover:bg-white hover:text-[#1B4D4A] transition-all duration-300"
+                  className={cn(
+                    "flex items-center gap-2 px-5 py-2.5 border rounded-full font-black text-[11px] uppercase tracking-widest transition-all duration-300",
+                    isScrolled 
+                      ? "border-indigo-900/20 text-indigo-950 hover:bg-indigo-900 hover:text-white" 
+                      : "border-white/20 text-white hover:bg-white hover:text-indigo-900"
+                  )}
                 >
                   <User size={18} />
                   <span className="hidden md:block">Sign In</span>
@@ -104,7 +121,7 @@ const Navbar = () => {
               ) : (
                 <button 
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-10 h-10 rounded-full bg-[#D4A843] text-[#1B4D4A] flex items-center justify-center font-black text-xs hover:scale-105 transition-transform border-2 border-white/10"
+                  className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-black text-xs hover:scale-105 transition-transform border-2 border-white/10"
                 >
                   JD
                 </button>
@@ -116,20 +133,20 @@ const Navbar = () => {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute right-0 mt-4 w-56 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-[200]"
+                    className="absolute right-0 mt-4 w-56 bg-white rounded-3xl shadow-2xl border border-indigo-100 overflow-hidden z-[200]"
                   >
-                    <div className="p-5 border-b border-gray-50">
-                      <p className="text-[10px] font-black text-[#D4A843] uppercase tracking-widest mb-1">Signed in as</p>
-                      <p className="text-sm font-black text-[#1B4D4A] truncate">John Doe</p>
+                    <div className="p-5 border-b border-indigo-50">
+                      <p className="text-[10px] font-black text-amber-600 uppercase tracking-widest mb-1">Signed in as</p>
+                      <p className="text-sm font-black text-indigo-950 truncate">John Doe</p>
                     </div>
                     <div className="p-2">
-                      <a href="/patient/dashboard" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-[#1B4D4A]/60 hover:text-[#1B4D4A] hover:bg-gray-50 transition-all">
+                      <a href="/patient/dashboard" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
                         <LayoutDashboard size={16} /> Dashboard
                       </a>
-                      <a href="/patient/settings" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-[#1B4D4A]/60 hover:text-[#1B4D4A] hover:bg-gray-50 transition-all">
+                      <a href="/patient/settings" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
                         <Settings size={16} /> Settings
                       </a>
-                      <div className="h-px bg-gray-50 my-2 mx-4" />
+                      <div className="h-px bg-indigo-50 my-2 mx-4" />
                       <button 
                         onClick={() => setIsLoggedIn(false)}
                         className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-red-500 hover:bg-red-50 transition-all"
@@ -147,7 +164,7 @@ const Navbar = () => {
               onClick={() => document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' })}
               className={cn(
                 "hidden md:block px-8 py-3 rounded-full font-black text-[11px] uppercase tracking-[0.15em] transition-all duration-500 shadow-xl active:scale-95",
-                isScrolled ? "bg-[#D4A843] text-white hover:bg-white hover:text-[#1B4D4A]" : "bg-[#1B4D4A] text-white hover:bg-[#D4A843]"
+                isScrolled ? "bg-indigo-900 text-white hover:bg-indigo-800" : "bg-white text-indigo-900 hover:bg-indigo-100"
               )}
             >
               Order Now
@@ -155,7 +172,10 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <button 
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/10 transition-colors"
+              className={cn(
+                "lg:hidden p-2 rounded-full transition-colors",
+                isScrolled ? "text-indigo-950 hover:bg-indigo-50" : "text-white hover:bg-white/10"
+              )}
               onClick={() => setIsMobileMenuOpen(true)}
             >
               <Menu size={24} />
@@ -166,12 +186,12 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       <div className={cn(
-        "fixed inset-0 z-[200] bg-[#1B4D4A] transition-all duration-700 ease-in-out flex flex-col",
+        "fixed inset-0 z-[200] bg-bg-darkest transition-all duration-700 ease-in-out flex flex-col",
         isMobileMenuOpen ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-10"
       )}>
         <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
         <div className="flex justify-between items-center p-8 container-custom">
-          <span className="text-2xl font-black text-white tracking-tighter">SPD<span className="text-[#D4A843]">.</span></span>
+          <span className="text-2xl font-black text-white tracking-tighter">SPD<span className="text-petri-500">.</span></span>
           <button onClick={() => setIsMobileMenuOpen(false)} className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white"><X size={28} /></button>
         </div>
         <div className="flex flex-col items-start gap-6 px-12 mt-12 container-custom">
@@ -180,7 +200,7 @@ const Navbar = () => {
               key={link.name} 
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-5xl font-black italic tracking-tighter text-white/40 hover:text-[#D4A843] transition-all duration-500"
+              className="text-5xl font-black italic tracking-tighter text-white/40 hover:text-petri-500 transition-all duration-500"
             >
               {link.name}
             </a>
@@ -193,7 +213,7 @@ const Navbar = () => {
             </a>
           ) : (
             <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
-               <div className="w-12 h-12 rounded-full bg-[#D4A843] text-[#1B4D4A] flex items-center justify-center font-black">JD</div>
+               <div className="w-12 h-12 rounded-full bg-amber-600 text-white flex items-center justify-center font-black">JD</div>
                <div className="flex-1">
                   <p className="text-white font-black text-sm uppercase tracking-widest">John Doe</p>
                </div>
@@ -202,7 +222,7 @@ const Navbar = () => {
           )}
           <button 
             onClick={() => { setIsMobileMenuOpen(false); document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' }); }}
-            className="w-full py-6 rounded-2xl text-xl bg-[#D4A843] text-white font-black uppercase tracking-widest"
+            className="w-full py-6 rounded-2xl text-xl bg-petri-500 text-white font-black uppercase tracking-widest"
           >
             Order Now
           </button>

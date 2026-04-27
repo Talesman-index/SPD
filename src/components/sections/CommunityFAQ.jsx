@@ -37,41 +37,41 @@ const CommunityFAQ = () => {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <section id="community" className="bg-white py-32 md:py-48 overflow-hidden">
+    <section id="community" className="bg-bg-primary py-32 md:py-48 overflow-hidden">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           
           {/* Left: Work With Us */}
           <ScrollReveal>
             <div className="space-y-12">
-               <div className="eyebrow mb-8">Community Impact</div>
-               <h2 className="text-h2 text-[#1B4D4A] mb-8 leading-tight">
+               <div className="eyebrow mb-8 text-indigo-900">Community Impact</div>
+               <h2 className="text-h2 text-indigo-950 mb-8 leading-tight">
                  You Don't Need a <br />
-                 <span className="italic text-[#D4A843]">Medical Background.</span>
+                 <span className="italic text-petri-500 font-medium">Medical Background.</span>
                </h2>
-               <p className="text-xl text-[#4a4a4a] leading-relaxed mb-16 max-w-lg">
+               <p className="text-xl text-text-secondary leading-relaxed mb-16 max-w-lg">
                  Become a community health ambassador. Earn income by distributing SPD kits in your neighborhood. Flexible hours, real impact, and a step toward community resilience.
                </p>
 
                <div className="space-y-6">
                  {roles.map((role, i) => (
-                   <div key={i} className="flex items-center gap-6 p-6 rounded-3xl bg-[#f8f9fa] border border-transparent hover:border-[#1B4D4A]/10 transition-all group">
-                     <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-[#1B4D4A] shadow-sm group-hover:bg-[#1B4D4A] group-hover:text-white transition-all">
+                   <div key={i} className="flex items-center gap-6 p-6 rounded-3xl bg-indigo-50 border border-transparent hover:border-indigo-900/10 transition-all group">
+                     <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-indigo-950 shadow-sm group-hover:bg-indigo-900 group-hover:text-white transition-all">
                         <role.icon size={24} />
                      </div>
                      <div>
-                        <h4 className="text-lg font-black text-[#1B4D4A] tracking-tight">{role.title}</h4>
-                        <p className="text-sm text-[#1B4D4A]/60 font-medium">{role.desc}</p>
+                        <h4 className="text-lg font-black text-indigo-950 tracking-tight">{role.title}</h4>
+                        <p className="text-sm text-indigo-900/60 font-medium">{role.desc}</p>
                      </div>
                    </div>
                  ))}
                </div>
 
                <div className="flex flex-wrap gap-4 pt-10">
-                  <button className="px-8 py-4 bg-[#1B4D4A] text-white rounded-full font-black text-sm uppercase tracking-widest hover:bg-[#D4A843] transition-all">
+                  <button className="px-8 py-4 bg-indigo-900 text-white rounded-full font-black text-sm uppercase tracking-widest hover:bg-amber-600 transition-all shadow-xl shadow-indigo-900/10">
                     Apply as Ambassador
                   </button>
-                  <button className="px-8 py-4 border-2 border-[#1B4D4A] text-[#1B4D4A] rounded-full font-black text-sm uppercase tracking-widest hover:bg-[#1B4D4A] hover:text-white transition-all">
+                  <button className="px-8 py-4 border-2 border-indigo-900 text-indigo-900 rounded-full font-black text-sm uppercase tracking-widest hover:bg-indigo-900 hover:text-white transition-all">
                     Join as Provider
                   </button>
                </div>
@@ -81,18 +81,18 @@ const CommunityFAQ = () => {
           {/* Right: FAQ */}
           <div className="lg:pl-12">
              <ScrollReveal delay={0.2}>
-                <h4 className="text-sm font-black uppercase tracking-[0.3em] text-[#1B4D4A]/40 mb-16">Frequently Asked Questions</h4>
+                <h4 className="text-sm font-black uppercase tracking-[0.3em] text-indigo-900/40 mb-16">Frequently Asked Questions</h4>
                 <div className="space-y-4">
                   {faqs.map((faq, i) => (
-                    <div key={i} className="border-b border-gray-100 last:border-0">
+                    <div key={i} className="border-b border-indigo-100 last:border-0">
                        <button 
                         onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
                         className="w-full flex items-center justify-between py-8 text-left group"
                        >
-                         <span className="text-xl md:text-2xl font-black text-[#1B4D4A] tracking-tight group-hover:text-[#D4A843] transition-colors">{faq.q}</span>
+                         <span className="text-xl md:text-2xl font-black text-indigo-950 tracking-tight group-hover:text-petri-500 transition-colors">{faq.q}</span>
                          <div className={cn(
-                           "w-10 h-10 rounded-full border border-[#1B4D4A]/10 flex items-center justify-center text-[#1B4D4A] transition-all duration-500",
-                           openFaq === i && "rotate-180 bg-[#D4A843] border-transparent text-white"
+                           "w-10 h-10 rounded-full border border-indigo-900/10 flex items-center justify-center text-indigo-950 transition-all duration-500",
+                           openFaq === i && "rotate-180 bg-petri-500 border-transparent text-white shadow-lg shadow-petri-500/20"
                          )}>
                             <ChevronDown size={20} />
                          </div>
@@ -106,7 +106,7 @@ const CommunityFAQ = () => {
                              transition={{ duration: 0.5, ease: "circOut" }}
                              className="overflow-hidden"
                            >
-                             <p className="pb-8 text-lg text-[#1B4D4A]/70 leading-relaxed max-w-xl">
+                             <p className="pb-8 text-lg text-text-secondary leading-relaxed max-w-xl">
                                {faq.a}
                              </p>
                            </motion.div>
