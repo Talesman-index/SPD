@@ -5,7 +5,7 @@ import {
   Wind, Droplets, Thermometer, Clock, 
   AlertCircle, CheckCircle2, ArrowRight,
   ShieldCheck, HelpCircle, History, Pill,
-  AlertTriangle, Check, ClipboardList, Brain
+  AlertTriangle, Check, ClipboardList, Brain, Sparkles, Activity, Microscope
 } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/layout/Sidebar';
@@ -19,263 +19,247 @@ const DoctorCaseReview = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-[#f5f0e8] font-manrope">
+    <div className="flex min-h-screen bg-slate-50 font-manrope">
       <Sidebar type="doctor" />
       
-      <main className="flex-1 ml-[240px]">
-        <Topbar title={`Case Review — ID ${id}`} status="none" />
+      <main className="flex-1 ml-[260px]">
+        <Topbar title={`Clinical Analysis — Case #${id}`} status="expert" />
         
-        <div className="p-8 flex gap-8 h-[calc(100vh-72px)] overflow-hidden">
+        <div className="p-10 flex gap-10 h-[calc(100vh-72px)] overflow-hidden">
           
-          {/* COLONNE GAUCHE (280px) — Contexte patient */}
-          <div className="w-[280px] space-y-6 overflow-y-auto hide-scrollbar pb-8">
-            <div className="bg-white p-6 rounded-2xl border border-[#e2e2e2] shadow-sm text-center">
-              <div className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-[#f5f0e8] shadow-sm overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" alt="Patient" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-lg font-bold text-[#0f2f35]">James Wilson</h3>
-              <p className="text-xs text-[#565656] mt-1">45y · Male</p>
-              <div className="flex items-center justify-center gap-1 text-[10px] text-[#6b7280] mt-2 font-bold uppercase tracking-widest">
-                <MapPin size={10} /> Robeson County, NC
-              </div>
-              <div className="grid grid-cols-2 gap-2 mt-6">
-                <button className="py-2.5 rounded-lg border border-[#e2e2e2] text-[10px] font-bold text-[#565656] hover:bg-[#f5f0e8] transition-all">Profile</button>
-                <button className="py-2.5 rounded-lg bg-[#e8f4f5] text-[10px] font-bold text-[#145e69] hover:bg-[#145e69] hover:text-white transition-all">Message</button>
-              </div>
+          {/* LEFT: PATIENT CONTEXT (High-Tech Sidebar) */}
+          <div className="w-[320px] space-y-6 overflow-y-auto hide-scrollbar pb-8">
+            <div className="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm text-center relative overflow-hidden group">
+               <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-br from-indigo-900 to-indigo-950" />
+               <div className="relative z-10">
+                  <div className="w-24 h-24 rounded-[32px] mx-auto mb-6 border-4 border-white shadow-xl overflow-hidden group-hover:rotate-3 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" alt="Patient" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-xl font-black text-indigo-950 tracking-tighter uppercase italic">James Wilson</h3>
+                  <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mt-1">45Y · Male · A Positive</p>
+                  <div className="flex items-center justify-center gap-1 text-[10px] text-petri-500 mt-4 font-black uppercase tracking-widest">
+                    <MapPin size={12} /> Robeson County, NC
+                  </div>
+               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-[#e2e2e2] shadow-sm overflow-hidden">
-              <div className="p-4 bg-[#f5f0e8]/50 border-b border-[#e2e2e2]">
-                <h4 className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest flex items-center gap-2">
-                  <History size={12} /> Medical History
+            <div className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden">
+              <div className="p-5 bg-slate-50/50 border-b border-slate-100">
+                <h4 className="text-[10px] font-black text-indigo-900/40 uppercase tracking-[0.3em] flex items-center gap-2">
+                  <History size={14} /> Clinical History
                 </h4>
               </div>
-              <div className="p-2 space-y-1">
-                <AccordionItem title="Known Conditions" defaultOpen>
-                  <div className="flex flex-wrap gap-2 p-3 pt-1">
-                    {['Diabetes', 'Hypertension'].map(c => (
-                      <span key={c} className="px-2 py-1 bg-[#f5f0e8] text-[#0f2f35] rounded-md text-[9px] font-bold uppercase tracking-wider">{c}</span>
+              <div className="p-3 space-y-1">
+                <AccordionItem title="Active Conditions" defaultOpen>
+                  <div className="flex flex-wrap gap-2 p-4 pt-1">
+                    {['Diabetes Type II', 'Hypertension'].map(c => (
+                      <span key={c} className="px-3 py-1.5 bg-indigo-50 text-indigo-900 rounded-xl text-[10px] font-black uppercase tracking-widest border border-indigo-100">{c}</span>
                     ))}
                   </div>
                 </AccordionItem>
-                <AccordionItem title="Medications">
-                  <p className="text-[10px] p-3 pt-1 text-[#565656]">Metformin 500mg, Lisinopril 10mg</p>
+                <AccordionItem title="Medication List">
+                  <div className="p-4 pt-1 space-y-2">
+                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                        <p className="text-[10px] font-black text-indigo-950 uppercase">Metformin 500mg</p>
+                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">2x Daily · Oral</p>
+                     </div>
+                  </div>
                 </AccordionItem>
-                <AccordionItem title="Allergies">
-                  <p className="text-[10px] p-3 pt-1 text-red-500 font-bold">Penicillin, Peanuts</p>
+                <AccordionItem title="Critical Allergies">
+                  <div className="p-4 pt-1">
+                    <p className="text-[10px] font-black text-red-500 uppercase tracking-widest bg-red-50 p-3 rounded-xl border border-red-100">Penicillin, Peanuts</p>
+                  </div>
                 </AccordionItem>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl border border-[#e2e2e2] shadow-sm overflow-hidden">
-              <div className="p-4 bg-[#f5f0e8]/50 border-b border-[#e2e2e2]">
-                <h4 className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest flex items-center gap-2">
-                  <ClipboardList size={12} /> Previous Assessments
-                </h4>
-              </div>
-              <div className="p-4 space-y-4">
-                <div className="border-l-2 border-[#145e69] pl-3 relative">
-                  <div className="w-2 h-2 rounded-full bg-[#145e69] absolute -left-[5px] top-0" />
-                  <p className="text-[10px] font-bold text-[#0f2f35]">Oct 12, 2026</p>
-                  <p className="text-[9px] text-[#565656] mt-0.5">Sputum Test · Safe</p>
-                </div>
-                <div className="border-l-2 border-[#dbdbdb] pl-3 relative opacity-60">
-                  <div className="w-2 h-2 rounded-full bg-[#dbdbdb] absolute -left-[5px] top-0" />
-                  <p className="text-[10px] font-bold text-[#0f2f35]">Aug 05, 2026</p>
-                  <p className="text-[9px] text-[#565656] mt-0.5">Water Test · Negative</p>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* COLONNE CENTRE (flex 1) — Symptômes actuels */}
-          <div className="flex-1 space-y-6 overflow-y-auto hide-scrollbar pb-8 px-2">
-            <section className="bg-white p-8 rounded-[24px] border border-[#e2e2e2] shadow-sm">
-              <div className="flex justify-between items-start mb-10">
-                <div>
-                  <h3 className="text-xl font-bold text-[#0f2f35] mb-2">Current Assessment</h3>
-                  <p className="text-xs text-[#6b7280] font-bold uppercase tracking-widest">Submitted: Today, 10:24 AM</p>
-                </div>
-                <div className="px-4 py-2 bg-red-50 border border-red-200 rounded-xl text-[#e24b4a] flex items-center gap-2 font-bold text-xs uppercase tracking-widest">
-                  <AlertTriangle size={16} /> Urgent Risk
-                </div>
+          {/* CENTER: PRIMARY ANALYSIS */}
+          <div className="flex-1 space-y-8 overflow-y-auto hide-scrollbar pb-8 px-2">
+            <section className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8">
+                 <div className="px-5 py-2.5 bg-red-50 border border-red-200 rounded-2xl text-red-500 flex items-center gap-2 font-black text-[10px] uppercase tracking-widest shadow-lg shadow-red-500/5 animate-pulse">
+                    <AlertTriangle size={16} strokeWidth={3} /> Urgent Response Required
+                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div>
-                    <label className="text-[10px] font-bold text-[#6b7280] uppercase tracking-widest block mb-3">Symptoms Reported</label>
-                    <div className="flex flex-wrap gap-2">
-                      <SymptomChip icon={Wind} label="Respiratory" />
-                      <SymptomChip icon={Thermometer} label="Fever" />
-                      <SymptomChip icon={AlertCircle} label="Chest Pain" />
-                    </div>
-                  </div>
-                  <div className="flex gap-12">
-                    <div>
-                      <label className="text-[10px] font-bold text-[#6b7280] uppercase tracking-widest block mb-3">Duration</label>
-                      <span className="text-sm font-bold text-[#0f2f35] bg-[#f5f0e8] px-3 py-1 rounded-md">2-3 days</span>
-                    </div>
-                    <div>
-                      <label className="text-[10px] font-bold text-[#6b7280] uppercase tracking-widest block mb-3">Onset</label>
-                      <span className="text-sm font-bold text-[#0f2f35] bg-[#f5f0e8] px-3 py-1 rounded-md">Sudden</span>
-                    </div>
-                  </div>
-                </div>
+              <div className="mb-12">
+                 <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Symptom Assessment</h3>
+                 <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">Report ID: SPD-492-X1</p>
+              </div>
 
-                <div className="space-y-6">
-                  <div>
-                    <label className="text-[10px] font-bold text-[#6b7280] uppercase tracking-widest block mb-3">Severity (Patient Scale)</label>
-                    <div className="flex items-center gap-4">
-                      <div className="flex-1 h-3 bg-[#f5f0e8] rounded-full overflow-hidden">
-                        <div className="h-full w-[80%] bg-[#e24b4a]" />
-                      </div>
-                      <span className="text-2xl font-black italic text-[#e24b4a]">8/10</span>
+              <div className="grid grid-cols-2 gap-12">
+                 <div className="space-y-8">
+                    <div>
+                       <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4">Patient Input</label>
+                       <p className="text-lg font-bold text-indigo-950 leading-relaxed italic border-l-4 border-indigo-100 pl-6 py-2">
+                         "I've been feeling a sharp pain in my chest when I cough, and my fever hasn't gone down with medication."
+                       </p>
                     </div>
-                  </div>
-                  <div>
-                    <label className="text-[10px] font-bold text-[#6b7280] uppercase tracking-widest block mb-3">Free Text Input</label>
-                    <p className="text-sm text-[#565656] italic bg-[#f5f0e8]/50 p-4 rounded-xl border-l-4 border-[#145e69]/20">
-                      "I've been feeling a sharp pain in my chest when I cough, and my fever hasn't gone down with medication."
-                    </p>
-                  </div>
-                </div>
+                    <div className="grid grid-cols-2 gap-6">
+                       <StatBox label="Severity" value="08" unit="/10" color="text-red-500" />
+                       <StatBox label="Duration" value="72" unit="HRS" color="text-indigo-900" />
+                    </div>
+                 </div>
+
+                 <div>
+                    <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4">Detected Indicators</label>
+                    <div className="grid grid-cols-1 gap-3">
+                       <Indicator icon={Wind} label="Respiratory Distress" level="High" color="bg-red-500" />
+                       <Indicator icon={Thermometer} label="Thermal Spike" level="38.9°C" color="bg-amber-500" />
+                       <Indicator icon={AlertCircle} label="Acute Chest Pain" level="Localized" color="bg-red-500" />
+                    </div>
+                 </div>
               </div>
             </section>
 
-            <section className={cn(
-              "p-8 rounded-[24px] border-l-[6px] shadow-sm",
-              decision === 'approve' ? "bg-[#e8f4f5] border-[#145e69]" : "bg-white border-[#e2e2e2]"
-            )}>
-              <div className="flex justify-between items-start mb-8">
-                <div>
-                  <h3 className="text-xl font-bold text-[#0f2f35] mb-2 flex items-center gap-2">
-                    <Brain className="text-[#145e69]" /> AI Pre-Recommendation
-                  </h3>
-                  <p className="text-xs text-[#565656]">Based on symptoms, history, and epidemiological context.</p>
-                </div>
-                <div className="text-right">
-                  <div className="text-[10px] font-bold text-[#145e69] uppercase tracking-widest mb-1">Confidence Score</div>
-                  <div className="text-2xl font-black text-[#145e69]">92%</div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div className="space-y-4">
-                  <div className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest">Recommended Test</div>
-                  <div className="inline-block px-8 py-3 bg-[#145e69] text-white rounded-full font-bold text-lg tracking-tight">
-                    SPUTUM PANEL
+            {/* AI DIAGNOSTIC PANEL */}
+            <section className="bg-indigo-950 p-10 rounded-[48px] text-white relative overflow-hidden group">
+               <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
+               <div className="absolute top-0 right-0 w-64 h-64 bg-petri-500/20 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000" />
+               
+               <div className="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
+                  <div className="flex-1">
+                     <div className="flex items-center gap-3 mb-8">
+                        <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-petri-500 border border-white/10 shadow-lg">
+                           <Sparkles size={20} />
+                        </div>
+                        <h3 className="text-2xl font-black tracking-tight uppercase italic">AI Intelligence Review</h3>
+                     </div>
+                     
+                     <div className="space-y-6">
+                        <div className="p-6 bg-white/5 rounded-[32px] border border-white/10">
+                           <p className="text-[10px] font-black text-white/60 uppercase tracking-widest mb-3">Preliminary Logic</p>
+                           <p className="text-lg font-bold text-white/80 leading-relaxed">
+                             High probability of bacterial respiratory infection. Rules engine recommends <span className="text-petri-500 uppercase italic">Sputum Analysis</span> (Compartment B).
+                           </p>
+                        </div>
+                        <div className="flex items-center gap-12">
+                           <div>
+                              <p className="text-[9px] font-black text-white/60 uppercase tracking-widest mb-1">Confidence</p>
+                              <p className="text-3xl font-black text-petri-500">92%</p>
+                           </div>
+                           <div className="flex-1">
+                              <p className="text-[9px] font-black text-white/60 uppercase tracking-widest mb-3">Analysis Profile</p>
+                              <div className="flex gap-2">
+                                 {['Microscopy', 'Bio-Signals', 'Epi-Context'].map(t => (
+                                   <span key={t} className="px-2.5 py-1 bg-white/10 rounded-lg text-[8px] font-black uppercase tracking-widest text-white/60">{t}</span>
+                                 ))}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                   </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="text-[10px] font-bold text-[#0f2f35] uppercase tracking-widest">AI Rationale</div>
-                  <p className="text-sm text-[#0f2f35]/70 leading-relaxed font-medium">
-                    Strong correlation between sudden onset respiratory distress, fever, and history of hypertension. TB panel recommended for rural location exposure profile.
-                  </p>
-                </div>
-              </div>
 
-              <div className="mt-8 pt-6 border-t border-[#145e69]/10 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#145e69]">
-                  <Clock size={16} /> Urgent: Review within 12 hours
-                </div>
-                <p className="text-[10px] text-[#565656] italic">"This is an AI-generated suggestion. Your medical judgment prevails."</p>
-              </div>
+                  <div className="w-64 h-64 bg-black/40 rounded-[40px] border border-white/10 flex items-center justify-center relative overflow-hidden group/petri shadow-2xl">
+                     <Microscope className="text-petri-500/20 group-hover:scale-110 transition-transform duration-1000" size={120} />
+                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-indigo-950/60 backdrop-blur-sm opacity-0 group-hover/petri:opacity-100 transition-opacity">
+                        <p className="text-[9px] font-black text-petri-500 uppercase tracking-widest mb-2">View Device Scan</p>
+                        <div className="w-8 h-8 rounded-full bg-petri-500 flex items-center justify-center text-white">
+                           <ArrowRight size={16} />
+                        </div>
+                     </div>
+                     <div className="absolute top-4 left-4 flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-petri-500 animate-pulse" />
+                        <span className="text-[8px] font-black text-white/40 uppercase">Sensors Active</span>
+                     </div>
+                  </div>
+               </div>
             </section>
           </div>
 
-          {/* COLONNE DROITE (320px) — Actions médecin */}
-          <div className="w-[320px] overflow-y-auto hide-scrollbar pb-8">
-            <div className="bg-white rounded-[24px] border border-[#e2e2e2] shadow-xl p-8 sticky top-0 space-y-10">
-              <section>
-                <h4 className="text-xs font-bold text-[#0f2f35] uppercase tracking-widest mb-6">Your Decision</h4>
-                <div className="space-y-3">
-                  <DecisionOption 
-                    active={decision === 'approve'} 
-                    onClick={() => setDecision('approve')}
-                    title="Approve as recommended"
-                    desc="Send test instructions as suggested by AI"
-                    icon={CheckCircle2}
-                  />
-                  <DecisionOption 
-                    active={decision === 'modify'} 
-                    onClick={() => setDecision('modify')}
-                    title="Modify recommendation"
-                    desc="Change test type or instructions"
-                    icon={HelpCircle}
-                  />
-                  <DecisionOption 
-                    active={decision === 'reject'} 
-                    onClick={() => setDecision('reject')}
-                    title="Reject"
-                    desc="Insufficient data or low risk"
-                    icon={AlertCircle}
-                    danger
-                  />
-                </div>
-              </section>
-
-              <section>
-                <h4 className="text-xs font-bold text-[#0f2f35] uppercase tracking-widest mb-4">Instructions</h4>
-                <textarea 
-                  placeholder="E.g. Fast for 2 hours before collecting the sample."
-                  className="w-full px-4 py-3 bg-[#f5f0e8] border border-transparent rounded-xl focus:bg-white focus:border-[#145e69] outline-none transition-all h-32 text-sm resize-none"
-                />
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {['+ Fast 2h', '+ Morning sample', '+ Avoid meds'].map(t => (
-                    <button key={t} className="px-3 py-1.5 bg-[#f5f0e8] text-[#145e69] rounded-md text-[9px] font-bold uppercase tracking-wider hover:bg-[#145e69] hover:text-white transition-all">{t}</button>
-                  ))}
-                </div>
-              </section>
-
-              <div className="space-y-4 pt-4">
-                <label className="flex items-center gap-3 cursor-pointer group">
-                  <div className="w-10 h-6 bg-[#dbdbdb] rounded-full relative transition-all group-hover:bg-[#e24b4a]/20">
-                    <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all" />
+          {/* RIGHT: MEDICAL DECISION PANEL */}
+          <div className="w-[360px] overflow-y-auto hide-scrollbar pb-8">
+            <div className="bg-white rounded-[40px] border border-slate-200 shadow-2xl p-10 sticky top-0 space-y-12">
+               <section>
+                  <div className="flex items-center justify-between mb-8">
+                     <h4 className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em]">Expert Decision</h4>
+                     <Activity size={14} className="text-petri-500" />
                   </div>
-                  <span className="text-xs font-bold text-[#e24b4a] uppercase tracking-widest">Mark as URGENT</span>
-                </label>
-                
-                <button 
-                  onClick={() => setShowModal(true)}
-                  className={cn(
-                    "w-full h-14 rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-lg",
-                    decision === 'reject' ? "bg-[#e24b4a] text-white" : "bg-[#145e69] text-white hover:bg-[#0f2f35]"
-                  )}
-                >
-                  {decision === 'reject' ? 'Reject & Notify' : 'Validate & Send'} <ArrowRight size={20} />
-                </button>
-              </div>
+                  <div className="space-y-3">
+                    <DecisionCard 
+                      active={decision === 'approve'} 
+                      onClick={() => setDecision('approve')}
+                      title="Validate & Instruct"
+                      desc="Approve AI recommendation and send kit instructions"
+                      icon={ShieldCheck}
+                      color="indigo"
+                    />
+                    <DecisionCard 
+                      active={decision === 'modify'} 
+                      onClick={() => setDecision('modify')}
+                      title="Modify Protocol"
+                      desc="Select alternative test compartment or instructions"
+                      icon={HelpCircle}
+                      color="amber"
+                    />
+                    <DecisionCard 
+                      active={decision === 'reject'} 
+                      onClick={() => setDecision('reject')}
+                      title="Refer to Hospital"
+                      desc="Immediate clinical referral recommended"
+                      icon={AlertCircle}
+                      color="red"
+                      danger
+                    />
+                  </div>
+               </section>
+
+               <section>
+                  <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4">Physician Notes</label>
+                  <textarea 
+                    placeholder="Enter patient-facing instructions..."
+                    className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-[28px] focus:bg-white focus:border-indigo-900 outline-none transition-all h-40 text-sm font-bold text-indigo-950 resize-none shadow-inner"
+                  />
+                  <div className="flex flex-wrap gap-2 mt-5">
+                    {['+ Fasting', '+ Morning Sample', '+ Emergency Bypass'].map(t => (
+                      <button key={t} className="px-3 py-1.5 bg-slate-100 text-indigo-900/60 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-indigo-900 hover:text-white transition-all">{t}</button>
+                    ))}
+                  </div>
+               </section>
+
+               <div className="pt-4">
+                  <button 
+                    onClick={() => setShowModal(true)}
+                    className={cn(
+                      "w-full h-16 rounded-[24px] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-4 transition-all shadow-2xl",
+                      decision === 'reject' ? "bg-red-500 text-white shadow-red-500/20" : "bg-indigo-950 text-white hover:bg-petri-500 shadow-indigo-900/20"
+                    )}
+                  >
+                    Confirm Clinical Action <ArrowRight size={20} />
+                  </button>
+                  <p className="text-center text-[9px] font-bold text-slate-400 mt-6 uppercase tracking-widest">Digital Signature Required on next step</p>
+               </div>
             </div>
           </div>
         </div>
 
-        {/* Modal Confirmation */}
+        {/* MODAL REDESIGN */}
         <AnimatePresence>
           {showModal && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-8">
               <motion.div 
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 onClick={() => setShowModal(false)}
-                className="absolute inset-0 bg-[#0f2f35]/80 backdrop-blur-sm" 
+                className="absolute inset-0 bg-indigo-950/80 backdrop-blur-xl" 
               />
               <motion.div 
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="bg-white rounded-[32px] p-10 max-w-[480px] w-full relative z-10 shadow-2xl text-center"
+                exit={{ opacity: 0, scale: 0.9, y: 30 }}
+                className="bg-white rounded-[60px] p-16 max-w-[560px] w-full relative z-10 shadow-2xl text-center overflow-hidden"
               >
-                <div className="w-20 h-20 rounded-full bg-[#e8f4f5] text-[#145e69] flex items-center justify-center mx-auto mb-8">
-                  <ShieldCheck size={40} />
+                <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-indigo-900 via-petri-500 to-indigo-950" />
+                <div className="w-24 h-24 rounded-[32px] bg-indigo-50 text-indigo-950 flex items-center justify-center mx-auto mb-10 shadow-xl border border-indigo-100">
+                  <ShieldCheck size={48} strokeWidth={1.5} />
                 </div>
-                <h2 className="text-2xl font-bold text-[#0f2f35] mb-4">Confirm Validation</h2>
-                <p className="text-[#565656] leading-relaxed mb-10">
-                  You are about to send the <span className="font-bold text-[#0f2f35]">Final Diagnostic Conclusion</span> to James Wilson.<br />
-                  This will be instantly available on their <span className="text-[#145e69] font-bold">Mobile App</span>.
+                <h2 className="text-4xl font-black text-indigo-950 mb-6 tracking-tighter uppercase italic">Confirm Validation</h2>
+                <p className="text-lg text-slate-400 font-medium leading-relaxed mb-12">
+                  You are validating the protocol for <span className="text-indigo-950 font-black">James Wilson</span>. This action will trigger instant mobile notifications and unlock the screening module.
                 </p>
                 <div className="flex gap-4">
-                  <button onClick={() => setShowModal(false)} className="flex-1 h-14 rounded-full border border-[#dbdbdb] font-bold text-[#565656] hover:bg-[#f5f0e8] transition-all">Review Again</button>
-                  <button onClick={() => navigate('/doctor/dashboard')} className="flex-1 h-14 rounded-full bg-[#145e69] text-white font-bold hover:bg-[#0f2f35] transition-all shadow-lg">Validate & Send ↗</button>
+                  <button onClick={() => setShowModal(false)} className="flex-1 h-16 rounded-[24px] border-2 border-slate-100 font-black text-xs uppercase tracking-widest text-slate-400 hover:bg-slate-50 transition-all">Cancel</button>
+                  <button onClick={() => navigate('/doctor/dashboard')} className="flex-1 h-16 rounded-[24px] bg-indigo-950 text-white font-black text-xs uppercase tracking-widest hover:bg-petri-500 transition-all shadow-2xl shadow-indigo-900/20">Sign & Commit ↗</button>
                 </div>
               </motion.div>
             </div>
@@ -286,16 +270,18 @@ const DoctorCaseReview = () => {
   );
 };
 
+// --- SUB-COMPONENTS ---
+
 const AccordionItem = ({ title, children, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   return (
-    <div>
+    <div className="border-b border-slate-50 last:border-0">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-4 py-2 hover:bg-[#f5f0e8] transition-all"
+        className="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 transition-all"
       >
-        <span className="text-[11px] font-bold text-[#0f2f35]">{title}</span>
-        <ChevronDown size={14} className={cn("text-[#6b7280] transition-transform", isOpen && "rotate-180")} />
+        <span className="text-[11px] font-black text-indigo-950 uppercase tracking-widest">{title}</span>
+        <ChevronDown size={14} className={cn("text-slate-300 transition-transform", isOpen && "rotate-180")} />
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -308,28 +294,51 @@ const AccordionItem = ({ title, children, defaultOpen = false }) => {
   );
 };
 
-const SymptomChip = ({ icon: Icon, label }) => (
-  <div className="px-4 py-2 bg-[#e8f4f5] text-[#145e69] rounded-xl flex items-center gap-2 font-bold text-xs">
-    <Icon size={16} /> {label}
+const Indicator = ({ icon: Icon, label, level, color }) => (
+  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between group hover:border-indigo-900/10 transition-colors">
+     <div className="flex items-center gap-3">
+        <div className="text-indigo-900/40 group-hover:text-indigo-900 transition-colors"><Icon size={18} /></div>
+        <span className="text-xs font-bold text-indigo-950 uppercase tracking-tight">{label}</span>
+     </div>
+     <div className="flex items-center gap-2">
+        <div className={cn("w-2 h-2 rounded-full", color)} />
+        <span className="text-[10px] font-black text-indigo-900/30 uppercase tracking-widest">{level}</span>
+     </div>
   </div>
 );
 
-const DecisionOption = ({ active, onClick, title, desc, icon: Icon, danger }) => (
+const StatBox = ({ label, value, unit, color }) => (
+  <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+     <span className="text-[9px] font-black text-indigo-900/30 uppercase tracking-widest block mb-1">{label}</span>
+     <div className="flex items-baseline gap-1">
+        <span className={cn("text-4xl font-black italic tracking-tighter", color)}>{value}</span>
+        <span className="text-[10px] font-black text-indigo-900/20 uppercase">{unit}</span>
+     </div>
+  </div>
+);
+
+const DecisionCard = ({ active, onClick, title, desc, icon: Icon, color, danger }) => (
   <button 
     onClick={onClick}
     className={cn(
-      "w-full p-4 rounded-xl border-2 flex items-start gap-4 text-left transition-all",
-      active ? (danger ? "bg-red-50 border-[#e24b4a]" : "bg-[#e8f4f5] border-[#145e69]") : "bg-white border-[#e2e2e2] hover:border-[#145e69]/30"
+      "w-full p-6 rounded-[28px] border-2 flex items-start gap-5 text-left transition-all",
+      active 
+        ? (danger ? "bg-red-50 border-red-500" : `bg-indigo-50 border-indigo-900 shadow-xl shadow-indigo-900/5`) 
+        : "bg-white border-slate-100 hover:border-indigo-900/20"
     )}
   >
-    <div className={cn("p-2 rounded-lg shrink-0", active ? (danger ? "bg-[#e24b4a] text-white" : "bg-[#145e69] text-white") : "bg-[#f5f0e8] text-[#145e69]")}>
-      <Icon size={20} />
+    <div className={cn(
+      "w-12 h-12 rounded-2xl shrink-0 flex items-center justify-center transition-all", 
+      active 
+        ? (danger ? "bg-red-500 text-white" : "bg-indigo-950 text-white") 
+        : "bg-slate-50 text-indigo-900/30"
+    )}>
+      <Icon size={24} />
     </div>
     <div>
-      <h5 className={cn("text-xs font-bold", active && (danger ? "text-[#e24b4a]" : "text-[#145e69]"))}>{title}</h5>
-      <p className="text-[10px] text-[#565656] mt-1">{desc}</p>
+      <h5 className={cn("text-xs font-black uppercase tracking-tight mb-1", active && (danger ? "text-red-500" : "text-indigo-950"))}>{title}</h5>
+      <p className="text-[10px] font-bold text-slate-400 leading-relaxed">{desc}</p>
     </div>
-    {active && <div className={cn("ml-auto", danger ? "text-[#e24b4a]" : "text-[#145e69]")}><Check size={16} /></div>}
   </button>
 );
 

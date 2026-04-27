@@ -2,92 +2,111 @@ import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Home, ClipboardList, TestTube, 
-  User, Bell, ChevronLeft
+  User, Bell, ChevronLeft, LayoutDashboard, History, Sparkles, Activity
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { motion } from 'framer-motion';
 
 const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const navItems = [
-    { label: 'Home', icon: Home, path: '/patient/dashboard' },
-    { label: 'History', icon: ClipboardList, path: '/patient/history' },
+    { label: 'Home', icon: LayoutDashboard, path: '/patient/dashboard' },
+    { label: 'History', icon: History, path: '/patient/history' },
     { label: 'Tests', icon: TestTube, path: '/patient/tests' },
-    { label: 'Profile', icon: User, path: '/patient/settings' },
+    { label: 'Portal', icon: User, path: '/patient/settings' },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f5f0e8] font-manrope selection:bg-[#145e69]/10">
-      {/* iOS Style Status Bar */}
-      <div className="h-[20px] bg-white sticky top-0 z-[60] flex items-center justify-between px-6">
-        <span className="text-[11px] font-bold text-[#0f2f35]">9:41</span>
-        <div className="flex items-center gap-1.5">
-          <div className="w-4 h-2.5 border border-[#0f2f35]/20 rounded-[2px] relative">
-            <div className="absolute left-[1px] top-[1px] bottom-[1px] w-[10px] bg-[#0f2f35] rounded-[1px]" />
+    <div className="flex flex-col min-h-screen bg-slate-50 font-manrope selection:bg-petri-500/10 overflow-x-hidden">
+      {/* iOS Style Status Bar (Subtle) */}
+      <div className="h-[24px] bg-white/80 backdrop-blur-md sticky top-0 z-[60] flex items-center justify-between px-8">
+        <span className="text-[10px] font-black text-indigo-950/40">9:41</span>
+        <div className="flex items-center gap-1.5 opacity-20">
+          <div className="w-4 h-2.5 border border-indigo-950 rounded-[2px] relative">
+            <div className="absolute left-[1px] top-[1px] bottom-[1px] w-[10px] bg-indigo-950 rounded-[1px]" />
           </div>
-          <div className="w-3.5 h-3.5 flex items-center justify-center">
-            <div className="w-1 h-2.5 bg-[#0f2f35] rounded-t-[1px]" />
-          </div>
+          <Activity size={10} className="text-indigo-950" />
         </div>
       </div>
 
-      {/* Top Bar (56px) */}
-      <header className="h-[56px] px-5 bg-white sticky top-[20px] z-[60] border-b border-[#e8f4f5] flex items-center justify-between">
+      {/* Top Bar (Modern Editorial) */}
+      <header className="h-[64px] px-6 bg-white/80 backdrop-blur-md sticky top-[24px] z-[60] border-b border-slate-100 flex items-center justify-between">
         <div className="w-1/4 flex items-center">
           {showBack ? (
             <button 
               onClick={() => navigate(-1)}
-              className="w-10 h-10 -ml-2 flex items-center justify-center text-[#0f2f35] active:scale-95 transition-transform"
+              className="w-10 h-10 -ml-2 flex items-center justify-center text-indigo-950 active:scale-95 transition-transform"
             >
               <ChevronLeft size={24} />
             </button>
           ) : (
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-[#145e69] text-white flex items-center justify-center text-[10px] font-black border border-white shadow-sm">JD</div>
-              <div className="flex flex-col -space-y-1">
-                <span className="text-[9px] font-bold text-[#6b7280] uppercase tracking-wider">Hi, John</span>
-                <span className="text-[13px] font-black text-[#0f2f35]">Good Morning</span>
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                 <div className="w-9 h-9 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-[10px] font-black border border-white shadow-xl italic">
+                   JD
+                 </div>
+                 <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-petri-500 border-2 border-white" />
               </div>
             </div>
           )}
         </div>
 
-        <h5 className="flex-1 text-[15px] font-black text-[#0f2f35] text-center truncate px-2">
+        <h5 className="flex-1 text-[13px] font-black text-indigo-950 text-center truncate px-2 uppercase tracking-[0.2em] italic">
           {title}
         </h5>
 
         <div className="w-1/4 flex items-center justify-end">
           {rightAction ? rightAction : (
-            <button className="relative w-10 h-10 flex items-center justify-end text-[#0f2f35] active:scale-95 transition-transform">
+            <button className="relative w-10 h-10 flex items-center justify-end text-indigo-950/20 active:scale-95 transition-transform hover:text-indigo-950 transition-colors">
               <Bell size={20} />
-              <span className="absolute top-2.5 right-0.5 w-2 h-2 bg-[#e24b4a] rounded-full border-2 border-white" />
+              <span className="absolute top-2.5 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white shadow-lg shadow-red-500/20" />
             </button>
           )}
         </div>
       </header>
 
-      {/* Main Content (Scrollable) */}
-      <main className="flex-1 overflow-x-hidden pb-[100px] animate-in fade-in slide-in-from-right-4 duration-300">
-        {children}
+      {/* Main Content (Scrollable with Viewport Transition) */}
+      <main className="flex-1 overflow-x-hidden pb-[120px] pt-4 relative">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-[100px] pointer-events-none opacity-50" />
+        <motion.div 
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-10"
+        >
+           {children}
+        </motion.div>
       </main>
 
-      {/* Bottom Navigation (80px + Safe Area) */}
-      <nav className="fixed bottom-0 left-0 right-0 h-[80px] bg-white border-t border-[#e8f4f5] px-6 pb-[20px] flex items-center justify-between z-[60] shadow-[0_-1px_0_#e8f4f5]">
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) => cn(
-              "flex flex-col items-center gap-1.5 transition-all w-16 active:scale-90 duration-200",
-              isActive ? "text-[#145e69]" : "text-[#afafaf]"
-            )}
-          >
-            <item.icon size={22} strokeWidth={location.pathname === item.path ? 2.5 : 2} />
-            <span className="text-[10px] font-bold tracking-tight">{item.label}</span>
-          </NavLink>
-        ))}
-      </nav>
+      {/* Bottom Navigation (Floating Glass Container) */}
+      <div className="fixed bottom-6 left-5 right-5 z-[60]">
+        <nav className="h-[76px] bg-white/90 backdrop-blur-xl border border-white/20 rounded-[32px] px-8 flex items-center justify-between shadow-2xl shadow-indigo-900/10">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) => cn(
+                "flex flex-col items-center gap-1.5 transition-all w-12 active:scale-90 duration-300 relative",
+                isActive ? "text-indigo-950" : "text-slate-300 hover:text-slate-400"
+              )}
+            >
+              <div className="relative">
+                 <item.icon size={22} strokeWidth={location.pathname === item.path ? 2.5 : 2} />
+                 {location.pathname === item.path && (
+                   <motion.div 
+                     layoutId="nav-dot"
+                     className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-petri-500 rounded-full shadow-[0_0_8px_rgba(0,184,176,0.8)]"
+                   />
+                 )}
+              </div>
+              <span className="text-[9px] font-black uppercase tracking-widest">{item.label}</span>
+            </NavLink>
+          ))}
+        </nav>
+      </div>
     </div>
   );
 };
