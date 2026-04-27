@@ -54,9 +54,9 @@ const CommunityFAQ = () => {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <section id="community" className="bg-bg-primary py-32 md:py-48 overflow-hidden">
+    <section id="community" className="bg-bg-primary py-20 lg:py-48 overflow-hidden">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
           
           {/* Left: Job Opportunities */}
           <ScrollReveal>
@@ -72,7 +72,7 @@ const CommunityFAQ = () => {
                
                <div className="bg-indigo-50 border border-indigo-100 rounded-3xl p-8 mb-12">
                   <p className="text-indigo-950 font-bold mb-4">You don’t need a medical background to get involved.</p>
-                  <p className="text-indigo-900/60 text-sm leading-relaxed">
+                  <p className="text-[#5a5a8a] text-sm leading-relaxed">
                     You just need the willingness to help. Flexible, local opportunities designed to fit your schedule and provide additional income.
                   </p>
                </div>

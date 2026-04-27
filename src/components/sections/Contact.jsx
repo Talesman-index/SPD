@@ -4,11 +4,11 @@ import ScrollReveal from '../ui/ScrollReveal'
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-indigo-900 py-32 md:py-48 overflow-hidden relative">
+    <section id="contact" className="bg-indigo-900 py-20 lg:py-48 overflow-hidden relative">
       <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
       
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 items-center">
           
           {/* Content Column */}
           <div className="relative z-10">
@@ -18,11 +18,11 @@ const Contact = () => {
                 <span className="text-[10px] font-black text-petri-400 uppercase tracking-[0.3em]">Direct Access</span>
               </div>
               
-              <h2 className="text-5xl md:text-8xl font-black text-white mb-12 leading-[0.85] tracking-tighter">
+              <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-white mb-12 leading-[0.85] tracking-tighter">
                 Start the <em className="text-petri-400 italic italic font-medium">Dialogue.</em>
               </h2>
 
-              <p className="text-xl text-white/50 leading-relaxed mb-20 max-w-[480px]">
+              <p className="text-lg md:text-xl text-white/75 leading-relaxed mb-10 md:mb-20 max-w-[480px]">
                 Connect with our clinical team or partnership desk. We're scaling health equity, one conversation at a time.
               </p>
 
@@ -34,7 +34,7 @@ const Contact = () => {
                 <div>
                   <div className="text-[10px] font-bold text-petri-400 uppercase tracking-[0.2em] mb-4">Digital Desk</div>
                   <p className="text-white text-lg font-black tracking-tight">hello@spd.health</p>
-                  <p className="text-white/40 text-sm mt-2 font-bold uppercase tracking-widest">Response: &lt; 4hrs</p>
+                  <p className="text-white/70 text-sm mt-2 font-bold uppercase tracking-widest">Response: &lt; 4hrs</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -43,7 +43,7 @@ const Contact = () => {
           {/* Form Column */}
           <div className="relative z-10">
             <ScrollReveal>
-              <div className="relative p-10 md:p-16 rounded-[60px] bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden group">
+              <div className="relative p-6 md:p-16 rounded-[60px] bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden group">
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-petri-500 opacity-10 rounded-full blur-[100px]"></div>
                 
                 <form className="relative z-10 space-y-10" onSubmit={(e) => e.preventDefault()}>
@@ -58,7 +58,7 @@ const Contact = () => {
                       />
                       <label 
                         htmlFor="form-name"
-                        className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
+                        className="absolute left-0 top-4 text-white/70 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
                       >
                         Full Name
                       </label>
@@ -73,7 +73,7 @@ const Contact = () => {
                       />
                       <label 
                         htmlFor="form-email"
-                        className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
+                        className="absolute left-0 top-4 text-white/70 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
                       >
                         Email Address
                       </label>
@@ -108,7 +108,7 @@ const Contact = () => {
                     ></textarea>
                     <label 
                       htmlFor="form-message"
-                      className="absolute left-0 top-4 text-white/30 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
+                      className="absolute left-0 top-4 text-white/70 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
                     >
                       How can we help?
                     </label>

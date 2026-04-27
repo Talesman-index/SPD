@@ -28,7 +28,7 @@ const PatientDashboard = () => {
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full backdrop-blur-md border border-white/10">
                    <div className="w-1.5 h-1.5 rounded-full bg-petri-400 animate-pulse" />
-                   <span className="text-[9px] font-black text-white/60 uppercase tracking-[0.2em]">Step 4: Clinical Review</span>
+                   <span className="text-[9px] font-black text-white/75 uppercase tracking-[0.2em]">Step 4: Clinical Review</span>
                 </div>
                 <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-white/40 border border-white/10">
                   <Bell size={18} />
@@ -39,7 +39,7 @@ const PatientDashboard = () => {
                 Awaiting <br />
                 <span className="text-petri-500">Expertise.</span>
               </h2>
-              <p className="text-[13px] font-bold text-white/40 mb-10 leading-relaxed max-w-[220px]">
+              <p className="text-[13px] font-bold text-white/70 mb-10 leading-relaxed max-w-[220px]">
                 Your sample is currently being cross-validated by a licensed provider.
               </p>
 
@@ -63,11 +63,11 @@ const PatientDashboard = () => {
                     <Clock size={18} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-white/40 uppercase tracking-widest">Wait Time</p>
+                    <p className="text-[10px] font-black text-white/70 uppercase tracking-widest">Wait Time</p>
                     <p className="text-[12px] font-bold text-white">~12 minutes</p>
                   </div>
                 </div>
-                <ShieldCheck size={20} className="text-white/20" />
+                <ShieldCheck size={20} className="text-white/70" />
               </div>
             </div>
           </motion.div>
@@ -80,9 +80,9 @@ const PatientDashboard = () => {
              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
              <div className="relative z-10 flex items-center gap-4 mb-4">
                 <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-900 border border-indigo-100">
-                  <Sparkles size={20} />
+                  <span className="text-petri-500"><Sparkles size={20} /></span>
                 </div>
-                <h4 className="text-[11px] font-black text-indigo-900/30 uppercase tracking-[0.2em]">AI Intelligence Preview</h4>
+                <h4 className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-[0.2em]">AI Intelligence Preview</h4>
              </div>
              <p className="text-[14px] font-bold text-indigo-950 leading-relaxed relative z-10">
                Initial scan detected <span className="text-petri-500">normal microbial patterns</span> in your Water Screening. Final report pending provider sign-off.
@@ -97,7 +97,7 @@ const PatientDashboard = () => {
         <section className="px-5 mt-10">
           <div className="flex items-center justify-between mb-6 px-1">
             <h3 className="text-[12px] font-black text-indigo-950 uppercase tracking-[0.3em]">Recent Journey</h3>
-            <span className="text-[11px] font-bold text-indigo-900/30">History</span>
+            <span className="text-[11px] font-bold text-[#5a5a8a]">History</span>
           </div>
 
           <div className="space-y-3">
@@ -114,7 +114,7 @@ const PatientDashboard = () => {
               title="Profile Setup" 
               time="2 days ago" 
               status="Completed"
-              color="text-slate-400"
+              color="text-[#5a5a8a]"
             />
           </div>
         </section>
@@ -125,7 +125,7 @@ const PatientDashboard = () => {
               <div className="w-12 h-12 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-500 shrink-0 border border-red-500/10 animate-pulse">
                 <ShieldAlert size={24} />
               </div>
-              <p className="text-[12px] text-red-950/60 font-bold leading-relaxed tracking-tight">
+              <p className="text-[12px] text-[#450a0a] font-bold leading-relaxed tracking-tight">
                 High distress detected? <span className="text-red-500">Trigger emergency telehealth</span> bypass immediately.
               </p>
            </div>
@@ -163,7 +163,7 @@ const StatCard = ({ label, value, icon: Icon, color, bg, trend }) => (
       </div>
     )}
 
-    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">{label}</span>
+    <span className="text-[10px] font-black text-[#5a5a8a] uppercase tracking-widest block mb-1">{label}</span>
     <h4 className="text-4xl font-black text-indigo-950 tracking-tighter italic">{value}</h4>
   </div>
 );
@@ -175,7 +175,7 @@ const ActivityItem = ({ icon: Icon, title, time, status, color, dot = false }) =
     </div>
     <div className="flex-1 min-w-0">
       <p className="text-[14px] font-black text-indigo-950 truncate tracking-tight">{title}</p>
-      <p className="text-[11px] text-slate-400 font-bold">{time}</p>
+      <p className="text-[11px] text-[#5a5a8a] font-bold">{time}</p>
     </div>
     <div className="flex flex-col items-end gap-1.5">
        {dot && <div className="w-1.5 h-1.5 rounded-full bg-petri-500" />}

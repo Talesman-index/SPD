@@ -72,7 +72,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
       {/* Progress Bar */}
       <div className="mb-12">
         <div className="flex justify-between items-end mb-4">
-          <span className="text-[10px] font-black text-indigo-900/40 uppercase tracking-[0.2em]">Step {step} of 4</span>
+          <span className="text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.2em]">Step {step} of 4</span>
           <span className="text-[10px] font-black text-indigo-900 uppercase tracking-[0.2em] italic">{Math.round((step / 4) * 100)}% Complete</span>
         </div>
         <div className="h-1.5 w-full bg-indigo-50 rounded-full overflow-hidden">
@@ -97,7 +97,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
               <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
                 What are your <br /> <span className="text-petri-500">primary symptoms?</span>
               </h3>
-              <p className="text-[11px] font-black text-indigo-900/40 uppercase tracking-widest ">Select all that apply. Your doctor will review this list.</p>
+              <p className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-widest ">Select all that apply. Your doctor will review this list.</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -109,7 +109,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                     "p-6 rounded-3xl border-2 transition-all duration-300 flex flex-col items-center gap-4 text-center group",
                     selectedSymptoms.includes(s.id)
                       ? "border-indigo-900 bg-indigo-50 text-indigo-950"
-                      : "border-indigo-50 hover:border-indigo-900/20 text-indigo-950/40 hover:text-indigo-950"
+                      : "border-indigo-50 hover:border-indigo-900/20 text-[#5a5a8a] hover:text-indigo-950"
                   )}
                 >
                   <span className="text-3xl group-hover:scale-110 transition-transform">{s.icon}</span>
@@ -141,7 +141,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
               <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
                 Any underlying <br /> <span className="text-petri-500">conditions?</span>
               </h3>
-              <p className="text-[11px] font-black text-indigo-900/40 uppercase tracking-widest">This helps our providers tailor your testing instructions.</p>
+              <p className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-widest">This helps our providers tailor your testing instructions.</p>
             </div>
 
             <div className="space-y-3">
@@ -153,7 +153,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                     "w-full p-5 rounded-2xl border-2 transition-all duration-300 flex items-center justify-between text-left",
                     selectedConditions.includes(c.id)
                       ? "border-indigo-900 bg-indigo-50 text-indigo-950"
-                      : "border-indigo-50 hover:border-indigo-900/20 text-indigo-950/40 hover:text-indigo-950"
+                      : "border-indigo-50 hover:border-indigo-900/20 text-[#5a5a8a] hover:text-indigo-950"
                   )}
                 >
                   <span className="text-[10px] font-black uppercase tracking-widest">{c.label}</span>
@@ -171,7 +171,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
             <div className="flex gap-4">
               <button 
                 onClick={prevStep}
-                className="w-16 h-16 rounded-2xl border-2 border-indigo-50 flex items-center justify-center text-indigo-950/40 hover:text-indigo-950 transition-all"
+                className="w-16 h-16 rounded-2xl border-2 border-indigo-50 flex items-center justify-center text-[#5a5a8a] hover:text-indigo-950 transition-all"
               >
                 <ChevronLeft size={24} />
               </button>
@@ -201,7 +201,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-tight mb-4">
                  Smart Test <br /> <span className="text-petri-500">Recommendation.</span>
                </h3>
-               <p className="text-[11px] font-black text-indigo-900/40 uppercase tracking-widest max-w-[300px] mx-auto">
+               <p className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-widest max-w-[300px] mx-auto">
                  Based on our structured medical decision database, we recommend:
                </p>
             </div>
@@ -214,7 +214,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                         {recommendation.icon}
                      </div>
                      <div>
-                        <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Recommended Panel</p>
+                        <p className="text-[9px] font-black text-white/70 uppercase tracking-widest">Recommended Panel</p>
                         <h4 className="text-lg font-black tracking-tight">{recommendation.type}</h4>
                      </div>
                   </div>
@@ -224,7 +224,7 @@ const SymptomQuestionnaire = ({ onComplete }) => {
                      </p>
                   </div>
                   <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest">
-                     <span className="text-white/40">Target Compartment:</span>
+                     <span className="text-white/70">Target Compartment:</span>
                      <span className="text-petri-500">{recommendation.compartment}</span>
                   </div>
                </div>
@@ -263,12 +263,12 @@ const SymptomQuestionnaire = ({ onComplete }) => {
 
             <div className="p-8 bg-indigo-50 rounded-[40px] space-y-6 text-left">
               <div className="flex items-center gap-4">
-                <Clock size={20} className="text-indigo-950/40" />
-                <span className="text-sm font-bold text-indigo-950/60">Expected instruction time: ~15 mins</span>
+                <Clock size={20} className="text-[#5a5a8a]" />
+                <span className="text-sm font-bold text-[#5a5a8a]">Expected instruction time: ~15 mins</span>
               </div>
               <div className="flex items-center gap-4">
                 <AlertCircle size={20} className="text-petri-500" />
-                <span className="text-[11px] font-black uppercase tracking-widest text-indigo-950/60">Results support early risk detection, not diagnosis.</span>
+                <span className="text-[11px] font-black uppercase tracking-widest text-[#5a5a8a]">Results support early risk detection, not diagnosis.</span>
               </div>
             </div>
 

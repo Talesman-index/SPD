@@ -43,9 +43,9 @@ const Sidebar = ({ type = 'patient' }) => {
   return (
     <aside className="w-[260px] bg-indigo-950 flex flex-col h-screen fixed left-0 top-0 z-40 border-r border-white/5">
       {/* Header / Logo */}
-      <div className="p-10 pb-12">
+      <a href="/" className="p-10 pb-12 group block">
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-10 h-10 rounded-[14px] bg-white flex items-center justify-center text-indigo-950 font-black shadow-lg shadow-white/5">
+          <div className="w-10 h-10 rounded-[14px] bg-white flex items-center justify-center text-indigo-950 font-black shadow-lg shadow-white/5 transition-transform group-hover:scale-110">
             S
           </div>
           <div className="text-2xl font-black text-white tracking-tighter italic">
@@ -54,11 +54,11 @@ const Sidebar = ({ type = 'patient' }) => {
         </div>
         <div className="flex items-center gap-2 mt-4">
            <div className="w-1.5 h-1.5 rounded-full bg-petri-500 animate-pulse" />
-           <span className="text-[9px] font-black text-white/60 uppercase tracking-[0.3em]">
+           <span className="text-[9px] font-black text-white/80 uppercase tracking-[0.3em]">
              {type === 'doctor' ? 'Clinical Portal' : 'Patient Interface'}
            </span>
         </div>
-      </div>
+      </a>
 
       {/* Navigation */}
       <nav className="flex-1 px-4 space-y-1.5 overflow-y-auto hide-scrollbar">
@@ -70,7 +70,7 @@ const Sidebar = ({ type = 'patient' }) => {
               "flex items-center justify-between px-5 py-4 rounded-2xl transition-all group relative overflow-hidden",
               isActive 
                 ? "bg-white/10 text-white" 
-                : "text-white/40 hover:text-white"
+                : "text-white/70 hover:text-white"
             )}
           >
             {({ isActive }) => (
@@ -117,7 +117,7 @@ const Sidebar = ({ type = 'patient' }) => {
             </span>
             <span 
               onClick={() => navigate(type === 'doctor' ? '/doctor/settings' : '/patient/settings')}
-              className="text-[9px] text-white/60 mt-0.5 uppercase tracking-widest font-black hover:text-petri-500 cursor-pointer transition-colors"
+              className="text-[9px] text-white/80 mt-0.5 uppercase tracking-widest font-black hover:text-petri-500 cursor-pointer transition-colors"
             >
               Portal Settings
             </span>
@@ -126,7 +126,7 @@ const Sidebar = ({ type = 'patient' }) => {
         
         <button 
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-5 py-4 text-red-400/60 hover:text-red-400 hover:bg-white/5 rounded-2xl transition-all text-[11px] font-black uppercase tracking-widest"
+          className="flex items-center gap-3 w-full px-5 py-4 text-red-400 hover:bg-white/5 rounded-2xl transition-all text-[11px] font-black uppercase tracking-widest"
         >
           <LogOut size={18} /> Sign Out
         </button>

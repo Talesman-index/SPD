@@ -38,14 +38,14 @@ const AboutUs = () => {
               className="absolute -bottom-10 -right-10 bg-[#e6c28d] p-10 rounded-[40px] shadow-premium-lg z-20"
             >
               <div className="text-6xl  text-[#1a5259] tracking-tighter mb-1">500k</div>
-              <div className="text-[10px]  text-[#1a5259]/60 uppercase tracking-[0.2em]">Lives Impacted</div>
+              <div className="text-[10px]  text-[#1a5259] uppercase tracking-[0.2em]">Lives Impacted</div>
             </motion.div>
           </div>
 
           {/* Right: Content */}
           <div className="lg:pl-12">
             <ScrollReveal>
-              <div className="text-[11px]  text-[#1a5259]/40 uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
+              <div className="text-[11px]  text-[#1a5259]/75 uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
                 <span className="h-[2px] w-5 bg-[#1a5259]/40 inline-block"></span>
                 About Us
               </div>
@@ -60,7 +60,7 @@ const AboutUs = () => {
                   <h3 className="text-2xl  text-[#1a5259] mb-4 uppercase italic tracking-tighter">
                     Built for real communities
                   </h3>
-                  <p className="text-xl text-[#1a5259]/60  leading-relaxed max-w-[540px]">
+                  <p className="text-xl text-[#1a5259]/80  leading-relaxed max-w-[540px]">
                     In Robeson County and communities like it, the nearest lab can be hours away.
                     People don't skip health checks because they don't care — they skip them because
                     the system wasn't built for them. Smart Petri Dish was built to change that.
@@ -69,7 +69,7 @@ const AboutUs = () => {
 
                 <div className="h-[1px] w-full bg-[#1a5259]/10"></div>
 
-                <p className="text-xl text-[#1a5259]/60  leading-relaxed max-w-[540px]">
+                <p className="text-xl text-[#1a5259]/80  leading-relaxed max-w-[540px]">
                   Our 3-in-1 bio-sensor platform brings clinical-grade biological analysis directly
                   to the people who need it most — at home, in their community, on their terms.
                   Every device comes with access to a network of licensed providers who review,

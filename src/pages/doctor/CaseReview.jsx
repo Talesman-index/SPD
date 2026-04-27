@@ -25,84 +25,88 @@ const DoctorCaseReview = () => {
       <main className="w-full pl-[260px]">
         <Topbar title={`Clinical Analysis — Case #${id}`} status="expert" />
         
-        <div className="p-6 lg:p-10 flex flex-col xl:flex-row gap-6 lg:gap-10 h-[calc(100vh-72px)] overflow-hidden">
-          {/* Left Sidebar: Patient Summary */}
-          <div className="w-full xl:w-[320px] shrink-0 flex flex-col gap-6 lg:gap-8 overflow-y-auto pr-2 scrollbar-hide">
-            <div className="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm text-center relative overflow-hidden group">
-               <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-br from-indigo-900 to-indigo-950" />
+        <div className="p-6 lg:p-8 2xl:p-10 flex flex-col 2xl:flex-row gap-6 lg:gap-8 2xl:h-[calc(100vh-72px)] 2xl:overflow-hidden overflow-y-auto scrollbar-hide">
+          
+          {/* Left Sidebar: Patient Summary - Narrower & More Compact */}
+          <div className="w-full 2xl:w-[280px] shrink-0 flex flex-col gap-6 2xl:overflow-y-auto pr-2 scrollbar-hide">
+            <div className="bg-white p-6 rounded-[32px] border border-slate-200 shadow-sm text-center relative overflow-hidden group">
+               <div className="absolute top-0 inset-x-0 h-20 bg-gradient-to-br from-indigo-900 to-indigo-950" />
                <div className="relative z-10">
-                  <div className="w-24 h-24 rounded-[32px] mx-auto mb-6 border-4 border-white shadow-xl overflow-hidden group-hover:rotate-3 transition-transform duration-500">
+                  <div className="w-20 h-20 rounded-[28px] mx-auto mb-4 border-4 border-white shadow-xl overflow-hidden group-hover:rotate-3 transition-transform duration-500">
                     <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" alt="Patient" className="w-full h-full object-cover" />
                   </div>
-                  <h3 className="text-xl font-black text-indigo-950 tracking-tighter uppercase italic">James Wilson</h3>
-                  <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mt-1">45Y · Male · A Positive</p>
-                  <div className="flex items-center justify-center gap-1 text-[10px] text-petri-500 mt-4 font-black uppercase tracking-widest">
-                    <MapPin size={12} /> Robeson County, NC
+                  <h3 className="text-lg font-black text-indigo-950 tracking-tighter uppercase italic">James Wilson</h3>
+                  <p className="text-[10px] font-black text-[#5a5a8a] uppercase tracking-widest mt-1">45Y · Male · A Positive</p>
+                  <div className="flex items-center justify-center gap-1 text-[9px] text-petri-500 mt-3 font-black uppercase tracking-widest">
+                    <MapPin size={10} /> Robeson County, NC
                   </div>
                </div>
             </div>
 
-            <div className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden">
-              <div className="p-5 bg-slate-50/50 border-b border-slate-100">
-                <h4 className="text-[10px] font-black text-indigo-900/40 uppercase tracking-[0.3em] flex items-center gap-2">
-                  <History size={14} /> Clinical History
+            <div className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden flex-1">
+              <div className="p-4 bg-slate-50/50 border-b border-slate-100">
+                <h4 className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] flex items-center gap-2">
+                  <History size={12} /> Clinical History
                 </h4>
               </div>
-              <div className="p-3 space-y-1">
+              <div className="p-2 space-y-1 overflow-y-auto">
                 <AccordionItem title="Active Conditions" defaultOpen>
-                  <div className="flex flex-wrap gap-2 p-4 pt-1">
+                  <div className="flex flex-wrap gap-2 p-3 pt-0">
                     {['Diabetes Type II', 'Hypertension'].map(c => (
-                      <span key={c} className="px-3 py-1.5 bg-indigo-50 text-indigo-900 rounded-xl text-[10px] font-black uppercase tracking-widest border border-indigo-100">{c}</span>
+                      <span key={c} className="px-2.5 py-1 bg-indigo-50 text-indigo-900 rounded-lg text-[9px] font-black uppercase tracking-widest border border-indigo-100">{c}</span>
                     ))}
                   </div>
                 </AccordionItem>
                 <AccordionItem title="Medication List">
-                  <div className="p-4 pt-1 space-y-2">
-                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <p className="text-[10px] font-black text-indigo-950 uppercase">Metformin 500mg</p>
-                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">2x Daily · Oral</p>
-                     </div>
-                  </div>
-                </AccordionItem>
+                   <div className="p-3 pt-0 space-y-2">
+                      <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                         <p className="text-[9px] font-black text-indigo-950 uppercase">Metformin 500mg</p>
+                         <p className="text-[8px] font-bold text-[#767690] uppercase tracking-widest mt-0.5">2x Daily · Oral</p>
+                      </div>
+                   </div>
+                 </AccordionItem>
                 <AccordionItem title="Critical Allergies">
-                  <div className="p-4 pt-1">
-                    <p className="text-[10px] font-black text-red-500 uppercase tracking-widest bg-red-50 p-3 rounded-xl border border-red-100">Penicillin, Peanuts</p>
+                  <div className="p-3 pt-0">
+                    <p className="text-[9px] font-black text-red-500 uppercase tracking-widest bg-red-50 p-2.5 rounded-xl border border-red-100">Penicillin, Peanuts</p>
                   </div>
                 </AccordionItem>
               </div>
             </div>
           </div>
 
-          {/* Center: Main Analysis Area */}
-          <div className="flex-1 min-w-0 overflow-y-auto pr-2 scrollbar-hide space-y-6 lg:space-y-10">
-            <section className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8">
-                 <div className="px-5 py-2.5 bg-red-50 border border-red-200 rounded-2xl text-red-500 flex items-center gap-2 font-black text-[10px] uppercase tracking-widest shadow-lg shadow-red-500/5 animate-pulse">
-                    <AlertTriangle size={16} strokeWidth={3} /> Urgent Response Required
+          {/* Center: Main Analysis Area - Flexible & Priority */}
+          <div className="flex-1 min-w-[320px] 2xl:min-w-[500px] 2xl:overflow-y-auto pr-2 scrollbar-hide space-y-6">
+            <section className="bg-white p-6 lg:p-10 rounded-[48px] border border-slate-200 shadow-sm relative overflow-hidden">
+               <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-12">
+                 <div>
+                    <h3 className="text-2xl lg:text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Symptom Assessment</h3>
+                    <p className="text-[10px] font-black text-[#767690] uppercase tracking-[0.4em]">Report ID: SPD-492-X1</p>
+                 </div>
+                 <div className="shrink-0">
+                    <div className="px-4 py-2 bg-red-50 border border-red-200 rounded-2xl text-red-500 flex items-center gap-2 font-black text-[9px] uppercase tracking-widest shadow-lg shadow-red-500/5 animate-pulse">
+                       <AlertTriangle size={14} strokeWidth={3} /> Urgent Response Required
+                    </div>
                  </div>
               </div>
 
-              <div className="mb-12">
-                 <h3 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Symptom Assessment</h3>
-                 <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">Report ID: SPD-492-X1</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                 <div className="space-y-8">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 lg:gap-16">
+                  <div className="space-y-8">
                     <div>
-                       <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4">Patient Input</label>
-                       <p className="text-lg font-bold text-indigo-950 leading-relaxed italic border-l-4 border-indigo-100 pl-6 py-2">
-                         "I've been feeling a sharp pain in my chest when I cough, and my fever hasn't gone down with medication."
-                       </p>
+                       <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] block mb-4">Patient Input</label>
+                       <div className="relative pl-6 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-indigo-50 before:rounded-full">
+                          <p className="text-xl lg:text-2xl font-black text-indigo-950 leading-relaxed italic tracking-tight">
+                            "I've been feeling a sharp pain in my chest when I cough, and my fever hasn't gone down with medication."
+                          </p>
+                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-4 lg:gap-6">
                        <StatBox label="Severity" value="08" unit="/10" color="text-red-500" />
                        <StatBox label="Duration" value="72" unit="HRS" color="text-indigo-900" />
                     </div>
                  </div>
 
-                 <div>
-                    <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4">Detected Indicators</label>
+                  <div className="space-y-6">
+                    <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] block mb-4">Detected Indicators</label>
                     <div className="grid grid-cols-1 gap-3">
                        <Indicator icon={Wind} label="Respiratory Distress" level="High" color="bg-red-500" />
                        <Indicator icon={Thermometer} label="Thermal Spike" level="38.9°C" color="bg-amber-500" />
@@ -113,36 +117,35 @@ const DoctorCaseReview = () => {
             </section>
 
             {/* AI DIAGNOSTIC PANEL */}
-            <section className="bg-indigo-950 p-10 rounded-[48px] text-white relative overflow-hidden group">
+            <section className="bg-indigo-950 p-6 lg:p-10 rounded-[48px] text-white relative overflow-hidden group">
                <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
                <div className="absolute top-0 right-0 w-64 h-64 bg-petri-500/20 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000" />
                
-               <div className="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
-                  <div className="flex-1">
+               <div className="relative z-10 flex flex-col xl:flex-row gap-10 items-center">
+                  <div className="flex-1 w-full">
                      <div className="flex items-center gap-3 mb-8">
                         <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-petri-500 border border-white/10 shadow-lg">
                            <Sparkles size={20} />
                         </div>
-                        <h3 className="text-2xl font-black tracking-tight uppercase italic">AI Intelligence Review</h3>
+                        <h3 className="text-xl lg:text-2xl font-black tracking-tight uppercase italic">AI Intelligence Review</h3>
                      </div>
-                     
-                     <div className="space-y-6">
+                                          <div className="space-y-6">
                         <div className="p-6 bg-white/5 rounded-[32px] border border-white/10">
-                           <p className="text-[10px] font-black text-white/60 uppercase tracking-widest mb-3">Preliminary Logic</p>
-                           <p className="text-lg font-bold text-white/80 leading-relaxed">
+                           <p className="text-[9px] font-black text-white/75 uppercase tracking-widest mb-3">Preliminary Logic</p>
+                           <p className="text-base lg:text-lg font-bold text-white/80 leading-relaxed">
                              High probability of bacterial respiratory infection. Rules engine recommends <span className="text-petri-500 uppercase italic">Sputum Analysis</span> (Compartment B).
                            </p>
                         </div>
-                        <div className="flex items-center gap-12">
+                        <div className="flex flex-wrap items-center gap-8 lg:gap-12">
                            <div>
-                              <p className="text-[9px] font-black text-white/60 uppercase tracking-widest mb-1">Confidence</p>
-                              <p className="text-3xl font-black text-petri-500">92%</p>
+                              <p className="text-[8px] font-black text-white/75 uppercase tracking-widest mb-1">Confidence</p>
+                              <p className="text-2xl lg:text-3xl font-black text-petri-500">92%</p>
                            </div>
-                           <div className="flex-1">
-                              <p className="text-[9px] font-black text-white/60 uppercase tracking-widest mb-3">Analysis Profile</p>
-                              <div className="flex gap-2">
+                           <div className="flex-1 min-w-[200px]">
+                              <p className="text-[8px] font-black text-white/75 uppercase tracking-widest mb-3">Analysis Profile</p>
+                              <div className="flex flex-wrap gap-2">
                                  {['Microscopy', 'Bio-Signals', 'Epi-Context'].map(t => (
-                                   <span key={t} className="px-2.5 py-1 bg-white/10 rounded-lg text-[8px] font-black uppercase tracking-widest text-white/60">{t}</span>
+                                   <span key={t} className="px-2.5 py-1 bg-white/10 rounded-lg text-[8px] font-black uppercase tracking-widest text-white/75">{t}</span>
                                  ))}
                               </div>
                            </div>
@@ -150,29 +153,29 @@ const DoctorCaseReview = () => {
                      </div>
                   </div>
 
-                  <div className="w-64 h-64 bg-black/40 rounded-[40px] border border-white/10 flex items-center justify-center relative overflow-hidden group/petri shadow-2xl">
-                     <Microscope className="text-petri-500/20 group-hover:scale-110 transition-transform duration-1000" size={120} />
+                  <div className="w-48 h-48 lg:w-64 lg:h-64 shrink-0 bg-black/40 rounded-[40px] border border-white/10 flex items-center justify-center relative overflow-hidden group/petri shadow-2xl">
+                     <Microscope className="text-petri-500/20 group-hover:scale-110 transition-transform duration-1000" size={100} />
                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-indigo-950/60 backdrop-blur-sm opacity-0 group-hover/petri:opacity-100 transition-opacity">
                         <p className="text-[9px] font-black text-petri-500 uppercase tracking-widest mb-2">View Device Scan</p>
                         <div className="w-8 h-8 rounded-full bg-petri-500 flex items-center justify-center text-white">
                            <ArrowRight size={16} />
                         </div>
                      </div>
-                     <div className="absolute top-4 left-4 flex items-center gap-2">
+                      <div className="absolute top-4 left-4 flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-petri-500 animate-pulse" />
-                        <span className="text-[8px] font-black text-white/40 uppercase">Sensors Active</span>
-                     </div>
+                        <span className="text-[8px] font-black text-white/70 uppercase">Sensors Active</span>
+                      </div>
                   </div>
                </div>
             </section>
           </div>
 
-          {/* Right Sidebar: Expert Actions */}
-          <div className="w-full xl:w-[360px] shrink-0 flex flex-col gap-6 lg:gap-10 overflow-y-auto pr-2 scrollbar-hide">
-            <div className="bg-white rounded-[40px] border border-slate-200 shadow-2xl p-10 sticky top-0 space-y-12">
+          {/* Right Sidebar: Expert Actions - Balanced Width */}
+            <div className="w-full 2xl:w-[340px] shrink-0 flex flex-col gap-6 2xl:overflow-y-auto pr-2 scrollbar-hide">
+            <div className="bg-white rounded-[40px] border border-slate-200 shadow-2xl p-6 lg:p-8 sticky top-0 space-y-10">
                <section>
                   <div className="flex items-center justify-between mb-8">
-                     <h4 className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em]">Expert Decision</h4>
+                     <h4 className="text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Expert Decision</h4>
                      <Activity size={14} className="text-petri-500" />
                   </div>
                   <div className="space-y-3">
@@ -180,7 +183,7 @@ const DoctorCaseReview = () => {
                       active={decision === 'approve'} 
                       onClick={() => setDecision('approve')}
                       title="Validate & Instruct"
-                      desc="Approve AI recommendation and send kit instructions"
+                      desc="Approve AI recommendation and send instructions"
                       icon={ShieldCheck}
                       color="indigo"
                     />
@@ -188,7 +191,7 @@ const DoctorCaseReview = () => {
                       active={decision === 'modify'} 
                       onClick={() => setDecision('modify')}
                       title="Modify Protocol"
-                      desc="Select alternative test compartment or instructions"
+                      desc="Select alternative test compartment"
                       icon={HelpCircle}
                       color="amber"
                     />
@@ -205,35 +208,30 @@ const DoctorCaseReview = () => {
                </section>
 
                <section>
-                  <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4">Physician Notes</label>
+                  <label className="text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] block mb-4">Physician Notes</label>
                   <textarea 
                     placeholder="Enter patient-facing instructions..."
-                    className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-[28px] focus:bg-white focus:border-indigo-900 outline-none transition-all h-40 text-sm font-bold text-indigo-950 resize-none shadow-inner"
+                    className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-[28px] focus:bg-white focus:border-indigo-900 outline-none transition-all h-32 text-[13px] font-bold text-indigo-950 resize-none shadow-inner"
                   />
-                  <div className="flex flex-wrap gap-2 mt-5">
-                    {['+ Fasting', '+ Morning Sample', '+ Emergency Bypass'].map(t => (
-                      <button key={t} className="px-3 py-1.5 bg-slate-100 text-indigo-900/60 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-indigo-900 hover:text-white transition-all">{t}</button>
-                    ))}
-                  </div>
                </section>
 
-               <div className="pt-4">
+               <div className="pt-2">
                   <button 
                     onClick={() => setShowModal(true)}
                     className={cn(
-                      "w-full h-16 rounded-[24px] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-4 transition-all shadow-2xl",
+                      "w-full h-14 rounded-[22px] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 transition-all shadow-2xl",
                       decision === 'reject' ? "bg-red-500 text-white shadow-red-500/20" : "bg-indigo-950 text-white hover:bg-petri-500 shadow-indigo-900/20"
                     )}
-                  >
-                    Confirm Clinical Action <ArrowRight size={20} />
-                  </button>
-                  <p className="text-center text-[9px] font-bold text-slate-400 mt-6 uppercase tracking-widest">Digital Signature Required on next step</p>
-               </div>
+                   >
+                     Confirm Clinical Action <ArrowRight size={18} />
+                   </button>
+                   <p className="text-center text-[8px] font-bold text-[#767690] mt-5 uppercase tracking-widest">Digital Signature Required</p>
+                </div>
             </div>
           </div>
         </div>
 
-        {/* MODAL REDESIGN */}
+        {/* MODAL REMAINING THE SAME */}
         <AnimatePresence>
           {showModal && (
             <div className="fixed inset-0 z-[100] flex items-center justify-center p-8">
@@ -252,14 +250,14 @@ const DoctorCaseReview = () => {
                 <div className="w-24 h-24 rounded-[32px] bg-indigo-50 text-indigo-950 flex items-center justify-center mx-auto mb-10 shadow-xl border border-indigo-100">
                   <ShieldCheck size={48} strokeWidth={1.5} />
                 </div>
-                <h2 className="text-4xl font-black text-indigo-950 mb-6 tracking-tighter uppercase italic">Confirm Validation</h2>
-                <p className="text-lg text-slate-400 font-medium leading-relaxed mb-12">
-                  You are validating the protocol for <span className="text-indigo-950 font-black">James Wilson</span>. This action will trigger instant mobile notifications and unlock the screening module.
-                </p>
-                <div className="flex gap-4">
-                  <button onClick={() => setShowModal(false)} className="flex-1 h-16 rounded-[24px] border-2 border-slate-100 font-black text-xs uppercase tracking-widest text-slate-400 hover:bg-slate-50 transition-all">Cancel</button>
-                  <button onClick={() => navigate('/doctor/dashboard')} className="flex-1 h-16 rounded-[24px] bg-indigo-950 text-white font-black text-xs uppercase tracking-widest hover:bg-petri-500 transition-all shadow-2xl shadow-indigo-900/20">Sign & Commit ↗</button>
-                </div>
+                 <h2 className="text-4xl font-black text-indigo-950 mb-6 tracking-tighter uppercase italic">Confirm Validation</h2>
+                 <p className="text-lg text-[#5a5a8a] font-medium leading-relaxed mb-12">
+                   You are validating the protocol for <span className="text-indigo-950 font-black">James Wilson</span>. This action will trigger instant mobile notifications and unlock the screening module.
+                 </p>
+                 <div className="flex gap-4">
+                   <button onClick={() => setShowModal(false)} className="flex-1 h-16 rounded-[24px] border-2 border-slate-100 font-black text-xs uppercase tracking-widest text-[#9898b8] hover:bg-slate-50 transition-all">Cancel</button>
+                   <button onClick={() => navigate('/doctor/dashboard')} className="flex-1 h-16 rounded-[24px] bg-indigo-950 text-white font-black text-xs uppercase tracking-widest hover:bg-petri-500 transition-all shadow-2xl shadow-indigo-900/20">Sign & Commit ↗</button>
+                 </div>
               </motion.div>
             </div>
           )}
@@ -275,13 +273,13 @@ const AccordionItem = ({ title, children, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   return (
     <div className="border-b border-slate-50 last:border-0">
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 transition-all"
-      >
-        <span className="text-[11px] font-black text-indigo-950 uppercase tracking-widest">{title}</span>
-        <ChevronDown size={14} className={cn("text-slate-300 transition-transform", isOpen && "rotate-180")} />
-      </button>
+       <button 
+         onClick={() => setIsOpen(!isOpen)}
+         className="w-full flex items-center justify-between px-4 py-3 hover:bg-slate-50 transition-all"
+       >
+         <span className="text-[10px] font-black text-indigo-950 uppercase tracking-widest">{title}</span>
+         <ChevronDown size={12} className={cn("text-[#767690] transition-transform", isOpen && "rotate-180")} />
+       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
@@ -294,24 +292,26 @@ const AccordionItem = ({ title, children, defaultOpen = false }) => {
 };
 
 const Indicator = ({ icon: Icon, label, level, color }) => (
-  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between group hover:border-indigo-900/10 transition-colors">
-     <div className="flex items-center gap-3">
-        <div className="text-indigo-900/40 group-hover:text-indigo-900 transition-colors"><Icon size={18} /></div>
-        <span className="text-xs font-bold text-indigo-950 uppercase tracking-tight">{label}</span>
-     </div>
-     <div className="flex items-center gap-2">
-        <div className={cn("w-2 h-2 rounded-full", color)} />
-        <span className="text-[10px] font-black text-indigo-900/30 uppercase tracking-widest">{level}</span>
-     </div>
+   <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between group hover:border-indigo-900/10 transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-900/5">
+      <div className="flex items-center gap-3 min-w-0">
+         <div className="w-8 h-8 rounded-xl bg-white flex items-center justify-center text-[#767690] group-hover:text-indigo-950 transition-colors shadow-sm shrink-0">
+            <Icon size={14} />
+         </div>
+         <span className="text-[10px] font-black text-indigo-950 uppercase tracking-tight truncate">{label}</span>
+      </div>
+      <div className="flex items-center gap-2 shrink-0 ml-2 pl-2 border-l border-slate-200">
+         <div className={cn("w-2 h-2 rounded-full shadow-sm", color)} />
+         <span className="text-[9px] font-black text-[#767690] uppercase tracking-widest">{level}</span>
+      </div>
   </div>
 );
 
 const StatBox = ({ label, value, unit, color }) => (
-  <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-     <span className="text-[9px] font-black text-indigo-900/30 uppercase tracking-widest block mb-1">{label}</span>
+  <div className="bg-slate-50 p-5 rounded-3xl border border-slate-100">
+     <span className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-widest block mb-1">{label}</span>
      <div className="flex items-baseline gap-1">
-        <span className={cn("text-4xl font-black italic tracking-tighter", color)}>{value}</span>
-        <span className="text-[10px] font-black text-indigo-900/20 uppercase">{unit}</span>
+        <span className={cn("text-3xl font-black italic tracking-tighter", color)}>{value}</span>
+        <span className="text-[9px] font-black text-[#767690] uppercase">{unit}</span>
      </div>
   </div>
 );
@@ -320,23 +320,23 @@ const DecisionCard = ({ active, onClick, title, desc, icon: Icon, color, danger 
   <button 
     onClick={onClick}
     className={cn(
-      "w-full p-6 rounded-[28px] border-2 flex items-start gap-5 text-left transition-all",
+      "w-full p-5 rounded-[24px] border-2 flex items-start gap-4 text-left transition-all",
       active 
         ? (danger ? "bg-red-50 border-red-500" : `bg-indigo-50 border-indigo-900 shadow-xl shadow-indigo-900/5`) 
         : "bg-white border-slate-100 hover:border-indigo-900/20"
     )}
   >
     <div className={cn(
-      "w-12 h-12 rounded-2xl shrink-0 flex items-center justify-center transition-all", 
+      "w-10 h-10 rounded-xl shrink-0 flex items-center justify-center transition-all", 
       active 
         ? (danger ? "bg-red-500 text-white" : "bg-indigo-950 text-white") 
-        : "bg-slate-50 text-indigo-900/30"
+        : "bg-slate-50 text-[#767690]"
     )}>
-      <Icon size={24} />
+      <Icon size={20} />
     </div>
-    <div>
-      <h5 className={cn("text-xs font-black uppercase tracking-tight mb-1", active && (danger ? "text-red-500" : "text-indigo-950"))}>{title}</h5>
-      <p className="text-[10px] font-bold text-slate-400 leading-relaxed">{desc}</p>
+    <div className="min-w-0">
+      <h5 className={cn("text-[11px] font-black uppercase tracking-tight mb-0.5 truncate", active && (danger ? "text-red-500" : "text-indigo-950"))}>{title}</h5>
+      <p className="text-[9px] font-bold text-[#767690] leading-tight">{desc}</p>
     </div>
   </button>
 );

@@ -32,18 +32,18 @@ const tests = [
 
 const Solution = () => {
   return (
-    <section id="solution" className="py-24 lg:py-48 bg-white overflow-hidden">
+    <section id="solution" className="py-20 lg:py-48 bg-white overflow-hidden">
       <div className="container-custom">
         
         {/* PART 1: THE THREE TESTS */}
         <ScrollReveal>
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-4 mb-8">
                  <div className="w-12 h-[1px] bg-petri-500"></div>
-                 <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-indigo-900/40">Diagnostic Scope</h4>
+                 <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#5a5a8a]">Diagnostic Scope</h4>
               </div>
-              <h3 className="text-5xl lg:text-7xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-8 uppercase italic">
+              <h3 className="text-4xl md:text-5xl lg:text-7xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-8 uppercase italic">
                 Three Critical <br />
                 <span className="text-petri-500">Screening Panels.</span>
               </h3>
@@ -73,7 +73,7 @@ const Solution = () => {
                 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {test.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-white rounded-full text-[10px] font-black uppercase tracking-widest text-indigo-950/40 border border-indigo-100">
+                    <span key={tag} className="px-3 py-1 bg-white rounded-full text-[10px] font-black uppercase tracking-widest text-[#5a5a8a] border border-indigo-100">
                       {tag}
                     </span>
                   ))}
@@ -95,15 +95,15 @@ const Solution = () => {
 
         {/* PART 2: PRODUCT INTRODUCTION */}
         <ScrollReveal>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center p-12 lg:p-24 bg-indigo-50 rounded-[60px] relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center p-8 md:p-12 lg:p-24 bg-indigo-50 rounded-[60px] relative overflow-hidden">
             <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none"></div>
             
             <div className="relative z-10">
                <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-[1px] bg-petri-500"></div>
-                  <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-indigo-900/40">The Technology</h4>
+                  <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#5a5a8a]">The Technology</h4>
                </div>
-               <h2 className="text-4xl lg:text-6xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-12">
+               <h2 className="text-3xl md:text-4xl lg:text-6xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-12">
                  Powered by <br />
                  <span className="italic text-petri-500 font-medium">Expert Logic.</span>
                </h2>
@@ -145,7 +145,7 @@ const Solution = () => {
                         <Cpu size={20} />
                      </div>
                      <p className="text-[10px] font-black text-indigo-950 uppercase tracking-widest mb-1">AI Agent Active</p>
-                     <p className="text-[9px] text-indigo-900/40 font-bold leading-relaxed">Analyzing biological signals for preliminary read.</p>
+                     <p className="text-[9px] text-[#5a5a8a] font-bold leading-relaxed">Analyzing biological signals for preliminary read.</p>
                   </motion.div>
 
                   {/* Floating Doctor Card */}
@@ -158,7 +158,7 @@ const Solution = () => {
                         <ShieldCheck size={20} />
                      </div>
                      <p className="text-[10px] font-black text-white uppercase tracking-widest mb-1">Human Validation</p>
-                     <p className="text-[9px] text-white/40 font-bold leading-relaxed">Physician validates both the recommendation and the final result.</p>
+                     <p className="text-[9px] text-white/70 font-bold leading-relaxed">Physician validates both the recommendation and the final result.</p>
                   </motion.div>
                </div>
             </div>

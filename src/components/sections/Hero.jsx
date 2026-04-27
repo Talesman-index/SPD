@@ -163,7 +163,7 @@ const Hero = ({ onOpenTrial }) => {
                 {slides[currentSlide].title}
               </motion.h1>
 
-              <motion.p custom={2} variants={textRevealVariants} className="text-white/70 text-[clamp(1.1rem,1.8vw,1.3rem)] leading-relaxed mb-14 max-w-2xl font-medium">
+              <motion.p custom={2} variants={textRevealVariants} className="text-white/75 text-[clamp(1.1rem,1.8vw,1.3rem)] leading-relaxed mb-14 max-w-2xl font-medium">
                 {slides[currentSlide].description}
               </motion.p>
 
@@ -185,10 +185,10 @@ const Hero = ({ onOpenTrial }) => {
                   className="flex items-center gap-4 text-white group"
                   onClick={() => document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' })}
                 >
-                  <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-indigo-950 transition-all duration-500">
+                  <div className="w-14 h-14 rounded-full border border-white/40 flex items-center justify-center group-hover:bg-white group-hover:text-indigo-950 transition-all duration-500">
                     <ArrowRight size={20} />
                   </div>
-                  <span className="text-[11px] font-black uppercase tracking-[0.2em] border-b border-white/20 pb-1">Discover Technology</span>
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] border-b border-white/40 pb-1">Discover Technology</span>
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -196,8 +196,8 @@ const Hero = ({ onOpenTrial }) => {
         </div>
       </div>
 
-      <div className="absolute bottom-16 left-0 w-full z-20">
-        <div className="container-custom flex items-end justify-between">
+      <div className="absolute bottom-8 lg:bottom-16 left-0 w-full z-20">
+        <div className="container-custom flex items-end justify-between flex-wrap gap-6">
           <div className="flex gap-4 py-4">
             {slides.map((_, i) => (
               <button
@@ -210,7 +210,7 @@ const Hero = ({ onOpenTrial }) => {
               >
                 <div className={cn(
                   "h-[2px] transition-all duration-700 rounded-full",
-                  currentSlide === i ? "w-16 bg-petri-400" : "w-8 bg-white/20 group-hover:bg-white/50"
+                  currentSlide === i ? "w-16 bg-petri-400" : "w-8 bg-white/40 group-hover:bg-white/60"
                 )} />
               </button>
             ))}

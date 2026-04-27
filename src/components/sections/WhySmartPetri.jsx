@@ -13,7 +13,7 @@ const RegionCard = ({ number, title, body, index }) => (
     style={{ animationDelay: `${index * 0.5}s` }}
   >
     <div className="flex justify-between items-start mb-12">
-      <span className="text-[14px]  text-[#1a5259] opacity-40">{number}</span>
+      <span className="text-[14px]  text-[#1a5259] opacity-80">{number}</span>
       <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-[#1a5259] group-hover:bg-[#1a5259] group-hover:text-white transition-all transform group-hover:rotate-45">
         <ArrowUpRight size={20} />
       </div>
@@ -21,7 +21,7 @@ const RegionCard = ({ number, title, body, index }) => (
     <h4 className="text-2xl  text-[#1a5259] mb-4 uppercase italic tracking-tighter">
       {title}
     </h4>
-    <p className="text-[#1a5259]/60  leading-relaxed">
+    <p className="text-[#1a5259]/80  leading-relaxed">
       {body}
     </p>
   </motion.div>
@@ -29,7 +29,7 @@ const RegionCard = ({ number, title, body, index }) => (
 
 const GlobalReach = () => {
   return (
-    <section className="py-32 md:py-48 bg-white overflow-hidden relative">
+    <section className="py-20 lg:py-48 bg-white overflow-hidden relative">
       <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none"></div>
       
       {/* Abstract Dots Background (representing a map) */}
@@ -50,17 +50,17 @@ const GlobalReach = () => {
           <path d="M50 50 L950 50 L950 450 L50 450 Z" stroke="#1a5259" strokeWidth="0.5" strokeDasharray="5 5" opacity="0.1" />
         </svg>
       </div>
-
+ 
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center mb-24">
           <div>
             <ScrollReveal>
-              <h2 className="heading-huge text-[#1a5259] mb-10">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-[#1a5259] mb-10 leading-[0.95] tracking-tighter">
                 Diagnostic tools <br />
                 available in many <br />
                 <span className="text-[#e6c28d] italic">trusted regions.</span>
               </h2>
-              <p className="text-xl text-[#1a5259]/60 leading-relaxed max-w-[540px] mb-12 ">
+              <p className="text-xl text-[#1a5259]/80 leading-relaxed max-w-[540px] mb-12 ">
                 Our dedicated provider network ensures compassionate, personalized support 
                 to communities across the globe.
               </p>

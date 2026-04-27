@@ -16,7 +16,7 @@ const Impact = () => {
   ]
 
   return (
-    <section className="relative py-32 md:py-48 bg-white overflow-hidden">
+    <section className="relative py-20 lg:py-48 bg-white overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none"></div>
       
       {/* Floating Avatars with Parallax */}
@@ -44,7 +44,7 @@ const Impact = () => {
           <h2 className="text-4xl md:text-5xl  text-[#1a5259] mb-4 tracking-tighter uppercase italic">
             Where we're headed —
           </h2>
-          <p className="text-[#1a5259]/40  text-sm uppercase tracking-[0.2em] mb-12">
+          <p className="text-[#1a5259]/80  text-sm uppercase tracking-[0.2em] mb-12">
             Targets we are committed to reaching by end of 2026
           </p>
           
@@ -53,7 +53,7 @@ const Impact = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="heading-huge text-[#1a5259] mb-8"
+              className="text-5xl md:text-7xl lg:text-[150px] font-black text-[#1a5259] mb-8 leading-none tracking-tighter"
             >
               $1,250,000+
             </motion.div>
@@ -77,7 +77,7 @@ const Impact = () => {
                   </motion.div>
                 </motion.div>
               </div>
-              <div className="flex justify-between mt-8 text-[11px]  text-[#1a5259]/40 uppercase tracking-[0.2em]">
+              <div className="flex justify-between mt-8 text-[11px]  text-[#1a5259]/80 uppercase tracking-[0.2em]">
                 <span>Fundraising in progress</span>
                 <span>Goal: $450k by end of 2026</span>
               </div>
@@ -91,19 +91,19 @@ const Impact = () => {
             
             <div className="group cursor-default">
               <div className="text-5xl  text-[#1a5259] mb-1 tracking-tighter group-hover:text-[#e6c28d] transition-colors">95%</div>
-              <div className="text-[10px]  text-[#1a5259]/40 uppercase tracking-[0.3em]">Target Accuracy</div>
+              <div className="text-[10px]  text-[#1a5259]/75 uppercase tracking-[0.3em]">Target Accuracy</div>
             </div>
             <div className="group cursor-default">
               <div className="text-5xl  text-[#1a5259] mb-1 tracking-tighter group-hover:text-[#e6c28d] transition-colors">15 min</div>
-              <div className="text-[10px]  text-[#1a5259]/40 uppercase tracking-[0.3em]">Target Result Time</div>
+              <div className="text-[10px]  text-[#1a5259]/75 uppercase tracking-[0.3em]">Target Result Time</div>
             </div>
             <div className="group cursor-default">
               <div className="text-5xl  text-[#1a5259] mb-1 tracking-tighter group-hover:text-[#e6c28d] transition-colors">1,000</div>
-              <div className="text-[10px]  text-[#1a5259]/40 uppercase tracking-[0.3em]">Ambassadors Goal</div>
+              <div className="text-[10px]  text-[#1a5259]/75 uppercase tracking-[0.3em]">Ambassadors Goal</div>
             </div>
             <div className="group cursor-default">
               <div className="text-5xl  text-[#1a5259] mb-1 tracking-tighter group-hover:text-[#e6c28d] transition-colors">500k</div>
-              <div className="text-[10px]  text-[#1a5259]/40 uppercase tracking-[0.3em]">Reports Target</div>
+              <div className="text-[10px]  text-[#1a5259]/75 uppercase tracking-[0.3em]">Reports Target</div>
             </div>
           </div>
         </ScrollReveal>

@@ -32,16 +32,16 @@ const tests = [
 
 const Services = () => {
   return (
-    <section id="tests" className="py-24 lg:py-48 bg-white overflow-hidden">
+    <section id="tests" className="py-20 lg:py-48 bg-white overflow-hidden">
       <div className="container-custom">
         <ScrollReveal>
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-4 mb-8">
                  <div className="w-12 h-[1px] bg-petri-500"></div>
-                 <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-indigo-900/40">Diagnostic Scope</h4>
+                 <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#5a5a8a]">Diagnostic Scope</h4>
               </div>
-              <h2 className="text-5xl lg:text-7xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-8">
                 Three Critical <br />
                 <span className="italic text-petri-500 font-medium">Screening Panels.</span>
               </h2>
@@ -53,7 +53,7 @@ const Services = () => {
             <div className="hidden lg:block">
                <div className="w-32 h-32 rounded-full border border-indigo-100 flex items-center justify-center relative group">
                   <div className="absolute inset-2 border border-indigo-100 rounded-full border-dashed group-hover:rotate-180 transition-transform duration-1000"></div>
-                  <ShieldAlert className="text-indigo-900/20" size={32} />
+                  <ShieldAlert className="text-[#5a5a8a]" size={32} />
                </div>
             </div>
           </div>
@@ -71,7 +71,7 @@ const Services = () => {
                 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {test.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-white rounded-full text-[10px] font-black uppercase tracking-widest text-indigo-950/40 border border-indigo-100">
+                    <span key={tag} className="px-3 py-1 bg-white rounded-full text-[10px] font-black uppercase tracking-widest text-[#5a5a8a] border border-indigo-100">
                       {tag}
                     </span>
                   ))}

@@ -66,11 +66,11 @@ const HowItWorks = () => {
   const progressPercentage = ((activeStep + 1) / steps.length) * 100
 
   return (
-    <section id="how-it-works" className="bg-indigo-950 overflow-hidden h-screen max-h-[1080px] min-h-[750px] flex items-stretch">
+    <section id="how-it-works" className="bg-indigo-950 overflow-hidden min-h-screen lg:h-screen lg:max-h-[1080px] flex items-stretch">
       <div className="flex flex-col lg:flex-row gap-0 w-full items-stretch">
         
         {/* LEFT COLUMN: NAVIGATION & STEPS */}
-        <div className="lg:w-[42%] flex flex-col p-12 lg:p-20 relative overflow-hidden justify-center bg-indigo-950">
+        <div className="w-full lg:w-[42%] flex flex-col p-8 lg:p-20 relative overflow-hidden justify-center bg-indigo-950">
           <div className="absolute inset-0 z-0">
              <img 
                src="/images_projects/medical-abstract-background-petri-dishes-and-glas-2026-01-07-00-40-16-utc.jpg" 
@@ -86,7 +86,7 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, x: 0 }}
               className="mb-8"
             >
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 mb-2">The Journey</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/80 mb-2">The Journey</h4>
               <h2 className="text-2xl lg:text-3xl font-black text-white tracking-tighter">5 Steps to Clarity.</h2>
             </motion.div>
 
@@ -109,7 +109,7 @@ const HowItWorks = () => {
                         "w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 z-10 border",
                         isDone ? "bg-petri-500 border-petri-500 text-white" : 
                         isActive ? "bg-petri-500 border-petri-500 text-white shadow-lg shadow-petri-500/20" : 
-                        "bg-white/5 border-white/10 text-white/20"
+                        "bg-white/5 border-white/10 text-white/75"
                       )}>
                         {isDone ? <Check size={16} strokeWidth={4} /> : <span className="font-bold text-xs">{step.id}</span>}
                       </div>
@@ -121,13 +121,13 @@ const HowItWorks = () => {
                     <div>
                       <h5 className={cn(
                         "text-sm font-black tracking-tight transition-colors duration-500 uppercase",
-                        isActive ? "text-white" : "text-white/40"
+                        isActive ? "text-white" : "text-white/75"
                       )}>
                         {step.title}
                       </h5>
                       <p className={cn(
                         "text-[10px] font-bold uppercase tracking-widest mt-1",
-                        isActive ? "text-petri-500" : "text-white/10"
+                        isActive ? "text-petri-500" : "text-white/70"
                       )}>
                         {step.shortDesc}
                       </p>
@@ -140,8 +140,8 @@ const HowItWorks = () => {
         </div>
 
         {/* RIGHT COLUMN: DETAIL PANEL */}
-        <div className="lg:w-[58%] h-full">
-          <div className="bg-indigo-900 h-full flex flex-col relative overflow-hidden p-12 lg:p-24 justify-center">
+        <div className="w-full lg:w-[58%] min-h-[600px] lg:h-full">
+          <div className="bg-indigo-900 h-full flex flex-col relative overflow-hidden p-8 lg:p-24 justify-center">
             <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none"></div>
             
             <AnimatePresence mode="wait">
@@ -157,8 +157,8 @@ const HowItWorks = () => {
                    <div className="text-[9px] font-black uppercase tracking-[0.4em] text-petri-500">Step {activeStep + 1} of 5</div>
                    <div className="flex-1 h-[1px] bg-white/10"></div>
                 </div>
-
-                <h3 className="text-white text-4xl lg:text-6xl font-black leading-[0.95] tracking-tighter mb-10">
+ 
+                <h3 className="text-white text-3xl lg:text-6xl font-black leading-[0.95] tracking-tighter mb-10">
                   {steps[activeStep].title.split(' ').slice(0, -1).join(' ')} <br />
                   <span className="italic text-petri-500 font-medium">
                     {steps[activeStep].title.split(' ').slice(-1)}
@@ -167,7 +167,7 @@ const HowItWorks = () => {
 
                 <div className="h-1 bg-petri-500 w-12 mb-10" />
 
-                <p className="text-white/70 text-xl lg:text-2xl leading-relaxed mb-12 font-medium">
+                <p className="text-white/75 text-xl lg:text-2xl leading-relaxed mb-12 font-medium">
                   {steps[activeStep].body}
                 </p>
 
@@ -184,10 +184,10 @@ const HowItWorks = () => {
                 </div>
 
                 <div className="mt-auto">
-                  <div className="flex justify-between items-end mb-4">
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Onboarding Progress</span>
-                    <span className="text-sm font-black text-petri-500">{Math.round(progressPercentage)}%</span>
-                  </div>
+                   <div className="flex justify-between items-end mb-4">
+                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/75">Onboarding Progress</span>
+                     <span className="text-sm font-black text-petri-500">{Math.round(progressPercentage)}%</span>
+                   </div>
                   
                   <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-12">
                      <motion.div 

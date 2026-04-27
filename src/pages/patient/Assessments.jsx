@@ -23,27 +23,26 @@ const PatientAssessments = () => {
 
   return (
     <MobileLayout 
-      title="Medical Intake" 
+      title="Clinical Intake" 
       showBack={step > 1 && step < 6}
       rightAction={step < 6 && (
-        <span className="text-[10px] font-black text-indigo-950/20 uppercase tracking-[0.3em]">
+        <span className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">
           Phase {step}/5
         </span>
       )}
     >
-      {/* Progress Bar (Glow Style) */}
+      {/* Progress Bar (Compact Glow) */}
       {step < 6 && (
-        <div className="h-1.5 bg-slate-100 w-full sticky top-0 z-50 overflow-hidden shadow-inner">
+        <div className="h-1 bg-slate-100 w-full sticky top-0 z-50 overflow-hidden">
           <motion.div 
-            className="h-full bg-petri-500 shadow-[0_0_15px_rgba(0,184,176,0.5)]"
+            className="h-full bg-petri-500 shadow-[0_0_10px_rgba(0,184,176,0.5)]"
             initial={{ width: 0 }}
             animate={{ width: `${(step / 5) * 100}%` }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           />
         </div>
       )}
 
-      <div className="pb-40">
+      <div className="pb-32 px-4 md:px-6">
         <AnimatePresence mode="wait">
           {step === 1 && (
             <StepSnapshot 
@@ -80,20 +79,20 @@ const PatientAssessments = () => {
         </AnimatePresence>
       </div>
 
-      {/* Fixed Primary Button (High Contrast) */}
+      {/* Fixed Primary Button - Slimmer */}
       {step < 6 && (
-        <div className="fixed bottom-10 left-5 right-5 z-50">
+        <div className="fixed bottom-6 left-5 right-5 z-50">
           <button 
             onClick={nextStep}
             disabled={step === 2 && symptoms.length === 0}
             className={cn(
-              "w-full h-[72px] rounded-[28px] font-black text-xs uppercase tracking-[0.2em] text-white flex items-center justify-center gap-4 shadow-2xl transition-all duration-500",
+              "w-full h-14 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] text-white flex items-center justify-center gap-3 shadow-2xl transition-all duration-500",
               (step === 2 && symptoms.length === 0) 
                 ? "bg-slate-200 text-slate-400 cursor-not-allowed" 
                 : "bg-indigo-950 active:scale-95 shadow-indigo-900/40"
             )}
           >
-            {step === 5 ? 'Authorize & Sync' : 'Proceed to Next Phase'} <ArrowRight size={20} />
+            {step === 5 ? 'Authorize & Sync' : 'Next Phase'} <ArrowRight size={16} />
           </button>
         </div>
       )}
@@ -104,34 +103,32 @@ const PatientAssessments = () => {
 // --- STEPS ---
 
 const StepSnapshot = ({ data, onChange }) => (
-  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="px-6">
-    <div className="mt-10 mb-12">
-       <h2 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Vital <br />Snapshot.</h2>
-       <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">Enter your current biometric markers for initial AI calibration.</p>
+  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+    <div className="mt-8 mb-8 text-center md:text-left">
+       <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-2">Vital Snapshot.</h2>
+       <p className="text-[10px] font-bold text-[#5a5a8a] uppercase tracking-widest leading-relaxed">Enter current biometric markers.</p>
     </div>
     
-    <div className="space-y-6">
+    <div className="space-y-4">
       {[
-        { id: 'temp', label: 'Body Temperature', unit: '°F', icon: Thermometer }, 
+        { id: 'temp', label: 'Body Temp', unit: '°F', icon: Thermometer }, 
         { id: 'bpm', label: 'Heart Rate', unit: 'BPM', icon: Activity }, 
-        { id: 'o2', label: 'Oxygen Saturation', unit: '%', icon: Wind }
+        { id: 'o2', label: 'Oxygen', unit: '%', icon: Wind }
       ].map(field => (
         <div key={field.id} className="relative group">
-          <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-3 pl-1">{field.label}</label>
+          <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] block mb-2 pl-1">{field.label}</label>
           <div className="relative">
-             <div className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-950 transition-colors">
-                <field.icon size={20} />
+             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#767690]">
+                <field.icon size={16} />
              </div>
              <input 
                type="number" 
                placeholder="--"
                value={data[field.id]} 
                onChange={(e) => onChange(field.id, e.target.value)}
-               className="w-full h-16 pl-14 pr-16 bg-white border border-slate-100 rounded-[24px] outline-none focus:border-indigo-900 focus:ring-4 focus:ring-indigo-900/[0.02] text-lg font-black text-indigo-950 transition-all shadow-sm"
+               className="w-full h-12 pl-12 pr-14 bg-white border border-slate-100 rounded-xl outline-none focus:border-indigo-900 text-base font-black text-indigo-950 shadow-sm"
              />
-             <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-indigo-900/20 uppercase tracking-widest">
-                {field.unit}
-             </div>
+             <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-black text-[#767690] uppercase">{field.unit}</div>
           </div>
         </div>
       ))}
@@ -144,55 +141,47 @@ const StepSymptoms = ({ selected, onToggle, severity, onSeverityChange }) => {
     { id: 'Respiratory', icon: Wind, label: 'Respiratory' },
     { id: 'Digestive', icon: Droplets, label: 'Digestive' },
     { id: 'Fever', icon: Thermometer, label: 'Fever' },
-    { id: 'Pain', icon: AlertCircle, label: 'Chest Pain' },
+    { id: 'Pain', icon: Activity, label: 'Chest Pain' },
     { id: 'Water', icon: Waves, label: 'Water Risk' },
-    { id: 'Neurological', icon: Brain, label: 'Neurological' },
-    { id: 'Other', icon: HelpCircle, label: 'General' }
+    { id: 'Neurological', icon: Brain, label: 'Neurological' }
   ];
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="px-6">
-      <div className="mt-10 mb-10">
-         <h2 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Symptom <br />Registry.</h2>
-         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">Select all indicators currently present.</p>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+      <div className="mt-8 mb-6 text-center md:text-left">
+         <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-2">Symptom Registry.</h2>
+         <p className="text-[10px] font-bold text-[#5a5a8a] uppercase tracking-widest leading-relaxed">Select present indicators.</p>
       </div>
 
-      <div className="flex flex-wrap gap-3 mb-12">
+      <div className="grid grid-cols-2 gap-2 mb-8">
         {categories.map(c => (
           <button
             key={c.id}
             onClick={() => onToggle(c.id)}
             className={cn(
-              "h-14 px-6 rounded-[20px] border-2 text-[13px] font-black uppercase tracking-tight flex items-center gap-3 transition-all duration-500 shadow-sm",
+              "h-12 px-4 rounded-xl border-2 text-[11px] font-black uppercase tracking-tight flex items-center gap-2 transition-all",
               selected.includes(c.id) 
-                ? "bg-indigo-950 border-indigo-950 text-white shadow-xl shadow-indigo-900/20" 
-                : "bg-white border-slate-100 text-slate-400 hover:border-indigo-900/10"
+                ? "bg-indigo-950 border-indigo-950 text-white" 
+                : "bg-white border-slate-100 text-[#5a5a8a]"
             )}
           >
-            <c.icon size={18} className={cn(selected.includes(c.id) ? "text-petri-500" : "text-slate-300")} /> {c.label}
+            <c.icon size={14} className={cn(selected.includes(c.id) ? "text-petri-500" : "text-[#767690]")} /> {c.label}
           </button>
         ))}
       </div>
 
       {selected.length > 0 && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-8 bg-white border border-slate-100 rounded-[40px] shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-10">
-             <Activity className="text-indigo-950" size={64} />
-          </div>
-          <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-8">Clinical Intensity (1–10)</label>
-          <div className="text-center mb-8">
-            <span className="text-6xl font-black text-petri-500 italic tracking-tighter">{severity}</span>
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm relative">
+          <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] block mb-4">Intensity (1–10)</label>
+          <div className="text-center mb-4">
+            <span className="text-4xl font-black text-petri-500 italic tracking-tighter">{severity}</span>
           </div>
           <input 
             type="range" min="1" max="10" 
             value={severity} 
             onChange={(e) => onSeverityChange(parseInt(e.target.value))}
-            className="w-full h-2 bg-slate-100 rounded-full appearance-none cursor-pointer accent-indigo-950"
+            className="w-full h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer accent-indigo-950"
           />
-          <div className="flex justify-between mt-5 text-[9px] font-black text-slate-300 uppercase tracking-widest">
-            <span>Mild Focus</span>
-            <span>Severe Acute</span>
-          </div>
         </motion.div>
       )}
     </motion.div>
@@ -201,39 +190,33 @@ const StepSymptoms = ({ selected, onToggle, severity, onSeverityChange }) => {
 
 const StepDuration = ({ selected, onSelect }) => {
   const options = [
-    { label: 'Immediate', sub: 'Detected within 24h', id: 'Today' },
-    { label: 'Sub-Acute', sub: '2–3 days duration', id: '2–3 days' },
-    { label: 'Prolonged', sub: '1 week or more', id: '1 week' },
-    { label: 'Chronic', sub: 'Multiple weeks', id: '2+ weeks' }
+    { label: 'Immediate', sub: '< 24h', id: 'Today' },
+    { label: 'Sub-Acute', sub: '2–3 days', id: '2–3 days' },
+    { label: 'Prolonged', sub: '1 week+', id: '1 week' },
+    { label: 'Chronic', sub: '2 weeks+', id: '2+ weeks' }
   ];
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="px-6">
-      <div className="mt-10 mb-10">
-         <h2 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Temporal <br />Context.</h2>
-         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">Specify the onset of your current symptoms.</p>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+      <div className="mt-8 mb-8 text-center md:text-left">
+         <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-2">Duration.</h2>
+         <p className="text-[10px] font-bold text-[#5a5a8a] uppercase tracking-widest">When did symptoms begin?</p>
       </div>
       
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 gap-2">
         {options.map(o => (
           <button
             key={o.id}
             onClick={() => onSelect(o.id)}
             className={cn(
-              "w-full p-6 rounded-[32px] flex items-center justify-between text-left transition-all duration-500 border-2",
-              selected === o.id 
-                ? "bg-indigo-50 border-indigo-900 shadow-xl shadow-indigo-900/5" 
-                : "bg-white border-slate-100"
+              "w-full h-16 px-6 rounded-2xl flex items-center justify-between text-left transition-all border-2",
+              selected === o.id ? "bg-indigo-50 border-indigo-900" : "bg-white border-slate-100"
             )}
           >
             <div>
-               <h4 className={cn("text-lg font-black uppercase italic tracking-tighter leading-none mb-1", selected === o.id ? "text-indigo-950" : "text-slate-400")}>{o.label}</h4>
-               <p className="text-[11px] font-bold text-slate-300 uppercase tracking-widest">{o.sub}</p>
+               <h4 className={cn("text-sm font-black uppercase italic tracking-tighter leading-none mb-0.5", selected === o.id ? "text-indigo-950" : "text-[#5a5a8a]")}>{o.label}</h4>
+               <p className="text-[9px] font-bold text-[#767690] uppercase tracking-widest">{o.sub}</p>
             </div>
-            {selected === o.id && (
-              <div className="w-8 h-8 rounded-full bg-indigo-950 text-petri-500 flex items-center justify-center">
-                 <Check size={18} strokeWidth={3} />
-              </div>
-            )}
+            {selected === o.id && <Check size={16} className="text-petri-500" strokeWidth={3} />}
           </button>
         ))}
       </div>
@@ -242,52 +225,31 @@ const StepDuration = ({ selected, onSelect }) => {
 };
 
 const StepAdditional = () => {
-  const [travel, setTravel] = useState(false);
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="px-6">
-      <div className="mt-10 mb-10">
-         <h2 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Environmental <br />Factors.</h2>
-         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">Additional context for epidemiological mapping.</p>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+      <div className="mt-8 mb-6 text-center md:text-left">
+         <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-2">Environmental.</h2>
+         <p className="text-[10px] font-bold text-[#5a5a8a] uppercase tracking-widest">Additional epidemiological context.</p>
       </div>
-
-      <div className="space-y-6">
-        <ToggleRow label="Recent travel exposure" active={travel} onToggle={() => setTravel(!travel)} />
-        {travel && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-            <input 
-              type="text" 
-              placeholder="Primary Location..." 
-              className="w-full h-16 px-6 bg-white border border-slate-100 rounded-[24px] outline-none focus:border-indigo-900 font-black text-[11px] uppercase tracking-widest"
-            />
-          </motion.div>
-        )}
-        <ToggleRow label="Contact with symptomatic person" />
-        <ToggleRow label="Limited purified water access" />
-
-        <div className="pt-6">
-          <label className="text-[10px] font-black text-indigo-900/30 uppercase tracking-[0.3em] block mb-4 pl-1">Clinical Notes</label>
-          <textarea 
-            placeholder="Type any additional context here..." 
-            className="w-full h-40 p-6 bg-white border border-slate-100 rounded-[32px] outline-none focus:border-indigo-900 transition-all resize-none text-sm font-bold text-indigo-950 shadow-inner"
-          />
-        </div>
+      <div className="space-y-3">
+        <ToggleRow label="Recent travel exposure" />
+        <ToggleRow label="Contact with symptomatic" />
+        <textarea placeholder="Clinical notes..." className="w-full h-24 p-4 bg-white border border-slate-100 rounded-2xl outline-none focus:border-indigo-900 resize-none text-[11px] font-bold text-indigo-950 shadow-inner" />
       </div>
     </motion.div>
   );
 };
 
 const StepReview = ({ snapshot, symptoms, severity, duration }) => (
-  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="px-6">
-    <div className="mt-10 mb-10">
-       <h2 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-3">Final <br />Verification.</h2>
-       <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">Review your biometric data before secure encryption.</p>
+  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+    <div className="mt-8 mb-8 text-center md:text-left">
+       <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-2">Review.</h2>
+       <p className="text-[10px] font-bold text-[#5a5a8a] uppercase tracking-widest">Verify before encryption.</p>
     </div>
-
-    <div className="space-y-4">
-      <ReviewCard label="Vital Metrics" value={`${snapshot.temp}°F · ${snapshot.bpm}BPM · ${snapshot.o2}% O2`} icon={Activity} />
-      <ReviewCard label="Primary Indicators" value={symptoms.join(', ')} icon={Wind} />
-      <ReviewCard label="Assessment Scale" value={`${severity}/10 Intensity`} icon={Sparkles} />
-      <ReviewCard label="Temporal Start" value={duration} icon={Clock} />
+    <div className="space-y-2">
+      <ReviewCard label="Metrics" value={`${snapshot.temp}°F · ${snapshot.bpm}BPM`} icon={Activity} />
+      <ReviewCard label="Indicators" value={symptoms.join(', ')} icon={Wind} />
+      <ReviewCard label="Intensity" value={`${severity}/10`} icon={Sparkles} />
     </div>
   </motion.div>
 );
@@ -295,61 +257,36 @@ const StepReview = ({ snapshot, symptoms, severity, duration }) => (
 const StepConfirm = () => {
   const navigate = useNavigate();
   return (
-    <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="px-10 text-center mt-20">
-      <div className="relative inline-block mb-12">
-         <div className="w-32 h-32 bg-petri-50 rounded-[48px] flex items-center justify-center text-petri-500 shadow-2xl shadow-petri-500/10">
-           <ShieldCheck size={64} strokeWidth={1.5} />
-         </div>
-         <div className="absolute -top-4 -right-4 w-12 h-12 bg-indigo-950 rounded-2xl flex items-center justify-center text-white shadow-xl">
-            <Sparkles size={24} />
-         </div>
+    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center mt-12 px-4">
+      <div className="w-20 h-20 bg-petri-50 rounded-[32px] flex items-center justify-center text-petri-500 mx-auto mb-8 shadow-xl">
+        <ShieldCheck size={40} strokeWidth={1.5} />
       </div>
-      
-      <h2 className="text-4xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-6">Assessment <br />Encrypted.</h2>
-      <p className="text-[14px] text-slate-400 font-bold leading-relaxed mb-16">
-        Your diagnostic data has been securely transmitted. A licensed provider will review the rules-engine output within <span className="text-indigo-950 font-black">2–4 hours</span>.
-      </p>
-      
-      <button 
-        onClick={() => navigate('/patient/dashboard')}
-        className="w-full h-[72px] bg-indigo-950 rounded-[28px] font-black text-xs uppercase tracking-[0.2em] text-white shadow-2xl shadow-indigo-900/40"
-      >
-        Return to Control Center
-      </button>
+      <h2 className="text-3xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none mb-4">Encrypted.</h2>
+      <p className="text-[12px] text-[#5a5a8a] font-bold leading-relaxed mb-10">Diagnostic data transmitted. Review within <span className="text-indigo-950 font-black">2–4 hours</span>.</p>
+      <button onClick={() => navigate('/patient/dashboard')} className="w-full h-14 bg-indigo-950 rounded-2xl font-black text-[10px] uppercase tracking-widest text-white shadow-xl">Return to Center</button>
     </motion.div>
   );
 };
 
-// --- SUB-COMPONENTS ---
+// --- HELPERS ---
 
-const ToggleRow = ({ label, active = false, onToggle }) => (
-  <div className="flex items-center justify-between p-6 bg-white border border-slate-100 rounded-[28px] shadow-sm">
-    <span className="text-[14px] font-black text-indigo-950 uppercase italic tracking-tight">{label}</span>
-    <button 
-      onClick={onToggle}
-      className={cn("w-12 h-6 rounded-full relative transition-all duration-500 border border-transparent", active ? "bg-petri-500 shadow-lg shadow-petri-500/20" : "bg-slate-200")}
-    >
-      <div className={cn("absolute top-1 w-4 h-4 bg-white rounded-full transition-all duration-500 shadow-md", active ? "left-7" : "left-1")} />
-    </button>
+const ToggleRow = ({ label, active = false }) => (
+  <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl">
+    <span className="text-[11px] font-black text-indigo-950 uppercase italic">{label}</span>
+    <div className={cn("w-10 h-5 rounded-full relative bg-slate-200")}>
+      <div className="absolute top-1 left-1 w-3 h-3 bg-white rounded-full shadow-sm" />
+    </div>
   </div>
 );
 
 const ReviewCard = ({ label, value, icon: Icon }) => (
-  <div className="bg-white p-7 rounded-[32px] border border-slate-100 shadow-sm flex items-start gap-5 group">
-    <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-indigo-900/30 group-hover:bg-indigo-950 group-hover:text-petri-500 transition-all border border-slate-100 shrink-0">
-      <Icon size={20} />
-    </div>
-    <div className="flex-1 min-w-0">
-      <span className="text-[9px] font-black text-slate-300 uppercase tracking-[0.3em] block mb-1">{label}</span>
-      <span className="text-lg font-black text-indigo-950 italic tracking-tighter leading-none truncate block">{value}</span>
+  <div className="bg-white p-4 rounded-2xl border border-slate-100 flex items-center gap-4">
+    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-[#5a5a8a] shrink-0"><Icon size={16} /></div>
+    <div className="min-w-0">
+      <span className="text-[8px] font-black text-[#767690] uppercase tracking-widest block">{label}</span>
+      <span className="text-sm font-black text-indigo-950 italic truncate block">{value}</span>
     </div>
   </div>
-);
-
-const AlertCircle = ({ size, className }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-  </svg>
 );
 
 export default PatientAssessments;

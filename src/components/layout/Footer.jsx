@@ -16,17 +16,19 @@ const Footer = () => {
         {/* Top: Massive Logo & Socials */}
         <div className="flex flex-col lg:flex-row justify-between items-end mb-24 border-b border-white/5 pb-20">
           <div>
-            <h2 className="text-[100px] md:text-[180px] lg:text-[240px] text-indigo-900 leading-[0.7] tracking-tighter font-black italic">
+          <a href="/">
+            <h2 className="text-[64px] md:text-[180px] lg:text-[240px] text-indigo-900 leading-[0.7] tracking-tighter font-black italic hover:text-white transition-colors duration-700">
               SPD.
             </h2>
-            <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mt-8 pl-2">
+          </a>
+            <p className="text-white/70 text-[10px] font-black uppercase tracking-[0.4em] mt-8 pl-2">
               Smart Point Diagnostics • Health Equity System
             </p>
           </div>
           
           <div className="flex flex-col items-end gap-8 mt-12 lg:mt-0">
             <div className="flex items-center gap-4">
-              <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-black">Connect with us</span>
+              <span className="text-[10px] text-white/70 uppercase tracking-[0.3em] font-black">Connect with us</span>
               <div className="h-[1px] w-12 bg-white/10"></div>
             </div>
             <div className="flex gap-4">
@@ -59,11 +61,11 @@ const Footer = () => {
               <span className="text-petri-400 italic font-medium">Health equity is the mission.</span>
             </h3>
             <div className="space-y-6">
-              <div className="flex items-center gap-4 text-sm text-white/60 font-black uppercase tracking-widest hover:text-petri-400 transition-colors cursor-default">
+              <div className="flex items-center gap-4 text-sm text-white/75 font-black uppercase tracking-widest hover:text-petri-400 transition-colors cursor-default">
                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-petri-400"><Globe size={14} /></div>
                 Robeson County, North Carolina
               </div>
-              <div className="flex items-center gap-4 text-sm text-white/60 font-black uppercase tracking-widest hover:text-petri-400 transition-colors cursor-pointer">
+              <div className="flex items-center gap-4 text-sm text-white/75 font-black uppercase tracking-widest hover:text-petri-400 transition-colors cursor-pointer">
                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-petri-400"><Mail size={14} /></div>
                 hello@spd.health
               </div>
@@ -74,7 +76,7 @@ const Footer = () => {
           <div className="lg:col-span-4 grid grid-cols-2 gap-12">
             <div>
               <h4 className="text-[10px] text-petri-500 font-black uppercase tracking-[0.2em] mb-10">Directory</h4>
-              <ul className="space-y-4 text-[13px] font-black text-white/40 uppercase tracking-tight">
+              <ul className="space-y-4 text-[13px] font-black text-white/70 uppercase tracking-tight">
                 <li><a href="#mission" className="hover:text-white transition-colors flex items-center gap-2 group">Mission <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all" /></a></li>
                 <li><a href="#how-it-works" className="hover:text-white transition-colors flex items-center gap-2 group">Process <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all" /></a></li>
                 <li><a href="#trust" className="hover:text-white transition-colors flex items-center gap-2 group">Trust <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all" /></a></li>
@@ -85,7 +87,7 @@ const Footer = () => {
             </div>
             <div>
               <h4 className="text-[10px] text-petri-500 font-black uppercase tracking-[0.2em] mb-10">Legal</h4>
-              <ul className="space-y-4 text-[13px] font-black text-white/40 uppercase tracking-tight">
+              <ul className="space-y-4 text-[13px] font-black text-white/70 uppercase tracking-tight">
                 <li><a href="#" className="hover:text-white transition-colors">HIPAA Privacy</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Data Sovereignty</a></li>
@@ -98,14 +100,14 @@ const Footer = () => {
           <div className="lg:col-span-3">
             <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 backdrop-blur-sm">
               <h4 className="text-sm text-white font-black mb-4">Newsletter</h4>
-              <p className="text-xs text-white/40 mb-8 leading-relaxed font-bold">
+              <p className="text-xs text-white/70 mb-8 leading-relaxed font-bold">
                 Get the latest breakthroughs in health equity technology.
               </p>
               <div className="relative">
                 <input 
                   type="email" 
                   placeholder="Your email" 
-                  className="w-full h-14 bg-white/10 rounded-2xl px-5 text-white placeholder:text-white/20 outline-none border border-transparent focus:border-petri-500 transition-all font-medium"
+                  className="w-full h-14 bg-white/10 rounded-2xl px-5 text-white placeholder:text-white/60 outline-none border border-transparent focus:border-petri-500 transition-all font-medium"
                 />
                 <button className="absolute right-2 top-2 w-10 h-10 bg-petri-500 text-white rounded-xl flex items-center justify-center hover:bg-white hover:text-indigo-950 transition-all shadow-lg">
                   <ArrowUpRight size={20} />
@@ -117,7 +119,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-[10px] text-white/20 uppercase tracking-[0.4em] font-black">
+          <div className="text-[10px] text-white/70 uppercase tracking-[0.4em] font-black">
             © 2026 Smart Point Diagnostics — Built for communities
           </div>
 
@@ -129,7 +131,7 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-            <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Trusted by 2,400+ Families</span>
+            <span className="text-[10px] text-white/70 font-bold uppercase tracking-widest">Trusted by 2,400+ Families</span>
           </div>
         </div>
       </div>

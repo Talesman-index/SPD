@@ -48,7 +48,7 @@ const PatientHistory = () => {
           <div className="flex items-center justify-between">
             <button 
               onClick={() => navigate(-1)}
-              className="group flex items-center gap-3 text-[11px] font-black text-indigo-950/40 hover:text-indigo-950 uppercase tracking-[0.2em] transition-all"
+              className="group flex items-center gap-3 text-[11px] font-black text-[#5a5a8a] hover:text-indigo-950 uppercase tracking-[0.2em] transition-all"
             >
               <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center group-hover:border-indigo-950 transition-colors">
                 <ArrowLeft size={14} />
@@ -56,7 +56,7 @@ const PatientHistory = () => {
               Back to Patient Directory
             </button>
             <div className="flex items-center gap-4">
-               <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Last Synced: 2m ago</span>
+               <span className="text-[10px] font-black text-[#767690] uppercase tracking-widest">Last Synced: 2m ago</span>
                <div className="w-2 h-2 rounded-full bg-petri-500 animate-pulse" />
             </div>
           </div>
@@ -99,12 +99,12 @@ const PatientHistory = () => {
                         <ChevronRight size={24} />
                       </button>
                    </div>
-                   <div>
-                      <h4 className="text-[10px] font-black text-white/60 uppercase tracking-[0.4em] mb-4">Risk Coefficient</h4>
-                      <div className="flex items-baseline gap-3">
-                        <span className="text-6xl font-black italic tracking-tighter text-petri-500">7.2</span>
-                        <span className="text-xl font-black text-white/10 uppercase tracking-widest">/ 10</span>
-                      </div>
+                    <div>
+                       <h4 className="text-[10px] font-black text-white/75 uppercase tracking-[0.4em] mb-4">Risk Coefficient</h4>
+                       <div className="flex items-baseline gap-3">
+                         <span className="text-6xl font-black italic tracking-tighter text-petri-500">7.2</span>
+                         <span className="text-xl font-black text-white/70 uppercase tracking-widest">/ 10</span>
+                       </div>
                    </div>
                 </div>
              </div>
@@ -136,10 +136,10 @@ const PatientHistory = () => {
                         <div className={cn("w-16 h-16 rounded-[20px] flex items-center justify-center border", item.bg, item.color, item.border)}>
                           <item.icon size={28} />
                         </div>
-                        <div>
-                          <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] mb-1">{item.date}</p>
-                          <h4 className="text-xl font-black text-indigo-950 uppercase italic tracking-tighter">{item.event}</h4>
-                        </div>
+                         <div>
+                           <p className="text-[10px] font-black text-[#767690] uppercase tracking-[0.2em] mb-1">{item.date}</p>
+                           <h4 className="text-xl font-black text-indigo-950 uppercase italic tracking-tighter">{item.event}</h4>
+                         </div>
                       </div>
                       <div className="flex items-center gap-6">
                         <span className={cn("px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border", item.bg, item.color, item.border)}>
@@ -158,13 +158,13 @@ const PatientHistory = () => {
             {/* Side Analytics */}
             <div className="space-y-8">
               <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-sm">
-                <h3 className="text-[11px] font-black text-indigo-950/30 uppercase tracking-[0.4em] mb-10">Active Prescriptions</h3>
+                <h3 className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-[0.4em] mb-10">Active Prescriptions</h3>
                 <div className="space-y-4">
                   <MedicationItem label="Amoxicillin" dosage="500mg · 2x/day" />
                   <MedicationItem label="Vitamin D3" dosage="2000IU · 1x/day" />
                   <MedicationItem label="Albuterol" dosage="As needed (Inhaler)" />
                 </div>
-                <button className="w-full h-14 mt-10 rounded-2xl border border-dashed border-slate-200 text-[10px] font-black text-slate-300 uppercase tracking-widest hover:border-indigo-950 hover:text-indigo-950 transition-all">
+                <button className="w-full h-14 mt-10 rounded-2xl border border-dashed border-slate-200 text-[10px] font-black text-[#767690] uppercase tracking-widest hover:border-indigo-950 hover:text-indigo-950 transition-all">
                    + Add Medication
                 </button>
               </div>
@@ -190,7 +190,7 @@ const PatientHistory = () => {
 
 const ProfileInfo = ({ label, value, icon: Icon }) => (
   <div>
-    <span className="text-[9px] font-black text-slate-300 uppercase tracking-[0.3em] block mb-1">{label}</span>
+    <span className="text-[9px] font-black text-[#767690] uppercase tracking-[0.3em] block mb-1">{label}</span>
     <div className="flex items-center gap-2">
        {Icon && <Icon size={12} className="text-petri-500" />}
        <span className="text-[13px] font-black text-indigo-950 uppercase italic tracking-tight truncate block">{value}</span>
@@ -205,7 +205,7 @@ const MedicationItem = ({ label, dosage }) => (
     </div>
     <div>
        <h5 className="text-[12px] font-black text-indigo-950 uppercase tracking-tight italic leading-none mb-1">{label}</h5>
-       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{dosage}</p>
+       <p className="text-[10px] font-bold text-[#5a5a8a] uppercase tracking-widest">{dosage}</p>
     </div>
   </div>
 );

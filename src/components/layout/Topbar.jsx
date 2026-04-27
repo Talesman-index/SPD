@@ -16,7 +16,7 @@ const Topbar = ({ title, status = 'none' }) => {
   };
 
   const statusConfig = {
-    none: { label: 'Operational', color: 'bg-slate-50 text-slate-400 border-slate-100' },
+    none: { label: 'Operational', color: 'bg-slate-50 text-[#5a5a8a] border-slate-100' },
     expert: { label: 'Expert Mode Active', color: 'bg-indigo-50 text-indigo-900 border-indigo-100', icon: ShieldCheck },
     pending: { label: 'Review Required', color: 'bg-amber-50 text-amber-500 border-amber-100', icon: Activity },
     ready: { label: 'Analysis Complete', color: 'bg-petri-50 text-petri-500 border-petri-100', icon: Sparkles }
@@ -33,11 +33,11 @@ const Topbar = ({ title, status = 'none' }) => {
       <div className="flex items-center gap-4 lg:gap-10">
         {/* Search */}
         <div className="hidden md:flex items-center gap-4 bg-slate-50 px-5 py-2.5 rounded-full border border-transparent focus-within:bg-white focus-within:border-indigo-900/10 focus-within:ring-4 focus-within:ring-indigo-900/[0.02] transition-all w-[280px] group">
-          <Search size={16} className="text-slate-300 group-focus-within:text-indigo-900 transition-colors" />
+          <Search size={16} className="text-[#5a5a8a] group-focus-within:text-indigo-900 transition-colors" />
           <input 
             type="text" 
             placeholder="Universal Search..." 
-            className="bg-transparent border-none outline-none text-[11px] font-black uppercase tracking-widest w-full placeholder:text-slate-300"
+            className="bg-transparent border-none outline-none text-[11px] font-black uppercase tracking-widest w-full placeholder:text-[#5a5a8a]"
           />
         </div>
 
@@ -52,7 +52,7 @@ const Topbar = ({ title, status = 'none' }) => {
         </div>
 
         {/* Notification */}
-        <button className="relative p-2.5 bg-slate-50 text-slate-400 hover:text-indigo-950 rounded-xl border border-transparent hover:border-slate-100 transition-all group">
+        <button className="relative p-2.5 bg-slate-50 text-[#5a5a8a] hover:text-indigo-950 rounded-xl border border-transparent hover:border-slate-100 transition-all group">
           <Bell size={20} />
           <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white group-hover:scale-125 transition-transform" />
         </button>
@@ -65,7 +65,7 @@ const Topbar = ({ title, status = 'none' }) => {
           >
             <div className="flex flex-col items-end hidden sm:flex">
                <span className="text-[11px] font-black text-indigo-950 uppercase italic tracking-tight">John Doe</span>
-               <span className="text-[9px] font-bold text-slate-300 uppercase tracking-widest">Medical ID: 94-X</span>
+               <span className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest">Medical ID: 94-X</span>
             </div>
             <div className="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-100 p-0.5 group-hover:border-petri-500 transition-colors duration-500">
               <img 
@@ -90,7 +90,7 @@ const Topbar = ({ title, status = 'none' }) => {
                 >
                   <div className="p-6 border-b border-slate-50 bg-slate-50/50">
                     <p className="text-[11px] font-black text-indigo-950 uppercase tracking-tight">John Doe</p>
-                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">john.doe@expert.spd</p>
+                    <p className="text-[9px] text-[#5a5a8a] font-bold uppercase tracking-widest mt-1">john.doe@expert.spd</p>
                   </div>
                   <div className="p-3">
                     <DropdownItem icon={User} label="Profile Settings" onClick={() => { setShowProfile(false); navigate('/doctor/settings'); }} />
@@ -113,7 +113,7 @@ const DropdownItem = ({ icon: Icon, label, onClick, color = "text-indigo-950" })
     onClick={onClick}
     className="w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-slate-50 transition-all group"
   >
-    <Icon size={18} className={cn(color, "opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all")} />
+    <Icon size={18} className={cn(color, "opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all")} />
     <span className={cn("text-[11px] font-black uppercase tracking-tight", color)}>{label}</span>
   </button>
 );
