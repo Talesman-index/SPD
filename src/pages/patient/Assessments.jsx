@@ -73,15 +73,22 @@ const PatientAssessments = () => {
   const totalSteps = 8;
 
   const nextStep = () => {
-    if (step === 7) {
-      setStep(8);
-      setTimeout(() => setStep(9), 8000);
-    } else if (step < 8) {
+    if (step < 8) {
       setStep(step + 1);
     }
   };
 
-  const prevStep = () => step > 1 && step < 8 && setStep(step - 1);
+  // Automatic transition for syncing step
+  React.useEffect(() => {
+    if (step === 7) {
+      const timer = setTimeout(() => {
+        setStep(8);
+      }, 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [step]);
+
+  const prevStep = () => step > 1 && step < 7 && setStep(step - 1);
 
   const getRecommendation = () => {
     if (complaint === 'water') return TEST_TYPES.WATER;
@@ -94,7 +101,7 @@ const PatientAssessments = () => {
   return (
     <MobileLayout 
       title="Intake" 
-      showBack={step > 1 && step < 8}
+      showBack={step > 1 && step < 7}
       rightAction={step <= 7 && (
         <span className="text-[10px] font-black text-indigo-950/40 uppercase tracking-[0.2em]">
           Step {Math.min(step, 7)}/{totalSteps-1}
@@ -127,9 +134,9 @@ const PatientAssessments = () => {
       </div>
 
       {/* Navigation Buttons - More Compact */}
-      {step < 8 && (
+      {step < 7 && (
         <div className="fixed bottom-[100px] left-5 right-5 z-50 flex items-center gap-3">
-          {step > 1 && step < 7 && (
+          {step > 1 && (
             <button 
               onClick={prevStep}
               className="w-[48px] h-[48px] rounded-2xl bg-white border border-indigo-50 text-indigo-950 flex items-center justify-center hover:bg-indigo-50 transition-all active:scale-95 shadow-sm shrink-0"
@@ -151,8 +158,8 @@ const PatientAssessments = () => {
           >
             {(emergency.breathing || emergency.chestPain || emergency.confusion) 
               ? 'Urgent Guidance' 
-              : step === 6 ? 'Confirm & Start' : step === 7 ? 'Processing...' : 'Continue'} 
-            {step < 7 && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
+              : step === 6 ? 'Confirm & Start' : 'Continue'} 
+            {step < 6 && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
           </button>
         </div>
       )}
@@ -446,9 +453,13 @@ const StepSyncing = () => (
        <SyncRequirement icon={Globe} active />
     </div>
 
-    <div className="w-full max-w-[160px] h-1.5 bg-indigo-50 rounded-full overflow-hidden shadow-inner">
+    <div className="w-full max-w-[160px] h-1.5 bg-indigo-50 rounded-full overflow-hidden shadow-inner mb-6">
        <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 8, ease: "easeInOut" }} className="h-full bg-indigo-950" />
     </div>
+
+    <p className="text-[9px] font-black text-indigo-950/30 uppercase tracking-[0.2em] max-w-[240px] leading-relaxed">
+      Please ensure <span className="text-indigo-950">Bluetooth</span> & <span className="text-indigo-950">WiFi</span> are active. Keep your Smart Petri Dish powered on for sync.
+    </p>
   </motion.div>
 );
 

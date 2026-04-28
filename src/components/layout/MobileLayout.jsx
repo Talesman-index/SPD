@@ -13,7 +13,6 @@ const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
 
   const navItems = [
     { label: 'Home', icon: LayoutDashboard, path: '/patient/dashboard' },
-    { label: 'IA', icon: Sparkles, path: '/patient/assessments' },
     { label: 'History', icon: History, path: '/patient/history' },
     { label: 'Tests', icon: TestTube, path: '/patient/tests' },
     { label: 'Portal', icon: User, path: '/patient/settings' },
