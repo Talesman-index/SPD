@@ -86,8 +86,8 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, x: 0 }}
               className="mb-8"
             >
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/80 mb-2">The Journey</h4>
-              <h2 className="text-2xl lg:text-3xl font-black text-white tracking-tighter">5 Steps to Clarity.</h2>
+              <h4 className="text-label font-medium uppercase tracking-label text-white/80 mb-2">The Journey</h4>
+              <h2 className="text-2xl lg:text-3xl font-bold text-white tracking-tight">5 Steps to Clarity.</h2>
             </motion.div>
 
             <div className="flex-grow overflow-y-auto pr-4 scrollbar-hide space-y-2">
@@ -106,12 +106,12 @@ const HowItWorks = () => {
                   >
                     <div className="flex flex-col items-center flex-shrink-0 relative">
                       <div className={cn(
-                        "w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 z-10 border",
+                        "w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 z-10 border",
                         isDone ? "bg-petri-500 border-petri-500 text-white" : 
                         isActive ? "bg-petri-500 border-petri-500 text-white shadow-lg shadow-petri-500/20" : 
                         "bg-white/5 border-white/10 text-white/75"
                       )}>
-                        {isDone ? <Check size={16} strokeWidth={4} /> : <span className="font-bold text-xs">{step.id}</span>}
+                        {isDone ? <Check size={16} strokeWidth={4} /> : <span className="text-label font-medium">{step.id}</span>}
                       </div>
                       {i < steps.length - 1 && (
                         <div className="absolute top-10 w-[1px] h-8 border-l border-white/10 mt-2"></div>
@@ -120,13 +120,13 @@ const HowItWorks = () => {
 
                     <div>
                       <h5 className={cn(
-                        "text-sm font-black tracking-tight transition-colors duration-500 uppercase",
+                        "text-label font-medium tracking-label transition-colors duration-500 uppercase",
                         isActive ? "text-white" : "text-white/75"
                       )}>
                         {step.title}
                       </h5>
                       <p className={cn(
-                        "text-[10px] font-bold uppercase tracking-widest mt-1",
+                        "text-label font-medium uppercase tracking-label mt-1",
                         isActive ? "text-petri-500" : "text-white/70"
                       )}>
                         {step.shortDesc}
@@ -153,12 +153,11 @@ const HowItWorks = () => {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="flex-grow flex flex-col justify-center max-w-2xl mx-auto w-full py-6"
               >
-                <div className="flex items-center gap-4 mb-4">
-                   <div className="text-[9px] font-black uppercase tracking-[0.4em] text-petri-500">Step {activeStep + 1} of 5</div>
-                   <div className="flex-1 h-[1px] bg-white/10"></div>
-                </div>
- 
-                <h3 className="text-white text-3xl lg:text-6xl font-black leading-[0.95] tracking-tighter mb-10">
+                 <div className="flex items-center gap-4 mb-4">
+                    <div className="text-label font-medium uppercase tracking-label text-petri-500">Step {activeStep + 1} of 5</div>
+                    <div className="flex-1 h-[1px] bg-white/10"></div>
+                 </div>
+                 <h3 className="text-white text-3xl lg:text-6xl font-bold leading-[0.95] tracking-tight mb-10">
                   {steps[activeStep].title.split(' ').slice(0, -1).join(' ')} <br />
                   <span className="italic text-petri-500 font-medium">
                     {steps[activeStep].title.split(' ').slice(-1)}
@@ -167,27 +166,27 @@ const HowItWorks = () => {
 
                 <div className="h-1 bg-petri-500 w-12 mb-10" />
 
-                <p className="text-white/75 text-xl lg:text-2xl leading-relaxed mb-12 font-medium">
+                 <p className="text-white/75 text-body lg:text-xl leading-relaxed mb-12 font-normal tracking-none">
                   {steps[activeStep].body}
                 </p>
 
                 <div className="bg-white/5 border border-white/10 rounded-[40px] p-10 mb-12 relative group overflow-hidden">
-                  <div className="flex items-center gap-4 mb-6">
-                     <div className="w-12 h-12 rounded-2xl bg-indigo-950 flex items-center justify-center">
-                        {steps[activeStep].icon}
-                     </div>
-                     <div className="text-[10px] font-black uppercase tracking-[0.3em] text-petri-500">Step Requirements</div>
-                  </div>
-                  <p className="text-white/80 text-lg font-bold leading-relaxed relative z-10 tracking-tight">
+                   <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 rounded-2xl bg-indigo-950 flex items-center justify-center">
+                         {steps[activeStep].icon}
+                      </div>
+                      <div className="text-label font-medium uppercase tracking-label text-petri-500">Step Requirements</div>
+                   </div>
+                   <p className="text-body text-white/80 leading-relaxed relative z-10 tracking-none">
                     {steps[activeStep].insight}
                   </p>
                 </div>
 
                 <div className="mt-auto">
-                   <div className="flex justify-between items-end mb-4">
-                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/75">Onboarding Progress</span>
-                     <span className="text-sm font-black text-petri-500">{Math.round(progressPercentage)}%</span>
-                   </div>
+                    <div className="flex justify-between items-end mb-4">
+                      <span className="text-label font-medium uppercase tracking-label text-white/75">Onboarding Progress</span>
+                      <span className="text-label font-medium text-petri-500">{Math.round(progressPercentage)}%</span>
+                    </div>
                   
                   <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-12">
                      <motion.div 
@@ -197,17 +196,17 @@ const HowItWorks = () => {
                      />
                   </div>
 
-                  <div className="flex gap-4">
+                   <div className="flex gap-4">
                     <button 
                       onClick={handlePrev}
                       disabled={activeStep === 0}
-                      className="flex-1 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-indigo-950 transition-all disabled:opacity-10 gap-3 font-black text-xs uppercase tracking-widest"
+                      className="flex-1 h-[44px] rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-indigo-950 transition-all disabled:opacity-10 gap-3 text-button font-semibold uppercase tracking-button"
                     >
                       <ArrowLeft size={16} /> Previous
                     </button>
                     <button 
                       onClick={handleNext}
-                      className="flex-1 h-16 rounded-2xl bg-petri-500 text-white flex items-center justify-center hover:bg-white hover:text-indigo-950 transition-all gap-4 font-black text-xs uppercase tracking-widest shadow-2xl shadow-petri-500/20 group"
+                      className="flex-1 h-[44px] rounded-xl bg-petri-500 text-white flex items-center justify-center hover:bg-white hover:text-indigo-950 transition-all gap-4 text-button font-semibold uppercase tracking-button shadow-2xl shadow-petri-500/20 group"
                     >
                       {activeStep === steps.length - 1 ? "Start Journey" : "Next Step"} 
                       <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

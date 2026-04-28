@@ -40,14 +40,14 @@ const Solution = () => {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-4 mb-8">
-                 <div className="w-12 h-[1px] bg-petri-500"></div>
-                 <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#5a5a8a]">Diagnostic Scope</h4>
+                  <div className="w-12 h-[1px] bg-petri-500"></div>
+                  <h4 className="text-label font-bold uppercase tracking-widest text-[#5a5a8a]">Diagnostic Scope</h4>
               </div>
-              <h3 className="text-4xl md:text-5xl lg:text-7xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-8 uppercase italic">
+              <h3 className="text-4xl md:text-5xl lg:text-7xl font-bold text-indigo-950 tracking-tight leading-tight mb-8 uppercase ">
                 Three Critical <br />
-                <span className="text-petri-500">Screening Panels.</span>
+                <span className="text-petri-500 font-bold">Screening Panels.</span>
               </h3>
-              <p className="text-xl text-text-secondary font-medium leading-relaxed">
+              <p className="text-body text-text-secondary leading-relaxed tracking-normal">
                 Our system supports early screening and risk detection. All results are reviewed and validated by healthcare professionals.
               </p>
             </div>
@@ -69,24 +69,24 @@ const Solution = () => {
                   {test.icon}
                 </div>
 
-                <h3 className="text-2xl font-black text-indigo-950 tracking-tight mb-6">{test.title}</h3>
+                <h3 className="text-2xl font-bold text-indigo-950 tracking-tight mb-6">{test.title}</h3>
                 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {test.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-white rounded-full text-[10px] font-black uppercase tracking-widest text-[#5a5a8a] border border-indigo-100">
+                    <span key={tag} className="px-3 py-1 bg-white rounded-full text-label font-bold uppercase tracking-widest text-[#5a5a8a] border border-indigo-100">
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <p className="text-text-secondary leading-relaxed font-bold mb-10 flex-grow text-sm">
+                <p className="text-body text-text-secondary leading-relaxed mb-10 flex-grow tracking-normal">
                   {test.description}
                 </p>
 
                 <div className="pt-8 border-t border-indigo-100 mt-auto">
-                   <button className="flex items-center gap-3 text-indigo-900 font-black text-xs uppercase tracking-widest hover:text-petri-500 transition-colors">
-                     View Methodology <ArrowUpRight size={16} />
-                   </button>
+                    <button className="flex items-center gap-3 text-indigo-900 text-button font-semibold uppercase tracking-normal hover:text-petri-500 transition-colors">
+                      View Methodology <ArrowUpRight size={16} />
+                    </button>
                 </div>
               </div>
             </ScrollReveal>
@@ -101,26 +101,26 @@ const Solution = () => {
             <div className="relative z-10">
                <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-[1px] bg-petri-500"></div>
-                  <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#5a5a8a]">The Technology</h4>
+                   <h4 className="text-label font-bold uppercase tracking-widest text-[#5a5a8a]">The Technology</h4>
                </div>
-               <h2 className="text-3xl md:text-4xl lg:text-6xl font-black text-indigo-950 tracking-tighter leading-[0.9] mb-12">
-                 Powered by <br />
-                 <span className="italic text-petri-500 font-medium">Expert Logic.</span>
-               </h2>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-indigo-950 tracking-tight leading-tight mb-12">
+                  Powered by <br />
+                  <span className=" text-petri-500 font-bold">Expert Logic.</span>
+                </h2>
                <div className="space-y-12">
-                  <div>
-                    <h5 className="text-xs font-black text-indigo-950 uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
+                   <div>
+                    <h5 className="text-label font-bold text-indigo-950 uppercase tracking-widest mb-4 flex items-center gap-3">
                       <ClipboardCheck size={16} className="text-petri-500" /> What is it?
                     </h5>
-                    <p className="text-lg text-text-secondary font-bold leading-relaxed">
+                    <p className="text-body text-text-secondary leading-relaxed tracking-normal">
                       Smart Petri Dish is a guided health screening system. The user describes their symptoms in an app. A medical rules engine recommends which test to perform using a portable device with three compartments (water, sputum, biological panel).
                     </p>
                   </div>
-                  <div>
-                    <h5 className="text-xs font-black text-indigo-950 uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
+                   <div>
+                    <h5 className="text-label font-bold text-indigo-950 uppercase tracking-widest mb-4 flex items-center gap-3">
                       <Microscope size={16} className="text-petri-500" /> How does it work?
                     </h5>
-                    <p className="text-lg text-text-secondary font-bold leading-relaxed">
+                    <p className="text-body text-text-secondary leading-relaxed tracking-normal">
                       A doctor validates the recommendation and sends instructions to the patient, who tests their sample at home. Results are analyzed by AI, validated by the doctor, and delivered in the app along with next steps.
                     </p>
                   </div>
@@ -139,26 +139,26 @@ const Solution = () => {
                   <motion.div 
                     initial={{ x: 30, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
-                    className="absolute top-12 right-12 bg-white p-6 rounded-[32px] shadow-2xl shadow-indigo-900/10 border border-indigo-50 max-w-[220px]"
+                    className="absolute top-8 right-8 bg-white p-6 rounded-[32px] shadow-2xl shadow-indigo-900/10 border border-indigo-50 max-w-[220px]"
                   >
                      <div className="w-10 h-10 rounded-xl bg-petri-500 flex items-center justify-center text-white mb-4">
                         <Cpu size={20} />
                      </div>
-                     <p className="text-[10px] font-black text-indigo-950 uppercase tracking-widest mb-1">AI Agent Active</p>
-                     <p className="text-[9px] text-[#5a5a8a] font-bold leading-relaxed">Analyzing biological signals for preliminary read.</p>
+                      <p className="text-label font-bold text-indigo-950 uppercase tracking-widest mb-1">AI Agent Active</p>
+                      <p className="text-[10px] text-[#5a5a8a] font-bold leading-relaxed tracking-normal">Analyzing biological signals for preliminary read.</p>
                   </motion.div>
 
                   {/* Floating Doctor Card */}
                   <motion.div 
                     initial={{ x: -30, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
-                    className="absolute bottom-12 left-12 bg-indigo-900 p-6 rounded-[32px] shadow-2xl shadow-indigo-900/40 max-w-[220px]"
+                    className="absolute bottom-8 left-8 bg-indigo-900 p-6 rounded-[32px] shadow-2xl shadow-indigo-900/40 max-w-[220px]"
                   >
                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-petri-500 mb-4">
                         <ShieldCheck size={20} />
                      </div>
-                     <p className="text-[10px] font-black text-white uppercase tracking-widest mb-1">Human Validation</p>
-                     <p className="text-[9px] text-white/70 font-bold leading-relaxed">Physician validates both the recommendation and the final result.</p>
+                      <p className="text-label font-bold text-white uppercase tracking-widest mb-1">Human Validation</p>
+                      <p className="text-[10px] text-white/70 font-bold leading-relaxed tracking-normal">Physician validates both the recommendation and the final result.</p>
                   </motion.div>
                </div>
             </div>

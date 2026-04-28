@@ -1,62 +1,74 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ChevronRight, ChevronLeft, Save, CheckCircle, 
-  User, Phone, Ruler, History, ShieldCheck, 
-  ArrowRight, MapPin, Sparkles, Activity, Lock,
-  Thermometer, Wind, Globe, Shield, Calendar, Scale,
-  AlertCircle, Pill
+  ChevronRight, 
+  ChevronLeft, 
+  User, 
+  Camera, 
+  ShieldCheck, 
+  FileCheck, 
+  ArrowRight,
+  Shield,
+  Lock,
+  Calendar,
+  Globe,
+  Phone,
+  MapPin,
+  Scale,
+  Ruler,
+  CheckCircle
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '../../lib/utils';
+import Button from '../../components/ui/Button';
+
+const steps = [
+  { id: 1, title: "Clinical Consent", subtitle: "Patient Verification", icon: ShieldCheck },
+  { id: 2, title: "Profile Setup", subtitle: "Demographics", icon: User },
+  { id: 3, title: "Health Vitals", subtitle: "Current Status", icon: Scale },
+];
 
 const Onboarding = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
 
-  const nextStep = () => step < 3 && setStep(step + 1);
-  const prevStep = () => step > 1 && setStep(step - 1);
+  const nextStep = () => setStep(prev => Math.min(prev + 1, 3));
+  const prevStep = () => setStep(prev => Math.max(prev - 1, 1));
 
-  const steps = [
-    { id: 1, title: 'Consent & Privacy', subtitle: 'Step 02: Legal', icon: ShieldCheck },
-    { id: 2, title: 'Basic Information', subtitle: 'Step 03: Profile', icon: User },
-    { id: 3, title: 'Health Snapshot', subtitle: 'Step 04: Clinical', icon: Activity },
-  ];
+  const progress = (step / 3) * 100;
 
   return (
-    <div className="min-h-screen h-screen bg-slate-50 font-manrope selection:bg-petri-500/10 flex flex-col overflow-hidden">
-      {/* Navbar Minimal */}
-      <nav className="bg-white/80 backdrop-blur-xl shrink-0 px-6 py-4 border-b border-slate-100 flex items-center justify-between z-50">
-        <a href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-xl bg-indigo-950 text-white flex items-center justify-center text-sm font-black italic shadow-lg">S</div>
-          <div className="text-xl font-black text-indigo-950 tracking-tighter italic">SPD<span className="text-petri-500">.</span></div>
-        </a>
-        <div className="flex items-center gap-6">
-          <div className="flex flex-col items-end">
-             <span className="text-[8px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Progress</span>
-             <span className="text-[10px] font-black text-petri-500 uppercase tracking-widest italic">0{step} / 03</span>
-          </div>
-          <button onClick={() => navigate('/patient/dashboard')} className="h-8 px-4 rounded-lg border border-slate-100 text-[9px] font-black text-indigo-950 uppercase tracking-widest">
-             Exit
-          </button>
+    <div className="min-h-screen bg-bg-secondary flex flex-col items-center justify-center p-4 py-12">
+      {/* Container */}
+      <div className="w-full max-w-4xl relative">
+        
+        {/* Progress Header */}
+        <div className="mb-12 flex items-center justify-between px-2">
+           <div className="flex gap-2">
+             {[1, 2, 3].map(i => (
+               <div key={i} className={cn("w-12 h-1.5 rounded-full transition-all duration-500", i <= step ? "bg-indigo-950" : "bg-slate-200")} />
+             ))}
+           </div>
+           <span className="text-label font-bold text-indigo-950/40 uppercase tracking-widest">Step {step} of 3</span>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-slate-100">
-          <motion.div 
-            className="h-full bg-petri-500 shadow-[0_0_10px_rgba(0,184,176,0.6)]"
-            initial={{ width: 0 }} animate={{ width: `${(step / 3) * 100}%` }}
-          />
-        </div>
-      </nav>
 
-      <main className="flex-1 flex items-center justify-center p-4 relative overflow-hidden">
-        <div className="w-full max-w-[800px] relative z-10">
+        <motion.div 
+          className="bg-white rounded-[48px] border border-slate-100 shadow-2xl shadow-indigo-900/5 p-8 md:p-14 overflow-hidden relative"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="absolute top-0 right-0 p-12 opacity-[0.03] pointer-events-none text-[12rem] font-black  tracking-tighter select-none">
+            SPD
+          </div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-indigo-900/5 border border-slate-100 overflow-hidden"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5, ease: "anticipate" }}
             >
               <div className="flex flex-col lg:flex-row gap-12">
                  {/* Left Content */}
@@ -66,8 +78,8 @@ const Onboarding = () => {
                         {React.createElement(steps[step-1].icon, { size: 24 })}
                       </div>
                       <div>
-                         <span className="text-[9px] font-black text-petri-500 uppercase tracking-[0.4em] block mb-1">{steps[step-1].subtitle}</span>
-                         <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic leading-none">{steps[step-1].title}</h2>
+                         <span className="text-label text-petri-500 uppercase font-bold tracking-widest block mb-1">{steps[step-1].subtitle}</span>
+                         <h2 className="text-3xl text-indigo-950 font-bold tracking-tight mb-2">{steps[step-1].title}</h2>
                       </div>
                     </div>
 
@@ -82,8 +94,8 @@ const Onboarding = () => {
                         onClick={prevStep}
                         disabled={step === 1}
                         className={cn(
-                          "h-12 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center gap-3 transition-all",
-                          step === 1 ? "opacity-0 pointer-events-none" : "text-[#5a5a8a] hover:text-indigo-950"
+                          "h-[44px] px-6 rounded-xl text-button font-bold text-text-secondary uppercase tracking-normal flex items-center justify-center gap-2 transition-all",
+                          step === 1 ? "opacity-0 pointer-events-none" : "hover:text-indigo-950"
                         )}
                       >
                         <ChevronLeft size={18} /> Previous
@@ -92,14 +104,14 @@ const Onboarding = () => {
                       {step < 3 ? (
                         <button
                           onClick={nextStep}
-                          className="h-12 px-10 rounded-2xl bg-indigo-950 text-white font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-petri-500 transition-all shadow-xl active:scale-95"
+                          className="h-[44px] px-10 rounded-xl bg-indigo-950 text-white text-button font-bold uppercase tracking-normal flex items-center justify-center gap-2 hover:bg-petri-500 transition-all shadow-lg active:scale-95"
                         >
                           Continue <ChevronRight size={18} />
                         </button>
                       ) : (
                         <button
                           onClick={() => navigate('/patient/dashboard')}
-                          className="h-12 px-12 rounded-2xl bg-petri-500 text-white font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-indigo-950 transition-all shadow-xl active:scale-95"
+                          className="h-[44px] px-12 rounded-xl bg-petri-500 text-white text-button font-bold uppercase tracking-normal flex items-center justify-center gap-2 hover:bg-indigo-950 transition-all shadow-lg active:scale-95"
                         >
                           Complete Profile <ArrowRight size={18} />
                         </button>
@@ -107,70 +119,62 @@ const Onboarding = () => {
                     </div>
                  </div>
 
-                 {/* Right Context - Illustrative Sidebar */}
                  <div className="hidden lg:block w-[300px] shrink-0 border-l border-slate-50 pl-12 pt-4">
-                    {/* Icon Illustration Card */}
-                    <div className="bg-white rounded-[40px] border border-slate-100 p-8 shadow-2xl shadow-indigo-900/5 mb-10 relative overflow-hidden group">
+                    {/* Anchor 1: Illustration Card */}
+                    <div className="bg-white rounded-3xl border border-slate-100 p-4 shadow-xl shadow-indigo-900/5 mb-6 relative overflow-hidden group">
                        <div className="absolute inset-0 bg-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity" />
                        <div className="relative z-10 flex flex-col items-center text-center">
                           <motion.div 
                             animate={{ rotate: 360 }}
                             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                            className="w-24 h-24 rounded-full border-2 border-dashed border-petri-200 flex items-center justify-center mb-6"
+                            className="w-20 h-20 rounded-full border border-dashed border-petri-200 flex items-center justify-center mb-4"
                           >
-                             <div className="w-16 h-16 bg-indigo-950 rounded-2xl flex items-center justify-center text-petri-500 shadow-xl">
-                                {React.createElement(steps[step-1].icon, { size: 32 })}
+                             <div className="w-12 h-12 bg-indigo-950 rounded-xl flex items-center justify-center text-petri-500 shadow-lg">
+                                {React.createElement(steps[step-1].icon, { size: 24 })}
                              </div>
                           </motion.div>
-                          <h4 className="text-[14px] font-black text-indigo-950 uppercase italic tracking-tighter mb-2">Protocol Active</h4>
-                          <p className="text-[11px] font-bold text-[#5a5a8a] uppercase tracking-tight leading-relaxed">
-                            Securing biological <br />data streams.
+                          <h4 className="text-label text-indigo-950 font-bold uppercase tracking-widest mb-1">Protocol Active</h4>
+                          <p className="text-label text-text-secondary font-bold uppercase tracking-widest">
+                            Securing biological data.
                           </p>
                        </div>
                     </div>
 
-                    <div className="space-y-8">
+                    {/* Anchor 2: Info Boxes */}
+                    <div className="flex flex-col gap-4 mb-6">
                        <InfoBox 
                          title="Data Integrity" 
-                         desc="End-to-end encryption for all clinical identifiers."
+                         desc="End-to-end encryption for all identifiers."
                          icon={Lock}
                        />
                        <InfoBox 
                          title="Expert Review" 
-                         desc="Human-in-the-loop validation for every AI screening."
-                         icon={ShieldCheck}
+                         desc="Human-in-the-loop AI validation."
+                         icon={Shield}
                        />
                     </div>
 
-                    <div className="mt-12 p-6 bg-indigo-950 rounded-[32px] relative overflow-hidden">
-                       <div className="absolute top-0 right-0 w-24 h-24 bg-petri-500/10 rounded-full blur-2xl" />
-                       <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest mb-4 italic leading-relaxed relative z-10">
-                         "Ensuring medical accuracy and safety for every patient."
-                       </p>
-                       <div className="flex items-center gap-2 relative z-10">
-                          <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center">
-                             <Sparkles size={12} className="text-petri-500" />
-                          </div>
-                          <span className="text-[8px] font-black text-white uppercase tracking-[0.2em]">SPD Validated</span>
-                       </div>
+                    <div className="bg-indigo-950 rounded-3xl p-6 text-white text-center">
+                        <div className="text-[2rem] font-bold tracking-tight mb-1">256-bit</div>
+                        <div className="text-label font-bold uppercase tracking-widest text-petri-400">Security Grade</div>
                     </div>
                  </div>
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
-      </main>
+        </motion.div>
+      </div>
     </div>
   );
 };
 
 const InfoBox = ({ title, desc, icon: Icon }) => (
-  <div className="space-y-2">
-    <div className="flex items-center gap-3 text-indigo-950">
+  <div className="p-4 rounded-2xl bg-bg-secondary/50 border border-slate-50">
+    <div className="flex items-center gap-2 text-indigo-950 mb-2">
       <Icon size={16} className="text-petri-500" />
-      <h4 className="text-[11px] font-black uppercase tracking-widest italic">{title}</h4>
+      <h4 className="text-label text-indigo-950 font-bold uppercase tracking-widest ">{title}</h4>
     </div>
-    <p className="text-[11px] font-medium text-[#5a5a8a] leading-relaxed">{desc}</p>
+    <p className="text-body text-text-secondary leading-relaxed tracking-normal">{desc}</p>
   </div>
 );
 
@@ -185,14 +189,14 @@ const StepConsent = () => (
 const ConsentItem = ({ label, desc }) => {
   const [checked, setChecked] = useState(false);
   return (
-    <button onClick={() => setChecked(!checked)} className={cn("w-full p-6 rounded-[28px] border-2 text-left transition-all", checked ? "bg-indigo-50 border-indigo-950" : "bg-white border-slate-100")}>
+    <button onClick={() => setChecked(!checked)} className={cn("w-full p-4 rounded-xl border transition-all duration-300 text-left", checked ? "bg-indigo-50 border-indigo-950" : "bg-white border-slate-100 shadow-sm")}>
       <div className="flex justify-between items-center mb-1">
-        <h5 className={cn("text-[13px] font-black uppercase italic tracking-tight", checked ? "text-indigo-950" : "text-[#5a5a8a]")}>{label}</h5>
-        <div className={cn("w-5 h-5 rounded-full border-2 flex items-center justify-center", checked ? "bg-petri-500 border-petri-500 text-white" : "border-slate-200")}>
-          {checked && <CheckCircle size={12} strokeWidth={4} />}
+        <h5 className={cn("text-label font-bold uppercase  tracking-widest", checked ? "text-indigo-950" : "text-text-secondary")}>{label}</h5>
+        <div className={cn("w-4 h-4 rounded-full border flex items-center justify-center", checked ? "bg-petri-500 border-petri-500 text-white" : "border-slate-200")}>
+          {checked && <CheckCircle size={10} strokeWidth={4} />}
         </div>
       </div>
-      <p className="text-[11px] font-bold text-[#767690] leading-relaxed">{desc}</p>
+      <p className="text-body text-text-secondary leading-relaxed tracking-normal">{desc}</p>
     </button>
   );
 };
@@ -201,9 +205,9 @@ const StepBasicInfo = () => (
   <div className="space-y-6">
     <div className="grid grid-cols-2 gap-4">
        <InputField label="Date of Birth" type="date" icon={Calendar} />
-       <div className="space-y-1.5">
-          <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">Gender (Optional)</label>
-          <select className="w-full h-12 px-4 bg-slate-50 border border-slate-100 rounded-xl outline-none font-black text-[11px] text-indigo-950 uppercase italic tracking-tight focus:bg-white focus:border-indigo-900 appearance-none">
+       <div className="flex flex-col gap-1.5">
+          <label className="text-label text-text-secondary font-bold uppercase tracking-widest pl-1">Gender (Optional)</label>
+          <select className="w-full h-[44px] px-4 bg-slate-50 border border-slate-100 rounded-xl outline-none text-body font-bold text-indigo-950 uppercase  tracking-normal focus:bg-white focus:ring-1 focus:ring-petri-500/60 appearance-none">
              <option>Male</option>
              <option>Female</option>
              <option>Other / Prefer not to say</option>
@@ -224,12 +228,12 @@ const StepBasicInfo = () => (
 );
 
 const StepSnapshot = () => (
-  <div className="space-y-6">
+  <div className="flex flex-col gap-4">
     <div className="grid grid-cols-2 gap-4">
        <InputField label="Height (cm)" placeholder="180" icon={Ruler} />
        <InputField label="Weight (kg)" placeholder="75" icon={Scale} />
     </div>
-    <div className="space-y-4">
+    <div className="flex flex-col gap-4">
        <CheckOption label="Known medical conditions" />
        <CheckOption label="Current medications" />
        <CheckOption label="Known Allergies" />
@@ -240,18 +244,18 @@ const StepSnapshot = () => (
 const CheckOption = ({ label }) => {
   const [active, setActive] = useState(false);
   return (
-    <div className="space-y-2">
-      <button onClick={() => setActive(!active)} className={cn("w-full h-14 px-6 rounded-2xl flex items-center justify-between border-2 transition-all", active ? "bg-indigo-950 border-indigo-950 text-white" : "bg-white border-slate-100 text-[#5a5a8a]")}>
-        <span className="text-[12px] font-black uppercase italic tracking-tight">{label}</span>
-        <div className={cn("w-5 h-5 rounded-full border-2 flex items-center justify-center", active ? "bg-petri-500 border-petri-500" : "border-slate-200")}>
-          {active && <CheckCircle size={12} className="text-white" strokeWidth={4} />}
+    <div className="flex flex-col gap-1.5">
+      <button onClick={() => setActive(!active)} className={cn("w-full h-[44px] px-6 rounded-xl flex items-center justify-between border transition-all", active ? "bg-indigo-950 border-indigo-950 text-white" : "bg-white border-slate-100 text-text-secondary shadow-sm")}>
+        <span className="text-body font-bold uppercase  tracking-normal">{label}</span>
+        <div className={cn("w-4 h-4 rounded-full border flex items-center justify-center", active ? "bg-petri-500 border-petri-500" : "border-slate-200")}>
+          {active && <CheckCircle size={10} className="text-white" strokeWidth={4} />}
         </div>
       </button>
       {active && (
         <motion.textarea 
           initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 80 }}
           placeholder="Provide details..."
-          className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-indigo-950 text-[11px] font-bold text-indigo-950 resize-none shadow-inner"
+          className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-indigo-950 text-body font-bold text-indigo-950 resize-none shadow-inner tracking-normal"
         />
       )}
     </div>
@@ -259,15 +263,15 @@ const CheckOption = ({ label }) => {
 };
 
 const InputField = ({ label, placeholder, type = "text", icon: Icon }) => (
-  <div className="space-y-1.5">
-    <label className="text-[9px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] pl-1">{label}</label>
+  <div className="flex flex-col gap-1.5">
+    <label className="text-label text-text-secondary font-bold uppercase tracking-widest pl-1">{label}</label>
     <div className="relative">
        <input 
          type={type} 
          placeholder={placeholder} 
-         className="w-full h-12 px-5 bg-slate-50 border border-slate-100 rounded-xl focus:bg-white focus:border-indigo-900 outline-none transition-all font-black text-[11px] text-indigo-950 uppercase italic tracking-tight" 
+         className="w-full h-[44px] px-5 bg-slate-50 border border-slate-100 rounded-xl focus:bg-white focus:ring-1 focus:ring-petri-500/60 outline-none transition-all text-body font-bold text-indigo-950 uppercase  tracking-normal placeholder:text-gray-400" 
        />
-       {Icon && <Icon size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#767690]" />}
+       {Icon && <Icon size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted" />}
     </div>
   </div>
 );

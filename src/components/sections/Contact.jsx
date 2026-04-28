@@ -15,26 +15,26 @@ const Contact = () => {
             <ScrollReveal>
               <div className="flex items-center gap-4 mb-10">
                 <span className="w-12 h-[1px] bg-petri-500/40"></span>
-                <span className="text-[10px] font-black text-petri-400 uppercase tracking-[0.3em]">Direct Access</span>
+                <span className="text-label font-medium text-petri-400 uppercase tracking-label">Direct Access</span>
               </div>
               
-              <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-white mb-12 leading-[0.85] tracking-tighter">
-                Start the <em className="text-petri-400 italic italic font-medium">Dialogue.</em>
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-12 leading-[0.85] tracking-tight">
+                Start the <em className="text-petri-400 italic font-medium">Dialogue.</em>
               </h2>
 
-              <p className="text-lg md:text-xl text-white/75 leading-relaxed mb-10 md:mb-20 max-w-[480px]">
+              <p className="text-body text-white/75 leading-relaxed mb-10 md:mb-20 max-w-[480px] tracking-none">
                 Connect with our clinical team or partnership desk. We're scaling health equity, one conversation at a time.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12 border-t border-white/10">
                 <div>
-                  <div className="text-[10px] font-bold text-petri-400 uppercase tracking-[0.2em] mb-4">Our Base</div>
-                  <p className="text-white text-lg font-black leading-tight tracking-tight">Robeson County,<br />North Carolina, USA</p>
+                  <div className="text-label font-medium text-petri-400 uppercase tracking-label mb-4">Our Base</div>
+                  <p className="text-white text-h2 font-bold leading-tight tracking-tight">Robeson County,<br />North Carolina, USA</p>
                 </div>
                 <div>
-                  <div className="text-[10px] font-bold text-petri-400 uppercase tracking-[0.2em] mb-4">Digital Desk</div>
-                  <p className="text-white text-lg font-black tracking-tight">hello@spd.health</p>
-                  <p className="text-white/70 text-sm mt-2 font-bold uppercase tracking-widest">Response: &lt; 4hrs</p>
+                  <div className="text-label font-medium text-petri-400 uppercase tracking-label mb-4">Digital Desk</div>
+                  <p className="text-white text-h2 font-bold tracking-tight">hello@spd.health</p>
+                  <p className="text-label text-white/70 mt-2 font-medium uppercase tracking-label">Response: &lt; 4hrs</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -46,43 +46,34 @@ const Contact = () => {
               <div className="relative p-6 md:p-16 rounded-[60px] bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden group">
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-petri-500 opacity-10 rounded-full blur-[100px]"></div>
                 
-                <form className="relative z-10 space-y-10" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="relative">
+                <form className="relative z-10 space-y-4" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label htmlFor="form-name" className="text-label font-medium text-petri-400 uppercase tracking-label pl-1">Full Name</label>
                       <input 
                         type="text" 
                         required
-                        className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-petri-400 transition-colors placeholder:text-transparent font-medium"
-                        placeholder="Name"
+                        className="w-full h-[44px] bg-white/10 border border-white/20 rounded-xl px-5 text-white text-body outline-none focus:border-petri-400 focus:bg-white/20 transition-all placeholder:text-white/40 tracking-none"
+                        placeholder="John Doe"
                         id="form-name"
                       />
-                      <label 
-                        htmlFor="form-name"
-                        className="absolute left-0 top-4 text-white/70 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
-                      >
-                        Full Name
-                      </label>
                     </div>
-                    <div className="relative">
+                    <div className="space-y-1.5">
+                      <label htmlFor="form-email" className="text-label font-medium text-petri-400 uppercase tracking-label pl-1">Email Address</label>
                       <input 
                         type="email" 
                         required
-                        className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-petri-400 transition-colors placeholder:text-transparent font-medium"
-                        placeholder="Email"
+                        className="w-full h-[44px] bg-white/10 border border-white/20 rounded-xl px-5 text-white text-body outline-none focus:border-petri-400 focus:bg-white/20 transition-all placeholder:text-white/40 tracking-none"
+                        placeholder="john@example.com"
                         id="form-email"
                       />
-                      <label 
-                        htmlFor="form-email"
-                        className="absolute left-0 top-4 text-white/70 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
-                      >
-                        Email Address
-                      </label>
                     </div>
                   </div>
 
-                  <div className="relative">
+                  <div className="space-y-1.5">
+                    <label htmlFor="form-subject" className="text-label font-medium text-petri-400 uppercase tracking-label pl-1">Subject</label>
                     <select 
-                      className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-petri-400 transition-colors appearance-none cursor-pointer font-medium"
+                      className="w-full h-[44px] bg-white/10 border border-white/20 rounded-xl px-5 text-white text-body outline-none focus:border-petri-400 focus:bg-white/20 transition-all appearance-none cursor-pointer tracking-none"
                       id="form-subject"
                     >
                       <option className="bg-indigo-900">General Inquiry</option>
@@ -90,35 +81,22 @@ const Contact = () => {
                       <option className="bg-indigo-900">Community Deployment</option>
                       <option className="bg-indigo-900">Press/Media</option>
                     </select>
-                    <label 
-                      htmlFor="form-subject"
-                      className="absolute left-0 -top-6 text-[10px] text-petri-400 font-black uppercase tracking-widest"
-                    >
-                      Subject
-                    </label>
                   </div>
 
-                  <div className="relative">
+                  <div className="space-y-1.5">
+                    <label htmlFor="form-message" className="text-label font-medium text-petri-400 uppercase tracking-label pl-1">How can we help?</label>
                     <textarea 
-                      rows="3"
+                      rows="4"
                       required
-                      className="peer w-full bg-transparent border-b border-white/10 py-4 text-white text-lg outline-none focus:border-petri-400 transition-colors placeholder:text-transparent resize-none font-medium"
-                      placeholder="Message"
+                      className="w-full bg-white/10 border border-white/20 rounded-xl p-5 text-white text-body outline-none focus:border-petri-400 focus:bg-white/20 transition-all placeholder:text-white/40 resize-none tracking-none"
+                      placeholder="Tell us about your needs..."
                       id="form-message"
                     ></textarea>
-                    <label 
-                      htmlFor="form-message"
-                      className="absolute left-0 top-4 text-white/70 text-lg transition-all peer-focus:-top-6 peer-focus:text-[10px] peer-focus:text-petri-400 peer-focus:font-black peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px]"
-                    >
-                      How can we help?
-                    </label>
                   </div>
 
-                  <button className="group flex items-center justify-between w-full p-7 rounded-3xl bg-petri-500 text-white font-black text-xl hover:bg-white hover:text-indigo-900 transition-all duration-500 shadow-xl shadow-petri-500/10">
+                  <button className="group flex items-center justify-between w-full h-[44px] px-6 rounded-xl bg-petri-500 text-white text-button font-semibold uppercase tracking-button hover:bg-white hover:text-indigo-950 transition-all duration-500 shadow-xl shadow-petri-500/10">
                     <span>Send Message</span>
-                    <div className="w-10 h-10 rounded-full bg-white text-indigo-900 flex items-center justify-center transition-transform group-hover:rotate-45 group-hover:scale-110">
-                      <ArrowUpRight size={20} />
-                    </div>
+                    <ArrowUpRight size={18} className="transition-transform group-hover:rotate-45" />
                   </button>
                 </form>
               </div>

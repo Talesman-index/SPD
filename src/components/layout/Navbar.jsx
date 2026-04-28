@@ -72,7 +72,7 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 relative group",
+                  "text-[11px] font-bold uppercase tracking-normal transition-all duration-300 relative group",
                   isScrolled ? "text-indigo-950 hover:text-petri-600" : "text-white hover:text-petri-400"
                 )}
               >
@@ -98,7 +98,7 @@ const Navbar = () => {
             >
               <ShoppingCart size={18} />
               {cartCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 bg-amber-600 text-white text-[9px] rounded-full flex items-center justify-center font-black">
+                <span className="absolute top-1 right-1 w-4 h-4 bg-amber-600 text-white text-[11px] rounded-full flex items-center justify-center font-bold">
                   {cartCount}
                 </span>
               )}
@@ -110,7 +110,7 @@ const Navbar = () => {
                 <a 
                   href="/login"
                   className={cn(
-                    "flex items-center gap-2 px-5 py-2.5 border rounded-full font-black text-[11px] uppercase tracking-widest transition-all duration-300",
+                    "flex items-center gap-2 px-5 py-2.5 border rounded-full font-bold text-[11px] uppercase tracking-normal transition-all duration-300",
                     isScrolled 
                       ? "border-indigo-900/20 text-indigo-950 hover:bg-indigo-900 hover:text-white" 
                       : "border-white/20 text-white hover:bg-white hover:text-indigo-900"
@@ -122,7 +122,7 @@ const Navbar = () => {
               ) : (
                 <button 
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-black text-xs hover:scale-105 transition-transform border-2 border-white/10"
+                  className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-xs hover:scale-105 transition-transform border-2 border-white/10"
                 >
                   JD
                 </button>
@@ -137,20 +137,20 @@ const Navbar = () => {
                     className="absolute right-0 mt-4 w-56 bg-white rounded-3xl shadow-2xl border border-indigo-100 overflow-hidden z-[200]"
                   >
                     <div className="p-5 border-b border-indigo-50">
-                      <p className="text-[10px] font-black text-[#b45309] uppercase tracking-widest mb-1">Signed in as</p>
-                      <p className="text-sm font-black text-indigo-950 truncate">John Doe</p>
+                      <p className="text-xs font-bold text-[#b45309] uppercase tracking-widest mb-1">Signed in as</p>
+                      <p className="text-sm font-bold text-indigo-950 truncate">John Doe</p>
                     </div>
                     <div className="p-2">
-                      <a href="/patient/dashboard" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
+                      <a href="/patient/dashboard" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
                         <LayoutDashboard size={16} /> Dashboard
                       </a>
-                      <a href="/patient/settings" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
+                      <a href="/patient/settings" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
                         <Settings size={16} /> Settings
                       </a>
                       <div className="h-px bg-indigo-50 my-2 mx-4" />
                       <button 
                         onClick={() => setIsLoggedIn(false)}
-                        className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest text-red-500 hover:bg-red-50 transition-all"
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-red-500 hover:bg-red-50 transition-all"
                       >
                         <LogOut size={16} /> Sign Out
                       </button>
@@ -164,7 +164,7 @@ const Navbar = () => {
             <button 
               onClick={() => document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' })}
               className={cn(
-                "hidden md:block px-8 py-3 rounded-full font-black text-[11px] uppercase tracking-[0.15em] transition-all duration-500 shadow-xl active:scale-95",
+                "hidden md:block px-8 py-3 rounded-full font-bold text-[11px] uppercase tracking-normal transition-all duration-500 shadow-xl active:scale-95",
                 isScrolled ? "bg-indigo-900 text-white hover:bg-indigo-800" : "bg-white text-indigo-900 hover:bg-indigo-100"
               )}
             >
@@ -205,7 +205,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex flex-col items-start gap-2 px-8 mt-12 container-custom relative z-10">
-          <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.4em] mb-4 pl-2">Navigation</p>
+          <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-4 pl-2">Navigation</p>
           {navLinks.map((link, i) => (
               <a 
                 key={link.name} 
@@ -213,7 +213,7 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="group flex items-center gap-6 py-2 transition-all duration-500"
               >
-                <span className="text-xs font-black text-petri-500 opacity-40 group-hover:opacity-100 transition-opacity">0{i + 1}</span>
+                <span className="text-xs font-bold text-petri-500 opacity-40 group-hover:opacity-100 transition-opacity">0{i + 1}</span>
                 <span className="text-4xl md:text-5xl font-black text-white group-hover:text-petri-500 transition-all duration-500 tracking-tighter uppercase italic">
                   {link.name}
                 </span>
@@ -225,26 +225,26 @@ const Navbar = () => {
         <div className="mt-auto p-8 border-t border-white/5 flex flex-col gap-10 container-custom relative z-10 bg-indigo-950/50 backdrop-blur-sm">
           <div className="grid grid-cols-2 gap-8">
             <div>
-              <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] mb-4">Contact</p>
+              <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-4">Contact</p>
               <p className="text-white font-bold text-sm">hello@spd.health</p>
             </div>
             <div>
-              <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] mb-4">Location</p>
+              <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-4">Location</p>
               <p className="text-white font-bold text-sm">North Carolina, US</p>
             </div>
           </div>
 
           <div className="flex flex-col gap-4">
             {!isLoggedIn ? (
-              <a href="/login" className="w-full py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-black text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 transition-all">
+              <a href="/login" className="w-full py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-[11px] uppercase tracking-normal flex items-center justify-center gap-3 hover:bg-white/10 transition-all">
                 <User size={18} /> Sign In to Portal
               </a>
             ) : (
               <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
-                 <div className="w-12 h-12 rounded-full bg-amber-600 text-white flex items-center justify-center font-black">JD</div>
+                 <div className="w-12 h-12 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">JD</div>
                   <div className="flex-1">
-                     <p className="text-white font-black text-[11px] uppercase tracking-widest">John Doe</p>
-                     <p className="text-white/40 text-[9px] font-bold uppercase tracking-widest">Patient Portal</p>
+                     <p className="text-white font-bold text-[11px] uppercase tracking-normal">John Doe</p>
+                     <p className="text-white/40 text-[11px] font-bold uppercase tracking-widest">Patient Portal</p>
                   </div>
                   <button onClick={() => setIsLoggedIn(false)} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:text-white transition-colors">
                     <LogOut size={18}/>
@@ -253,7 +253,7 @@ const Navbar = () => {
             )}
             <button 
               onClick={() => { setIsMobileMenuOpen(false); document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' }); }}
-              className="w-full py-6 rounded-2xl text-xs bg-petri-500 text-white font-black uppercase tracking-[0.2em] shadow-2xl shadow-petri-500/20 active:scale-95 transition-all"
+              className="w-full py-6 rounded-2xl text-xs bg-petri-500 text-white font-bold uppercase tracking-normal shadow-2xl shadow-petri-500/20 active:scale-95 transition-all"
             >
               Order Your Kit Now
             </button>

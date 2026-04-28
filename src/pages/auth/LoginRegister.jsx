@@ -59,11 +59,11 @@ const LoginRegister = () => {
 
         {/* Footer Text */}
         <div className="relative z-10">
-          <blockquote className="text-white text-2xl xl:text-3xl font-medium leading-tight tracking-tight mb-6 italic">
+          <blockquote className="text-white text-2xl xl:text-3xl font-medium leading-tight tracking-tight mb-6 ">
             "The technology is the tool.<br />
             Health equity is the mission."
           </blockquote>
-          <cite className="text-white/70 text-[10px] block not-italic font-bold tracking-widest uppercase mb-1">— SPD FOUNDERS</cite>
+          <cite className="text-white/70 text-[10px] block not- font-bold tracking-widest uppercase mb-1">— SPD FOUNDERS</cite>
           <p className="text-white/70 text-[10px] font-bold tracking-widest uppercase">Health for everyone</p>
         </div>
       </div>
@@ -89,7 +89,7 @@ const LoginRegister = () => {
             <button 
               onClick={() => setRole('patient')}
               className={cn(
-                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-black text-[10px] uppercase tracking-[0.2em]",
+                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-bold text-[10px] uppercase tracking-widest",
                 role === 'patient' ? "bg-indigo-900 text-white shadow-xl" : "text-[#5a5a8a] hover:text-indigo-900"
               )}
             >
@@ -98,7 +98,7 @@ const LoginRegister = () => {
             <button 
               onClick={() => setRole('doctor')}
               className={cn(
-                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-black text-[10px] uppercase tracking-[0.2em]",
+                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-bold text-[10px] uppercase tracking-widest",
                 role === 'doctor' ? "bg-indigo-900 text-white shadow-xl" : "text-[#5a5a8a] hover:text-indigo-900"
               )}
             >
@@ -111,7 +111,7 @@ const LoginRegister = () => {
             <button 
               onClick={() => setActiveTab('signup')}
               className={cn(
-                "flex-1 pb-3 text-[12px] font-black transition-all border-b-2",
+                "flex-1 pb-3 text-[12px] font-bold transition-all border-b-2",
                 activeTab === 'signup' ? "border-indigo-900 text-indigo-950" : "border-transparent text-[#5a5a8a] hover:text-indigo-900"
               )}
             >
@@ -120,7 +120,7 @@ const LoginRegister = () => {
             <button 
               onClick={() => setActiveTab('signin')}
               className={cn(
-                "flex-1 pb-3 text-[12px] font-black transition-all border-b-2",
+                "flex-1 pb-3 text-[12px] font-bold transition-all border-b-2",
                 activeTab === 'signin' ? "border-indigo-900 text-indigo-950" : "border-transparent text-[#5a5a8a] hover:text-indigo-900"
               )}
             >
@@ -139,38 +139,38 @@ const LoginRegister = () => {
                   className="space-y-4"
                 >
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-[0.2em] pl-1">Full Name</label>
+                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Full Name</label>
                     <input 
                       type="text" 
                       placeholder="John Doe"
-                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-[0.2em] pl-1">Email Address</label>
+                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Email Address</label>
                     <input 
                       type="email" 
                       placeholder="john@example.com"
-                      className="w-full h-12 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-medium shadow-sm"
+                      className="w-full h-12 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                   </div>
                   <div className="space-y-1.5 relative">
-                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-[0.2em] pl-1">Password</label>
+                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Password</label>
                     <input 
                       type={showPassword ? "text" : "password"} 
                       placeholder="••••••••"
-                      className="w-full h-12 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-medium shadow-sm"
+                      className="w-full h-12 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-[#9898b8] hover:text-indigo-950">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-[0.2em] pl-1">Confirm Password</label>
+                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Confirm Password</label>
                     <input 
                       type="password" 
                       placeholder="••••••••"
-                      className="w-full h-12 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-medium shadow-sm"
+                      className="w-full h-12 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                   </div>
                 </motion.div>
@@ -183,19 +183,19 @@ const LoginRegister = () => {
                   className="space-y-4"
                 >
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-[0.2em] pl-1">Email Address</label>
+                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Email Address</label>
                     <input 
                       type="email" 
                       placeholder="john@example.com"
-                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                   </div>
                   <div className="space-y-1.5 relative">
-                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-[0.2em] pl-1">Password</label>
+                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Password</label>
                     <input 
                       type={showPassword ? "text" : "password"} 
                       placeholder="••••••••"
-                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-medium shadow-sm"
+                      className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 bottom-4 text-[#9898b8] hover:text-indigo-950">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -206,18 +206,18 @@ const LoginRegister = () => {
             </AnimatePresence>
 
             {/* Submit Button */}
-            <button type="submit" className="w-full h-12 rounded-xl bg-indigo-900 text-white font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-petri-500 transition-all shadow-xl mt-1 group text-xs">
+            <button type="submit" className="w-full h-12 rounded-xl bg-indigo-900 text-white font-bold uppercase tracking-normal flex items-center justify-center gap-3 hover:bg-petri-500 transition-all shadow-xl mt-1 group text-xs">
               {activeTab === 'signup' ? 'Create account' : 'Sign in'} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
             {/* Social Auth */}
             <div className="flex items-center gap-3 py-1">
               <div className="h-px bg-indigo-900/10 flex-1" />
-              <span className="text-[9px] font-black text-[#767690] uppercase tracking-widest">or</span>
+              <span className="text-[9px] font-bold text-[#767690] uppercase tracking-normal">or</span>
               <div className="h-px bg-indigo-900/10 flex-1" />
             </div>
 
-            <button type="button" className="w-full h-14 rounded-xl bg-white border border-indigo-100 text-indigo-950 font-black flex items-center justify-center gap-3 hover:bg-indigo-50 transition-all shadow-sm text-xs">
+            <button type="button" className="w-full h-14 rounded-xl bg-white border border-indigo-100 text-indigo-950 font-bold flex items-center justify-center gap-3 hover:bg-indigo-50 transition-all shadow-sm text-xs">
               <svg width="16" height="16" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -228,7 +228,7 @@ const LoginRegister = () => {
             </button>
 
             <p className="text-[9px] text-[#5a5a8a] text-center leading-relaxed mt-4">
-              By continuing you agree to our <a href="#" className="text-indigo-950 font-black underline">Terms</a> and <a href="#" className="text-indigo-950 font-black underline">Privacy Policy</a>
+              By continuing you agree to our <a href="#" className="text-indigo-950 font-bold underline">Terms</a> and <a href="#" className="text-indigo-950 font-bold underline">Privacy Policy</a>
             </p>
           </form>
         </div>

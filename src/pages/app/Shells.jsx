@@ -16,9 +16,9 @@ import { motion } from 'framer-motion';
 import MobileLayout from '../../components/layout/MobileLayout';
 
 const NextStepItem = ({ icon, text }) => (
-  <div className="bg-white p-6 rounded-[28px] border border-slate-100 flex items-center gap-5 active:scale-[0.98] transition-all shadow-sm">
+  <div className="bg-white p-4 rounded-xl border border-slate-100 flex items-center gap-4 active:scale-[0.98] transition-all shadow-sm">
     <div className="text-petri-500 shrink-0">{icon}</div>
-    <p className="text-[14px] font-black text-indigo-950 uppercase italic tracking-tight leading-none">{text}</p>
+    <p className="text-body font-bold text-indigo-950 uppercase  tracking-normal leading-tight">{text}</p>
   </div>
 );
 
@@ -55,44 +55,44 @@ export const PatientTests = () => {
     <MobileLayout title="Instructions" showBack>
     <div className="px-5 pt-4 space-y-8 pb-20">
       {/* Notification Card */}
-      <div className="bg-petri-50 border-l-4 border-petri-500 p-5 rounded-r-[24px] shadow-sm flex items-center gap-5">
-        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-petri-500 shrink-0 shadow-sm border border-petri-100">
-          <ShieldCheck size={24} />
+      <div className="bg-petri-50 border-l-4 border-petri-500 p-4 rounded-r-xl shadow-sm flex items-center gap-4">
+        <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-petri-500 shrink-0 shadow-sm border border-petri-100">
+          <ShieldCheck size={20} />
         </div>
         <div>
-          <p className="text-[14px] font-black text-indigo-950 uppercase italic leading-none mb-1">
+          <p className="text-body font-bold text-indigo-950 uppercase  leading-none mb-1 tracking-normal">
             Validated Protocol <Sparkles size={12} className="inline text-petri-500" />
           </p>
-          <p className="text-[11px] font-bold text-[#5a5a8a] uppercase tracking-widest">Prescribed by Dr. Sarah Chen</p>
+          <p className="text-label text-text-secondary font-bold uppercase tracking-widest">Prescribed by Dr. Sarah Chen</p>
         </div>
       </div>
 
       {/* Test Type Hero */}
-      <div className="bg-indigo-950 rounded-[40px] p-8 shadow-2xl shadow-indigo-950/30 relative overflow-hidden group">
+      <div className="bg-indigo-950 rounded-[32px] p-8 shadow-2xl shadow-indigo-950/30 relative overflow-hidden group">
         <div className="absolute inset-0 opacity-10 pointer-events-none bg-noise" />
         <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-petri-500/20 rounded-full blur-[80px] group-hover:scale-150 transition-transform duration-1000" />
         
         <div className="relative z-10 flex items-center gap-6 mb-8">
-          <div className="w-16 h-16 bg-white/10 rounded-[24px] flex items-center justify-center text-petri-500 border border-white/10 group-hover:bg-petri-500 group-hover:text-white transition-all">
-            <TestTube size={36} />
+          <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-petri-500 border border-white/10 group-hover:bg-petri-500 group-hover:text-white transition-all">
+            <TestTube size={32} />
           </div>
           <div>
-            <span className="text-[10px] font-black text-white/70 uppercase tracking-[0.3em] block mb-1">Active Protocol</span>
-            <h2 className="text-[24px] font-black text-white tracking-tighter italic uppercase">Biomarker Scan</h2>
+            <span className="text-label text-white/70 font-bold uppercase tracking-widest block mb-1">Active Protocol</span>
+            <h2 className="text-3xl text-white font-bold uppercase tracking-tight">Biomarker Scan</h2>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 relative z-10">
-          <span className="px-4 py-1.5 bg-petri-500/20 text-petri-400 text-[10px] font-black rounded-full uppercase tracking-widest border border-petri-500/20">Microbial Analysis</span>
-          <span className="px-4 py-1.5 bg-white/5 text-white/70 text-[10px] font-black rounded-full uppercase tracking-widest border border-white/5">Primary Compartment</span>
+          <span className="px-4 py-1.5 bg-petri-500/20 text-petri-400 text-label font-bold rounded-lg uppercase tracking-widest border border-petri-500/20">Microbial Analysis</span>
+          <span className="px-4 py-1.5 bg-white/5 text-white/70 text-label font-bold rounded-lg uppercase tracking-widest border border-white/5">Primary Compartment</span>
         </div>
       </div>
 
       {/* Instructions Accordion */}
-      <div className="bg-white rounded-[40px] border border-slate-100 shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-slate-50 flex items-center justify-between">
-          <h3 className="text-[14px] font-black text-indigo-950 uppercase tracking-[0.2em] italic">Step-by-step Protocol</h3>
+      <div className="bg-white rounded-[32px] border border-slate-100 shadow-sm overflow-hidden">
+        <div className="px-6 py-4 border-b border-slate-50 flex items-center justify-between">
+          <h3 className="text-label text-indigo-950 font-bold uppercase tracking-widest ">Step-by-step Protocol</h3>
         </div>
-        <div className="p-6 space-y-6">
+        <div className="p-4 flex flex-col gap-4">
           <InstructionStep 
             num="01" 
             title="Morning Collection" 
@@ -116,14 +116,14 @@ export const PatientTests = () => {
       <div className="bg-amber-50 p-6 rounded-[40px] border border-amber-100/50">
         <div className="flex items-center gap-3 mb-4 text-amber-600">
           <AlertCircle size={20} />
-          <h4 className="text-[12px] font-black uppercase tracking-widest">Critical Safety</h4>
+          <h4 className="text-label font-bold uppercase tracking-widest">Critical Safety</h4>
         </div>
         <ul className="space-y-3">
-          <li className="text-[13px] text-[#451a03] font-bold flex items-start gap-3">
+          <li className="text-body text-[#451a03] flex items-start gap-3 tracking-normal">
             <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
             Do not brush teeth prior to collection.
           </li>
-          <li className="text-[13px] text-[#451a03] font-bold flex items-start gap-3">
+          <li className="text-body text-[#451a03] flex items-start gap-3 tracking-normal">
             <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
             Ensure hermetic seal on Petri compartment.
           </li>
@@ -134,9 +134,9 @@ export const PatientTests = () => {
       <div className="pt-4 pb-12">
         <button 
           onClick={() => navigate('/patient/assessments')}
-          className="w-full h-[68px] bg-indigo-950 text-white rounded-[28px] font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-indigo-950/20 active:scale-95 transition-all flex items-center justify-center gap-4"
+          className="w-full h-[44px] bg-indigo-950 text-white rounded-xl text-button font-bold uppercase tracking-normal shadow-lg shadow-indigo-950/20 active:scale-95 transition-all flex items-center justify-center gap-3"
         >
-          Initialize Screening <ArrowRight size={20} />
+          Initialize Screening <ArrowRight size={18} />
         </button>
       </div>
     </div>
@@ -146,18 +146,18 @@ export const PatientTests = () => {
 
 const InstructionStep = ({ num, title, desc, active }) => (
   <div className={cn(
-    "flex gap-5 p-6 rounded-[32px] transition-all border",
+    "flex gap-4 p-4 rounded-xl transition-all border",
     active ? "bg-slate-50 border-indigo-100" : "bg-white border-transparent"
   )}>
     <div className={cn(
-      "w-10 h-10 rounded-2xl flex items-center justify-center font-black text-xs shrink-0 border",
-      active ? "bg-indigo-950 text-white border-indigo-900 shadow-xl shadow-indigo-900/10" : "bg-slate-50 text-[#9898b8] border-slate-100"
+      "w-10 h-10 rounded-xl flex items-center justify-center text-label font-bold shrink-0 border",
+      active ? "bg-indigo-950 text-white border-indigo-900 shadow-lg shadow-indigo-900/10" : "bg-slate-50 text-[#9898b8] border-slate-100"
     )}>
       {num}
     </div>
     <div>
-      <h4 className="text-[15px] font-black text-indigo-950 uppercase italic tracking-tight mb-1">{title}</h4>
-      <p className="text-[13px] text-[#5a5a8a] font-bold leading-relaxed">{desc}</p>
+      <h4 className="text-2xl text-indigo-950 uppercase  tracking-tight mb-1">{title}</h4>
+      <p className="text-body text-text-secondary leading-relaxed tracking-normal">{desc}</p>
     </div>
   </div>
 );
@@ -166,42 +166,42 @@ export const PatientReports = () => (
   <MobileLayout title="Results" showBack>
     <div className="px-5 pt-4 space-y-8 pb-20">
       {/* Result Hero Card */}
-      <div className="bg-gradient-to-br from-petri-500 to-indigo-900 rounded-[48px] p-10 shadow-2xl shadow-petri-500/20 text-center relative overflow-hidden group">
+      <div className="bg-gradient-to-br from-petri-500 to-indigo-900 rounded-[32px] p-10 shadow-2xl shadow-petri-500/20 text-center relative overflow-hidden group">
         <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
         <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-[80px] -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000" />
         
-        <div className="w-20 h-20 bg-white rounded-[28px] flex items-center justify-center mx-auto mb-8 shadow-2xl text-petri-500 border border-white/20">
+        <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl text-petri-500 border border-white/20">
           <ShieldCheck size={40} />
         </div>
         
-        <div className="inline-block px-6 py-2 bg-white text-petri-500 rounded-full text-[12px] font-black uppercase tracking-[0.2em] mb-6 shadow-xl">
+        <div className="inline-block px-6 py-2 bg-white text-petri-500 rounded-full text-label font-bold uppercase tracking-widest mb-6 shadow-xl">
           NEGATIVO · SAFE
         </div>
         
-        <h2 className="text-3xl font-black text-white mb-2 italic tracking-tighter uppercase leading-none">Diagnostic <br />Conclusion</h2>
-        <p className="text-[10px] text-white/70 font-black uppercase tracking-[0.3em] mt-4">
+        <h2 className="text-3xl text-white mb-2  tracking-tight uppercase leading-none">Diagnostic <br />Conclusion</h2>
+        <p className="text-label text-white/70 font-bold uppercase tracking-widest mt-4">
           Ref: SPD-9823 · Clinically Validated
         </p>
       </div>
 
       {/* Diagnostic Conclusion */}
-      <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-sm relative overflow-hidden">
+      <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm relative overflow-hidden">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-             <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-950 border border-indigo-100">
+             <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-950 border border-indigo-100">
                <Microscope size={18} />
              </div>
-             <h3 className="text-[12px] font-black text-indigo-950 uppercase tracking-[0.2em] italic">Analysis Outcome</h3>
+             <h3 className="text-label text-indigo-950 font-bold uppercase tracking-widest ">Analysis Outcome</h3>
           </div>
           <Sparkles className="text-petri-500" size={16} />
         </div>
-        <div className="space-y-6">
-          <div className="p-6 bg-petri-50 text-petri-600 rounded-[28px] border border-petri-100">
-            <p className="text-[15px] font-black italic leading-relaxed tracking-tight">
+        <div className="flex flex-col gap-4">
+          <div className="p-4 bg-petri-50 text-petri-600 rounded-2xl border border-petri-100">
+            <p className="text-2xl font-bold  leading-relaxed tracking-tight">
               "No pathogenic microbial activity detected. Biomarker drift within normal baseline parameters."
             </p>
           </div>
-          <p className="text-[14px] text-[#5a5a8a] font-bold leading-relaxed px-2">
+          <p className="text-body text-text-secondary leading-relaxed px-2 tracking-normal">
             The AI-assisted scan and clinical cross-review confirm negative findings for the requested panel. Symptoms likely associated with localized viral exposure.
           </p>
         </div>
@@ -209,7 +209,7 @@ export const PatientReports = () => (
 
       {/* Next Steps */}
       <div className="space-y-6">
-        <h3 className="text-[12px] font-black text-indigo-950 uppercase tracking-[0.3em] px-2">Recommended Recovery</h3>
+        <h3 className="text-label text-indigo-950 font-bold uppercase tracking-widest px-2">Recommended Recovery</h3>
         <div className="space-y-3">
           <NextStepItem icon={<Droplets size={22} />} text="Increase hydration: 3L/day" />
           <NextStepItem icon={<Thermometer size={22} />} text="Monitor thermal baseline" />
@@ -219,8 +219,8 @@ export const PatientReports = () => (
 
       {/* Bottom Button */}
       <div className="pt-4 pb-12">
-        <button className="w-full h-[68px] bg-indigo-950 text-white rounded-[28px] font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-indigo-950/20 active:scale-95 transition-all flex items-center justify-center gap-4 border border-white/5">
-          <Download size={20} /> Download Expert Report
+        <button className="w-full h-[44px] bg-indigo-950 text-white rounded-xl text-button font-bold uppercase tracking-normal shadow-lg shadow-indigo-950/20 active:scale-95 transition-all flex items-center justify-center gap-3 border border-white/5">
+          <Download size={18} /> Download Expert Report
         </button>
       </div>
     </div>
@@ -232,12 +232,12 @@ export const MedicalHistory = () => (
     <div className="px-5 pt-4 pb-20 space-y-8">
       {/* Search Header */}
       <div className="flex gap-3">
-        <div className="flex-1 h-14 bg-white border border-slate-100 rounded-[20px] flex items-center px-5 gap-4 shadow-sm group">
-          <Search size={18} className="text-[#767690] group-focus-within:text-indigo-950 transition-colors" />
-          <input type="text" placeholder="Search Analysis ID..." className="bg-transparent border-none outline-none text-[11px] font-black uppercase tracking-widest w-full" />
+        <div className="flex-1 h-[44px] bg-white border border-slate-100 rounded-xl flex items-center px-4 gap-3 shadow-sm group">
+          <Search size={16} className="text-text-muted group-focus-within:text-indigo-950 transition-colors" />
+          <input type="text" placeholder="Search Analysis ID..." className="bg-transparent border-none outline-none text-body tracking-normal w-full placeholder:text-gray-400" />
         </div>
-        <button className="w-14 h-14 bg-white border border-slate-100 rounded-[20px] flex items-center justify-center text-indigo-950 shadow-sm active:bg-slate-50">
-          <Filter size={20} />
+        <button className="w-[44px] h-[44px] bg-white border border-slate-100 rounded-xl flex items-center justify-center text-indigo-950 shadow-sm active:bg-slate-50">
+          <Filter size={18} />
         </button>
       </div>
 
@@ -245,7 +245,7 @@ export const MedicalHistory = () => (
       <div className="space-y-6">
         <div className="flex items-center gap-4 px-2">
            <div className="h-[1px] flex-1 bg-slate-100" />
-           <span className="text-[9px] font-black text-[#767690] uppercase tracking-[0.4em]">OCT 2026</span>
+           <span className="text-label text-text-muted font-bold uppercase tracking-widest">OCT 2026</span>
            <div className="h-[1px] flex-1 bg-slate-100" />
         </div>
         
@@ -278,21 +278,21 @@ const HistoryItem = ({ title, type, date, status, statusColor, icon: Icon, link 
   return (
     <div 
       onClick={() => navigate(link)}
-      className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm flex items-start gap-5 active:scale-[0.98] transition-all cursor-pointer group"
+      className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-start gap-4 active:scale-[0.98] transition-all cursor-pointer group"
     >
-      <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-indigo-900 shrink-0 border border-slate-100 group-hover:bg-indigo-950 group-hover:text-white transition-colors">
-        <Icon size={22} />
+      <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-indigo-900 shrink-0 border border-slate-100 group-hover:bg-indigo-950 group-hover:text-white transition-colors">
+        <Icon size={18} />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex justify-between items-start mb-1">
-          <h4 className="text-[15px] font-black text-indigo-950 uppercase italic tracking-tight truncate pr-2">{title}</h4>
-          <span className={cn("text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full shrink-0 border", statusColor)}>
+          <h4 className="text-xl text-indigo-950 font-bold tracking-tight truncate pr-2">{title}</h4>
+          <span className={cn("text-label font-bold uppercase tracking-widest px-2 py-0.5 rounded-md shrink-0 border", statusColor)}>
             {status}
           </span>
         </div>
-        <p className="text-[11px] font-bold text-[#5a5a8a] uppercase tracking-widest mb-4">{type}</p>
-        <div className="flex items-center justify-between border-t border-slate-50 pt-4">
-          <span className="text-[10px] font-black text-[#767690] uppercase tracking-widest">{date}</span>
+        <p className="text-label text-text-secondary font-bold uppercase tracking-widest mb-3">{type}</p>
+        <div className="flex items-center justify-between border-t border-slate-50 pt-3">
+          <span className="text-label text-text-muted font-bold uppercase tracking-widest">{date}</span>
           <ChevronRight size={14} className="text-slate-200" />
         </div>
       </div>
@@ -304,7 +304,7 @@ export const PatientFollowups = () => (
   <MobileLayout title="Follow-ups">
     <div className="px-5 pt-4 space-y-8 pb-20">
       <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-sm">
-        <h3 className="text-[12px] font-black text-indigo-950 uppercase tracking-[0.3em] mb-8 italic px-1">Scheduled Reviews</h3>
+        <h3 className="text-label text-indigo-950 font-bold uppercase tracking-widest mb-8  px-1">Scheduled Reviews</h3>
         <div className="space-y-4">
           <AppointmentItem doctor="Dr. Sarah Chen" type="Virtual Consultation" date="Oct 30, 2026" time="10:00 AM" />
           <AppointmentItem doctor="Dr. Michael Ross" type="Lab Review" date="Nov 05, 2026" time="2:30 PM" />
@@ -319,11 +319,11 @@ export const PatientFollowups = () => (
            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-petri-500 mb-8 border border-white/10">
               <Sparkles size={24} />
            </div>
-           <h3 className="text-2xl font-black italic tracking-tighter uppercase mb-4 leading-none">Need Expert <br />Consultation?</h3>
-           <p className="text-[13px] font-bold text-white/70 leading-relaxed mb-10 max-w-[200px]">
+           <h3 className="text-3xl text-white font-bold tracking-tight mb-4 leading-tight">Need Expert <br />Consultation?</h3>
+           <p className="text-body text-white/70 leading-relaxed mb-10 max-w-[200px] tracking-normal">
              Book priority access to our network of global medical experts.
            </p>
-           <button className="w-full h-16 bg-white text-indigo-950 font-black text-xs uppercase tracking-[0.2em] rounded-[24px] hover:bg-petri-500 hover:text-white transition-all shadow-xl">
+           <button className="w-full h-16 bg-white text-indigo-950 text-button font-bold uppercase tracking-normal rounded-[24px] hover:bg-petri-500 hover:text-white transition-all shadow-xl">
              Book Assessment
            </button>
         </div>
@@ -333,21 +333,21 @@ export const PatientFollowups = () => (
 );
 
 const AppointmentItem = ({ doctor, type, date, time }) => (
-  <div className="p-6 rounded-[32px] border border-slate-50 hover:border-indigo-100 bg-white transition-all group active:scale-[0.98]">
-    <div className="flex items-center justify-between mb-4">
-       <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-indigo-950 group-hover:bg-indigo-950 group-hover:text-white transition-all border border-slate-100">
-             <Calendar size={22} />
+  <div className="p-4 rounded-xl border border-slate-50 hover:border-indigo-100 bg-white transition-all group active:scale-[0.98]">
+    <div className="flex items-center justify-between mb-3">
+       <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-indigo-950 group-hover:bg-indigo-950 group-hover:text-white transition-all border border-slate-100">
+             <Calendar size={18} />
           </div>
           <div>
-             <h5 className="text-[14px] font-black text-indigo-950 uppercase italic tracking-tight">{doctor}</h5>
-             <p className="text-[10px] font-black text-[#767690] uppercase tracking-widest mt-1">{type}</p>
+             <h5 className="text-body font-bold text-indigo-950 uppercase  tracking-normal">{doctor}</h5>
+             <p className="text-label text-text-muted font-bold uppercase tracking-widest mt-0.5">{type}</p>
           </div>
        </div>
     </div>
-    <div className="flex items-center justify-between border-t border-slate-50 pt-4 mt-2">
-       <span className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-widest">{date}</span>
-       <span className="text-[11px] font-black text-petri-500 uppercase tracking-widest">{time}</span>
+    <div className="flex items-center justify-between border-t border-slate-50 pt-3 mt-2">
+       <span className="text-label text-text-secondary font-bold uppercase tracking-widest">{date}</span>
+       <span className="text-label text-petri-500 font-bold uppercase tracking-widest">{time}</span>
     </div>
   </div>
 );
@@ -359,13 +359,13 @@ export const PatientSettings = () => {
       {/* Avatar Section */}
       <section className="px-5 pt-10 pb-12 text-center">
         <div className="relative inline-block mb-6 group cursor-pointer">
-           <div className="w-24 h-24 rounded-[36px] bg-indigo-950 text-white flex items-center justify-center text-[32px] font-black border-4 border-white shadow-2xl italic group-hover:scale-105 transition-transform">
+           <div className="w-24 h-24 rounded-[36px] bg-indigo-950 text-white flex items-center justify-center text-[32px] font-black border-4 border-white shadow-2xl  group-hover:scale-105 transition-transform">
              JD
            </div>
            <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-petri-500 border-4 border-white shadow-lg" />
         </div>
-        <h2 className="text-2xl font-black text-indigo-950 tracking-tighter uppercase italic mb-1">John Doe</h2>
-        <p className="text-[10px] font-black text-[#64748b] uppercase tracking-[0.3em]">Patient ID: 94-SPD-X</p>
+        <h2 className="text-3xl text-indigo-950 font-bold tracking-tight mb-1">John Doe</h2>
+        <p className="text-label text-text-muted font-bold uppercase tracking-widest">Patient ID: 94-SPD-X</p>
       </section>
 
       {/* Settings Sections */}
@@ -392,9 +392,9 @@ export const PatientSettings = () => {
         <div className="px-5 pt-4">
           <button 
             onClick={() => navigate('/')}
-            className="w-full h-16 bg-red-500/5 text-red-500 font-black text-xs uppercase tracking-[0.2em] rounded-[24px] border border-red-500/10 active:bg-red-500 active:text-white transition-all flex items-center justify-center gap-3"
+            className="w-full h-[44px] bg-red-500/5 text-red-500 text-button font-bold uppercase tracking-normal rounded-xl border border-red-500/10 active:bg-red-500 active:text-white transition-all flex items-center justify-center gap-2"
           >
-            <LogOut size={18} /> Sign Out
+            <LogOut size={16} /> Sign Out
           </button>
         </div>
       </div>
@@ -408,8 +408,8 @@ export const PatientNotifications = () => {
     <MobileLayout title="Alerts" showBack>
       <div className="px-5 pt-6 space-y-6 pb-20">
         <div className="flex items-center justify-between px-2">
-           <h3 className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Recent Activity</h3>
-           <button className="text-[10px] font-black text-petri-500 uppercase tracking-widest">Clear All</button>
+           <h3 className="text-label text-text-secondary font-bold uppercase tracking-widest">Recent Activity</h3>
+           <button className="text-label text-petri-500 font-bold uppercase tracking-widest">Clear All</button>
         </div>
 
         <div className="space-y-3">
@@ -444,12 +444,12 @@ export const PatientNotifications = () => {
         </div>
 
         <div className="pt-8">
-           <h3 className="px-2 text-[11px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] mb-4">Discovery</h3>
+           <h3 className="px-2 text-label text-text-secondary font-bold uppercase tracking-widest mb-4">Discovery</h3>
            <div className="bg-indigo-950 p-8 rounded-[36px] relative overflow-hidden group shadow-2xl shadow-indigo-900/20">
               <div className="absolute top-0 right-0 p-4 opacity-20"><Sparkles size={48} /></div>
-              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-2 relative z-10">New Health Guide</h4>
-              <p className="text-[12px] text-white/60 font-bold mb-6 relative z-10">Optimizing microbial stability during seasonal changes.</p>
-              <button className="h-10 px-6 bg-white rounded-xl text-[10px] font-black uppercase tracking-widest text-indigo-950 relative z-10 active:scale-95 transition-all">Read Protocol</button>
+              <h4 className="text-2xl text-white font-bold tracking-tight mb-2 relative z-10">New Health Guide</h4>
+              <p className="text-body text-white/60 mb-6 relative z-10 tracking-normal">Optimizing microbial stability during seasonal changes.</p>
+              <button className="h-10 px-6 bg-white rounded-xl text-button font-bold uppercase tracking-normal text-indigo-950 relative z-10 active:scale-95 transition-all">Read Protocol</button>
            </div>
         </div>
       </div>
@@ -461,30 +461,30 @@ const NotificationItem = ({ icon: Icon, title, desc, time, unread, onClick }) =>
   <div 
     onClick={onClick}
     className={cn(
-      "p-5 rounded-[32px] border flex gap-4 active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden",
+      "p-4 rounded-xl border flex gap-4 active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden",
       unread ? "bg-white border-indigo-100 shadow-xl shadow-indigo-900/5" : "bg-slate-50/50 border-transparent"
     )}
   >
-    {unread && <div className="absolute top-0 left-0 w-1.5 h-full bg-petri-500" />}
+    {unread && <div className="absolute top-0 left-0 w-1 h-full bg-petri-500" />}
     <div className={cn(
-      "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border",
-      unread ? "bg-indigo-950 text-white border-indigo-900 shadow-lg shadow-indigo-900/20" : "bg-white text-[#9898b8] border-slate-100"
+      "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border",
+      unread ? "bg-indigo-950 text-white border-indigo-900 shadow-lg shadow-indigo-900/20" : "bg-white text-text-muted border-slate-100"
     )}>
-      <Icon size={20} />
+      <Icon size={18} />
     </div>
     <div className="flex-1 min-w-0">
       <div className="flex justify-between items-start mb-1">
-        <h4 className={cn("text-[14px] font-black uppercase italic tracking-tight", unread ? "text-indigo-950" : "text-[#767690]")}>{title}</h4>
-        <span className="text-[9px] font-black text-[#9898b8] uppercase whitespace-nowrap ml-2">{time}</span>
+        <h4 className={cn("text-body font-bold uppercase  tracking-normal", unread ? "text-indigo-950" : "text-text-secondary")}>{title}</h4>
+        <span className="text-label text-text-muted font-bold uppercase tracking-widest whitespace-nowrap ml-2">{time}</span>
       </div>
-      <p className="text-[12px] text-[#5a5a8a] font-bold leading-relaxed">{desc}</p>
+      <p className="text-body text-text-secondary leading-relaxed tracking-normal">{desc}</p>
     </div>
   </div>
 );
 
 const SettingGroup = ({ title, children }) => (
   <section>
-    <h3 className="px-7 text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] mb-4">{title}</h3>
+    <h3 className="px-7 text-label text-text-secondary font-bold uppercase tracking-widest mb-4">{title}</h3>
     <div className="bg-white border-y border-slate-100 divide-y divide-slate-50 overflow-hidden">
       {children}
     </div>
@@ -492,14 +492,14 @@ const SettingGroup = ({ title, children }) => (
 );
 
 const SettingLink = ({ icon: Icon, label, value }) => (
-  <div className="h-[64px] px-7 flex items-center justify-between active:bg-slate-50 transition-colors cursor-pointer group">
+  <div className="h-[56px] px-7 flex items-center justify-between active:bg-slate-50 transition-colors cursor-pointer group">
     <div className="flex items-center gap-4">
-      <div className="text-[#9898b8] group-hover:text-indigo-950 transition-colors"><Icon size={20} /></div>
-      <span className="text-[14px] text-indigo-950 font-black uppercase italic tracking-tight">{label}</span>
+      <div className="text-text-muted group-hover:text-indigo-950 transition-colors"><Icon size={18} /></div>
+      <span className="text-body text-indigo-950 font-bold uppercase  tracking-normal">{label}</span>
     </div>
     <div className="flex items-center gap-3">
-      {value && <span className="text-[11px] font-black text-[#5a5a8a] uppercase tracking-widest">{value}</span>}
-      <ChevronRight size={16} className="text-slate-200" />
+      {value && <span className="text-label text-text-secondary font-bold uppercase tracking-widest">{value}</span>}
+      <ChevronRight size={14} className="text-slate-200" />
     </div>
   </div>
 );
@@ -528,23 +528,23 @@ const ActiveCaseCard = ({ name, id, priority, time, risk }) => {
       </div>
 
       <div className="flex items-center gap-5 mb-8">
-        <div className="w-14 h-14 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-lg font-black italic border border-white/10 shadow-xl group-hover:rotate-3 transition-transform">
+        <div className="w-14 h-14 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-lg font-black  border border-white/10 shadow-xl group-hover:rotate-3 transition-transform">
           {name.split(' ').map(n => n[0]).join('')}
         </div>
         <div>
-           <h4 className="text-lg font-black text-indigo-950 group-hover:text-petri-500 transition-colors uppercase italic tracking-tighter leading-none mb-1">{name}</h4>
-           <p className="text-[10px] font-black text-[#767690] uppercase tracking-widest">Case ID: {id}</p>
+           <h4 className="text-2xl text-indigo-950 group-hover:text-petri-500 transition-colors font-bold tracking-tight leading-tight mb-1">{name}</h4>
+           <p className="text-label text-text-muted font-bold uppercase tracking-widest">Case ID: {id}</p>
         </div>
       </div>
 
-      <div className="space-y-6">
-         <div className="flex items-center justify-between text-[11px] font-black uppercase tracking-widest border-t border-slate-50 pt-6">
-            <span className="text-[#5a5a8a]">Remaining</span>
-            <span className={cn(risk === 'URGENT' ? 'text-red-500' : 'text-indigo-950')}>{time}</span>
+      <div className="flex flex-col gap-4">
+         <div className="flex items-center justify-between border-t border-slate-50 pt-4">
+            <span className="text-label text-text-secondary font-bold uppercase tracking-widest">Remaining</span>
+            <span className={cn("text-body font-bold uppercase  tracking-normal", risk === 'URGENT' ? 'text-red-500' : 'text-indigo-950')}>{time}</span>
          </div>
          <button 
            onClick={(e) => { e.stopPropagation(); navigate(`/doctor/cases/${id}`); }}
-           className="w-full h-14 bg-indigo-950 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-petri-500 transition-all shadow-xl"
+           className="w-full h-[44px] bg-indigo-950 text-white text-button font-bold uppercase tracking-normal rounded-xl hover:bg-petri-500 transition-all shadow-lg"
          >
            Initialize Review
          </button>
@@ -560,10 +560,10 @@ export const DoctorCompleted = () => (
       <table className="w-full text-left relative z-10">
         <thead>
           <tr className="bg-slate-50/50 border-b border-slate-100">
-            <th className="px-10 py-6 text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Patient Entity</th>
-            <th className="px-10 py-6 text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Final Diagnostic</th>
-            <th className="px-10 py-6 text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">Validation Date</th>
-            <th className="px-10 py-6 text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em] text-right">Status</th>
+            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest">Patient Entity</th>
+            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest">Final Diagnostic</th>
+            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest">Validation Date</th>
+            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest text-right">Status</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-50">
@@ -578,12 +578,12 @@ export const DoctorCompleted = () => (
 
 const CompletedRow = ({ name, diagnostic, date }) => (
   <tr className="hover:bg-slate-50 transition-all group cursor-pointer">
-    <td className="px-10 py-8 font-black text-indigo-950 uppercase italic tracking-tight">{name}</td>
-    <td className="px-10 py-8 text-sm font-bold text-[#767690] italic">"{diagnostic}"</td>
-    <td className="px-10 py-8 text-[11px] font-black text-[#767690] uppercase tracking-widest">{date}</td>
-    <td className="px-10 py-8 text-right">
-      <div className="inline-flex items-center gap-2 text-[10px] font-black text-petri-500 bg-petri-50 px-4 py-2 rounded-xl border border-petri-100 uppercase tracking-widest">
-        <ShieldCheck size={14} strokeWidth={3} /> Clinically Validated
+    <td className="px-10 py-6 text-body font-bold text-indigo-950 uppercase  tracking-normal">{name}</td>
+    <td className="px-10 py-6 text-body text-text-secondary ">"{diagnostic}"</td>
+    <td className="px-10 py-6 text-label text-text-muted font-bold uppercase tracking-widest">{date}</td>
+    <td className="px-10 py-6 text-right">
+      <div className="inline-flex items-center gap-2 text-label text-petri-500 bg-petri-50 px-3 py-1.5 rounded-lg border border-petri-100 font-bold uppercase tracking-widest">
+        <ShieldCheck size={14} strokeWidth={3} /> Validated
       </div>
     </td>
   </tr>
@@ -601,17 +601,17 @@ export const DoctorPatients = () => {
       <div className="flex justify-between items-center mb-10 px-4">
         <div className="flex gap-4">
            {['Global Registry', 'Assigned Only'].map(t => (
-             <button key={t} className="px-8 py-3 bg-white border border-slate-200 rounded-2xl text-[10px] font-black uppercase tracking-widest text-[#5a5a8a] hover:border-indigo-900/20 transition-all">{t}</button>
+             <button key={t} className="px-6 h-[44px] bg-white border border-slate-200 rounded-xl text-button font-bold uppercase tracking-normal text-text-secondary hover:border-indigo-900/20 transition-all">{t}</button>
            ))}
         </div>
-        <div className="flex items-center gap-4 bg-white px-6 py-3 rounded-2xl border border-slate-200 w-[360px] focus-within:border-indigo-900/20 transition-all shadow-sm group">
-          <Search size={18} className="text-[#767690] group-focus-within:text-indigo-950 transition-colors" />
+        <div className="flex items-center gap-3 bg-white px-5 h-[44px] rounded-xl border border-slate-200 w-[360px] focus-within:ring-1 focus-within:ring-petri-500/60 transition-all shadow-sm group">
+          <Search size={16} className="text-text-muted group-focus-within:text-indigo-950 transition-colors" />
           <input 
             type="text" 
             placeholder="Search Registry..." 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent border-none outline-none text-[11px] font-black uppercase tracking-widest w-full" 
+            className="bg-transparent border-none outline-none text-body tracking-normal w-full placeholder:text-gray-400" 
           />
         </div>
       </div>
@@ -619,14 +619,14 @@ export const DoctorPatients = () => {
         {filtered.map(name => (
           <div key={name} className="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm text-center hover:shadow-2xl hover:shadow-indigo-900/5 transition-all group relative overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-1 bg-slate-100 group-hover:bg-petri-500 transition-colors" />
-            <div className="w-20 h-20 rounded-[28px] bg-indigo-950 text-white flex items-center justify-center text-xl font-black italic mx-auto mb-6 shadow-xl border border-white/10 group-hover:rotate-3 transition-transform">
+            <div className="w-20 h-20 rounded-[28px] bg-indigo-950 text-white flex items-center justify-center text-xl font-black  mx-auto mb-6 shadow-xl border border-white/10 group-hover:rotate-3 transition-transform">
               {name.split(' ').map(n => n[0]).join('')}
             </div>
-            <h4 className="text-lg font-black text-indigo-950 mb-1 uppercase italic tracking-tighter">{name}</h4>
-            <p className="text-[10px] font-black text-[#767690] uppercase tracking-widest mb-8">Registry Active</p>
+            <h4 className="text-xl text-indigo-950 mb-1 font-bold tracking-tight">{name}</h4>
+            <p className="text-label text-text-muted font-bold uppercase tracking-widest mb-8">Registry Active</p>
             <button 
               onClick={() => navigate(`/doctor/patients/${name.replace(' ', '-').toLowerCase()}`)}
-              className="text-[10px] font-black text-petri-500 uppercase tracking-widest hover:text-indigo-950 transition-colors border-b border-petri-500/20 pb-1"
+              className="text-label font-bold text-petri-500 uppercase tracking-normal hover:text-indigo-950 transition-colors border-b border-petri-500/20 pb-1"
             >
               Access History
             </button>
@@ -642,10 +642,10 @@ export const DoctorAnalytics = () => (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
       <div className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm">
         <div className="flex items-center gap-3 mb-10">
-           <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-950 border border-indigo-100">
+           <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-950 border border-indigo-100">
              <Activity size={18} />
            </div>
-           <h3 className="text-[12px] font-black text-indigo-950 uppercase tracking-[0.2em] italic">Epidemiological Risk</h3>
+           <h3 className="text-label text-indigo-950 font-bold uppercase tracking-widest ">Epidemiological Risk</h3>
         </div>
         <div className="space-y-8">
           <ChartBar label="Urgent Bypass" value={15} color="bg-red-500" />
@@ -660,14 +660,14 @@ export const DoctorAnalytics = () => (
         
         <div className="flex items-center gap-3 mb-10 relative z-10 text-white/75">
            <BarChart3 size={18} />
-           <h3 className="text-[12px] font-black uppercase tracking-[0.2em] italic">Review Throughput</h3>
+           <h3 className="text-[12px] font-bold uppercase tracking-widest ">Review Throughput</h3>
         </div>
         
         <div className="flex items-baseline gap-2 mb-2 relative z-10">
-          <span className="text-6xl font-black italic tracking-tighter text-petri-500">2.4</span>
-          <span className="text-xl font-black text-white italic uppercase tracking-tighter">Hours</span>
+          <span className="text-5xl font-bold  tracking-tight text-petri-500">2.4</span>
+          <span className="text-2xl text-white  uppercase tracking-tight">Hours</span>
         </div>
-        <p className="text-white/75 text-[10px] font-black uppercase tracking-[0.4em] mb-12">+12% Velocity vs Last Quarter</p>
+        <p className="text-label text-white/70 font-bold uppercase tracking-widest mb-12">+12% Velocity vs Last Quarter</p>
         
         <div className="flex gap-3 items-end h-[120px] relative z-10">
           {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
@@ -691,8 +691,8 @@ export const DoctorAnalytics = () => (
 
 const ChartBar = ({ label, value, color }) => (
   <div className="space-y-3 px-2">
-    <div className="flex justify-between text-[9px] font-black uppercase tracking-[0.2em]">
-      <span className="text-[#5a5a8a]">{label}</span>
+    <div className="flex justify-between text-label font-bold uppercase tracking-widest">
+      <span className="text-text-secondary">{label}</span>
       <span className="text-indigo-950">{value}% Distribution</span>
     </div>
     <div className="h-3 bg-slate-50 rounded-full overflow-hidden border border-slate-100">
@@ -736,8 +736,8 @@ export const DoctorSettings = () => {
 
 const SettingSection = ({ title, children }) => (
   <div className="bg-white rounded-[40px] border border-slate-200 overflow-hidden shadow-sm">
-    <div className="px-8 py-5 bg-slate-50/50 border-b border-slate-100">
-      <h3 className="text-[10px] font-black text-[#5a5a8a] uppercase tracking-[0.3em]">{title}</h3>
+    <div className="px-8 py-4 bg-slate-50/50 border-b border-slate-100">
+      <h3 className="text-label text-text-secondary font-bold uppercase tracking-widest">{title}</h3>
     </div>
     <div className="divide-y divide-slate-50">
       {children}
@@ -754,10 +754,10 @@ const SettingItem = ({ icon: Icon, label, active, onClick }) => (
     onClick={onClick}
   >
     <div className="flex items-center gap-5">
-      <div className="w-10 h-10 rounded-2xl bg-slate-50 flex items-center justify-center text-indigo-900 group-hover:bg-indigo-950 group-hover:text-white transition-all border border-slate-100">
+      <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-indigo-900 group-hover:bg-indigo-950 group-hover:text-white transition-all border border-slate-100">
         <Icon size={18} />
       </div>
-      <span className="text-[14px] font-black text-indigo-950 uppercase italic tracking-tight">{label}</span>
+      <span className="text-body font-bold text-indigo-950 uppercase  tracking-normal">{label}</span>
     </div>
     {onClick && (
       <div className={cn(

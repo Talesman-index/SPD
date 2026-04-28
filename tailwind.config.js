@@ -59,20 +59,29 @@ export default {
         positive: '#e8a020',
       },
 
+      letterSpacing: {
+        widest: '0.15em',
+        tight: '-0.025em',
+        tighter: '-0.05em',
+        normal: '0em',
+      },
+
       fontFamily: {
         sans:    ['Manrope', 'sans-serif'],
         'manrope': ['Manrope', 'sans-serif'],
       },
 
       fontSize: {
-        'h1':      ['96px',  { lineHeight: '0.9',  letterSpacing: '-0.025em', fontWeight: '800' }],
-        'h2':      ['44px',  { lineHeight: '1.1',  letterSpacing: '-0.01em',  fontWeight: '700' }],
-        'h3':      ['24px',  { lineHeight: '1.2',  letterSpacing: '0',        fontWeight: '600' }],
+        'label':       ['11px', { lineHeight: '1.4', letterSpacing: '0.07em', fontWeight: '600' }],
+        'button':      ['13px', { lineHeight: '1', letterSpacing: '0.04em', fontWeight: '600' }],
+        'placeholder': ['14px', { lineHeight: '1.5', letterSpacing: '0em' }],
+        'body':        ['14px', { lineHeight: '1.6', letterSpacing: '0em' }],
+        'h1':          ['24px', { lineHeight: '1.2', letterSpacing: '0.02em', fontWeight: '700' }],
+        'h2':          ['20px', { lineHeight: '1.3', letterSpacing: '0.02em', fontWeight: '700' }],
+        'h3':          ['18px', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '600' }],
         'h4':      ['16px',  { lineHeight: '1.4',  letterSpacing: '0',        fontWeight: '500' }],
         'body-lg': ['18px',  { lineHeight: '1.7',  letterSpacing: '0',        fontWeight: '400' }],
-        'body':    ['16px',  { lineHeight: '1.65', letterSpacing: '0',        fontWeight: '400' }],
         'small':   ['14px',  { lineHeight: '1.6',  letterSpacing: '0',        fontWeight: '400' }],
-        'btn':     ['16px',  { lineHeight: '1',    letterSpacing: '0.015em',  fontWeight: '600' }],
         'eyebrow': ['12px',  { lineHeight: '1',    letterSpacing: '0.12em',   fontWeight: '700' }],
       },
 

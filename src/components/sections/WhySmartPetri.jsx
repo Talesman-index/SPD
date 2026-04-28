@@ -18,7 +18,7 @@ const RegionCard = ({ number, title, body, index }) => (
         <ArrowUpRight size={20} />
       </div>
     </div>
-    <h4 className="text-2xl  text-[#1a5259] mb-4 uppercase italic tracking-tighter">
+    <h4 className="text-2xl  text-[#1a5259] mb-4 uppercase  tracking-tighter">
       {title}
     </h4>
     <p className="text-[#1a5259]/80  leading-relaxed">
@@ -58,7 +58,7 @@ const GlobalReach = () => {
               <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-[#1a5259] mb-10 leading-[0.95] tracking-tighter">
                 Diagnostic tools <br />
                 available in many <br />
-                <span className="text-[#e6c28d] italic">trusted regions.</span>
+                <span className="text-[#e6c28d] ">trusted regions.</span>
               </h2>
               <p className="text-xl text-[#1a5259]/80 leading-relaxed max-w-[540px] mb-12 ">
                 Our dedicated provider network ensures compassionate, personalized support 

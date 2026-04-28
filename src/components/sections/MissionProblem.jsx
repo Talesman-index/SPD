@@ -37,13 +37,13 @@ const MissionProblem = () => {
         <div className="flex whitespace-nowrap animate-ticker group">
           {[1, 2, 3, 4].map((_, i) => (
             <div key={i} className="flex items-center gap-12 px-6">
-              <span className="text-white/70 text-[11px] font-black uppercase tracking-[0.4em] hover:text-petri-400 transition-colors duration-500 cursor-default">Built for Communities</span>
+              <span className="text-white/70 text-label font-bold uppercase tracking-widest hover:text-petri-400 transition-colors duration-500 cursor-default">Built for Communities</span>
               <span className="w-2 h-2 rounded-full bg-petri-500/40"></span>
-              <span className="text-white/70 text-[11px] font-black uppercase tracking-[0.4em] hover:text-petri-400 transition-colors duration-500 cursor-default">Health Equity Now</span>
+              <span className="text-white/70 text-label font-bold uppercase tracking-widest hover:text-petri-400 transition-colors duration-500 cursor-default">Health Equity Now</span>
               <span className="w-2 h-2 rounded-full bg-petri-500/40"></span>
-              <span className="text-white/70 text-[11px] font-black uppercase tracking-[0.4em] hover:text-petri-400 transition-colors duration-500 cursor-default">No Insurance Needed</span>
+              <span className="text-white/70 text-label font-bold uppercase tracking-widest hover:text-petri-400 transition-colors duration-500 cursor-default">No Insurance Needed</span>
               <span className="w-2 h-2 rounded-full bg-petri-500/40"></span>
-              <span className="text-white/70 text-[11px] font-black uppercase tracking-[0.4em] hover:text-petri-400 transition-colors duration-500 cursor-default">Clinical Grade Diagnostics</span>
+              <span className="text-white/70 text-label font-bold uppercase tracking-widest hover:text-petri-400 transition-colors duration-500 cursor-default">Clinical Grade Diagnostics</span>
               <span className="w-2 h-2 rounded-full bg-petri-500/40"></span>
             </div>
           ))}
@@ -73,11 +73,11 @@ const MissionProblem = () => {
                    transition={{ duration: 1, delay: 0.5 }}
                    className="h-[1px] bg-petri-500" 
                  />
-                 <div className="text-[11px] font-black uppercase tracking-[0.4em] text-[#5a5a8a]">The Reality</div>
+                  <div className="text-label font-bold uppercase tracking-widest text-[#5a5a8a]">The Reality</div>
               </div>
-              <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black text-indigo-900 mb-12 leading-[0.95] tracking-tighter">
+              <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-indigo-900 mb-12 leading-[1.05] tracking-tight">
                 Healthcare is a <br />
-                <span className="italic text-petri-500 font-medium">broken system.</span>
+                <span className="italic text-petri-500 font-bold">broken system.</span>
               </h2>
             </motion.div>
 
@@ -92,14 +92,14 @@ const MissionProblem = () => {
                   className="group flex flex-col items-start"
                 >
                   <div className="flex items-baseline gap-2 mb-2">
-                    <div className="text-4xl md:text-6xl font-black text-indigo-900 tracking-tighter leading-none group-hover:text-petri-500 transition-colors duration-500">
+                    <div className="text-6xl md:text-7xl font-bold text-indigo-900 tracking-tight leading-none group-hover:text-petri-500 transition-colors duration-500">
                       {s.number}
                     </div>
-                    {s.unit && <span className="text-lg font-black text-[#767690] uppercase tracking-widest">{s.unit}</span>}
+                    {s.unit && <span className="text-label font-bold text-indigo-950/40 uppercase tracking-widest">{s.unit}</span>}
                   </div>
                   <div className="flex-1">
-                    <h5 className="text-[10px] font-black text-indigo-950 uppercase tracking-[0.2em] mb-3">{s.label}</h5>
-                    <p className="text-xs font-bold text-[#5a5a8a] leading-relaxed max-w-[200px] group-hover:text-indigo-950 transition-colors duration-500">
+                    <h5 className="text-label font-bold text-indigo-950 uppercase tracking-widest mb-3">{s.label}</h5>
+                    <p className="text-body text-[#5a5a8a] leading-relaxed max-w-[200px] group-hover:text-indigo-950 transition-colors duration-500 tracking-normal">
                       {s.desc}
                     </p>
                     <motion.div 
@@ -135,25 +135,25 @@ const MissionProblem = () => {
 
               <div className="relative z-10">
                 <div className="w-16 h-1 bg-petri-500 mb-12"></div>
-                <h3 className="text-3xl md:text-5xl text-white font-black leading-[1.05] tracking-tighter mb-10">
-                  SPD was built for communities <span className="text-petri-400 italic italic font-medium">overlooked</span> by the system.
+                <h3 className="text-h2 md:text-3xl text-white font-bold leading-tight tracking-tight mb-10">
+                  SPD was built for communities <span className="text-petri-400 italic font-bold">overlooked</span> by the system.
                 </h3>
-                <p className="text-lg md:text-xl text-white/75 leading-relaxed mb-14 font-medium">
+                <p className="text-body text-white/75 leading-relaxed mb-14 tracking-normal">
                   In rural counties and underserved neighborhoods, access to healthcare isn't just difficult — it's often impossible. 
                   We bring clinical-grade diagnostics directly to your doorstep. No insurance required. No travel needed. No compromise on quality.
                 </p>
                 
                 <div className="flex flex-col gap-8">
                    <div className="flex items-center gap-6">
-                      <div className="text-[10px] font-black text-petri-400 uppercase tracking-[0.4em]">The Mission</div>
+                      <div className="text-label font-bold text-petri-400 uppercase tracking-widest">The Mission</div>
                       <div className="flex-1 h-px bg-white/10"></div>
                    </div>
                    <div className="flex flex-wrap gap-4">
-                      {['Accessible', 'Equitable', 'Affordable'].map(tag => (
-                        <span key={tag} className="px-4 py-2 rounded-full border border-white/10 text-[10px] font-black uppercase tracking-widest text-white/70 hover:border-petri-400 hover:text-petri-400 transition-colors duration-300">
-                          {tag}
-                        </span>
-                      ))}
+                       {['Accessible', 'Equitable', 'Affordable'].map(tag => (
+                         <span key={tag} className="px-4 py-2 rounded-full border border-white/10 text-label font-bold uppercase tracking-widest text-white/70 hover:border-petri-400 hover:text-petri-400 transition-colors duration-300">
+                           {tag}
+                         </span>
+                       ))}
                    </div>
                 </div>
               </div>

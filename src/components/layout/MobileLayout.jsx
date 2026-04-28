@@ -22,7 +22,7 @@ const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
     <div className="flex flex-col min-h-screen bg-slate-50 font-manrope selection:bg-petri-500/10 overflow-x-hidden">
       {/* iOS Style Status Bar (Subtle) */}
       <div className="h-[24px] bg-white/80 backdrop-blur-md sticky top-0 z-[60] flex items-center justify-between px-8">
-        <span className="text-[10px] font-black text-[#767690]">9:41</span>
+        <span className="text-xs font-bold text-[#767690]">9:41</span>
         <div className="flex items-center gap-1.5 opacity-70">
           <div className="w-4 h-2.5 border border-indigo-950 rounded-[2px] relative">
             <div className="absolute left-[1px] top-[1px] bottom-[1px] w-[10px] bg-indigo-950 rounded-[1px]" />
@@ -44,7 +44,7 @@ const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
           ) : (
             <NavLink to="/patient/settings" className="flex items-center gap-3 active:scale-95 transition-transform">
               <div className="relative">
-                 <div className="w-9 h-9 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-[10px] font-black border border-white shadow-xl italic">
+                 <div className="w-9 h-9 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-xs font-bold border border-white shadow-xl ">
                    JD
                  </div>
                  <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-petri-500 border-2 border-white" />
@@ -53,7 +53,7 @@ const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
           )}
         </div>
 
-        <h5 className="flex-1 text-[13px] font-black text-indigo-950 text-center truncate px-2 uppercase tracking-[0.2em] italic">
+        <h5 className="flex-1 text-[13px] font-bold text-indigo-950 text-center truncate px-2 uppercase tracking-normal ">
           {title}
         </h5>
 
@@ -102,7 +102,7 @@ const MobileLayout = ({ children, title, showBack = false, rightAction }) => {
                    />
                  )}
               </div>
-              <span className="text-[9px] font-black uppercase tracking-widest">{item.label}</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest">{item.label}</span>
             </NavLink>
           ))}
         </nav>

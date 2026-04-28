@@ -12,12 +12,12 @@ const Sidebar = ({ type = 'patient' }) => {
   const navigate = useNavigate();
 
   const patientLinks = [
-    { label: 'Health Center', icon: LayoutDashboard, path: '/patient/dashboard' },
-    { label: 'My Assessments', icon: ClipboardList, path: '/patient/assessments' },
-    { label: 'My Tests', icon: TestTube, path: '/patient/tests' },
+    { label: 'Health Dashboard', icon: LayoutDashboard, path: '/patient/dashboard' },
+    { label: 'Assessments', icon: ClipboardList, path: '/patient/assessments' },
+    { label: 'Lab Tests', icon: TestTube, path: '/patient/tests' },
     { label: 'Medical Reports', icon: FileText, path: '/patient/reports' },
     { label: 'Instructions', icon: Pill, path: '/patient/instructions' },
-    { label: 'Follow-ups', icon: Calendar, path: '/patient/followups' },
+    { label: 'Clinical Follow-ups', icon: Calendar, path: '/patient/followups' },
     { label: 'Settings', icon: Settings, path: '/patient/settings' },
   ];
 
@@ -43,19 +43,19 @@ const Sidebar = ({ type = 'patient' }) => {
   return (
     <aside className="w-[260px] bg-indigo-950 flex flex-col h-screen fixed left-0 top-0 z-40 border-r border-white/5">
       {/* Header / Logo */}
-      <a href="/" className="p-10 pb-12 group block">
+      <a href="/" className="p-8 pb-10 group block">
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-10 h-10 rounded-[14px] bg-white flex items-center justify-center text-indigo-950 font-black shadow-lg shadow-white/5 transition-transform group-hover:scale-110">
+          <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-indigo-950 font-bold shadow-md transition-transform group-hover:scale-105">
             S
           </div>
-          <div className="text-2xl font-black text-white tracking-tighter italic">
+          <div className="text-xl font-bold text-white tracking-tight">
             SPD<span className="text-petri-500">.</span>
           </div>
         </div>
         <div className="flex items-center gap-2 mt-4">
-           <div className="w-1.5 h-1.5 rounded-full bg-petri-500 animate-pulse" />
-           <span className="text-[9px] font-black text-white/80 uppercase tracking-[0.3em]">
-             {type === 'doctor' ? 'Clinical Portal' : 'Patient Interface'}
+           <div className="w-1.5 h-1.5 rounded-full bg-petri-500" />
+           <span className="text-xs font-bold text-white/50 uppercase tracking-widest">
+             {type === 'doctor' ? 'Clinical Portal' : 'Patient System'}
            </span>
         </div>
       </a>
@@ -67,10 +67,10 @@ const Sidebar = ({ type = 'patient' }) => {
             key={link.path}
             to={link.path}
             className={({ isActive }) => cn(
-              "flex items-center justify-between px-5 py-4 rounded-2xl transition-all group relative overflow-hidden",
+              "flex items-center justify-between px-5 py-3.5 rounded-xl transition-all group relative overflow-hidden",
               isActive 
-                ? "bg-white/10 text-white" 
-                : "text-white/70 hover:text-white"
+                ? "bg-white/5 text-white" 
+                : "text-white/50 hover:text-white"
             )}
           >
             {({ isActive }) => (
@@ -78,12 +78,12 @@ const Sidebar = ({ type = 'patient' }) => {
                 {isActive && (
                   <motion.div 
                     layoutId="active-pill"
-                    className="absolute left-0 top-3 bottom-3 w-1 bg-petri-500 rounded-r-full shadow-[0_0_15px_rgba(0,184,176,0.8)]"
+                    className="absolute left-0 top-2 bottom-2 w-0.5 bg-petri-500 rounded-r-full"
                   />
                 )}
                 <div className="flex items-center gap-4 relative z-10">
-                  <link.icon 
-                    size={20} 
+                    <link.icon 
+                    size={18} 
                     className={cn(
                       "transition-colors", 
                       isActive ? "text-petri-500" : "group-hover:text-white"
@@ -92,7 +92,7 @@ const Sidebar = ({ type = 'patient' }) => {
                   <span className="text-[13px] font-bold tracking-tight">{link.label}</span>
                 </div>
                 {link.badge && (
-                  <span className="bg-red-500 text-white text-[9px] font-black px-2 py-1 rounded-lg relative z-10 shadow-lg shadow-red-500/20">
+                  <span className="bg-red-600 text-white text-[11px] font-bold px-2 py-0.5 rounded-md relative z-10 uppercase tracking-widest">
                     {link.badge}
                   </span>
                 )}
@@ -103,21 +103,21 @@ const Sidebar = ({ type = 'patient' }) => {
       </nav>
 
       {/* Profile / Footer */}
-      <div className="p-8 border-t border-white/5 bg-black/10">
-        <div className="flex items-center gap-4 mb-8">
+      <div className="p-6 border-t border-white/5 bg-black/10">
+        <div className="flex items-center gap-4 mb-6">
           <div className="relative">
-             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-900 to-indigo-800 flex items-center justify-center text-white font-black border border-white/10 shadow-xl">
+             <div className="w-10 h-10 rounded-xl bg-indigo-900 flex items-center justify-center text-white font-bold border border-white/5">
                {type === 'doctor' ? 'JS' : 'JD'}
              </div>
-             <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-petri-500 border-2 border-indigo-950" />
+             <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-petri-500 border-2 border-indigo-950" />
           </div>
           <div className="flex flex-col min-w-0">
-            <span className="text-[12px] font-black text-white truncate uppercase italic">
+            <span className="text-xs font-bold text-white truncate uppercase tracking-tight">
               {type === 'doctor' ? 'Dr. J. Smith' : 'John Doe'}
             </span>
             <span 
               onClick={() => navigate(type === 'doctor' ? '/doctor/settings' : '/patient/settings')}
-              className="text-[9px] text-white/80 mt-0.5 uppercase tracking-widest font-black hover:text-petri-500 cursor-pointer transition-colors"
+              className="text-[11px] text-white/40 mt-0.5 uppercase tracking-widest font-bold hover:text-white cursor-pointer transition-colors"
             >
               Portal Settings
             </span>
@@ -126,9 +126,9 @@ const Sidebar = ({ type = 'patient' }) => {
         
         <button 
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-5 py-4 text-red-400 hover:bg-white/5 rounded-2xl transition-all text-[11px] font-black uppercase tracking-widest"
+          className="flex items-center gap-3 w-full px-4 py-3 text-red-400 hover:bg-white/5 rounded-xl transition-all text-xs font-bold uppercase tracking-widest"
         >
-          <LogOut size={18} /> Sign Out
+          <LogOut size={16} /> Sign Out Session
         </button>
       </div>
     </aside>

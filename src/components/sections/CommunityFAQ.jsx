@@ -61,18 +61,18 @@ const CommunityFAQ = () => {
           {/* Left: Job Opportunities */}
           <ScrollReveal>
             <div className="space-y-12">
-               <div className="eyebrow mb-8 text-indigo-900">Economic Impact</div>
-               <h2 className="text-h2 text-indigo-950 mb-8 leading-tight">
+               <div className="text-label font-medium text-petri-500 uppercase tracking-label mb-8">Economic Impact</div>
+               <h2 className="text-h2 md:text-4xl text-indigo-950 mb-8 leading-tight tracking-tight uppercase ">
                  Work. Earn. <br />
-                 <span className="italic text-petri-500 font-medium">Support Your Community.</span>
+                 <span className="text-petri-500 font-bold">Support Your Community.</span>
                </h2>
-               <p className="text-xl text-text-secondary leading-relaxed mb-8 max-w-lg">
+               <p className="text-body text-text-secondary leading-relaxed mb-8 max-w-lg tracking-none">
                  In many communities, access to healthcare is limited — and so are job opportunities. Our system is designed to do both: improve health access and create local income opportunities.
                </p>
                
                <div className="bg-indigo-50 border border-indigo-100 rounded-3xl p-8 mb-12">
-                  <p className="text-indigo-950 font-bold mb-4">You don’t need a medical background to get involved.</p>
-                  <p className="text-[#5a5a8a] text-sm leading-relaxed">
+                  <p className="text-indigo-950 font-semibold mb-4 text-body tracking-none">You don’t need a medical background to get involved.</p>
+                  <p className="text-text-secondary text-body leading-relaxed tracking-none">
                     You just need the willingness to help. Flexible, local opportunities designed to fit your schedule and provide additional income.
                   </p>
                </div>
@@ -84,24 +84,24 @@ const CommunityFAQ = () => {
                         <role.icon size={20} />
                      </div>
                      <div>
-                        <h4 className="text-sm font-black text-indigo-950 tracking-tight mb-2 leading-tight">{role.title}</h4>
-                        <p className="text-[11px] text-indigo-900/60 font-bold leading-relaxed">{role.desc}</p>
+                        <h4 className="text-label font-bold text-indigo-950 tracking-label mb-2 uppercase">{role.title}</h4>
+                        <p className="text-label text-text-secondary font-medium tracking-label uppercase">{role.desc}</p>
                      </div>
                    </div>
                  ))}
                </div>
 
                <div className="p-6 bg-white/50 border border-dashed border-indigo-200 rounded-2xl">
-                  <p className="text-[11px] text-indigo-900/40 font-black uppercase tracking-widest leading-relaxed">
-                    <span className="text-indigo-900">Important:</span> All roles are designed to support care access, not replace healthcare professionals. Basic guidance and training will be provided.
+                  <p className="text-label text-text-muted font-medium uppercase tracking-label leading-relaxed">
+                    <span className="text-indigo-950 font-bold">Important:</span> All roles are designed to support care access, not replace healthcare professionals. Basic guidance and training will be provided.
                   </p>
                </div>
 
                <div className="flex flex-wrap gap-4 pt-4">
-                  <button className="px-10 py-5 bg-indigo-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-petri-500 transition-all shadow-xl shadow-indigo-900/10">
+                  <button className="px-8 h-[44px] bg-indigo-950 text-white rounded-xl text-button font-semibold uppercase tracking-button hover:bg-petri-500 transition-all shadow-xl shadow-indigo-900/10">
                     Apply to Work With Us
                   </button>
-                  <button className="px-10 py-5 border-2 border-indigo-900 text-indigo-900 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-indigo-900 hover:text-white transition-all">
+                  <button className="px-8 h-[44px] border border-indigo-950 text-indigo-950 rounded-xl text-button font-semibold uppercase tracking-button hover:bg-indigo-950 hover:text-white transition-all">
                     Join the Movement
                   </button>
                </div>
@@ -111,7 +111,7 @@ const CommunityFAQ = () => {
           {/* Right: FAQ */}
           <div className="lg:pl-12 lg:sticky lg:top-32">
              <ScrollReveal delay={0.2}>
-                <h4 className="text-sm font-black uppercase tracking-[0.3em] text-indigo-900/40 mb-16">Frequently Asked Questions</h4>
+                <h4 className="text-label font-medium uppercase tracking-label text-text-muted mb-16">Frequently Asked Questions</h4>
                 <div className="space-y-4">
                   {faqs.map((faq, i) => (
                     <div key={i} className="border-b border-indigo-100 last:border-0">
@@ -119,7 +119,7 @@ const CommunityFAQ = () => {
                         onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
                         className="w-full flex items-center justify-between py-8 text-left group"
                        >
-                         <span className="text-xl md:text-2xl font-black text-indigo-950 tracking-tight group-hover:text-petri-500 transition-colors">{faq.q}</span>
+                         <span className="text-sm md:text-base font-bold text-indigo-950 tracking-tight group-hover:text-petri-500 transition-colors uppercase ">{faq.q}</span>
                          <div className={cn(
                            "w-10 h-10 rounded-full border border-indigo-900/10 flex items-center justify-center text-indigo-950 transition-all duration-500",
                            openFaq === i && "rotate-180 bg-petri-500 border-transparent text-white shadow-lg shadow-petri-500/20"
@@ -136,7 +136,7 @@ const CommunityFAQ = () => {
                              transition={{ duration: 0.5, ease: "circOut" }}
                              className="overflow-hidden"
                            >
-                             <p className="pb-8 text-lg text-text-secondary leading-relaxed max-w-xl">
+                             <p className="pb-8 text-body text-text-secondary leading-relaxed max-w-xl tracking-none">
                                {faq.a}
                              </p>
                            </motion.div>

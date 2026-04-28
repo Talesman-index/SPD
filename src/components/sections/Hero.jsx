@@ -15,7 +15,7 @@ const slides = [
   {
     id: 2,
     tag: "3-in-1 Bio-Sensor Platform",
-    title: <>Healthcare<br />Shouldn't Be<br /><span className="italic text-petri-500 font-medium">a Privilege.</span></>,
+    title: <>Healthcare<br />Shouldn't Be<br /><span className=" text-petri-500 font-bold">a Privilege.</span></>,
     description: "In communities where the nearest lab is hours away, we bridge the gap. Smart Petri Dish ensures that life-saving diagnostics reach those who need them most.",
     image: "/mission-human.png",
   }
@@ -154,27 +154,27 @@ const Hero = ({ onOpenTrial }) => {
               animate="visible"
               exit="hidden"
             >
-              <motion.div custom={0} variants={textRevealVariants} className="eyebrow mb-8 !text-petri-400 uppercase tracking-[0.4em] text-[12px] font-black flex items-center gap-4">
+              <motion.div custom={0} variants={textRevealVariants} className="eyebrow mb-8 !text-petri-400 uppercase tracking-widest text-xs font-bold flex items-center gap-4">
                 <span className="w-10 h-[1px] bg-petri-400"></span>
                 {slides[currentSlide].tag}
               </motion.div>
 
-              <motion.h1 custom={1} variants={textRevealVariants} className="text-white text-[clamp(3rem,7.5vw,6rem)] font-black leading-[0.95] tracking-tighter mb-10 max-w-4xl lg:max-w-5xl">
+              <motion.h1 custom={1} variants={textRevealVariants} className="text-white text-[clamp(3.5rem,9vw,6.5rem)] font-bold leading-[0.9] tracking-tight mb-10 max-w-4xl lg:max-w-5xl">
                 {slides[currentSlide].title}
               </motion.h1>
 
-              <motion.p custom={2} variants={textRevealVariants} className="text-white/75 text-[clamp(1.1rem,1.8vw,1.3rem)] leading-relaxed mb-14 max-w-2xl font-medium">
+              <motion.p custom={2} variants={textRevealVariants} className="text-white/75 text-lg leading-relaxed mb-14 max-w-2xl font-normal tracking-normal">
                 {slides[currentSlide].description}
               </motion.p>
 
               <motion.div custom={3} variants={textRevealVariants} className="flex flex-wrap items-center gap-6">
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button 
-                    className="bg-petri-500 text-white hover:bg-white hover:text-indigo-900 transition-all duration-500 shadow-2xl shadow-petri-500/20 group border-none px-10 h-16 rounded-2xl" 
+                    className="bg-petri-500 text-indigo-950 hover:bg-white hover:text-indigo-900 transition-all duration-500 shadow-2xl shadow-petri-500/20 group border-none px-10 h-[56px] rounded-2xl" 
                     onClick={onOpenTrial}
                   >
-                    <span className="font-black uppercase tracking-widest text-xs">Order Now — $149</span>
-                    <div className="w-8 h-8 rounded-xl bg-indigo-900 flex items-center justify-center ml-4 group-hover:rotate-45 transition-transform duration-500">
+                    <span className="text-button font-bold uppercase tracking-normal">Order Now — $149</span>
+                    <div className="w-8 h-8 rounded-lg bg-indigo-950 flex items-center justify-center ml-4 group-hover:rotate-45 transition-transform duration-500">
                       <ArrowUpRight size={16} className="text-white" />
                     </div>
                   </Button>
@@ -188,7 +188,7 @@ const Hero = ({ onOpenTrial }) => {
                   <div className="w-14 h-14 rounded-full border border-white/40 flex items-center justify-center group-hover:bg-white group-hover:text-indigo-950 transition-all duration-500">
                     <ArrowRight size={20} />
                   </div>
-                  <span className="text-[11px] font-black uppercase tracking-[0.2em] border-b border-white/40 pb-1">Discover Technology</span>
+                  <span className="text-label font-bold uppercase tracking-widest border-b border-white/40 pb-1">Discover Technology</span>
                 </motion.button>
               </motion.div>
             </motion.div>
