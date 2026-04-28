@@ -4,7 +4,7 @@ import {
   Wind, Droplets, Thermometer, Bug, 
   HelpCircle, ArrowRight, ChevronLeft, 
   Waves, Check, Brain, Activity,
-  Globe, User, MapPin, Sparkles, ShieldCheck, Clock, ShieldAlert,
+  Globe, User, MapPin, Sparkles, ShieldCheck, Clock, ShieldAlert, Calendar,
   AlertCircle, Ruler, FileText, Lock, Shield, ArrowUpRight, Scale
 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -62,7 +62,6 @@ const TEST_TYPES = {
 const PatientAssessments = () => {
   const [step, setStep] = useState(1);
   const [consents, setConsents] = useState({ privacy: false, screening: false, sharing: false });
-  const [profile, setProfile] = useState({ dob: '', height: '', weight: '', city: '', zip: '' });
   const [emergency, setEmergency] = useState({ breathing: false, chestPain: false, confusion: false });
   const [complaint, setComplaint] = useState(null);
   const [symptoms, setSymptoms] = useState([]);
@@ -71,18 +70,18 @@ const PatientAssessments = () => {
   
   const navigate = useNavigate();
 
-  const totalSteps = 9;
+  const totalSteps = 8;
 
   const nextStep = () => {
-    if (step === 8) {
-      setStep(9);
-      setTimeout(() => setStep(10), 8000);
-    } else if (step < 9) {
+    if (step === 7) {
+      setStep(8);
+      setTimeout(() => setStep(9), 8000);
+    } else if (step < 8) {
       setStep(step + 1);
     }
   };
 
-  const prevStep = () => step > 1 && step < 9 && setStep(step - 1);
+  const prevStep = () => step > 1 && step < 8 && setStep(step - 1);
 
   const getRecommendation = () => {
     if (complaint === 'water') return TEST_TYPES.WATER;
@@ -90,75 +89,70 @@ const PatientAssessments = () => {
     return TEST_TYPES.MICROBIAL;
   };
 
-  const isStepDisabled = () => {
-    if (step === 1) return !consents.privacy || !consents.screening || !consents.sharing;
-    if (step === 2) return !profile.dob || !profile.height || !profile.weight;
-    if (step === 4) return !complaint;
-    return false;
-  };
+  const isStepDisabled = () => false;
 
   return (
     <MobileLayout 
-      title="Clinical Intake" 
-      showBack={step > 1 && step < 9}
-      rightAction={step <= 8 && (
-        <span className="text-label text-text-secondary uppercase tracking-label">
-          Step {Math.min(step, 8)}/{totalSteps-1}
+      title="Intake" 
+      showBack={step > 1 && step < 8}
+      rightAction={step <= 7 && (
+        <span className="text-[10px] font-black text-indigo-950/40 uppercase tracking-[0.2em]">
+          Step {Math.min(step, 7)}/{totalSteps-1}
         </span>
       )}
     >
-      {/* Progress Bar */}
-      {step <= 8 && (
-        <div className="h-1 bg-slate-100 w-full sticky top-0 z-50 overflow-hidden">
+      {/* Progress Bar - Thinner */}
+      {step <= 7 && (
+        <div className="h-1 bg-indigo-50/50 w-full fixed top-[96px] left-0 z-50 overflow-hidden">
           <motion.div 
-            className="h-full bg-petri-500 shadow-[0_0_10px_rgba(0,184,176,0.5)]"
+            className="h-full bg-petri-500 shadow-[0_0_10px_rgba(0,184,176,0.6)]"
             initial={{ width: 0 }}
             animate={{ width: `${(step / (totalSteps-1)) * 100}%` }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           />
         </div>
       )}
 
-      <div className="pb-40 px-5">
+      <div className="pb-32 px-5 pt-4">
         <AnimatePresence mode="wait">
           {step === 1 && <StepConsent key="s1" data={consents} onChange={setConsents} />}
-          {step === 2 && <StepProfile key="s2" data={profile} onChange={(k, v) => setProfile(p => ({...p, [k]: v}))} />}
-          {step === 3 && <StepEmergency key="s3" data={emergency} onChange={(k, v) => setEmergency(p => ({...p, [k]: v}))} />}
-          {step === 4 && <StepComplaint key="s4" selected={complaint} onSelect={setComplaint} />}
-          {step === 5 && <StepSymptoms key="s5" complaint={complaint} selected={symptoms} onToggle={(id) => setSymptoms(p => p.includes(id) ? p.filter(x => x !== id) : [...p, id])} />}
-          {step === 6 && <StepPain key="s6" data={pain} onChange={(k, v) => setPain(p => ({...p, [k]: v}))} />}
-          {step === 7 && <StepRecommendation key="s7" test={getRecommendation()} />}
-          {step === 8 && <StepSyncing key="s8" />}
-          {step === 9 && <StepSuccess key="s9" />}
+          {step === 2 && <StepEmergency key="s2" data={emergency} onChange={(k, v) => setEmergency(p => ({...p, [k]: v}))} />}
+          {step === 3 && <StepComplaint key="s3" selected={complaint} onSelect={setComplaint} />}
+          {step === 4 && <StepSymptoms key="s4" complaint={complaint} selected={symptoms} onToggle={(id) => setSymptoms(p => p.includes(id) ? p.filter(x => x !== id) : [...p, id])} />}
+          {step === 5 && <StepPain key="s5" data={pain} onChange={(k, v) => setPain(p => ({...p, [k]: v}))} />}
+          {step === 6 && <StepRecommendation key="s6" test={getRecommendation()} />}
+          {step === 7 && <StepSyncing key="s7" />}
+          {step === 8 && <StepSuccess key="s8" />}
         </AnimatePresence>
       </div>
 
-      {/* Navigation Buttons */}
-      {step < 9 && (
-        <div className="fixed bottom-[100px] left-6 right-6 z-50 flex items-center gap-4">
-          {step > 1 && step < 8 && (
+      {/* Navigation Buttons - More Compact */}
+      {step < 8 && (
+        <div className="fixed bottom-[100px] left-5 right-5 z-50 flex items-center gap-3">
+          {step > 1 && step < 7 && (
             <button 
               onClick={prevStep}
-              className="flex-1 h-[44px] text-button font-semibold text-text-secondary uppercase tracking-button flex items-center justify-center gap-2 hover:text-indigo-950 transition-all"
+              className="w-[48px] h-[48px] rounded-2xl bg-white border border-indigo-50 text-indigo-950 flex items-center justify-center hover:bg-indigo-50 transition-all active:scale-95 shadow-sm shrink-0"
             >
-              <ChevronLeft size={18} /> Previous
+              <ChevronLeft size={20} />
             </button>
           )}
           <button 
             onClick={nextStep}
             disabled={isStepDisabled()}
             className={cn(
-              "flex-[2] h-[44px] rounded-xl text-button font-semibold uppercase tracking-button text-white flex items-center justify-center gap-3 transition-all duration-300 shadow-lg",
+              "flex-1 h-[48px] rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] text-white flex items-center justify-center gap-2 transition-all duration-500 shadow-xl",
               isStepDisabled() 
-                ? "bg-slate-200 text-slate-400 cursor-not-allowed shadow-none" 
+                ? "bg-indigo-100 text-indigo-300 cursor-not-allowed shadow-none" 
                 : (emergency.breathing || emergency.chestPain || emergency.confusion) 
-                  ? "bg-red-600 shadow-red-900/20" 
-                  : "bg-indigo-950 active:scale-95 shadow-indigo-950/20"
+                  ? "bg-red-600 shadow-red-500/30" 
+                  : "bg-indigo-950 active:scale-95 shadow-indigo-950/30 group"
             )}
           >
             {(emergency.breathing || emergency.chestPain || emergency.confusion) 
-              ? 'Get Urgent Guidance' 
-              : step === 7 ? 'Confirm & Start' : step === 8 ? 'Processing...' : 'Continue'} 
-            {step < 8 && <ArrowRight size={18} />}
+              ? 'Urgent Guidance' 
+              : step === 6 ? 'Confirm & Start' : step === 7 ? 'Processing...' : 'Continue'} 
+            {step < 7 && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
           </button>
         </div>
       )}
@@ -168,35 +162,46 @@ const PatientAssessments = () => {
 
 // --- STEP COMPONENTS ---
 
+const StepHeader = ({ title, subtitle, icon: Icon, colorClass = "bg-indigo-50 text-indigo-950" }) => (
+  <div className="mb-8 text-center px-4">
+    {Icon && (
+      <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 border shadow-sm transition-transform duration-700 hover:rotate-6", colorClass)}>
+        <Icon size={24} strokeWidth={2.5} />
+      </div>
+    )}
+    <h2 className="text-xl font-black text-indigo-950 uppercase italic tracking-tight leading-none mb-1.5">
+      {title}
+    </h2>
+    <p className="text-[9px] font-bold text-indigo-950/40 uppercase tracking-[0.15em] max-w-[180px] mx-auto leading-relaxed">
+      {subtitle}
+    </p>
+  </div>
+);
+
 const StepConsent = ({ data, onChange }) => (
-  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="pt-8">
-    <div className="mb-8 text-center">
-       <div className="w-16 h-16 bg-indigo-50 rounded-[24px] flex items-center justify-center text-indigo-950 mx-auto mb-4 border border-indigo-100">
-         <Shield size={28} />
-       </div>
-       <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight leading-none mb-2">Consent & Privacy.</h2>
-       <p className="text-label text-text-secondary uppercase tracking-label">Accept protocols to begin assessment.</p>
-    </div>
+  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+    <StepHeader 
+      title="Consent & Privacy" 
+      subtitle="Accept protocols to begin assessment" 
+      icon={Shield}
+    />
     
-    <div className="flex flex-col gap-4">
+    <div className="space-y-2.5">
       <ConsentCard 
-        id="privacy" 
         label="Privacy Policy" 
-        desc="I accept the SPD data handling and encryption protocols."
+        desc="I accept the SPD data handling protocols."
         active={data.privacy}
         onClick={() => onChange(p => ({...p, privacy: !p.privacy}))}
       />
       <ConsentCard 
-        id="screening" 
         label="Screening Intent" 
-        desc="I understand this is a health screening, not a clinical diagnosis."
+        desc="I understand this is a health screening."
         active={data.screening}
         onClick={() => onChange(p => ({...p, screening: !p.screening}))}
       />
       <ConsentCard 
-        id="sharing" 
         label="Expert Sharing" 
-        desc="I consent to share encrypted results with licensed providers."
+        desc="I consent to share results with providers."
         active={data.sharing}
         onClick={() => onChange(p => ({...p, sharing: !p.sharing}))}
       />
@@ -205,159 +210,90 @@ const StepConsent = ({ data, onChange }) => (
 );
 
 const ConsentCard = ({ label, desc, active, onClick }) => (
-  <button onClick={onClick} className={cn("w-full text-left p-4 rounded-xl border transition-all duration-300", active ? "bg-indigo-50 border-indigo-950" : "bg-white border-slate-100")}>
-    <div className="flex justify-between items-center mb-1">
-      <h4 className={cn("text-label uppercase tracking-label", active ? "text-indigo-950" : "text-text-secondary")}>{label}</h4>
-      <div className={cn("w-4 h-4 rounded-full border flex items-center justify-center", active ? "bg-petri-500 border-petri-500 text-white" : "border-slate-200")}>
-        {active && <Check size={10} strokeWidth={4} />}
+  <button onClick={onClick} className={cn(
+    "w-full text-left p-5 rounded-2xl border transition-all duration-500 group relative overflow-hidden", 
+    active ? "bg-indigo-950 border-indigo-950 shadow-lg" : "bg-white border-indigo-50 shadow-sm"
+  )}>
+    <div className="flex justify-between items-center mb-1.5 relative z-10">
+      <h4 className={cn("text-[9px] font-black uppercase tracking-[0.15em]", active ? "text-petri-500" : "text-indigo-950/30")}>{label}</h4>
+      <div className={cn("w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all duration-500", active ? "bg-petri-500 border-petri-500 scale-110" : "border-indigo-50 scale-100")}>
+        {active && <Check size={12} strokeWidth={4} className="text-indigo-950" />}
       </div>
     </div>
-    <p className="text-body text-text-muted leading-relaxed tracking-none">{desc}</p>
+    <p className={cn("text-xs font-bold leading-tight tracking-tight relative z-10", active ? "text-white" : "text-indigo-950")}>{desc}</p>
   </button>
 );
 
-const StepProfile = ({ data, onChange }) => (
-  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="pt-8">
-    <div className="mb-10 text-center">
-       <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight mb-2">Health Snapshot.</h2>
-       <p className="text-label text-text-secondary uppercase tracking-label">Contextual data for precise screening.</p>
-    </div>
-
-    <div className="flex flex-col gap-4">
-       <div className="flex flex-col gap-1.5 relative">
-          <label className="text-label text-text-secondary uppercase tracking-label block pl-1">Date of Birth</label>
-          <div className="relative">
-             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
-             <input 
-               type="date" 
-               value={data.dob} 
-               onChange={(e) => onChange('dob', e.target.value)}
-               className="w-full h-[44px] pl-12 pr-5 bg-white border border-slate-100 rounded-xl outline-none focus:ring-1 focus:ring-petri-500/60 focus:border-petri-500/60 text-body text-indigo-950 shadow-sm placeholder:text-gray-400"
-             />
-          </div>
-       </div>
-
-       <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1.5 relative">
-             <label className="text-label text-text-secondary uppercase tracking-label block pl-1">Height (cm)</label>
-             <div className="relative">
-                <Ruler className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
-                <input 
-                  type="number" 
-                  placeholder="---"
-                  value={data.height} 
-                  onChange={(e) => onChange('height', e.target.value)}
-                  className="w-full h-[44px] pl-12 pr-5 bg-white border border-slate-100 rounded-xl outline-none focus:ring-1 focus:ring-petri-500/60 focus:border-petri-500/60 text-body text-indigo-950 shadow-sm placeholder:text-gray-400"
-                />
-             </div>
-          </div>
-          <div className="flex flex-col gap-1.5 relative">
-             <label className="text-label text-text-secondary uppercase tracking-label block pl-1">Weight (kg)</label>
-             <div className="relative">
-                <Scale className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
-                <input 
-                  type="number" 
-                  placeholder="--"
-                  value={data.weight} 
-                  onChange={(e) => onChange('weight', e.target.value)}
-                  className="w-full h-[44px] pl-12 pr-5 bg-white border border-slate-100 rounded-xl outline-none focus:ring-1 focus:ring-petri-500/60 focus:border-petri-500/60 text-body text-indigo-950 shadow-sm placeholder:text-gray-400"
-                />
-             </div>
-          </div>
-       </div>
-
-       <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1.5 relative">
-             <label className="text-label text-text-secondary uppercase tracking-label block pl-1">City</label>
-             <input 
-                type="text" 
-                placeholder="City"
-                value={data.city} 
-                onChange={(e) => onChange('city', e.target.value)}
-                className="w-full h-[44px] px-5 bg-white border border-slate-100 rounded-xl outline-none focus:ring-1 focus:ring-petri-500/60 focus:border-petri-500/60 text-body text-indigo-950 shadow-sm placeholder:text-gray-400"
-             />
-          </div>
-          <div className="flex flex-col gap-1.5 relative">
-             <label className="text-label text-text-secondary uppercase tracking-label block pl-1">ZIP Code</label>
-             <input 
-                type="text" 
-                placeholder="00000"
-                value={data.zip} 
-                onChange={(e) => onChange('zip', e.target.value)}
-                className="w-full h-[44px] px-5 bg-white border border-slate-100 rounded-xl outline-none focus:ring-1 focus:ring-petri-500/60 focus:border-petri-500/60 text-body text-indigo-950 shadow-sm placeholder:text-gray-400"
-             />
-          </div>
-       </div>
-    </div>
-  </motion.div>
-);
-
 const StepEmergency = ({ data, onChange }) => (
-  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="pt-8">
-    <div className="mb-10 text-center">
-       <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-red-500 mx-auto mb-4 border border-red-100">
-         <ShieldAlert size={28} />
-       </div>
-       <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight mb-2">Emergency Check.</h2>
-       <p className="text-label text-text-secondary uppercase tracking-label">Confirm if any severe conditions are present.</p>
-    </div>
+  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+    <StepHeader 
+      title="Safety Check" 
+      subtitle="Severe conditions require immediate care" 
+      icon={ShieldAlert}
+      colorClass="bg-red-50 text-red-500 border-red-100"
+    />
 
-    <div className="flex flex-col gap-4">
+    <div className="space-y-2.5">
        <EmergencyToggle label="Difficulty Breathing" active={data.breathing} onClick={() => onChange('breathing', !data.breathing)} />
        <EmergencyToggle label="Severe Chest Pain" active={data.chestPain} onClick={() => onChange('chestPain', !data.chestPain)} />
        <EmergencyToggle label="Fainting or Confusion" active={data.confusion} onClick={() => onChange('confusion', !data.confusion)} />
     </div>
 
-    <div className="mt-10 p-6 bg-slate-50 rounded-3xl border border-slate-100">
-       <div className="flex gap-4 items-start">
-          <AlertCircle size={20} className="text-indigo-950 shrink-0 mt-0.5" />
-          <p className="text-[11px] font-bold text-[#5a5a8a] leading-relaxed">If you are experiencing a life-threatening emergency, please contact local emergency services immediately.</p>
-       </div>
+    <div className="mt-8 p-5 bg-red-50/30 rounded-2xl border border-red-100 flex gap-3.5 items-start">
+      <AlertCircle size={18} className="text-red-500 shrink-0 mt-0.5" />
+      <p className="text-[10px] font-bold text-red-900/60 leading-relaxed uppercase tracking-tight">If life-threatening, contact services immediately.</p>
     </div>
   </motion.div>
 );
 
 const EmergencyToggle = ({ label, active, onClick }) => (
-  <button onClick={onClick} className={cn("w-full h-[44px] px-6 rounded-xl flex items-center justify-between border transition-all", active ? "bg-red-50 border-red-500 text-red-500" : "bg-white border-slate-100 text-text-secondary")}>
-    <span className="text-label uppercase tracking-label">{label}</span>
-    <div className={cn("w-8 h-4 rounded-full relative transition-colors duration-300", active ? "bg-red-500" : "bg-slate-200")}>
-      <motion.div animate={{ x: active ? 16 : 0 }} className="absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full shadow-sm" />
+  <button onClick={onClick} className={cn(
+    "w-full h-[52px] px-5 rounded-2xl border transition-all duration-500", 
+    active ? "bg-red-600 border-red-600 shadow-lg shadow-red-500/20" : "bg-white border-indigo-50 shadow-sm"
+  )}>
+    <div className="flex items-center justify-between">
+      <span className={cn("text-[10px] font-black uppercase tracking-widest transition-colors", active ? "text-white" : "text-indigo-950")}>{label}</span>
+      <div className={cn("w-9 h-4.5 rounded-full relative transition-colors duration-500", active ? "bg-white/20" : "bg-indigo-50")}>
+        <motion.div animate={{ x: active ? 20 : 2 }} className={cn("absolute top-1 left-0 w-2.5 h-2.5 rounded-full", active ? "bg-white" : "bg-indigo-950/20")} />
+      </div>
     </div>
   </button>
 );
 
 const StepComplaint = ({ selected, onSelect }) => {
   const complaints = [
-    { id: 'respiratory', label: 'Respiratory symptoms', icon: Wind },
-    { id: 'urinary', label: 'Urinary or metabolic', icon: Droplets },
-    { id: 'water', label: 'Water testing', icon: Waves },
-    { id: 'skin', label: 'Skin or throat issue', icon: Bug },
-    { id: 'general', label: 'General illness', icon: Activity },
-    { id: 'unsure', label: 'Not sure', icon: HelpCircle },
+    { id: 'respiratory', label: 'Respiratory', icon: Wind },
+    { id: 'urinary', label: 'Urinary', icon: Droplets },
+    { id: 'water', label: 'Water', icon: Waves },
+    { id: 'skin', label: 'Skin', icon: Bug },
+    { id: 'general', label: 'Illness', icon: Activity },
+    { id: 'unsure', label: 'Not Sure', icon: HelpCircle },
   ];
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="pt-8">
-      <div className="mb-10 text-center">
-         <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight mb-2">Chief Complaint.</h2>
-         <p className="text-label text-text-secondary uppercase tracking-label">Select your primary health concern.</p>
-      </div>
+    <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+      <StepHeader 
+        title="Complaint" 
+        subtitle="Select your primary health concern" 
+      />
 
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 gap-3">
         {complaints.map(c => (
           <button
             key={c.id}
             onClick={() => onSelect(c.id)}
             className={cn(
-              "h-[44px] px-6 rounded-xl border flex items-center justify-between text-left transition-all",
-              selected === c.id ? "bg-indigo-950 border-indigo-950 text-white" : "bg-white border-slate-100 text-text-secondary"
+              "p-5 rounded-2xl border flex flex-col items-center gap-3 text-center transition-all duration-500 group relative overflow-hidden",
+              selected === c.id ? "bg-indigo-950 border-indigo-950 shadow-xl" : "bg-white border-indigo-50 shadow-sm"
             )}
           >
-            <div className="flex items-center gap-4">
-               <c.icon size={18} className={cn(selected === c.id ? "text-petri-500" : "text-text-muted")} />
-               <span className="text-body font-semibold uppercase  tracking-none">{c.label}</span>
+            <div className={cn(
+              "w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500",
+              selected === c.id ? "bg-petri-500 text-indigo-950 scale-110" : "bg-indigo-50 text-indigo-950"
+            )}>
+               <c.icon size={20} strokeWidth={2.5} />
             </div>
-            {selected === c.id && <ArrowRight size={16} className="text-petri-500" />}
+            <span className={cn("text-[9px] font-black uppercase tracking-widest leading-tight", selected === c.id ? "text-white" : "text-indigo-950/60")}>{c.label}</span>
           </button>
         ))}
       </div>
@@ -378,25 +314,25 @@ const StepSymptoms = ({ complaint, selected, onToggle }) => {
   const list = symptomMap[complaint] || symptomMap.general;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="pt-8">
-      <div className="mb-10 text-center">
-         <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight mb-2">Symptom Check.</h2>
-         <p className="text-label text-text-secondary uppercase tracking-label">Identify indicators based on your concern.</p>
-      </div>
+    <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+      <StepHeader 
+        title="Symptoms" 
+        subtitle="Identify indicators based on concern" 
+      />
 
-      <div className="flex flex-col gap-4">
+      <div className="space-y-2.5">
         {list.map(s => (
           <button
             key={s}
             onClick={() => onToggle(s)}
             className={cn(
-              "h-[44px] px-6 rounded-xl border flex items-center justify-between text-left transition-all",
-              selected.includes(s) ? "bg-indigo-50 border-indigo-950 text-indigo-950" : "bg-white border-slate-100 text-text-secondary"
+              "h-[52px] px-5 rounded-2xl border flex items-center justify-between text-left transition-all duration-500 group",
+              selected.includes(s) ? "bg-indigo-950 border-indigo-950 shadow-lg" : "bg-white border-indigo-50 shadow-sm"
             )}
           >
-            <span className="text-body font-semibold uppercase  tracking-none">{s}</span>
-            <div className={cn("w-5 h-5 rounded-lg border flex items-center justify-center transition-colors", selected.includes(s) ? "bg-indigo-950 border-indigo-950 text-white" : "border-slate-200")}>
-               {selected.includes(s) && <Check size={12} strokeWidth={4} />}
+            <span className={cn("text-[10px] font-black uppercase tracking-[0.1em]", selected.includes(s) ? "text-white" : "text-indigo-950")}>{s}</span>
+            <div className={cn("w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all duration-500", selected.includes(s) ? "bg-petri-500 border-petri-500" : "border-indigo-50")}>
+               {selected.includes(s) && <Check size={12} strokeWidth={4} className="text-indigo-950" />}
             </div>
           </button>
         ))}
@@ -406,29 +342,36 @@ const StepSymptoms = ({ complaint, selected, onToggle }) => {
 };
 
 const StepPain = ({ data, onChange }) => (
-  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="pt-8">
-    <div className="mb-10 text-center">
-       <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight mb-2">Pain Assessment.</h2>
-       <p className="text-label text-text-secondary uppercase tracking-label">Provide detail on discomfort levels.</p>
-    </div>
+  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+    <StepHeader 
+      title="Pain Assessment" 
+      subtitle="Detail your discomfort levels" 
+    />
 
-    <div className="flex gap-4 mb-8">
-       <button onClick={() => onChange('exists', true)} className={cn("flex-1 h-[44px] rounded-xl border text-button font-semibold uppercase  transition-all", data.exists === true ? "bg-indigo-950 border-indigo-950 text-white" : "bg-white border-slate-100 text-text-secondary")}>Yes, Pain</button>
-       <button onClick={() => onChange('exists', false)} className={cn("flex-1 h-[44px] rounded-xl border text-button font-semibold uppercase  transition-all", data.exists === false ? "bg-indigo-950 border-indigo-950 text-white" : "bg-white border-slate-100 text-text-secondary")}>No Pain</button>
+    <div className="flex gap-3 mb-8">
+       <button onClick={() => onChange('exists', true)} className={cn("flex-1 h-[52px] rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all duration-500", data.exists === true ? "bg-indigo-950 border-indigo-950 text-white shadow-lg" : "bg-white border-indigo-50 text-indigo-950 shadow-sm")}>Yes, Pain</button>
+       <button onClick={() => onChange('exists', false)} className={cn("flex-1 h-[52px] rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all duration-500", data.exists === false ? "bg-indigo-950 border-indigo-950 text-white shadow-lg" : "bg-white border-indigo-50 text-indigo-950 shadow-sm")}>No Pain</button>
     </div>
 
     {data.exists && (
-      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-6">
-         <div>
-            <label className="text-label text-text-secondary uppercase tracking-label block mb-3 pl-1">Pain Intensity (1–10)</label>
-            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-               <span className="text-5xl font-black text-petri-500  tracking-tighter block mb-4">{data.level}</span>
-               <input type="range" min="1" max="10" value={data.level} onChange={(e) => onChange('level', parseInt(e.target.value))} className="w-full h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer accent-indigo-950" />
+      <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="space-y-8">
+         <div className="bg-white p-6 rounded-2xl border border-indigo-50 shadow-sm text-center">
+            <div className="flex justify-between items-center mb-3">
+               <label className="text-[9px] font-black text-indigo-950/30 uppercase tracking-[0.2em]">Intensity</label>
+               <span className="text-2xl font-black text-petri-500 italic tracking-tighter">{data.level}</span>
             </div>
+            <input 
+              type="range" 
+              min="1" 
+              max="10" 
+              value={data.level} 
+              onChange={(e) => onChange('level', parseInt(e.target.value))} 
+              className="w-full h-1.5 bg-indigo-50 rounded-full appearance-none cursor-pointer accent-petri-500" 
+            />
          </div>
-         <div className="flex flex-col gap-1.5 relative">
-            <label className="text-label text-text-secondary uppercase tracking-label block pl-1">Location of Discomfort</label>
-            <input type="text" placeholder="e.g. Chest, Abdomen, Throat" value={data.location} onChange={(e) => onChange('location', e.target.value)} className="w-full h-[44px] px-5 bg-white border border-slate-100 rounded-xl outline-none focus:ring-1 focus:ring-petri-500/60 focus:border-petri-500/60 text-body text-indigo-950 shadow-sm placeholder:text-gray-400" />
+         <div className="space-y-1.5">
+            <label className="text-[9px] font-black text-indigo-950/30 uppercase tracking-[0.2em] ml-1">Location</label>
+            <input type="text" placeholder="e.g. Chest, Abdomen" value={data.location} onChange={(e) => onChange('location', e.target.value)} className="w-full h-[52px] px-5 bg-white border border-indigo-50 rounded-2xl outline-none focus:border-petri-500/50 text-xs font-bold text-indigo-950 shadow-sm transition-all" />
          </div>
       </motion.div>
     )}
@@ -436,125 +379,116 @@ const StepPain = ({ data, onChange }) => (
 );
 
 const StepRecommendation = ({ test }) => (
-  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="pt-8">
-    <div className="mb-8 text-center md:text-left">
-       <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight mb-2">AI Recommendation.</h2>
-       <p className="text-label text-text-secondary uppercase tracking-label">Based on your indicators, our system suggests:</p>
-    </div>
+  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+    <StepHeader 
+      title="AI Protocol" 
+      subtitle="Our system suggests:" 
+    />
 
-    <div className="bg-white rounded-[32px] border-2 border-indigo-900 p-8 shadow-2xl relative overflow-hidden group">
-      <div className={cn("absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-20", test.bg)} />
-      
+    <div className="bg-indigo-950 rounded-[32px] p-6 shadow-2xl relative overflow-hidden group">
       <div className="relative z-10">
-        <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm", test.bg, test.color)}>
-          <test.icon size={28} />
+        <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-xl", test.bg, test.color)}>
+          <test.icon size={24} strokeWidth={2.5} />
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-1.5 mb-5">
           {test.tags.map(tag => (
-            <span key={tag} className="px-2 py-0.5 bg-slate-100 text-label text-text-secondary uppercase tracking-label rounded-md border border-slate-200">
+            <span key={tag} className="px-2.5 py-0.5 bg-white/5 text-[8px] font-black text-white/50 uppercase tracking-[0.2em] rounded-full border border-white/5">
               {tag}
             </span>
           ))}
         </div>
 
-        <h3 className="text-h3 text-indigo-950 uppercase  tracking-tight mb-4">
+        <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter leading-none mb-4">
           {test.title}
         </h3>
 
-        <p className="text-body text-text-secondary leading-relaxed mb-6 tracking-none">
+        <p className="text-[12px] font-bold text-white/40 leading-relaxed mb-6 tracking-tight">
           {test.description}
         </p>
 
-        <div className="mb-8 space-y-4">
-           <h4 className="text-label text-indigo-950 uppercase tracking-label border-b border-slate-100 pb-2">Protocol Instructions</h4>
-           <div className="flex flex-col gap-4">
+        <div className="space-y-4">
+           <h4 className="text-[9px] font-black text-petri-500 uppercase tracking-[0.3em] border-b border-white/5 pb-2">Steps</h4>
+           <div className="space-y-3">
               {test.howItWorks.map((step, i) => (
                 <div key={i} className="flex gap-4 items-center">
-                   <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-[10px] font-black text-indigo-950 shrink-0">
-                     0{i + 1}
+                   <div className="w-6 h-6 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px] font-black text-white shrink-0">
+                     {i + 1}
                    </div>
-                   <p className="text-label text-text-secondary uppercase tracking-label leading-tight">{step}</p>
+                   <p className="text-[10px] font-black text-white/60 uppercase tracking-widest leading-tight">{step}</p>
                 </div>
               ))}
            </div>
         </div>
-
-        {test.disclaimer && (
-          <div className="flex gap-3 items-start p-4 bg-slate-50 rounded-xl border border-slate-100 mb-4">
-            <ShieldCheck size={16} className="text-indigo-950 shrink-0 mt-0.5" />
-            <p className="text-label text-text-muted uppercase tracking-label">{test.disclaimer}</p>
-          </div>
-        )}
       </div>
     </div>
   </motion.div>
 );
 
 const StepSyncing = () => (
-  <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center justify-center pt-16 text-center px-5">
-    <div className="relative mb-10">
-       <motion.div animate={{ scale: [1, 1.4, 1], opacity: [0.1, 0, 0.1] }} transition={{ duration: 2, repeat: Infinity }} className="absolute inset-0 bg-petri-500 rounded-full blur-2xl" />
-       <div className="w-28 h-28 bg-white rounded-[40px] shadow-2xl flex items-center justify-center relative z-10 border border-slate-100">
-          <motion.div animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
-            <Sparkles size={40} className="text-petri-500" />
+  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center justify-center pt-10 text-center px-4">
+    <div className="relative mb-12">
+       <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.1, 0, 0.1] }} transition={{ duration: 3, repeat: Infinity }} className="absolute inset-0 bg-petri-500 rounded-full blur-2xl" />
+       <div className="w-24 h-24 bg-white rounded-[32px] shadow-xl flex items-center justify-center relative z-10 border border-indigo-50">
+          <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }}>
+            <Sparkles size={32} className="text-petri-500" />
           </motion.div>
        </div>
-       <div className="absolute -top-3 -right-3 w-10 h-10 bg-indigo-950 rounded-xl flex items-center justify-center text-white shadow-xl">
-          <Activity size={20} className="animate-pulse" />
-       </div>
     </div>
 
-    <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight mb-4 leading-none">Syncing <br /><span className="text-petri-500">Live Data.</span></h2>
+    <h2 className="text-3xl font-black text-indigo-950 uppercase italic tracking-tighter mb-3 leading-none">
+      Syncing <br /><span className="text-petri-500">Live Data.</span>
+    </h2>
     
-    <div className="w-full max-w-[280px] bg-white rounded-3xl border border-slate-100 p-5 mb-8 shadow-sm">
-       <div className="flex justify-between items-center gap-4">
-          <SyncRequirement icon={Activity} label="Power On" active />
-          <SyncRequirement icon={Waves} label="Bluetooth" active />
-          <SyncRequirement icon={Globe} label="WiFi Sync" active />
-       </div>
+    <div className="w-full max-w-[260px] bg-white rounded-2xl border border-indigo-50 p-4 mb-8 shadow-sm flex justify-around">
+       <SyncRequirement icon={Activity} active />
+       <SyncRequirement icon={Waves} active />
+       <SyncRequirement icon={Globe} active />
     </div>
 
-    <p className="text-body text-text-secondary leading-relaxed max-w-[260px] mb-8 uppercase tracking-none">Keep your Smart Petri Dish powered on and maintain proximity for data handshake.</p>
-
-    <div className="w-full max-w-[200px] h-1.5 bg-slate-100 rounded-full overflow-hidden">
+    <div className="w-full max-w-[160px] h-1.5 bg-indigo-50 rounded-full overflow-hidden shadow-inner">
        <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 8, ease: "easeInOut" }} className="h-full bg-indigo-950" />
     </div>
-    <span className="text-label text-indigo-950/40 uppercase tracking-label mt-4">Transmitting Bio-Signals...</span>
   </motion.div>
 );
 
-const SyncRequirement = ({ icon: Icon, label, active }) => (
-  <div className="flex flex-col items-center gap-2">
-    <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center border transition-colors", active ? "bg-petri-50 text-petri-500 border-petri-200" : "bg-slate-50 text-slate-400 border-slate-100")}>
-      <Icon size={18} />
-    </div>
-    <span className="text-label text-indigo-950/60 uppercase tracking-label">{label}</span>
+const SyncRequirement = ({ icon: Icon, active }) => (
+  <div className={cn(
+    "w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-700", 
+    active ? "bg-petri-50 text-petri-500 border-petri-200" : "bg-indigo-50 text-indigo-950/20"
+  )}>
+    <Icon size={18} strokeWidth={2.5} />
   </div>
 );
 
 const StepSuccess = () => {
   const navigate = useNavigate();
   return (
-    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center pt-20 px-5 pb-20">
-      <div className="w-24 h-24 bg-white rounded-[40px] shadow-2xl flex items-center justify-center mx-auto mb-10 border border-slate-100 relative group">
-         <div className="absolute inset-0 bg-petri-500/10 rounded-full blur-3xl" />
-         <ShieldCheck size={48} className="text-petri-500 relative z-10" />
+    <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="text-center pt-16 px-4">
+      <div className="w-20 h-20 bg-white rounded-[32px] shadow-xl flex items-center justify-center mx-auto mb-8 border border-indigo-50 relative group">
+         <ShieldCheck size={40} strokeWidth={2.5} className="text-petri-500 relative z-10" />
       </div>
-      <h2 className="text-h2 text-indigo-950 uppercase  tracking-tight leading-none mb-4">Encrypted.</h2>
-      <p className="text-body text-text-secondary leading-relaxed max-w-[240px] mx-auto mb-12 tracking-none">Preliminary report generated. clinical review will finalize within <span className="text-indigo-950 font-semibold ">2-4 hours</span>.</p>
+      <h2 className="text-3xl font-black text-indigo-950 uppercase italic tracking-tighter leading-none mb-3">
+        Encrypted.
+      </h2>
+      <p className="text-xs font-bold text-indigo-950/40 leading-relaxed max-w-[200px] mx-auto mb-10 tracking-tight">
+        Preliminary report generated. clinical review will finalize within 2-4 hours.
+      </p>
       
-      <div className="space-y-3 mb-12">
-         <div className="bg-petri-500/5 p-4 rounded-xl border border-petri-500/10 flex items-center justify-between">
-            <div>
-               <span className="text-label text-petri-600 uppercase tracking-label block mb-1">AI Risk Level</span>
-               <h4 className="text-h3 text-indigo-950 uppercase  tracking-tight">Low / Moderate</h4>
-            </div>
-            <Activity className="text-petri-500" />
-         </div>
+      <div className="bg-petri-500 rounded-2xl p-5 flex items-center justify-between shadow-lg shadow-petri-500/20 mb-12 border-b-4 border-black/10 active:scale-95 transition-transform">
+        <div className="text-left">
+           <span className="text-[8px] font-black text-indigo-950/40 uppercase tracking-[0.2em] block mb-0.5">Risk Level</span>
+           <h4 className="text-lg font-black text-indigo-950 uppercase italic tracking-tighter">Low / Moderate</h4>
+        </div>
+        <Activity size={20} className="text-indigo-950" />
       </div>
 
-      <button onClick={() => navigate('/patient/dashboard')} className="w-full h-[44px] bg-indigo-950 text-white rounded-xl text-button font-semibold uppercase tracking-button shadow-lg shadow-indigo-950/20 active:scale-95 transition-all">Return to Center</button>
+      <button 
+        onClick={() => navigate('/patient/dashboard')} 
+        className="w-full h-[52px] bg-indigo-950 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-indigo-950/30 active:scale-95 transition-all border-b-4 border-black/20"
+      >
+        Return to Center
+      </button>
     </motion.div>
   );
 };
