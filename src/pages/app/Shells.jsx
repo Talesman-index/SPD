@@ -507,83 +507,141 @@ const SettingLink = ({ icon: Icon, label, value }) => (
 // --- DOCTOR PAGES ---
 
 export const DoctorActiveCases = () => (
-  <PageLayout title="Active Analysis" type="doctor" status="expert">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <ActiveCaseCard name="Robert Fox" id="9823" priority="High" time="45m remaining" risk="HIGH" />
-      <ActiveCaseCard name="Cody Fisher" id="1245" priority="Normal" time="2h remaining" risk="MEDIUM" />
-      <ActiveCaseCard name="Jane Cooper" id="6632" priority="Urgent" time="12m remaining" risk="URGENT" />
+  <PageLayout title="Priority Review Workspace" type="doctor" status="expert">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ActiveCaseCard name="Robert Fox" id="9823" priority="High" time="45m left" risk="HIGH" task="Microbial Panel" />
+      <ActiveCaseCard name="Cody Fisher" id="1245" priority="Normal" time="2h left" risk="MEDIUM" task="Viral Screening" />
+      <ActiveCaseCard name="Jane Cooper" id="6632" priority="Urgent" time="12m left" risk="URGENT" task="Toxicity Assay" />
     </div>
   </PageLayout>
 );
 
-const ActiveCaseCard = ({ name, id, priority, time, risk }) => {
+const ActiveCaseCard = ({ name, id, priority, time, risk, task }) => {
   const navigate = useNavigate();
   return (
-    <div className="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm hover:shadow-2xl hover:shadow-indigo-900/5 transition-all cursor-pointer group relative overflow-hidden" onClick={() => navigate(`/doctor/cases/${id}`)}>
-      <div className="absolute top-0 right-0 p-6">
-         <div className={cn(
-           "w-3 h-3 rounded-full animate-pulse",
-           risk === 'URGENT' ? 'bg-red-500' : risk === 'HIGH' ? 'bg-amber-500' : 'bg-petri-500'
-         )} />
+    <div 
+      className="bg-white p-6 rounded-[32px] border border-slate-200 shadow-sm hover:shadow-2xl hover:shadow-indigo-900/5 transition-all cursor-pointer group relative overflow-hidden flex flex-col h-full" 
+      onClick={() => navigate(`/doctor/cases/${id}`)}
+    >
+      <div className="flex justify-between items-start mb-6">
+        <div className={cn(
+          "px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-[0.2em] flex items-center gap-2",
+          risk === 'URGENT' ? 'bg-red-600 text-white animate-pulse' : risk === 'HIGH' ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-indigo-950'
+        )}>
+          <Activity size={10} />
+          {risk} CASE
+        </div>
+        <div className="flex items-center gap-1.5 text-slate-400 font-black text-[9px] uppercase tracking-widest">
+          <Clock size={12} />
+          {time}
+        </div>
       </div>
 
-      <div className="flex items-center gap-5 mb-8">
-        <div className="w-14 h-14 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-lg font-black  border border-white/10 shadow-xl group-hover:rotate-3 transition-transform">
+      <div className="flex items-center gap-4 mb-6">
+        <div className="w-12 h-12 rounded-2xl bg-indigo-950 text-white flex items-center justify-center text-[15px] font-black border border-white/10 shadow-xl group-hover:rotate-3 transition-transform shrink-0">
           {name.split(' ').map(n => n[0]).join('')}
         </div>
-        <div>
-           <h4 className="text-2xl text-indigo-950 group-hover:text-petri-500 transition-colors font-bold tracking-tight leading-tight mb-1">{name}</h4>
-           <p className="text-label text-text-muted font-bold uppercase tracking-widest">Case ID: {id}</p>
+        <div className="min-w-0">
+           <h4 className="text-lg text-indigo-950 group-hover:text-petri-600 transition-colors font-black tracking-tight leading-none mb-1.5 truncate">{name}</h4>
+           <div className="flex items-center gap-2">
+              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">ID: {id}</span>
+              <span className="w-1 h-1 rounded-full bg-slate-300" />
+              <span className="text-[9px] font-black text-indigo-950/60 uppercase tracking-widest truncate">{task}</span>
+           </div>
         </div>
       </div>
 
-      <div className="flex flex-col gap-4">
-         <div className="flex items-center justify-between border-t border-slate-50 pt-4">
-            <span className="text-label text-text-secondary font-bold uppercase tracking-widest">Remaining</span>
-            <span className={cn("text-body font-bold uppercase  tracking-normal", risk === 'URGENT' ? 'text-red-500' : 'text-indigo-950')}>{time}</span>
-         </div>
-         <button 
-           onClick={(e) => { e.stopPropagation(); navigate(`/doctor/cases/${id}`); }}
-           className="w-full h-[44px] bg-indigo-950 text-white text-button font-bold uppercase tracking-normal rounded-xl hover:bg-petri-500 transition-all shadow-lg"
-         >
-           Initialize Review
-         </button>
+      <div className="mt-auto space-y-4">
+        <div className="flex flex-col gap-1.5">
+           <div className="flex justify-between items-end">
+              <span className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em]">Processing State</span>
+              <span className="text-[10px] font-black text-indigo-950">65%</span>
+           </div>
+           <div className="h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+              <div className={cn("h-full transition-all", risk === 'URGENT' ? 'bg-red-600' : 'bg-petri-500')} style={{ width: '65%' }} />
+           </div>
+        </div>
+
+        <button 
+          onClick={(e) => { e.stopPropagation(); navigate(`/doctor/cases/${id}`); }}
+          className={cn(
+            "w-full h-11 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all active:scale-95",
+            risk === 'URGENT' ? "bg-red-600 text-white hover:bg-red-700 shadow-lg shadow-red-600/20" : "bg-indigo-950 text-white hover:bg-petri-500 shadow-lg shadow-indigo-950/20"
+          )}
+        >
+          {risk === 'URGENT' ? 'Resume Critical Review' : 'Launch Review Workspace'}
+          <ChevronRight size={14} />
+        </button>
       </div>
     </div>
   );
 };
 
-export const DoctorCompleted = () => (
-  <PageLayout title="Finalized Records" type="doctor" status="expert">
-    <div className="bg-white rounded-[48px] border border-slate-200 overflow-hidden shadow-2xl shadow-slate-200/40 relative">
-      <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
-      <table className="w-full text-left relative z-10">
-        <thead>
-          <tr className="bg-slate-50/50 border-b border-slate-100">
-            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest">Patient Entity</th>
-            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest">Final Diagnostic</th>
-            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest">Validation Date</th>
-            <th className="px-10 py-4 text-label text-text-secondary font-bold uppercase tracking-widest text-right">Status</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-50">
-          <CompletedRow name="James Wilson" diagnostic="TB Negative · Baseline Markers Safe" date="Oct 20, 2026" />
-          <CompletedRow name="Elena Rodriguez" diagnostic="Water Analysis · Pathogen Free" date="Oct 19, 2026" />
-          <CompletedRow name="Samuel Okafor" diagnostic="Malaria Markers · Postive Detect" date="Oct 18, 2026" />
-        </tbody>
-      </table>
-    </div>
-  </PageLayout>
-);
+export const DoctorCompleted = () => {
+  const [search, setSearch] = useState('');
+  return (
+    <PageLayout title="Finalized Clinical Records" type="doctor" status="expert">
+      <div className="px-4 mb-8 flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center bg-white border border-slate-200 rounded-xl p-1 shadow-sm">
+            <button className="px-4 py-2 bg-slate-50 text-indigo-950 rounded-lg text-[10px] font-black uppercase tracking-widest border border-slate-200">Last 30 Days</button>
+            <button className="px-4 py-2 text-slate-400 hover:text-indigo-950 rounded-lg text-[10px] font-black uppercase tracking-widest transition-colors">All Time</button>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 bg-white px-5 h-12 rounded-2xl border border-slate-200 w-80 shadow-sm group focus-within:border-indigo-950 transition-all">
+          <Search size={16} className="text-slate-400 group-focus-within:text-indigo-950 transition-colors" />
+          <input 
+            type="text" 
+            placeholder="Search report ID or patient..." 
+            className="bg-transparent border-none outline-none text-[11px] font-bold tracking-normal w-full placeholder:text-slate-400 text-indigo-950" 
+          />
+        </div>
+      </div>
+
+      <div className="bg-white rounded-[40px] border border-slate-200 overflow-hidden shadow-2xl shadow-indigo-950/5 relative">
+        <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
+        <table className="w-full text-left relative z-10 border-collapse">
+          <thead>
+            <tr className="bg-slate-50/50 border-b border-slate-100">
+              <th className="px-10 py-5 text-[9px] font-black text-slate-400 uppercase tracking-widest">Patient Identification</th>
+              <th className="px-10 py-5 text-[9px] font-black text-slate-400 uppercase tracking-widest">Clinical Conclusion</th>
+              <th className="px-10 py-4 text-[9px] font-black text-slate-400 uppercase tracking-widest">Validation Timestamp</th>
+              <th className="px-10 py-4 text-[9px] font-black text-slate-400 uppercase tracking-widest text-right">Certificate</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-50">
+            <CompletedRow name="James Wilson" diagnostic="TB Negative · Baseline Markers Safe" date="Oct 20, 2026 · 14:22" />
+            <CompletedRow name="Elena Rodriguez" diagnostic="Water Analysis · Pathogen Free" date="Oct 19, 2026 · 09:45" />
+            <CompletedRow name="Samuel Okafor" diagnostic="Malaria Markers · Postive Detect" date="Oct 18, 2026 · 11:10" />
+            <CompletedRow name="Kevin O’Brien" diagnostic="Viral Load · Non-Detectable" date="Oct 17, 2026 · 16:30" />
+          </tbody>
+        </table>
+      </div>
+    </PageLayout>
+  );
+};
 
 const CompletedRow = ({ name, diagnostic, date }) => (
-  <tr className="hover:bg-slate-50 transition-all group cursor-pointer">
-    <td className="px-10 py-6 text-body font-bold text-indigo-950 uppercase  tracking-normal">{name}</td>
-    <td className="px-10 py-6 text-body text-text-secondary ">"{diagnostic}"</td>
-    <td className="px-10 py-6 text-label text-text-muted font-bold uppercase tracking-widest">{date}</td>
-    <td className="px-10 py-6 text-right">
-      <div className="inline-flex items-center gap-2 text-label text-petri-500 bg-petri-50 px-3 py-1.5 rounded-lg border border-petri-100 font-bold uppercase tracking-widest">
-        <ShieldCheck size={14} strokeWidth={3} /> Validated
+  <tr className="hover:bg-indigo-50/30 transition-all group cursor-pointer border-l-4 border-l-transparent hover:border-l-petri-500">
+    <td className="px-10 py-5">
+      <div className="flex flex-col">
+        <span className="text-[12px] font-black text-indigo-950 uppercase tracking-tight group-hover:text-petri-600 transition-colors">{name}</span>
+        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Verified ID · Clinical Record</span>
+      </div>
+    </td>
+    <td className="px-10 py-5">
+      <div className="flex items-center gap-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-petri-500" />
+        <span className="text-[11px] font-bold text-indigo-950/80 leading-tight">"{diagnostic}"</span>
+      </div>
+    </td>
+    <td className="px-10 py-5">
+      <span className="text-[10px] text-slate-400 font-black uppercase tracking-tighter">{date}</span>
+    </td>
+    <td className="px-10 py-5 text-right">
+      <div className="inline-flex items-center gap-2 text-[9px] text-petri-600 bg-petri-50 px-3 py-2 rounded-xl border border-petri-100 font-black uppercase tracking-widest shadow-sm group-hover:bg-petri-500 group-hover:text-white transition-all">
+        <ShieldCheck size={14} strokeWidth={3} />
+        Download Report
       </div>
     </td>
   </tr>
