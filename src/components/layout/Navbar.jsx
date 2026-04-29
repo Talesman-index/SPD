@@ -8,27 +8,13 @@ const Navbar = () => {
   const { cartCount, setIsOpen } = useCart()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const dropdownRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)
-    
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navLinks = [
@@ -103,62 +89,6 @@ const Navbar = () => {
                 </span>
               )}
             </button>
-
-            {/* Account Button */}
-            <div className="relative" ref={dropdownRef}>
-              {!isLoggedIn ? (
-                <a 
-                  href="/login"
-                  className={cn(
-                    "flex items-center gap-2 px-5 py-2.5 border rounded-full font-bold text-[11px] uppercase tracking-normal transition-all duration-300",
-                    isScrolled 
-                      ? "border-indigo-900/20 text-indigo-950 hover:bg-indigo-900 hover:text-white" 
-                      : "border-white/20 text-white hover:bg-white hover:text-indigo-900"
-                  )}
-                >
-                  <User size={18} />
-                  <span className="hidden md:block">Sign In</span>
-                </a>
-              ) : (
-                <button 
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-xs hover:scale-105 transition-transform border-2 border-white/10"
-                >
-                  JD
-                </button>
-              )}
-
-              <AnimatePresence>
-                {isLoggedIn && isDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute right-0 mt-4 w-56 bg-white rounded-3xl shadow-2xl border border-indigo-100 overflow-hidden z-[200]"
-                  >
-                    <div className="p-5 border-b border-indigo-50">
-                      <p className="text-xs font-bold text-[#b45309] uppercase tracking-widest mb-1">Signed in as</p>
-                      <p className="text-sm font-bold text-indigo-950 truncate">John Doe</p>
-                    </div>
-                    <div className="p-2">
-                      <a href="/doctor/dashboard" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
-                        <LayoutDashboard size={16} /> Dashboard
-                      </a>
-                      <a href="/doctor/settings" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
-                        <Settings size={16} /> Settings
-                      </a>
-                      <div className="h-px bg-indigo-50 my-2 mx-4" />
-                      <button 
-                        onClick={() => setIsLoggedIn(false)}
-                        className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-red-500 hover:bg-red-50 transition-all"
-                      >
-                        <LogOut size={16} /> Sign Out
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
 
             {/* Order Button */}
             <button 
@@ -235,22 +165,6 @@ const Navbar = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            {!isLoggedIn ? (
-              <a href="/login" className="w-full py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-[11px] uppercase tracking-normal flex items-center justify-center gap-3 hover:bg-white/10 transition-all">
-                <User size={18} /> Sign In to Portal
-              </a>
-            ) : (
-              <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
-                 <div className="w-12 h-12 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">JD</div>
-                  <div className="flex-1">
-                     <p className="text-white font-bold text-[11px] uppercase tracking-normal">John Doe</p>
-                     <p className="text-white/40 text-[11px] font-bold uppercase tracking-widest">Doctor Portal</p>
-                  </div>
-                  <button onClick={() => setIsLoggedIn(false)} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:text-white transition-colors">
-                    <LogOut size={18}/>
-                  </button>
-              </div>
-            )}
             <button 
               onClick={() => { setIsMobileMenuOpen(false); document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' }); }}
               className="w-full py-6 rounded-2xl text-xs bg-petri-500 text-white font-bold uppercase tracking-normal shadow-2xl shadow-petri-500/20 active:scale-95 transition-all"

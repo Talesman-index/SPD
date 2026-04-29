@@ -144,11 +144,6 @@ const GetStarted = () => {
                   <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                 </button>
               </form>
-              <div className="mt-8 text-center lg:text-left">
-                 <p className="text-white/70 text-[10px] font-bold uppercase tracking-widest">
-                    Clinical professional? <a href="/login" className="text-petri-400 hover:underline">Sign in here</a>
-                 </p>
-              </div>
             </div>
           </ScrollReveal>
         </div>
