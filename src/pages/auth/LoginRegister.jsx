@@ -6,21 +6,14 @@ import { cn } from '../../lib/utils';
 
 const LoginRegister = () => {
   const [activeTab, setActiveTab] = useState('signup');
-  const [role, setRole] = useState('patient');
+  const [role, setRole] = useState('doctor'); // Forced to doctor
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleAuth = (e) => {
     e.preventDefault();
-    if (role === 'doctor') {
-      navigate('/doctor/dashboard');
-    } else {
-      if (activeTab === 'signup') {
-        navigate('/onboarding');
-      } else {
-        navigate('/patient/dashboard');
-      }
-    }
+    // Simplified: always doctor path
+    navigate('/doctor/dashboard');
   };
 
   return (
@@ -84,26 +77,13 @@ const LoginRegister = () => {
 
         <div className="w-full max-w-[400px] flex flex-col items-center">
           
-          {/* Role Switcher */}
-          <div className="bg-indigo-50 p-1.5 rounded-3xl flex w-full mb-6 shadow-inner">
-            <button 
-              onClick={() => setRole('patient')}
-              className={cn(
-                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-bold text-[10px] uppercase tracking-widest",
-                role === 'patient' ? "bg-indigo-900 text-white shadow-xl" : "text-[#5a5a8a] hover:text-indigo-900"
-              )}
-            >
-              <User size={14} /> Patient
-            </button>
-            <button 
-              onClick={() => setRole('doctor')}
-              className={cn(
-                "flex-1 h-12 rounded-2xl flex items-center justify-center gap-2 transition-all font-bold text-[10px] uppercase tracking-widest",
-                role === 'doctor' ? "bg-indigo-900 text-white shadow-xl" : "text-[#5a5a8a] hover:text-indigo-900"
-              )}
-            >
-              <Activity size={14} /> Doctor
-            </button>
+          {/* Header for Doctor Portal */}
+          <div className="text-center mb-8">
+            <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-900 mx-auto mb-4 shadow-sm border border-indigo-100">
+              <Activity size={24} />
+            </div>
+            <h2 className="text-xl font-black text-indigo-950 uppercase italic tracking-tight">Professional Portal</h2>
+            <p className="text-[10px] font-bold text-[#5a5a8a] uppercase tracking-widest mt-1">SPD Clinical Intelligence</p>
           </div>
 
           {/* Tab Switcher */}
@@ -142,15 +122,15 @@ const LoginRegister = () => {
                     <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Full Name</label>
                     <input 
                       type="text" 
-                      placeholder="John Doe"
+                      placeholder="Dr. John Doe"
                       className="w-full h-14 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Email Address</label>
+                    <label className="text-[9px] font-bold text-[#5a5a8a] uppercase tracking-widest pl-1">Clinical Email</label>
                     <input 
                       type="email" 
-                      placeholder="john@example.com"
+                      placeholder="john@hospital.com"
                       className="w-full h-12 px-5 bg-white border border-indigo-100 rounded-xl focus:ring-2 focus:ring-petri-500 focus:border-transparent outline-none transition-all placeholder:text-[#9898b8] text-sm text-indigo-950 font-bold shadow-sm"
                     />
                   </div>
@@ -207,7 +187,7 @@ const LoginRegister = () => {
 
             {/* Submit Button */}
             <button type="submit" className="w-full h-12 rounded-xl bg-indigo-900 text-white font-bold uppercase tracking-normal flex items-center justify-center gap-3 hover:bg-petri-500 transition-all shadow-xl mt-1 group text-xs">
-              {activeTab === 'signup' ? 'Create account' : 'Sign in'} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              {activeTab === 'signup' ? 'Create doctor account' : 'Sign in as doctor'} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
             {/* Social Auth */}

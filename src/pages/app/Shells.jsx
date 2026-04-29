@@ -658,9 +658,9 @@ export const DoctorAnalytics = () => (
         <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-petri-500/10 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000" />
         
-        <div className="flex items-center gap-3 mb-10 relative z-10 text-white/75">
-           <BarChart3 size={18} />
-           <h3 className="text-[12px] font-bold uppercase tracking-widest ">Review Throughput</h3>
+        <div className="flex items-center gap-3 mb-10 relative z-10">
+           <BarChart3 size={18} className="text-white/70" />
+           <h3 className="text-[10px] font-bold uppercase tracking-widest bg-petri-500 text-indigo-950 px-2 py-0.5 rounded-md">Review Throughput</h3>
         </div>
         
         <div className="flex items-baseline gap-2 mb-2 relative z-10">

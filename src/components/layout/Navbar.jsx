@@ -141,10 +141,10 @@ const Navbar = () => {
                       <p className="text-sm font-bold text-indigo-950 truncate">John Doe</p>
                     </div>
                     <div className="p-2">
-                      <a href="/patient/dashboard" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
+                      <a href="/doctor/dashboard" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
                         <LayoutDashboard size={16} /> Dashboard
                       </a>
-                      <a href="/patient/settings" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
+                      <a href="/doctor/settings" className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-normal text-text-secondary hover:text-indigo-900 hover:bg-indigo-50 transition-all">
                         <Settings size={16} /> Settings
                       </a>
                       <div className="h-px bg-indigo-50 my-2 mx-4" />
@@ -244,7 +244,7 @@ const Navbar = () => {
                  <div className="w-12 h-12 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">JD</div>
                   <div className="flex-1">
                      <p className="text-white font-bold text-[11px] uppercase tracking-normal">John Doe</p>
-                     <p className="text-white/40 text-[11px] font-bold uppercase tracking-widest">Patient Portal</p>
+                     <p className="text-white/40 text-[11px] font-bold uppercase tracking-widest">Doctor Portal</p>
                   </div>
                   <button onClick={() => setIsLoggedIn(false)} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:text-white transition-colors">
                     <LogOut size={18}/>

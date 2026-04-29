@@ -173,7 +173,7 @@ const Hero = ({ onOpenTrial }) => {
                     className="bg-petri-500 text-indigo-950 hover:bg-white hover:text-indigo-900 transition-all duration-500 shadow-2xl shadow-petri-500/20 group border-none px-10 h-[56px] rounded-2xl" 
                     onClick={onOpenTrial}
                   >
-                    <span className="text-button font-bold uppercase tracking-normal">Order Now — $149</span>
+                    <span className="text-button font-bold uppercase tracking-normal">Order Now — $40</span>
                     <div className="w-8 h-8 rounded-lg bg-indigo-950 flex items-center justify-center ml-4 group-hover:rotate-45 transition-transform duration-500">
                       <ArrowUpRight size={16} className="text-white" />
                     </div>
